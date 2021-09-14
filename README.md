@@ -18,5 +18,5 @@ This is my very first website that I have ever built and deployed, and I hope th
 combating mass surveillance. If anyone feels like they want to help and contribute to spreading financial freedom to all, please consider contributing to the code
 if you are a fellow developer, or by donating to the Monero address and view key down below.
 
-<strong>MoneroMarket Donation</strong>: 466eP39DT6ua2ER2Xm6Mm73HyDph4UKzS6A8s2HVZEipZtYjZwoFfV9eKzAtZu49EaDSsucMJ1RNodFUW5QuEetJCN4cjmq <br />
-<strong>MoneroMarket View Key</strong>: b9001ba2430a88947adefcc29f61d6b3732e14d29d4e2b0bce6c92e88a91210e
+<strong>Donation</strong>: 466eP39DT6ua2ER2Xm6Mm73HyDph4UKzS6A8s2HVZEipZtYjZwoFfV9eKzAtZu49EaDSsucMJ1RNodFUW5QuEetJCN4cjmq <br />
+<strong>View Key</strong>: b9001ba2430a88947adefcc29f61d6b3732e14d29d4e2b0bce6c92e88a91210e
