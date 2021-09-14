@@ -16,7 +16,7 @@ There are also other people who have provided helpful resources online, and I si
 
 This is my very first website that I have ever built and deployed, and I hope that this website helps with the future adoption of cryptocurrencies and 
 combating mass surveillance. If anyone feels like they want to help and contribute to spreading financial freedom to all, please consider contributing to the code
-if you are a fellow developer, or by donating to the Monero address and view key down below.
+if you are a fellow developer, or by donating to the Monero address down below.
 
 <strong>Donation</strong>: 466eP39DT6ua2ER2Xm6Mm73HyDph4UKzS6A8s2HVZEipZtYjZwoFfV9eKzAtZu49EaDSsucMJ1RNodFUW5QuEetJCN4cjmq <br />
 <strong>View Key</strong>: b9001ba2430a88947adefcc29f61d6b3732e14d29d4e2b0bce6c92e88a91210e
