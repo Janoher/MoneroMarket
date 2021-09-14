@@ -1,0 +1,133 @@
+{% extends "abstracts/layout.html" %}
+
+
+
+{% block content %}
+	<section class="orders-view" style="min-height: 450px">
+		<h1><a style="color: red">ADMIN's</a> Messages ({{ messages.total }})</h1>
+
+
+		<a href="{{ url_for('messages.create', filter_by=filter_by, page=page) }}" style="float: right; margin: 6px 12px 0 0"><button class="search_button">Write New Message</button></a>
+		<p>Filter: 		
+			{% if filter_by == "received" %}
+				<a style="margin-right: -18px ; text-decoration: none ;" href="{{ url_for('messages.admin', filter_by='received', message_type='dispute') }}"><strong><span>Received</span></strong></a>
+			{% else %}
+				<a style="margin-right: -18px ; text-decoration: none ;" href="{{ url_for('messages.admin', filter_by='received', message_type='dispute') }}"><span>Received</span></a>
+			{% endif %}
+			
+
+			{% if filter_by == "sent" %}
+				<a style="margin-right: -18px ; text-decoration: none ;" href="{{ url_for('messages.admin', filter_by='sent', message_type='dispute') }}"><strong><span>Sent</span></strong></a>
+			{% else %}
+				<a style="margin-right: -18px ; text-decoration: none ;" href="{{ url_for('messages.admin', filter_by='sent', message_type='dispute') }}"><span>Sent</span></a>
+			{% endif %}
+
+
+			{% if filter_by == "all" %}
+				<a  style="text-decoration: none ;" href="{{ url_for('messages.admin', filter_by='all', message_type='dispute') }}"><strong><span>All</span></strong></a> 
+			{% else %}
+				<a  style="text-decoration: none ;" href="{{ url_for('messages.admin', filter_by='all', message_type='dispute') }}"><span>All</span></a> 
+			{% endif %}
+
+
+
+
+
+
+
+
+		<!-- Page numbers -->
+		Page: 
+		<!-- Print page numbers on top based upon the iteration and number of messages in each category -->
+		<span>
+			{% if messages.total == 0 %}
+				<a class="blue-link">0</a>
+			{% endif %}
+
+			{% for page_num in messages.iter_pages() %}
+				{% if page_num == page %}
+					<strong><a class="blue-link" href="{{ url_for('messages.admin', filter_by='sent', page=page_num, message_type='dispute') }}">{{ page_num }}</a></strong>
+				{% elif page_num %}
+					<a class="blue-link" href="{{ url_for('messages.admin', filter_by='sent', page=page_num, message_type='dispute') }}">{{ page_num }}</a>
+
+				{% else %}
+					...
+				{% endif %}
+			{% endfor %}
+		</span>
+		
+
+
+
+
+
+		<table class="orders-table">
+			<thead>
+				<tr>
+					<th>Subject</th>
+					<th>User</th>
+					<th>Status</th>
+					<th>Type</th>
+					<th colspan="2">Date & Time</th>
+										
+				</tr>
+			</thead>
+			<tbody>
+				{% if messages.total %}
+					{% for message in messages.items %}
+						<tr>
+							<td><p><a class="blue-link" href="{{ url_for('messages.view', message_id=message.id, page=page, direction='received') }}">{{ fernet.decrypt(message.title.encode()).decode() }}</a></p></td>
+
+							<!-- Finally got query results to work! Source: https://stackoverflow.com/questions/34299704/when-to-use-sqlalchemy-get-vs-filterfoo-id-primary-key-id-first -->
+							<!-- Make text red when officialy it is admin -->
+							{% if message.message_from == 1 %}
+								<td><a class="orange-link" href="{{ url_for('users.profile', username=User.query.get(message.message_from).username) }}">{{ User.query.get(message.message_to).username }}</a></td>
+							{% elif message.message_to == 1 %}
+								<td><a class="orange-link" href="{{ url_for('users.profile', username=User.query.get(message.message_from).username) }}">{{ User.query.get(message.message_from).username }}</a></td>
+							{% endif %}
+							
+
+							<!-- Add color to status -->
+							{% if message.status == "ACCEPTED" %}
+								<td style="color: lime">{{ message.status }}</td>
+							{% elif message.status == "UNACCEPTED" %}
+								<td style="color: crimson">{{ message.status }}</td>
+							{% else %}
+								<td>{{ message.status }}</td>
+							{% endif %}
+
+							
+							{% if message.message_type == "TRANSACTION" %}
+								<td><a href="" style="color: blue; text-decoration: none">{{ message.message_type }}</td>
+							{% elif message.message_type == "DISPUTE" %}
+								<td><a href="{{ url_for('employees.view_order', order_id=message.order_id) }}" style="color: crimson; text-decoration: none">{{ message.message_type }}</td>
+							{% else %}
+								<td>{{ message.message_type }}</td>
+							{% endif %}
+							<td>{{ message.date_created.strftime("%b %-d %Y, %H:%M") }}</td>
+
+
+							<td><a href="{{ url_for('messages.delete_received', message_id=message.id, page=page, filter_by=filter_by) }}" class="red-link">Remove<span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></a></td>
+						</tr>
+					{% endfor %}
+
+				{% else %}
+					<tr>
+						<td><p>None</p></td>
+						<td>----------</td>
+						<td>----------</td>
+						<td>----------</td>
+						<td>----------</td>
+					</tr>
+
+				{% endif %}
+			</tbody>
+
+		
+		</table>
+
+
+	</section>
+	<p style="margin-left: 5px; margin-top: 10px; color: grey">Official messages from <a class="red-link" href="{{ url_for('users.profile', username='ADMIN') }}">ADMIN</a> will have the username appear in <span style="color: red">RED.</span> Any user that claims to be <a class="red-link" href="{{ url_for('users.profile', username='ADMIN') }}">ADMIN</a> but username doesn't come out red is a fake.</p>
+
+{% endblock content %}

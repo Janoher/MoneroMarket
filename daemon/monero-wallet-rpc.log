@@ -1,0 +1,1036 @@
+2021-09-13 22:42:27.686	    7f884aa847c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-13 22:42:27.686	    7f884aa847c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-13 22:42:29.996	    7f884aa847c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-13 22:42:33.381	    7f8849eee640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <4e5437d0450914e61d9c036b1dd7a96910e3ac5ab94f681f121e95a651f56371>
+2021-09-13 22:42:33.382	    7f884aa847c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <1d37a27844de1bb07fd63c869660ff07a65ddb9a5bd15473c9ac8d5af09107dc>
+2021-09-13 22:42:33.383	    7f884aa847c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <f4be71f8733fe0927e592c1b3df5fcac341c483d6e895f76052e313aa3e6f44d>
+2021-09-13 22:42:33.383	    7f8849eee640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <6ea306f422bbc602b61453b5883182e7d715ab8b4eaf1d653533ca68500f94c4>
+2021-09-13 22:42:33.387	    7f8849eee640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <74bebd4e402dfd9a3e88840e26161d42f6a4f1749ac237247c5baba31522cf1f>
+2021-09-13 22:42:33.396	    7f8849eee640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <3bc1b0c27dcf069ccc6996c774dc5a862a521ac58a15ff185e9737cc2ca10d27>
+2021-09-13 22:42:33.398	    7f884aa847c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <cc341015b60fd2389c42848c1be85fef447e716663c00e859269a05ec8d0bd6e>
+2021-09-13 22:42:33.398	    7f884aa847c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <148bdb8fe09821f3f2d38f40c8d84dfc28167ebee04bca2d89d02728abf6c0f6>
+2021-09-13 22:42:33.398	    7f88499ed640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <fa928143d5f211a9cd448c9547b5f9c583f93e495ea61df9f1a4d6b76dcd4cdb>
+2021-09-13 22:42:35.088	    7f8849eee640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <01aa6d218503b4f15bc5fa1faa9013ff92ce4649b8c01be9651e93c20aff56cf>
+2021-09-13 22:42:35.088	    7f88499ed640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <7d39da2d375810efc1acc8ad93ec1d1ac3149cdde19239964dd25d1c268c62d5>
+2021-09-13 22:42:35.089	    7f88499ed640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <a892fc2509b5ebdf3d0a33d4d053ef2ce03dd3742c7ecaa104b05cf5e103b3a1>
+2021-09-13 22:42:35.096	    7f8849eee640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <bf871cd6bf5bef386bd2044e71abd25148e1b48b563071a145fa7bcdf6263368>
+2021-09-13 22:42:35.096	    7f8849eee640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <74327049a71df54e6cf006fb8e609f305efc5bf09bed46b914fe065229371b91>
+2021-09-13 22:42:35.099	    7f88499ed640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <3385c1c78a3733de970dd59aebc727b52a5affb0bb4c2e954b0659e1c8867119>
+2021-09-13 22:42:35.100	    7f8849eee640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <01e7163434d3ab11ae3477cce05964ca94226edead6cc96395c6058ba1c156f4>
+2021-09-13 22:42:35.100	    7f8849eee640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <2e40b27c2043c3e14ff3c135ce366984e9840b5e27169a294fc87c36b3712a95>
+2021-09-13 22:42:35.102	    7f88499ed640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <5d5d6cd3056cc7076704dd8eb44ca11f31e596b228d814709c108f272e29a5a7>
+2021-09-13 22:42:35.102	    7f88499ed640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <3f1dce45eacccf37664af1d8520d0f4ab963e89dbb94b705f269fe1f0cfb04c3>
+2021-09-13 22:42:35.102	    7f884aa847c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <f3d899203a35a3e9b8ac88c654fe34609526ad4f852a804ff9a018d7e49e5a4e>
+2021-09-13 22:42:35.105	    7f8849eee640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <0b66694072272e2fa11e1123fa06e3243fa43bb2cfe0885e5243ffd7786abbad>
+2021-09-13 22:42:35.107	    7f8849eee640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <8818c46f9a673b73af2ef9a6de46c4a1c1501b14240bacb34d860040412cb341>
+2021-09-13 22:42:36.940	    7f884a3ef640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <9aaf1329108ed41a3e92c96dfc7b432e9dfc2d825b7933cbe1c69aca76dba2fb>
+2021-09-13 22:42:36.941	    7f8849eee640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <7ca2ac3cae0ace4d45006c131f588b255beab471defd11689028f6e5ffaac89d>
+2021-09-13 22:42:36.941	    7f884a3ef640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <b0d350bb45d46829982ec2bdce68eb0dc9662674df195437bf017a8f3ef125be>
+2021-09-13 22:42:36.942	    7f8849eee640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <95eb0b55b7eed2f62dae36f2b77dfabc7e894d0b245bb9d9eddc59d37413fca3>
+2021-09-13 22:42:36.945	    7f884aa847c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <bc5c8203123060ecb6d4526d94592c9b77ccaac006c138f5ed0510a57e7f1d3a>
+2021-09-13 22:42:36.949	    7f884a3ef640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <00637ef703ca27993f34aea38dfd31c89560da9c5a17fe8dc0ba67d8758c7555>
+2021-09-13 22:42:36.949	    7f8849eee640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <b5f2e53d8a7035c41dbb545934ea5ca597b9bf0bd75e5ea72d48e3a1f820b2e2>
+2021-09-13 22:42:36.950	    7f8849eee640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <930dd7a70453c19b132c03c9e44f4e662366a7ca7e11ad98ef38fe409732c523>
+2021-09-13 22:42:36.950	    7f8849eee640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <3977377f439a0941590818214e98af111c2e2b3fc9106f00e61c45a7d4bde0a8>
+2021-09-13 22:42:36.953	    7f8849eee640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <48130dca7bd93bf0843f4b6b26e1c07ab0a53f1d04ac9609cdc5b1a55b2a1043>
+2021-09-13 22:42:36.953	    7f884aa847c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <0a0e002fcfc9d926423bba859bc0c7bea75b3055b385f91cd6727a7a8de1d7c7>
+2021-09-13 22:42:36.955	    7f884aa847c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <e78ab73c2d647bd8b40c701c864b6650f3e11186c196797374bc19770133c9b4>
+2021-09-13 22:42:36.955	    7f8849eee640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <f9bb7cdbadf7cce26b9b9d1f7d12a4bc26877c3907ff2d54b8669f29f208d555>
+2021-09-13 22:42:36.957	    7f884aa847c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <06afa17a3ed896c0971af494461dcd2365a77b11e2421896ba26e34e5ec84b62>
+2021-09-13 22:42:36.958	    7f884aa847c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <72b770491acdb38b8fd2293f340d235bd95c13f4cb475f0c77bf9f6d09f6fe3b>
+2021-09-13 22:42:36.961	    7f884a3ef640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <e85d859d1ef34cbf8c93510ea135d138a0436b214510f063ea7fdcfb91d797bd>
+2021-09-13 22:42:36.962	    7f8849eee640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <3f51a5550345d398f7558e27086a46a0ba13d4c0c4692baeabf4a76ea70780bb>
+2021-09-13 22:42:38.761	    7f884a3ef640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <291ff44f748e8bbaa5adde141ed6a03fe9ad26459ba340b219bb095401b8adcd>
+2021-09-13 22:42:38.769	    7f884a3ef640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <9739354a40bee728c0859d0a0db1e9147434b4c4e8f0f1ad85ba47ebf7b28ce3>
+2021-09-13 22:42:38.771	    7f884a3ef640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <abfa9d6c94a0f5974e1cb5e13cd81e689e327d80ad67dfb2d03b150bd312505b>
+2021-09-13 22:42:38.773	    7f884a3ef640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <1072571237436956d1272e03b052bcc860c8e77e0606990770095bf4a8efbcc0>
+2021-09-13 22:42:38.773	    7f884a3ef640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <ffb5af347db1eefb5a87b570289a7aef93e3ae1f664b924850f268432b497f7b>
+2021-09-13 22:42:38.774	    7f88499ed640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <45a27a66245574a040448915e2a9c2a5a15921140f82ed5e339815f298b0d5cd>
+2021-09-13 22:42:38.775	    7f884a3ef640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <fc0f0730f502098d27a863371d61c73a08fda447a4bbfa408a1676ee7481aeb2>
+2021-09-13 22:42:38.776	    7f88499ed640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <e998f07ec908f2d67e130db872532e911c7498a7f2e027a7b28f52c405021ffd>
+2021-09-13 22:42:38.776	    7f884aa847c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <9f1433e814666e76074c6eb7537332af34f395d17738aba80dfc6a582e7b4599>
+2021-09-13 22:42:38.776	    7f88499ed640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <bd61efe5ba47dfb0e2b70db4b0ddfea04f690f81bdde5a708fd89011911529f3>
+2021-09-13 22:42:38.777	    7f884aa847c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <a8dbdbc5649c454cec12fd436e4fcc25a196c9ce22051e7d27395a1e12e43f69>
+2021-09-13 22:42:38.779	    7f884aa847c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <8bb861166db2917f4edcf6af5000669721367231104b4cfebe2654f6b2d14e9c>
+2021-09-13 22:42:38.781	    7f884aa847c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <6c66c11e014195c6e0980a333ca9e091258be3d73c0263e85c0e46a67f219de0>
+2021-09-13 22:42:38.785	    7f88499ed640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <ff982530e837a7de5bdefcf14611e7af9436b7e6cdc8ef6e9b4da9da42b063cb>
+2021-09-13 22:42:52.783	    7f8849eee640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <a6857dbec7c709a7686e4766bf37f3779db9b388de53a2787edda38d6854a4f9>
+2021-09-13 22:42:53.132	    7f884aa847c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):28088
+2021-09-13 22:42:53.382	    7f884aa847c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4559	Starting wallet RPC server
+2021-09-13 22:43:23.340	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4569	Stopped wallet RPC server
+2021-09-13 22:43:23.340	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4572	Saving wallet...
+2021-09-13 22:43:23.347	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4574	Successfully saved
+2021-09-13 22:51:00.904	    7fd72d18f7c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-13 22:51:00.905	    7fd72d18f7c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-13 22:51:02.113	    7fd72d18f7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-13 22:51:03.286	    7fd72c5f9640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <8bb861166db2917f4edcf6af5000669721367231104b4cfebe2654f6b2d14e9c>
+2021-09-13 22:51:03.292	    7fd72c0f8640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <6c66c11e014195c6e0980a333ca9e091258be3d73c0263e85c0e46a67f219de0>
+2021-09-13 22:51:03.296	    7fd72d18f7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <ff982530e837a7de5bdefcf14611e7af9436b7e6cdc8ef6e9b4da9da42b063cb>
+2021-09-13 22:51:03.300	    7fd72d18f7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <a6857dbec7c709a7686e4766bf37f3779db9b388de53a2787edda38d6854a4f9>
+2021-09-13 22:51:04.249	    7fd72d18f7c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):28088
+2021-09-13 22:51:05.272	    7fd72d18f7c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4559	Starting wallet RPC server
+2021-09-13 22:51:10.052	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4569	Stopped wallet RPC server
+2021-09-13 22:51:10.052	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4572	Saving wallet...
+2021-09-13 22:51:10.099	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4574	Successfully saved
+2021-09-13 22:54:42.071	    7f83783ef7c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-13 22:54:42.071	    7f83783ef7c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-13 22:54:42.998	    7f83783ef7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-13 22:56:53.040	    7f83783ef7c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:14076	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2021-09-13 22:56:53.040	    7f83783ef7c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4549	Wallet initialization failed: no connection to daemon
+2021-09-13 23:18:19.816	    7ff4109f77c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-13 23:18:19.817	    7ff4109f77c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-13 23:18:22.474	    7ff4109f77c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-13 23:18:26.906	    7ff40f960640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <8bb861166db2917f4edcf6af5000669721367231104b4cfebe2654f6b2d14e9c>
+2021-09-13 23:18:26.911	    7ff410362640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <6c66c11e014195c6e0980a333ca9e091258be3d73c0263e85c0e46a67f219de0>
+2021-09-13 23:18:26.915	    7ff40f960640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <ff982530e837a7de5bdefcf14611e7af9436b7e6cdc8ef6e9b4da9da42b063cb>
+2021-09-13 23:18:26.919	    7ff410362640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <a6857dbec7c709a7686e4766bf37f3779db9b388de53a2787edda38d6854a4f9>
+2021-09-13 23:18:27.894	    7ff4109f77c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):28088
+2021-09-13 23:18:28.436	    7ff4109f77c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4559	Starting wallet RPC server
+2021-09-13 23:18:48.004	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4569	Stopped wallet RPC server
+2021-09-13 23:18:48.004	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4572	Saving wallet...
+2021-09-13 23:18:48.012	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4574	Successfully saved
+2021-09-13 23:45:13.068	    7f90c94447c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-13 23:45:13.069	    7f90c94447c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-13 23:45:16.633	    7f90c94447c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-13 23:45:25.720	    7f90c94447c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <8bb861166db2917f4edcf6af5000669721367231104b4cfebe2654f6b2d14e9c>
+2021-09-13 23:45:25.722	    7f90c83ad640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <6c66c11e014195c6e0980a333ca9e091258be3d73c0263e85c0e46a67f219de0>
+2021-09-13 23:45:25.726	    7f90c83ad640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <ff982530e837a7de5bdefcf14611e7af9436b7e6cdc8ef6e9b4da9da42b063cb>
+2021-09-13 23:45:25.729	    7f90c83ad640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <a6857dbec7c709a7686e4766bf37f3779db9b388de53a2787edda38d6854a4f9>
+2021-09-13 23:45:26.720	    7f90c94447c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):28088
+2021-09-13 23:45:26.899	    7f90c94447c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4559	Starting wallet RPC server
+2021-09-13 23:45:49.497	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4569	Stopped wallet RPC server
+2021-09-13 23:45:49.497	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4572	Saving wallet...
+2021-09-13 23:45:49.505	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4574	Successfully saved
+2021-09-14 00:00:37.363	    7f7eef8917c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 00:00:37.364	    7f7eef8917c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 00:00:39.728	    7f7eef8917c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 00:00:45.213	    7f7eee7fa640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <8bb861166db2917f4edcf6af5000669721367231104b4cfebe2654f6b2d14e9c>
+2021-09-14 00:00:45.218	    7f7eee7fa640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <6c66c11e014195c6e0980a333ca9e091258be3d73c0263e85c0e46a67f219de0>
+2021-09-14 00:00:45.222	    7f7eef1fc640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <ff982530e837a7de5bdefcf14611e7af9436b7e6cdc8ef6e9b4da9da42b063cb>
+2021-09-14 00:00:45.226	    7f7eef8917c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <a6857dbec7c709a7686e4766bf37f3779db9b388de53a2787edda38d6854a4f9>
+2021-09-14 00:00:46.249	    7f7eef8917c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):28088
+2021-09-14 00:00:47.127	    7f7eef8917c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4559	Starting wallet RPC server
+2021-09-14 00:03:21.700	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 00:03:23.569	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:9902	needed_money + min_fee > balance_subtotal. THROW EXCEPTION: error::not_enough_money
+2021-09-14 00:03:26.387	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 00:03:26.388	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:9902	needed_money + min_fee > balance_subtotal. THROW EXCEPTION: error::not_enough_money
+2021-09-14 00:03:27.185	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 00:03:27.185	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:9902	needed_money + min_fee > balance_subtotal. THROW EXCEPTION: error::not_enough_money
+2021-09-14 00:04:10.741	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4569	Stopped wallet RPC server
+2021-09-14 00:04:10.741	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4572	Saving wallet...
+2021-09-14 00:04:10.748	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4574	Successfully saved
+2021-09-14 00:33:05.137	    7fd0dcba87c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 00:33:05.138	    7fd0dcba87c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 00:33:08.456	    7fd0dcba87c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 00:33:09.775	    7fd0dc012640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <8bb861166db2917f4edcf6af5000669721367231104b4cfebe2654f6b2d14e9c>
+2021-09-14 00:33:09.780	    7fd0dc012640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <6c66c11e014195c6e0980a333ca9e091258be3d73c0263e85c0e46a67f219de0>
+2021-09-14 00:33:09.785	    7fd0dcba87c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <ff982530e837a7de5bdefcf14611e7af9436b7e6cdc8ef6e9b4da9da42b063cb>
+2021-09-14 00:33:09.789	    7fd0dc513640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <a6857dbec7c709a7686e4766bf37f3779db9b388de53a2787edda38d6854a4f9>
+2021-09-14 00:33:09.792	    7fd0dbb11640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <9777dc5cd62651ec0daebe3d2ee3dcc3631c893565c05ca0181ccb9d236927e2>
+2021-09-14 00:33:10.831	    7fd0dcba87c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:2219	Received money: 0.010000000000, with tx: <b876c30562dd7bc3747de811cf19ee40011de955db935118ee78eb29c9e7fa52>
+2021-09-14 00:33:10.848	    7fd0dcba87c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):28088
+2021-09-14 00:33:11.629	    7fd0dcba87c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4559	Starting wallet RPC server
+2021-09-14 00:34:41.804	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4569	Stopped wallet RPC server
+2021-09-14 00:34:41.804	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4572	Saving wallet...
+2021-09-14 00:34:41.879	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4574	Successfully saved
+2021-09-14 00:34:49.423	    7f7d49f227c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 00:34:49.423	    7f7d49f227c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 00:34:54.594	    7f7d49f227c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 00:34:57.740	    7f7d48e8b640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <8bb861166db2917f4edcf6af5000669721367231104b4cfebe2654f6b2d14e9c>
+2021-09-14 00:34:57.747	    7f7d49f227c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <6c66c11e014195c6e0980a333ca9e091258be3d73c0263e85c0e46a67f219de0>
+2021-09-14 00:34:57.753	    7f7d49f227c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <ff982530e837a7de5bdefcf14611e7af9436b7e6cdc8ef6e9b4da9da42b063cb>
+2021-09-14 00:34:57.759	    7f7d4938c640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <a6857dbec7c709a7686e4766bf37f3779db9b388de53a2787edda38d6854a4f9>
+2021-09-14 00:34:57.763	    7f7d4988d640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <9777dc5cd62651ec0daebe3d2ee3dcc3631c893565c05ca0181ccb9d236927e2>
+2021-09-14 00:34:58.816	    7f7d49f227c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):28088
+2021-09-14 00:35:00.662	    7f7d49f227c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4559	Starting wallet RPC server
+2021-09-14 00:36:13.233	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 00:36:14.798	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:9905	needed_money + min_fee > unlocked_balance_subtotal. THROW EXCEPTION: error::not_enough_unlocked_money
+2021-09-14 00:49:27.463	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4569	Stopped wallet RPC server
+2021-09-14 00:49:27.464	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4572	Saving wallet...
+2021-09-14 00:49:27.487	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4574	Successfully saved
+2021-09-14 00:49:32.892	    7f7c0ee4b7c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 00:49:32.917	    7f7c0ee4b7c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 00:49:37.712	    7f7c0ee4b7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 00:49:40.574	    7f7c0e2b5640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <8bb861166db2917f4edcf6af5000669721367231104b4cfebe2654f6b2d14e9c>
+2021-09-14 00:49:40.580	    7f7c0e2b5640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <6c66c11e014195c6e0980a333ca9e091258be3d73c0263e85c0e46a67f219de0>
+2021-09-14 00:49:40.585	    7f7c0ddb4640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <ff982530e837a7de5bdefcf14611e7af9436b7e6cdc8ef6e9b4da9da42b063cb>
+2021-09-14 00:49:40.590	    7f7c0ee4b7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <a6857dbec7c709a7686e4766bf37f3779db9b388de53a2787edda38d6854a4f9>
+2021-09-14 00:49:40.593	    7f7c0ddb4640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <9777dc5cd62651ec0daebe3d2ee3dcc3631c893565c05ca0181ccb9d236927e2>
+2021-09-14 00:49:41.741	    7f7c0ee4b7c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):28088
+2021-09-14 00:49:42.430	    7f7c0ee4b7c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4559	Starting wallet RPC server
+2021-09-14 00:51:19.491	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4569	Stopped wallet RPC server
+2021-09-14 00:51:19.491	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4572	Saving wallet...
+2021-09-14 00:51:19.538	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4574	Successfully saved
+2021-09-14 00:51:24.488	    7fee600aa7c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 00:51:24.497	    7fee600aa7c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 00:51:27.807	    7fee600aa7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 00:51:28.892	    7fee5f013640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <8bb861166db2917f4edcf6af5000669721367231104b4cfebe2654f6b2d14e9c>
+2021-09-14 00:51:28.898	    7fee5f013640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <6c66c11e014195c6e0980a333ca9e091258be3d73c0263e85c0e46a67f219de0>
+2021-09-14 00:51:28.907	    7fee600aa7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <ff982530e837a7de5bdefcf14611e7af9436b7e6cdc8ef6e9b4da9da42b063cb>
+2021-09-14 00:51:28.911	    7fee5fa15640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <a6857dbec7c709a7686e4766bf37f3779db9b388de53a2787edda38d6854a4f9>
+2021-09-14 00:51:28.914	    7fee5fa15640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <9777dc5cd62651ec0daebe3d2ee3dcc3631c893565c05ca0181ccb9d236927e2>
+2021-09-14 00:51:30.252	    7fee600aa7c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):28088
+2021-09-14 00:51:31.595	    7fee600aa7c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4559	Starting wallet RPC server
+2021-09-14 00:52:41.469	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 00:53:12.468	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 00:53:13.070	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:13.078	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:13.086	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:26.759	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 00:53:26.824	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 00:53:27.198	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:27.206	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:27.213	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:27.310	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 00:53:27.311	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 00:53:27.612	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:27.620	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:27.628	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:27.724	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 00:53:27.725	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 00:53:27.968	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:27.977	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:27.984	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:43.847	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 00:53:43.848	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 00:53:44.157	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:44.165	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:44.173	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:44.271	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 00:53:44.272	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 00:53:44.598	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:44.606	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:44.614	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:44.710	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 00:53:44.712	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 00:53:44.976	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:44.985	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:44.992	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:56.834	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 00:53:56.836	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 00:53:57.409	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:57.419	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:57.429	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:57.535	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 00:53:57.536	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 00:53:57.792	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:57.800	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:57.807	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:57.904	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 00:53:57.906	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 00:53:58.157	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:58.165	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:58.173	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:58.958	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 00:53:58.959	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 00:53:59.255	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:59.264	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:59.272	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:59.369	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 00:53:59.371	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 00:53:59.631	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:59.639	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:59.647	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:53:59.743	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 00:53:59.745	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 00:54:00.032	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:54:00.040	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:54:00.048	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:55:02.541	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 00:55:02.603	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 00:55:02.991	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:55:03.002	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:55:03.013	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:55:03.147	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 00:55:03.149	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 00:55:03.432	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:55:03.443	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:55:03.453	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:55:03.556	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 00:55:03.557	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 00:55:03.823	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:55:03.831	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:55:03.838	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:55:03.962	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 00:55:03.963	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 00:55:04.224	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:55:04.234	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:55:04.245	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:55:04.349	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 00:55:04.350	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 00:55:04.594	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:55:04.605	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:55:04.613	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:55:04.714	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 00:55:04.716	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 00:55:04.995	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:55:05.003	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:55:05.011	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:58:22.978	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 00:58:22.980	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 00:58:23.366	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:58:23.374	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:58:23.383	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:58:23.480	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 00:58:23.481	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 00:58:23.763	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:58:23.771	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:58:23.779	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:58:23.875	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 00:58:23.877	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 00:58:24.195	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:58:24.204	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:58:24.212	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:59:23.170	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 00:59:23.480	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 00:59:23.855	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:59:23.865	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:59:23.876	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:59:23.998	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 00:59:24.000	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 00:59:24.254	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:59:24.264	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:59:24.272	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:59:24.388	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 00:59:24.389	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 00:59:24.686	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:59:24.694	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 00:59:24.702	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 01:03:29.575	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 01:03:29.869	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 01:03:30.187	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 01:03:30.198	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 01:03:30.208	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 01:03:30.339	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 01:03:30.341	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 01:03:30.607	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 01:03:30.617	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 01:03:30.628	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 01:03:30.756	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 01:03:30.757	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 01:03:31.046	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 01:03:31.054	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 01:03:31.064	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 01:03:47.001	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 01:03:47.003	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 01:03:47.299	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 01:03:47.307	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 01:03:47.315	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 01:03:47.412	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 01:03:47.414	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 01:03:47.704	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 01:03:47.716	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 01:03:47.727	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 01:03:47.836	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 01:03:47.837	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 01:03:48.125	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 01:03:48.133	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 01:03:48.141	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 03:41:00.762	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 03:41:06.742	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 03:41:07.653	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 03:41:07.665	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 03:41:07.676	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 03:41:07.793	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 03:41:07.795	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 03:41:08.105	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 03:41:08.115	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 03:41:08.123	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 03:41:08.240	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 03:41:08.242	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 03:41:08.527	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 03:41:08.538	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 03:41:08.546	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 04:01:23.327	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4569	Stopped wallet RPC server
+2021-09-14 04:01:23.330	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4572	Saving wallet...
+2021-09-14 04:01:23.530	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4574	Successfully saved
+2021-09-14 04:01:39.151	    7ff215b0b7c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:01:39.152	    7ff215b0b7c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:01:41.677	    7ff215b0b7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:01:41.727	    7ff215b0b7c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:14076	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2021-09-14 04:01:41.731	    7ff215b0b7c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4549	Wallet initialization failed: no connection to daemon
+2021-09-14 04:01:43.388	    7fdbc98767c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:01:43.389	    7fdbc98767c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:01:44.737	    7fdbc98767c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:01:45.089	    7fdbc98767c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:01:57.837	    7fdbc98767c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:01:57.840	    7fdbc98767c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:294	Failed to query mining status: No connection to daemon
+2021-09-14 04:01:57.841	    7fdbc98767c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18081
+2021-09-14 04:01:59.193	    7fdbc98767c0	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1084	Error starting server: Failed to bind IPv4 (set to required)
+2021-09-14 04:01:59.193	    7fdbc98767c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4555	Failed to initialize wallet RPC server
+2021-09-14 04:02:00.984	    7fab103a97c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:02:00.985	    7fab103a97c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:02:03.083	    7fab103a97c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:02:04.496	    7fab103a97c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:02:07.313	    7fab103a97c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:02:07.316	    7fab103a97c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:294	Failed to query mining status: No connection to daemon
+2021-09-14 04:02:07.316	    7fab103a97c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18081
+2021-09-14 04:02:10.363	    7fab103a97c0	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1084	Error starting server: Failed to bind IPv4 (set to required)
+2021-09-14 04:02:10.363	    7fab103a97c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4555	Failed to initialize wallet RPC server
+2021-09-14 04:02:11.568	    7f44baf737c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:02:11.569	    7f44baf737c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:02:12.928	    7f44baf737c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:02:13.375	    7f44baf737c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:02:15.897	    7f44baf737c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:02:15.899	    7f44baf737c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:294	Failed to query mining status: No connection to daemon
+2021-09-14 04:02:15.899	    7f44baf737c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18081
+2021-09-14 04:02:16.871	    7f44baf737c0	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1084	Error starting server: Failed to bind IPv4 (set to required)
+2021-09-14 04:02:16.871	    7f44baf737c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4555	Failed to initialize wallet RPC server
+2021-09-14 04:02:18.000	    7f7624e2a7c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:02:18.002	    7f7624e2a7c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:02:19.961	    7f7624e2a7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:02:20.540	    7f7624e2a7c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:02:22.895	    7f7624e2a7c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:02:22.898	    7f7624e2a7c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:294	Failed to query mining status: No connection to daemon
+2021-09-14 04:02:22.898	    7f7624e2a7c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18081
+2021-09-14 04:02:23.717	    7f7624e2a7c0	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1084	Error starting server: Failed to bind IPv4 (set to required)
+2021-09-14 04:02:23.717	    7f7624e2a7c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4555	Failed to initialize wallet RPC server
+2021-09-14 04:02:24.765	    7fc7a56c97c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:02:24.766	    7fc7a56c97c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:02:28.081	    7fc7a56c97c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:02:28.497	    7fc7a56c97c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:02:30.962	    7fc7a56c97c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:02:30.964	    7fc7a56c97c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:294	Failed to query mining status: No connection to daemon
+2021-09-14 04:02:30.965	    7fc7a56c97c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18081
+2021-09-14 04:02:31.296	    7fc7a56c97c0	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1084	Error starting server: Failed to bind IPv4 (set to required)
+2021-09-14 04:02:31.296	    7fc7a56c97c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4555	Failed to initialize wallet RPC server
+2021-09-14 04:02:32.514	    7f5e9d93a7c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:02:32.515	    7f5e9d93a7c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:02:34.724	    7f5e9d93a7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:02:35.001	    7f5e9d93a7c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:02:37.438	    7f5e9d93a7c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:02:37.453	    7f5e9d93a7c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:294	Failed to query mining status: No connection to daemon
+2021-09-14 04:02:37.453	    7f5e9d93a7c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18081
+2021-09-14 04:02:38.002	    7f5e9d93a7c0	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1084	Error starting server: Failed to bind IPv4 (set to required)
+2021-09-14 04:02:38.003	    7f5e9d93a7c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4555	Failed to initialize wallet RPC server
+2021-09-14 04:02:39.056	    7f831a8a27c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:02:39.058	    7f831a8a27c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:02:42.023	    7f831a8a27c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:02:42.467	    7f831a8a27c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:02:45.192	    7f831a8a27c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:02:45.259	    7f831a8a27c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:294	Failed to query mining status: No connection to daemon
+2021-09-14 04:02:45.260	    7f831a8a27c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18081
+2021-09-14 04:02:45.928	    7f831a8a27c0	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1084	Error starting server: Failed to bind IPv4 (set to required)
+2021-09-14 04:02:45.928	    7f831a8a27c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4555	Failed to initialize wallet RPC server
+2021-09-14 04:02:47.011	    7f1ed04977c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:02:47.012	    7f1ed04977c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:02:48.064	    7f1ed04977c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:02:48.525	    7f1ed04977c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:02:50.886	    7f1ed04977c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:02:50.888	    7f1ed04977c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:294	Failed to query mining status: No connection to daemon
+2021-09-14 04:02:50.888	    7f1ed04977c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18081
+2021-09-14 04:02:51.507	    7f1ed04977c0	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1084	Error starting server: Failed to bind IPv4 (set to required)
+2021-09-14 04:02:51.507	    7f1ed04977c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4555	Failed to initialize wallet RPC server
+2021-09-14 04:02:52.734	    7f2221b477c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:02:52.735	    7f2221b477c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:02:54.970	    7f2221b477c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:02:55.355	    7f2221b477c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:02:58.147	    7f2221b477c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:02:58.149	    7f2221b477c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:294	Failed to query mining status: No connection to daemon
+2021-09-14 04:02:58.150	    7f2221b477c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18081
+2021-09-14 04:03:00.057	    7f2221b477c0	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1084	Error starting server: Failed to bind IPv4 (set to required)
+2021-09-14 04:03:00.057	    7f2221b477c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4555	Failed to initialize wallet RPC server
+2021-09-14 04:03:01.274	    7f9ca96657c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:03:01.275	    7f9ca96657c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:03:03.109	    7f9ca96657c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:03:03.478	    7f9ca96657c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:03:05.657	    7f9ca96657c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:03:05.660	    7f9ca96657c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:294	Failed to query mining status: No connection to daemon
+2021-09-14 04:03:05.660	    7f9ca96657c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18081
+2021-09-14 04:03:07.673	    7f9ca96657c0	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1084	Error starting server: Failed to bind IPv4 (set to required)
+2021-09-14 04:03:07.673	    7f9ca96657c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4555	Failed to initialize wallet RPC server
+2021-09-14 04:03:09.135	    7f9a98e497c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:03:09.137	    7f9a98e497c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:03:13.397	    7f9a98e497c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:03:13.712	    7f9a98e497c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:03:16.387	    7f9a98e497c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:03:16.391	    7f9a98e497c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:294	Failed to query mining status: No connection to daemon
+2021-09-14 04:03:16.391	    7f9a98e497c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18081
+2021-09-14 04:03:18.797	    7f9a98e497c0	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1084	Error starting server: Failed to bind IPv4 (set to required)
+2021-09-14 04:03:18.797	    7f9a98e497c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4555	Failed to initialize wallet RPC server
+2021-09-14 04:03:20.095	    7f20f0f1e7c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:03:20.096	    7f20f0f1e7c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:03:21.689	    7f20f0f1e7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:03:22.188	    7f20f0f1e7c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:03:24.731	    7f20f0f1e7c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:03:24.739	    7f20f0f1e7c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:294	Failed to query mining status: No connection to daemon
+2021-09-14 04:03:24.739	    7f20f0f1e7c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18081
+2021-09-14 04:03:25.265	    7f20f0f1e7c0	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1084	Error starting server: Failed to bind IPv4 (set to required)
+2021-09-14 04:03:25.267	    7f20f0f1e7c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4555	Failed to initialize wallet RPC server
+2021-09-14 04:03:26.529	    7f798564e7c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:03:26.530	    7f798564e7c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:03:29.182	    7f798564e7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:03:29.529	    7f798564e7c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:03:32.360	    7f798564e7c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:03:32.368	    7f798564e7c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:294	Failed to query mining status: No connection to daemon
+2021-09-14 04:03:32.368	    7f798564e7c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18081
+2021-09-14 04:03:33.184	    7f798564e7c0	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1084	Error starting server: Failed to bind IPv4 (set to required)
+2021-09-14 04:03:33.184	    7f798564e7c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4555	Failed to initialize wallet RPC server
+2021-09-14 04:03:34.312	    7f497c3b47c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:03:34.315	    7f497c3b47c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:03:36.327	    7f497c3b47c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:03:36.721	    7f497c3b47c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:03:39.742	    7f497c3b47c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:03:39.746	    7f497c3b47c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:294	Failed to query mining status: No connection to daemon
+2021-09-14 04:03:39.747	    7f497c3b47c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18081
+2021-09-14 04:03:40.375	    7f497c3b47c0	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1084	Error starting server: Failed to bind IPv4 (set to required)
+2021-09-14 04:03:40.375	    7f497c3b47c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4555	Failed to initialize wallet RPC server
+2021-09-14 04:03:41.429	    7ff54168e7c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:03:41.431	    7ff54168e7c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:03:44.344	    7ff54168e7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:03:44.890	    7ff54168e7c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:03:47.511	    7ff54168e7c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:03:47.513	    7ff54168e7c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:294	Failed to query mining status: No connection to daemon
+2021-09-14 04:03:47.514	    7ff54168e7c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18081
+2021-09-14 04:03:47.981	    7ff54168e7c0	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1084	Error starting server: Failed to bind IPv4 (set to required)
+2021-09-14 04:03:47.981	    7ff54168e7c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4555	Failed to initialize wallet RPC server
+2021-09-14 04:03:49.195	    7f4764cf87c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:03:49.195	    7f4764cf87c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:03:50.982	    7f4764cf87c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:03:51.434	    7f4764cf87c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:03:53.960	    7f4764cf87c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:03:53.963	    7f4764cf87c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:294	Failed to query mining status: No connection to daemon
+2021-09-14 04:03:53.963	    7f4764cf87c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18081
+2021-09-14 04:03:54.588	    7f4764cf87c0	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1084	Error starting server: Failed to bind IPv4 (set to required)
+2021-09-14 04:03:54.589	    7f4764cf87c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4555	Failed to initialize wallet RPC server
+2021-09-14 04:03:55.784	    7f92331697c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:03:55.786	    7f92331697c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:03:57.732	    7f92331697c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:03:58.094	    7f92331697c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:04:00.645	    7f92331697c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:04:00.649	    7f92331697c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:294	Failed to query mining status: No connection to daemon
+2021-09-14 04:04:00.649	    7f92331697c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18081
+2021-09-14 04:04:03.773	    7f92331697c0	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1084	Error starting server: Failed to bind IPv4 (set to required)
+2021-09-14 04:04:03.773	    7f92331697c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4555	Failed to initialize wallet RPC server
+2021-09-14 04:04:04.854	    7f4a7eb4f7c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:04:04.854	    7f4a7eb4f7c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:04:06.417	    7f4a7eb4f7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:04:06.779	    7f4a7eb4f7c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:04:09.906	    7f4a7eb4f7c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:04:09.911	    7f4a7eb4f7c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:294	Failed to query mining status: No connection to daemon
+2021-09-14 04:04:09.911	    7f4a7eb4f7c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18081
+2021-09-14 04:04:11.029	    7f4a7eb4f7c0	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1084	Error starting server: Failed to bind IPv4 (set to required)
+2021-09-14 04:04:11.029	    7f4a7eb4f7c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4555	Failed to initialize wallet RPC server
+2021-09-14 04:04:12.312	    7f24f2b397c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:04:12.312	    7f24f2b397c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:04:15.926	    7f24f2b397c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:04:16.302	    7f24f2b397c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:04:18.696	    7f24f2b397c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:04:18.716	    7f24f2b397c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:294	Failed to query mining status: No connection to daemon
+2021-09-14 04:04:18.716	    7f24f2b397c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18081
+2021-09-14 04:04:19.192	    7f24f2b397c0	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1084	Error starting server: Failed to bind IPv4 (set to required)
+2021-09-14 04:04:19.192	    7f24f2b397c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4555	Failed to initialize wallet RPC server
+2021-09-14 04:04:20.321	    7f017a6417c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:04:20.322	    7f017a6417c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:04:21.341	    7f017a6417c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:04:21.734	    7f017a6417c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:04:24.267	    7f017a6417c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:04:24.269	    7f017a6417c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:294	Failed to query mining status: No connection to daemon
+2021-09-14 04:04:24.270	    7f017a6417c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18081
+2021-09-14 04:04:25.477	    7f017a6417c0	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1084	Error starting server: Failed to bind IPv4 (set to required)
+2021-09-14 04:04:25.477	    7f017a6417c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4555	Failed to initialize wallet RPC server
+2021-09-14 04:04:26.798	    7fa96ded47c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:04:26.799	    7fa96ded47c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:04:30.007	    7fa96ded47c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:04:30.582	    7fa96ded47c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:04:33.240	    7fa96ded47c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:04:33.254	    7fa96ded47c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:294	Failed to query mining status: No connection to daemon
+2021-09-14 04:04:33.255	    7fa96ded47c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18081
+2021-09-14 04:04:34.396	    7fa96ded47c0	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1084	Error starting server: Failed to bind IPv4 (set to required)
+2021-09-14 04:04:34.396	    7fa96ded47c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4555	Failed to initialize wallet RPC server
+2021-09-14 04:04:35.527	    7fdc3ae2b7c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:04:35.528	    7fdc3ae2b7c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:04:37.050	    7fdc3ae2b7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:04:37.479	    7fdc3ae2b7c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:04:38.727	    7f0c405327c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:04:38.728	    7f0c405327c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:04:39.285	    7f0c405327c0	ERROR	util	src/common/util.cpp:109	Error locking fd 16: 11 (Resource temporarily unavailable)
+2021-09-14 04:04:39.285	    7f0c405327c0	ERROR	util	src/common/util.cpp:274	Failed to lock wallet.keys: Resource temporarily unavailable
+2021-09-14 04:04:39.285	    7f0c405327c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:5634	!is_keys_file_locked(). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:04:39.285	    7f0c405327c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4549	Wallet initialization failed: internal error: "wallet.keys" is opened by another wallet program
+2021-09-14 04:04:40.283	    7fdc3ae2b7c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:04:40.288	    7fdc3ae2b7c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:294	Failed to query mining status: No connection to daemon
+2021-09-14 04:04:40.289	    7fdc3ae2b7c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18081
+2021-09-14 04:04:40.825	    7fdc3ae2b7c0	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1084	Error starting server: Failed to bind IPv4 (set to required)
+2021-09-14 04:04:40.825	    7fdc3ae2b7c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4555	Failed to initialize wallet RPC server
+2021-09-14 04:04:42.343	    7f6b084e67c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:04:42.344	    7f6b084e67c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:04:44.776	    7f6b084e67c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:04:45.133	    7f6b084e67c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:04:47.591	    7f6b084e67c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:04:47.594	    7f6b084e67c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:294	Failed to query mining status: No connection to daemon
+2021-09-14 04:04:47.594	    7f6b084e67c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18081
+2021-09-14 04:04:48.438	    7f6b084e67c0	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1084	Error starting server: Failed to bind IPv4 (set to required)
+2021-09-14 04:04:48.438	    7f6b084e67c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4555	Failed to initialize wallet RPC server
+2021-09-14 04:04:49.547	    7fece867f7c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:04:49.548	    7fece867f7c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:04:50.510	    7fece867f7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:04:50.930	    7fece867f7c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:04:53.444	    7fece867f7c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:04:53.447	    7fece867f7c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:294	Failed to query mining status: No connection to daemon
+2021-09-14 04:04:53.447	    7fece867f7c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18081
+2021-09-14 04:04:54.769	    7fece867f7c0	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1084	Error starting server: Failed to bind IPv4 (set to required)
+2021-09-14 04:04:54.769	    7fece867f7c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4555	Failed to initialize wallet RPC server
+2021-09-14 04:04:55.970	    7f746faae7c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:04:55.971	    7f746faae7c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:04:57.775	    7f746faae7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:04:58.220	    7f746faae7c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:05:00.918	    7f746faae7c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:05:00.920	    7f746faae7c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:294	Failed to query mining status: No connection to daemon
+2021-09-14 04:05:00.921	    7f746faae7c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18081
+2021-09-14 04:05:02.031	    7f746faae7c0	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1084	Error starting server: Failed to bind IPv4 (set to required)
+2021-09-14 04:05:02.031	    7f746faae7c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4555	Failed to initialize wallet RPC server
+2021-09-14 04:05:03.114	    7fe297bcf7c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:05:03.118	    7fe297bcf7c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:05:05.238	    7fe297bcf7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:05:05.645	    7fe297bcf7c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:05:08.101	    7fe297bcf7c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:05:08.105	    7fe297bcf7c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:294	Failed to query mining status: No connection to daemon
+2021-09-14 04:05:08.105	    7fe297bcf7c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18081
+2021-09-14 04:05:08.419	    7fe297bcf7c0	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1084	Error starting server: Failed to bind IPv4 (set to required)
+2021-09-14 04:05:08.421	    7fe297bcf7c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4555	Failed to initialize wallet RPC server
+2021-09-14 04:05:09.520	    7f9b94b1d7c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:05:09.521	    7f9b94b1d7c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:05:10.479	    7f9b94b1d7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:05:10.911	    7f9b94b1d7c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:05:13.687	    7f9b94b1d7c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:05:13.689	    7f9b94b1d7c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:294	Failed to query mining status: No connection to daemon
+2021-09-14 04:05:13.690	    7f9b94b1d7c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18081
+2021-09-14 04:05:15.454	    7f9b94b1d7c0	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1084	Error starting server: Failed to bind IPv4 (set to required)
+2021-09-14 04:05:15.455	    7f9b94b1d7c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4555	Failed to initialize wallet RPC server
+2021-09-14 04:05:16.576	    7f8d6d15f7c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:05:16.577	    7f8d6d15f7c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:05:20.064	    7f8d6d15f7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:05:20.535	    7f8d6d15f7c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:05:23.263	    7f8d6d15f7c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:05:23.266	    7f8d6d15f7c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:294	Failed to query mining status: No connection to daemon
+2021-09-14 04:05:23.266	    7f8d6d15f7c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18081
+2021-09-14 04:05:24.433	    7f8d6d15f7c0	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1084	Error starting server: Failed to bind IPv4 (set to required)
+2021-09-14 04:05:24.433	    7f8d6d15f7c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4555	Failed to initialize wallet RPC server
+2021-09-14 04:05:25.594	    7f22b963b7c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:05:25.595	    7f22b963b7c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:05:27.562	    7f22b963b7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:05:27.928	    7f22b963b7c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:05:30.460	    7f22b963b7c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:05:30.463	    7f22b963b7c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:294	Failed to query mining status: No connection to daemon
+2021-09-14 04:05:30.463	    7f22b963b7c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18081
+2021-09-14 04:05:32.857	    7f22b963b7c0	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1084	Error starting server: Failed to bind IPv4 (set to required)
+2021-09-14 04:05:32.858	    7f22b963b7c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4555	Failed to initialize wallet RPC server
+2021-09-14 04:05:33.934	    7feff5e0a7c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:05:33.934	    7feff5e0a7c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:05:34.607	    7feff5e0a7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:05:35.034	    7feff5e0a7c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:05:37.676	    7feff5e0a7c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:05:37.678	    7feff5e0a7c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:294	Failed to query mining status: No connection to daemon
+2021-09-14 04:05:37.679	    7feff5e0a7c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18081
+2021-09-14 04:05:38.531	    7feff5e0a7c0	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1084	Error starting server: Failed to bind IPv4 (set to required)
+2021-09-14 04:05:38.531	    7feff5e0a7c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4555	Failed to initialize wallet RPC server
+2021-09-14 04:05:39.852	    7f16be2c77c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:05:39.853	    7f16be2c77c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:05:42.011	    7f16be2c77c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:05:42.551	    7f16be2c77c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:05:45.862	    7f16be2c77c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:05:45.866	    7f16be2c77c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:294	Failed to query mining status: No connection to daemon
+2021-09-14 04:05:45.866	    7f16be2c77c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18081
+2021-09-14 04:05:46.403	    7f16be2c77c0	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1084	Error starting server: Failed to bind IPv4 (set to required)
+2021-09-14 04:05:46.403	    7f16be2c77c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4555	Failed to initialize wallet RPC server
+2021-09-14 04:05:47.681	    7f97c29d17c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:05:47.682	    7f97c29d17c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:05:54.570	    7f899ffb17c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:05:54.571	    7f899ffb17c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:05:57.650	    7f899ffb17c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:05:57.699	    7f899ffb17c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:14076	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2021-09-14 04:05:57.699	    7f899ffb17c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4549	Wallet initialization failed: no connection to daemon
+2021-09-14 04:06:17.539	    7feb6e4537c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:06:17.540	    7feb6e4537c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:06:19.264	    7feb6e4537c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:06:19.568	    7feb6e4537c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:06:21.947	    7feb6e4537c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:06:21.949	    7feb6e4537c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:294	Failed to query mining status: No connection to daemon
+2021-09-14 04:06:21.950	    7feb6e4537c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):28088
+2021-09-14 04:06:23.380	    7feb6e4537c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4559	Starting wallet RPC server
+2021-09-14 04:06:24.413	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3243	Blocks start before blockchain offset: 0 2430000
+2021-09-14 04:06:24.771	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:06:27.172	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:06:38.249	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 04:06:38.256	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:9905	needed_money + min_fee > unlocked_balance_subtotal. THROW EXCEPTION: error::not_enough_unlocked_money
+2021-09-14 04:06:47.217	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3243	Blocks start before blockchain offset: 0 2430000
+2021-09-14 04:06:47.330	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:06:49.495	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:07:01.279	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 04:07:01.280	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:9905	needed_money + min_fee > unlocked_balance_subtotal. THROW EXCEPTION: error::not_enough_unlocked_money
+2021-09-14 04:07:09.528	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3243	Blocks start before blockchain offset: 0 2430000
+2021-09-14 04:07:09.823	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:07:12.041	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:07:32.141	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3243	Blocks start before blockchain offset: 0 2430000
+2021-09-14 04:07:32.440	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:07:34.955	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:07:40.892	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4569	Stopped wallet RPC server
+2021-09-14 04:07:40.892	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4572	Saving wallet...
+2021-09-14 04:07:41.715	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4574	Successfully saved
+2021-09-14 04:07:58.921	    7f31d15397c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:07:58.922	    7f31d15397c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:08:01.704	    7f31d15397c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:08:02.825	    7f31d15397c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3243	Blocks start before blockchain offset: 0 2430000
+2021-09-14 04:08:03.837	    7f31d15397c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2725	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2021-09-14 04:08:06.904	    7f31d15397c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3476	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2021-09-14 04:08:06.906	    7f31d15397c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:294	Failed to query mining status: No connection to daemon
+2021-09-14 04:08:06.907	    7f31d15397c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18081
+2021-09-14 04:08:08.002	    7f31d15397c0	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1084	Error starting server: Failed to bind IPv4 (set to required)
+2021-09-14 04:08:08.002	    7f31d15397c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4555	Failed to initialize wallet RPC server
+2021-09-14 04:08:52.402	    7f70ad1657c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:08:52.402	    7f70ad1657c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:08:53.998	    7f70ad1657c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:08:57.443	    7f70a5cce640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <afe10363b7da7888ce3774cb8a35d506e1e82b2259a0a0349011d5c72b3328ba>
+2021-09-14 04:08:57.451	    7f70a5cce640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <01d3a5577c5527ecba3bb978b150f8e4142ff6d081c2b31e8ca49cc337ce1cb2>
+2021-09-14 04:08:57.451	    7f70a5cce640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <5c83014cdfe156d675b9f5fcf57ba4ff12b4dfec62f1008c414e166fb59b2fc0>
+2021-09-14 04:08:57.455	    7f70a61cf640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <59ea365b7e4d32c22615c8206932a8be9ee567387bffd3375dbd9c74028e4f25>
+2021-09-14 04:08:57.457	    7f70a61cf640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <39fd816a02d64287d74956b6de2ff1d4b7e41fd8a1ed71f1e4499f83af1a431b>
+2021-09-14 04:08:59.122	    7f70a61cf640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <882501a48c6c109741b1ec66c0a14df054e011519da5e92ffb5f62029d49afd8>
+2021-09-14 04:08:59.128	    7f70ad1657c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <e94adf93c45e02683d47b0eb4963c2fc139aceb334359d342ae171db3e485ccf>
+2021-09-14 04:08:59.131	    7f70ad1657c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <d4f188d9a4f6dd0552a75184b9ccf76c1e0086bb17c8b47e40e749585973324b>
+2021-09-14 04:08:59.132	    7f70a61cf640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <3e54ee05376fb7df9c7662fc04d9d7460b29de1be913d00fe836a36e818ec611>
+2021-09-14 04:08:59.133	    7f70a66d0640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <89150bdafb5dba984dbf101f4abc075a88e466a7951132aa23ca3b2b6990a6e5>
+2021-09-14 04:08:59.133	    7f70ad1657c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <90c511bccf92dd47a345ac33ba60828bd4efb9f5a7167fbe7086e9219c87b752>
+2021-09-14 04:08:59.138	    7f70ad1657c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <1e4992bff493fee8bb5f42348a6fee54f1d2732d485b2e7d51cacaade6978a1e>
+2021-09-14 04:08:59.139	    7f70ad1657c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <2913fd6bc5457a7b5e0254ac1455f3ed21daa29b27d6f840af108fc6dacac3f9>
+2021-09-14 04:08:59.150	    7f70a66d0640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <a2ee5ee7957d3346663193ac4a9a71622cbd58f116abd4c9e2b632880d3d509f>
+2021-09-14 04:08:59.150	    7f70a61cf640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <178123a09d81317e8e4fb6e7c5898e2a3dbaaac60b589ea863f0adc5824444e7>
+2021-09-14 04:08:59.152	    7f70a66d0640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <716105d615256167bf61a61155fb3ef902729e84acbd12fef844fc5aee05e8f1>
+2021-09-14 04:09:01.444	    7f70a5cce640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <4e5437d0450914e61d9c036b1dd7a96910e3ac5ab94f681f121e95a651f56371>
+2021-09-14 04:09:01.445	    7f70a5cce640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <1d37a27844de1bb07fd63c869660ff07a65ddb9a5bd15473c9ac8d5af09107dc>
+2021-09-14 04:09:01.446	    7f70a5cce640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <f4be71f8733fe0927e592c1b3df5fcac341c483d6e895f76052e313aa3e6f44d>
+2021-09-14 04:09:01.447	    7f70a5cce640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <6ea306f422bbc602b61453b5883182e7d715ab8b4eaf1d653533ca68500f94c4>
+2021-09-14 04:09:01.457	    7f70a61cf640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <74bebd4e402dfd9a3e88840e26161d42f6a4f1749ac237247c5baba31522cf1f>
+2021-09-14 04:09:01.467	    7f70a5cce640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <3bc1b0c27dcf069ccc6996c774dc5a862a521ac58a15ff185e9737cc2ca10d27>
+2021-09-14 04:09:01.470	    7f70ad1657c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <cc341015b60fd2389c42848c1be85fef447e716663c00e859269a05ec8d0bd6e>
+2021-09-14 04:09:01.470	    7f70a61cf640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <148bdb8fe09821f3f2d38f40c8d84dfc28167ebee04bca2d89d02728abf6c0f6>
+2021-09-14 04:09:01.470	    7f70ad1657c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <fa928143d5f211a9cd448c9547b5f9c583f93e495ea61df9f1a4d6b76dcd4cdb>
+2021-09-14 04:09:03.736	    7f70a5cce640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <01aa6d218503b4f15bc5fa1faa9013ff92ce4649b8c01be9651e93c20aff56cf>
+2021-09-14 04:09:03.738	    7f70a5cce640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <7d39da2d375810efc1acc8ad93ec1d1ac3149cdde19239964dd25d1c268c62d5>
+2021-09-14 04:09:03.739	    7f70a5cce640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <a892fc2509b5ebdf3d0a33d4d053ef2ce03dd3742c7ecaa104b05cf5e103b3a1>
+2021-09-14 04:09:03.749	    7f70a5cce640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <bf871cd6bf5bef386bd2044e71abd25148e1b48b563071a145fa7bcdf6263368>
+2021-09-14 04:09:03.750	    7f70a66d0640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <74327049a71df54e6cf006fb8e609f305efc5bf09bed46b914fe065229371b91>
+2021-09-14 04:09:03.752	    7f70a66d0640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <3385c1c78a3733de970dd59aebc727b52a5affb0bb4c2e954b0659e1c8867119>
+2021-09-14 04:09:03.753	    7f70a5cce640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <01e7163434d3ab11ae3477cce05964ca94226edead6cc96395c6058ba1c156f4>
+2021-09-14 04:09:03.754	    7f70a66d0640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <2e40b27c2043c3e14ff3c135ce366984e9840b5e27169a294fc87c36b3712a95>
+2021-09-14 04:09:03.756	    7f70a66d0640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <5d5d6cd3056cc7076704dd8eb44ca11f31e596b228d814709c108f272e29a5a7>
+2021-09-14 04:09:03.756	    7f70ad1657c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <3f1dce45eacccf37664af1d8520d0f4ab963e89dbb94b705f269fe1f0cfb04c3>
+2021-09-14 04:09:03.757	    7f70a5cce640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <f3d899203a35a3e9b8ac88c654fe34609526ad4f852a804ff9a018d7e49e5a4e>
+2021-09-14 04:09:03.761	    7f70ad1657c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <0b66694072272e2fa11e1123fa06e3243fa43bb2cfe0885e5243ffd7786abbad>
+2021-09-14 04:09:03.762	    7f70a5cce640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <8818c46f9a673b73af2ef9a6de46c4a1c1501b14240bacb34d860040412cb341>
+2021-09-14 04:09:06.263	    7f70a5cce640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <9aaf1329108ed41a3e92c96dfc7b432e9dfc2d825b7933cbe1c69aca76dba2fb>
+2021-09-14 04:09:06.264	    7f70a61cf640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <7ca2ac3cae0ace4d45006c131f588b255beab471defd11689028f6e5ffaac89d>
+2021-09-14 04:09:06.265	    7f70a61cf640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <b0d350bb45d46829982ec2bdce68eb0dc9662674df195437bf017a8f3ef125be>
+2021-09-14 04:09:06.266	    7f70a61cf640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <95eb0b55b7eed2f62dae36f2b77dfabc7e894d0b245bb9d9eddc59d37413fca3>
+2021-09-14 04:09:06.271	    7f70a5cce640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <bc5c8203123060ecb6d4526d94592c9b77ccaac006c138f5ed0510a57e7f1d3a>
+2021-09-14 04:09:06.280	    7f70a5cce640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <00637ef703ca27993f34aea38dfd31c89560da9c5a17fe8dc0ba67d8758c7555>
+2021-09-14 04:09:06.280	    7f70a61cf640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <b5f2e53d8a7035c41dbb545934ea5ca597b9bf0bd75e5ea72d48e3a1f820b2e2>
+2021-09-14 04:09:06.281	    7f70a61cf640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <930dd7a70453c19b132c03c9e44f4e662366a7ca7e11ad98ef38fe409732c523>
+2021-09-14 04:09:06.282	    7f70a61cf640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <3977377f439a0941590818214e98af111c2e2b3fc9106f00e61c45a7d4bde0a8>
+2021-09-14 04:09:06.286	    7f70a5cce640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <48130dca7bd93bf0843f4b6b26e1c07ab0a53f1d04ac9609cdc5b1a55b2a1043>
+2021-09-14 04:09:06.286	    7f70a5cce640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <0a0e002fcfc9d926423bba859bc0c7bea75b3055b385f91cd6727a7a8de1d7c7>
+2021-09-14 04:09:06.289	    7f70a5cce640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <e78ab73c2d647bd8b40c701c864b6650f3e11186c196797374bc19770133c9b4>
+2021-09-14 04:09:06.291	    7f70a61cf640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <f9bb7cdbadf7cce26b9b9d1f7d12a4bc26877c3907ff2d54b8669f29f208d555>
+2021-09-14 04:09:06.293	    7f70ad1657c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <06afa17a3ed896c0971af494461dcd2365a77b11e2421896ba26e34e5ec84b62>
+2021-09-14 04:09:06.294	    7f70a5cce640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <72b770491acdb38b8fd2293f340d235bd95c13f4cb475f0c77bf9f6d09f6fe3b>
+2021-09-14 04:09:06.297	    7f70a61cf640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <e85d859d1ef34cbf8c93510ea135d138a0436b214510f063ea7fdcfb91d797bd>
+2021-09-14 04:09:06.298	    7f70a5cce640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <3f51a5550345d398f7558e27086a46a0ba13d4c0c4692baeabf4a76ea70780bb>
+2021-09-14 04:09:06.300	    7f70a5cce640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <291ff44f748e8bbaa5adde141ed6a03fe9ad26459ba340b219bb095401b8adcd>
+2021-09-14 04:09:08.563	    7f70a66d0640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <9739354a40bee728c0859d0a0db1e9147434b4c4e8f0f1ad85ba47ebf7b28ce3>
+2021-09-14 04:09:08.576	    7f70a66d0640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <abfa9d6c94a0f5974e1cb5e13cd81e689e327d80ad67dfb2d03b150bd312505b>
+2021-09-14 04:09:08.579	    7f70a61cf640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <1072571237436956d1272e03b052bcc860c8e77e0606990770095bf4a8efbcc0>
+2021-09-14 04:09:08.579	    7f70a66d0640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <ffb5af347db1eefb5a87b570289a7aef93e3ae1f664b924850f268432b497f7b>
+2021-09-14 04:09:08.579	    7f70a61cf640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <45a27a66245574a040448915e2a9c2a5a15921140f82ed5e339815f298b0d5cd>
+2021-09-14 04:09:08.582	    7f70a66d0640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <fc0f0730f502098d27a863371d61c73a08fda447a4bbfa408a1676ee7481aeb2>
+2021-09-14 04:09:08.582	    7f70a61cf640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <e998f07ec908f2d67e130db872532e911c7498a7f2e027a7b28f52c405021ffd>
+2021-09-14 04:09:08.583	    7f70a66d0640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <bd61efe5ba47dfb0e2b70db4b0ddfea04f690f81bdde5a708fd89011911529f3>
+2021-09-14 04:09:08.584	    7f70a66d0640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <a8dbdbc5649c454cec12fd436e4fcc25a196c9ce22051e7d27395a1e12e43f69>
+2021-09-14 04:09:08.586	    7f70a61cf640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <8bb861166db2917f4edcf6af5000669721367231104b4cfebe2654f6b2d14e9c>
+2021-09-14 04:09:08.590	    7f70a61cf640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <6c66c11e014195c6e0980a333ca9e091258be3d73c0263e85c0e46a67f219de0>
+2021-09-14 04:09:08.594	    7f70a66d0640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <ff982530e837a7de5bdefcf14611e7af9436b7e6cdc8ef6e9b4da9da42b063cb>
+2021-09-14 04:09:10.516	    7f70a5cce640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <a6857dbec7c709a7686e4766bf37f3779db9b388de53a2787edda38d6854a4f9>
+2021-09-14 04:09:10.521	    7f70a61cf640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <9777dc5cd62651ec0daebe3d2ee3dcc3631c893565c05ca0181ccb9d236927e2>
+2021-09-14 04:09:11.081	    7f70ad1657c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2231	Public key beed9c939139045e84950bc0769ae2dbbd767dacb4f246805fd75a0774f1179e from received 0.010000000000 output already exists with unspent 0.010000000000 in tx <b876c30562dd7bc3747de811cf19ee40011de955db935118ee78eb29c9e7fa52>, received output ignored
+2021-09-14 04:09:11.108	    7f70ad1657c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18081
+2021-09-14 04:09:13.686	    7f70ad1657c0	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1084	Error starting server: Failed to bind IPv4 (set to required)
+2021-09-14 04:09:13.686	    7f70ad1657c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4555	Failed to initialize wallet RPC server
+2021-09-14 04:09:32.372	    7fe4ee8ab7c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 04:09:32.373	    7fe4ee8ab7c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 04:09:34.235	    7fe4ee8ab7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 04:09:37.422	    7fe4e7414640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <afe10363b7da7888ce3774cb8a35d506e1e82b2259a0a0349011d5c72b3328ba>
+2021-09-14 04:09:37.435	    7fe4e7414640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <01d3a5577c5527ecba3bb978b150f8e4142ff6d081c2b31e8ca49cc337ce1cb2>
+2021-09-14 04:09:37.436	    7fe4e7414640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <5c83014cdfe156d675b9f5fcf57ba4ff12b4dfec62f1008c414e166fb59b2fc0>
+2021-09-14 04:09:37.442	    7fe4ee8ab7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <59ea365b7e4d32c22615c8206932a8be9ee567387bffd3375dbd9c74028e4f25>
+2021-09-14 04:09:37.447	    7fe4e7e16640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <39fd816a02d64287d74956b6de2ff1d4b7e41fd8a1ed71f1e4499f83af1a431b>
+2021-09-14 04:09:39.160	    7fe4e7915640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <882501a48c6c109741b1ec66c0a14df054e011519da5e92ffb5f62029d49afd8>
+2021-09-14 04:09:39.167	    7fe4e7e16640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <e94adf93c45e02683d47b0eb4963c2fc139aceb334359d342ae171db3e485ccf>
+2021-09-14 04:09:39.169	    7fe4e7915640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <d4f188d9a4f6dd0552a75184b9ccf76c1e0086bb17c8b47e40e749585973324b>
+2021-09-14 04:09:39.170	    7fe4e7e16640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <3e54ee05376fb7df9c7662fc04d9d7460b29de1be913d00fe836a36e818ec611>
+2021-09-14 04:09:39.171	    7fe4e7915640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <89150bdafb5dba984dbf101f4abc075a88e466a7951132aa23ca3b2b6990a6e5>
+2021-09-14 04:09:39.171	    7fe4e7e16640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <90c511bccf92dd47a345ac33ba60828bd4efb9f5a7167fbe7086e9219c87b752>
+2021-09-14 04:09:39.176	    7fe4e7915640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <1e4992bff493fee8bb5f42348a6fee54f1d2732d485b2e7d51cacaade6978a1e>
+2021-09-14 04:09:39.177	    7fe4e7e16640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <2913fd6bc5457a7b5e0254ac1455f3ed21daa29b27d6f840af108fc6dacac3f9>
+2021-09-14 04:09:39.183	    7fe4ee8ab7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <a2ee5ee7957d3346663193ac4a9a71622cbd58f116abd4c9e2b632880d3d509f>
+2021-09-14 04:09:39.183	    7fe4ee8ab7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <178123a09d81317e8e4fb6e7c5898e2a3dbaaac60b589ea863f0adc5824444e7>
+2021-09-14 04:09:39.186	    7fe4e7915640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <716105d615256167bf61a61155fb3ef902729e84acbd12fef844fc5aee05e8f1>
+2021-09-14 04:09:41.097	    7fe4e7915640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <4e5437d0450914e61d9c036b1dd7a96910e3ac5ab94f681f121e95a651f56371>
+2021-09-14 04:09:41.099	    7fe4e7915640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <1d37a27844de1bb07fd63c869660ff07a65ddb9a5bd15473c9ac8d5af09107dc>
+2021-09-14 04:09:41.101	    7fe4e7414640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <f4be71f8733fe0927e592c1b3df5fcac341c483d6e895f76052e313aa3e6f44d>
+2021-09-14 04:09:41.102	    7fe4e7915640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <6ea306f422bbc602b61453b5883182e7d715ab8b4eaf1d653533ca68500f94c4>
+2021-09-14 04:09:41.107	    7fe4ee8ab7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <74bebd4e402dfd9a3e88840e26161d42f6a4f1749ac237247c5baba31522cf1f>
+2021-09-14 04:09:41.117	    7fe4ee8ab7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <3bc1b0c27dcf069ccc6996c774dc5a862a521ac58a15ff185e9737cc2ca10d27>
+2021-09-14 04:09:41.119	    7fe4ee8ab7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <cc341015b60fd2389c42848c1be85fef447e716663c00e859269a05ec8d0bd6e>
+2021-09-14 04:09:41.119	    7fe4e7414640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <148bdb8fe09821f3f2d38f40c8d84dfc28167ebee04bca2d89d02728abf6c0f6>
+2021-09-14 04:09:41.119	    7fe4e7414640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <fa928143d5f211a9cd448c9547b5f9c583f93e495ea61df9f1a4d6b76dcd4cdb>
+2021-09-14 04:09:43.395	    7fe4e7e16640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <01aa6d218503b4f15bc5fa1faa9013ff92ce4649b8c01be9651e93c20aff56cf>
+2021-09-14 04:09:43.396	    7fe4e7915640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <7d39da2d375810efc1acc8ad93ec1d1ac3149cdde19239964dd25d1c268c62d5>
+2021-09-14 04:09:43.396	    7fe4e7915640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <a892fc2509b5ebdf3d0a33d4d053ef2ce03dd3742c7ecaa104b05cf5e103b3a1>
+2021-09-14 04:09:43.418	    7fe4e7915640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <bf871cd6bf5bef386bd2044e71abd25148e1b48b563071a145fa7bcdf6263368>
+2021-09-14 04:09:43.419	    7fe4e7915640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <74327049a71df54e6cf006fb8e609f305efc5bf09bed46b914fe065229371b91>
+2021-09-14 04:09:43.425	    7fe4ee8ab7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <3385c1c78a3733de970dd59aebc727b52a5affb0bb4c2e954b0659e1c8867119>
+2021-09-14 04:09:43.427	    7fe4ee8ab7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <01e7163434d3ab11ae3477cce05964ca94226edead6cc96395c6058ba1c156f4>
+2021-09-14 04:09:43.427	    7fe4e7e16640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <2e40b27c2043c3e14ff3c135ce366984e9840b5e27169a294fc87c36b3712a95>
+2021-09-14 04:09:43.430	    7fe4e7e16640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <5d5d6cd3056cc7076704dd8eb44ca11f31e596b228d814709c108f272e29a5a7>
+2021-09-14 04:09:43.430	    7fe4e7e16640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <3f1dce45eacccf37664af1d8520d0f4ab963e89dbb94b705f269fe1f0cfb04c3>
+2021-09-14 04:09:43.431	    7fe4e7e16640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <f3d899203a35a3e9b8ac88c654fe34609526ad4f852a804ff9a018d7e49e5a4e>
+2021-09-14 04:09:43.435	    7fe4e7e16640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <0b66694072272e2fa11e1123fa06e3243fa43bb2cfe0885e5243ffd7786abbad>
+2021-09-14 04:09:43.437	    7fe4ee8ab7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <8818c46f9a673b73af2ef9a6de46c4a1c1501b14240bacb34d860040412cb341>
+2021-09-14 04:09:45.889	    7fe4e7915640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <9aaf1329108ed41a3e92c96dfc7b432e9dfc2d825b7933cbe1c69aca76dba2fb>
+2021-09-14 04:09:45.890	    7fe4e7915640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <7ca2ac3cae0ace4d45006c131f588b255beab471defd11689028f6e5ffaac89d>
+2021-09-14 04:09:45.890	    7fe4e7e16640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <b0d350bb45d46829982ec2bdce68eb0dc9662674df195437bf017a8f3ef125be>
+2021-09-14 04:09:45.891	    7fe4e7e16640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <95eb0b55b7eed2f62dae36f2b77dfabc7e894d0b245bb9d9eddc59d37413fca3>
+2021-09-14 04:09:45.894	    7fe4e7915640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <bc5c8203123060ecb6d4526d94592c9b77ccaac006c138f5ed0510a57e7f1d3a>
+2021-09-14 04:09:45.902	    7fe4e7e16640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <00637ef703ca27993f34aea38dfd31c89560da9c5a17fe8dc0ba67d8758c7555>
+2021-09-14 04:09:45.906	    7fe4ee8ab7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <b5f2e53d8a7035c41dbb545934ea5ca597b9bf0bd75e5ea72d48e3a1f820b2e2>
+2021-09-14 04:09:45.907	    7fe4ee8ab7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <930dd7a70453c19b132c03c9e44f4e662366a7ca7e11ad98ef38fe409732c523>
+2021-09-14 04:09:45.908	    7fe4e7915640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <3977377f439a0941590818214e98af111c2e2b3fc9106f00e61c45a7d4bde0a8>
+2021-09-14 04:09:45.911	    7fe4ee8ab7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <48130dca7bd93bf0843f4b6b26e1c07ab0a53f1d04ac9609cdc5b1a55b2a1043>
+2021-09-14 04:09:45.911	    7fe4e7915640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <0a0e002fcfc9d926423bba859bc0c7bea75b3055b385f91cd6727a7a8de1d7c7>
+2021-09-14 04:09:45.913	    7fe4e7915640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <e78ab73c2d647bd8b40c701c864b6650f3e11186c196797374bc19770133c9b4>
+2021-09-14 04:09:45.914	    7fe4ee8ab7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <f9bb7cdbadf7cce26b9b9d1f7d12a4bc26877c3907ff2d54b8669f29f208d555>
+2021-09-14 04:09:45.918	    7fe4e7e16640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <06afa17a3ed896c0971af494461dcd2365a77b11e2421896ba26e34e5ec84b62>
+2021-09-14 04:09:45.919	    7fe4ee8ab7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <72b770491acdb38b8fd2293f340d235bd95c13f4cb475f0c77bf9f6d09f6fe3b>
+2021-09-14 04:09:45.922	    7fe4e7915640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <e85d859d1ef34cbf8c93510ea135d138a0436b214510f063ea7fdcfb91d797bd>
+2021-09-14 04:09:45.923	    7fe4e7915640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <3f51a5550345d398f7558e27086a46a0ba13d4c0c4692baeabf4a76ea70780bb>
+2021-09-14 04:09:45.925	    7fe4e7915640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <291ff44f748e8bbaa5adde141ed6a03fe9ad26459ba340b219bb095401b8adcd>
+2021-09-14 04:09:48.222	    7fe4e7414640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <9739354a40bee728c0859d0a0db1e9147434b4c4e8f0f1ad85ba47ebf7b28ce3>
+2021-09-14 04:09:48.229	    7fe4e7915640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <abfa9d6c94a0f5974e1cb5e13cd81e689e327d80ad67dfb2d03b150bd312505b>
+2021-09-14 04:09:48.231	    7fe4e7915640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <1072571237436956d1272e03b052bcc860c8e77e0606990770095bf4a8efbcc0>
+2021-09-14 04:09:48.232	    7fe4e7414640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <ffb5af347db1eefb5a87b570289a7aef93e3ae1f664b924850f268432b497f7b>
+2021-09-14 04:09:48.232	    7fe4e7414640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <45a27a66245574a040448915e2a9c2a5a15921140f82ed5e339815f298b0d5cd>
+2021-09-14 04:09:48.235	    7fe4e7414640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <fc0f0730f502098d27a863371d61c73a08fda447a4bbfa408a1676ee7481aeb2>
+2021-09-14 04:09:48.235	    7fe4e7915640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <e998f07ec908f2d67e130db872532e911c7498a7f2e027a7b28f52c405021ffd>
+2021-09-14 04:09:48.235	    7fe4e7414640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <9f1433e814666e76074c6eb7537332af34f395d17738aba80dfc6a582e7b4599>
+2021-09-14 04:09:48.236	    7fe4e7414640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <bd61efe5ba47dfb0e2b70db4b0ddfea04f690f81bdde5a708fd89011911529f3>
+2021-09-14 04:09:48.236	    7fe4e7915640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <a8dbdbc5649c454cec12fd436e4fcc25a196c9ce22051e7d27395a1e12e43f69>
+2021-09-14 04:09:48.238	    7fe4e7414640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <8bb861166db2917f4edcf6af5000669721367231104b4cfebe2654f6b2d14e9c>
+2021-09-14 04:09:48.241	    7fe4e7414640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <6c66c11e014195c6e0980a333ca9e091258be3d73c0263e85c0e46a67f219de0>
+2021-09-14 04:09:48.245	    7fe4e7414640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <ff982530e837a7de5bdefcf14611e7af9436b7e6cdc8ef6e9b4da9da42b063cb>
+2021-09-14 04:09:50.419	    7fe4e7e16640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <a6857dbec7c709a7686e4766bf37f3779db9b388de53a2787edda38d6854a4f9>
+2021-09-14 04:09:50.427	    7fe4e7915640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <9777dc5cd62651ec0daebe3d2ee3dcc3631c893565c05ca0181ccb9d236927e2>
+2021-09-14 04:09:51.124	    7fe4ee8ab7c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:2231	Public key beed9c939139045e84950bc0769ae2dbbd767dacb4f246805fd75a0774f1179e from received 0.010000000000 output already exists with unspent 0.010000000000 in tx <b876c30562dd7bc3747de811cf19ee40011de955db935118ee78eb29c9e7fa52>, received output ignored
+2021-09-14 04:09:51.153	    7fe4ee8ab7c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):28088
+2021-09-14 04:09:51.948	    7fe4ee8ab7c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4559	Starting wallet RPC server
+2021-09-14 04:10:03.384	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 04:10:15.597	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 04:10:16.065	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 04:10:16.075	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 04:10:16.087	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 04:10:16.411	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 04:10:16.478	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 04:10:16.776	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 04:10:16.786	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 04:10:16.793	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 04:10:16.910	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 04:10:16.912	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 04:10:17.182	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 04:10:17.190	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 04:10:17.200	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 05:46:23.483	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 05:46:44.227	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 05:46:44.638	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 05:46:44.655	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 05:46:44.673	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 05:46:44.965	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 05:46:44.967	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 05:46:45.269	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 05:46:45.283	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 05:46:45.293	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 05:46:45.411	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 05:46:45.413	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 05:46:45.691	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 05:46:45.703	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 05:46:45.715	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 05:46:45.807	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 05:46:45.809	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 05:46:46.094	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 05:46:46.102	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 05:46:46.110	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 05:46:46.208	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 05:46:46.210	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 05:46:46.458	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 05:46:46.466	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 05:46:46.474	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 05:46:46.617	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 05:46:46.618	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 05:46:46.882	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 05:46:46.890	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 05:46:46.898	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 05:46:48.267	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 05:46:48.269	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 05:46:48.540	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 05:46:48.553	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 05:46:48.565	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 05:46:48.696	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 05:46:48.697	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 05:46:48.976	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 05:46:48.988	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 05:46:49.001	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 05:46:49.139	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 05:46:49.140	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 05:46:49.405	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 05:46:49.417	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 05:46:49.430	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 07:29:26.622	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 07:29:35.288	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 07:29:35.623	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 07:29:35.631	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 07:29:35.641	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 07:29:35.743	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 07:29:35.744	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 07:29:36.012	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 07:29:36.021	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 07:29:36.031	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 07:29:36.157	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 07:29:36.159	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 07:29:36.491	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 07:29:36.501	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 07:29:36.509	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 07:30:39.987	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 07:30:39.991	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 07:30:40.376	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 07:30:40.387	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 07:30:40.399	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 07:30:40.521	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 07:30:40.523	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 07:30:40.767	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 07:30:40.775	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 07:30:40.786	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 07:30:40.901	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 07:30:40.902	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 07:30:41.277	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 07:30:41.291	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 07:30:41.299	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 07:41:15.092	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 07:41:15.156	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 07:41:15.563	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 07:41:15.571	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 07:41:15.578	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 07:41:15.714	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 07:41:15.716	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 07:41:15.973	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 07:41:15.984	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 07:41:16.000	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 07:41:16.135	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 07:41:16.137	[RPC0]	WARNING	net.dns	src/common/dns_utils.cpp:567	WARNING: no two valid DNS TXT records were received
+2021-09-14 07:41:16.421	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 07:41:16.442	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 07:41:16.463	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.h:2350	amount=0.010000000000, real_output=10, real_output_in_tx_index=1, indexes: 35436578 36953292 38283643 38661160 38671852 38805026 38808889 38811052 38838529 38839438 38841574 
+2021-09-14 07:46:44.379	    7ff9c13ce7c0	INFO	logging	contrib/epee/src/mlog.cpp:273	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2021-09-14 07:46:44.382	    7ff9c13ce7c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4495	Loading wallet...
+2021-09-14 07:46:46.853	    7ff9c13ce7c0	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:5642	Loaded wallet keys file, with public address: 48wqqvHsC4BTXGUSuTvRtaY9f3tAVM5yhfGMkpBafZzkM9UoWrdYdaibucMCKKynZ3EYrrX38tLy39DEXo4EbatkGDMeMXa
+2021-09-14 07:46:47.939	    7ff9ba45c640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <afe10363b7da7888ce3774cb8a35d506e1e82b2259a0a0349011d5c72b3328ba>
+2021-09-14 07:46:48.212	    7ff9c13ce7c0	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:294	Failed to query mining status: No connection to daemon
+2021-09-14 07:46:48.212	    7ff9c13ce7c0	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):28088
+2021-09-14 07:46:48.351	    7ff9c13ce7c0	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4559	Starting wallet RPC server
+2021-09-14 07:48:01.320	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 07:48:01.680	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:9905	needed_money + min_fee > unlocked_balance_subtotal. THROW EXCEPTION: error::not_enough_unlocked_money
+2021-09-14 07:48:04.412	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 07:48:04.412	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:9905	needed_money + min_fee > unlocked_balance_subtotal. THROW EXCEPTION: error::not_enough_unlocked_money
+2021-09-14 07:48:05.560	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 07:48:05.560	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:9905	needed_money + min_fee > unlocked_balance_subtotal. THROW EXCEPTION: error::not_enough_unlocked_money
+2021-09-14 07:48:06.475	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 07:48:06.475	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:9905	needed_money + min_fee > unlocked_balance_subtotal. THROW EXCEPTION: error::not_enough_unlocked_money
+2021-09-14 07:48:10.367	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 07:48:10.368	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:9905	needed_money + min_fee > unlocked_balance_subtotal. THROW EXCEPTION: error::not_enough_unlocked_money
+2021-09-14 07:48:11.213	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 07:48:11.213	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:9905	needed_money + min_fee > unlocked_balance_subtotal. THROW EXCEPTION: error::not_enough_unlocked_money
+2021-09-14 07:48:12.095	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 07:48:12.096	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:9905	needed_money + min_fee > unlocked_balance_subtotal. THROW EXCEPTION: error::not_enough_unlocked_money
+2021-09-14 07:48:42.405	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 07:48:42.780	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:9905	needed_money + min_fee > unlocked_balance_subtotal. THROW EXCEPTION: error::not_enough_unlocked_money
+2021-09-14 07:48:44.583	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 07:48:44.584	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:9905	needed_money + min_fee > unlocked_balance_subtotal. THROW EXCEPTION: error::not_enough_unlocked_money
+2021-09-14 07:48:47.919	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 07:48:47.920	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:9905	needed_money + min_fee > unlocked_balance_subtotal. THROW EXCEPTION: error::not_enough_unlocked_money
+2021-09-14 07:48:48.887	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 07:48:48.887	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:9905	needed_money + min_fee > unlocked_balance_subtotal. THROW EXCEPTION: error::not_enough_unlocked_money
+2021-09-14 07:48:49.607	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 07:48:49.608	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:9905	needed_money + min_fee > unlocked_balance_subtotal. THROW EXCEPTION: error::not_enough_unlocked_money
+2021-09-14 07:48:50.308	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 07:48:50.308	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:9905	needed_money + min_fee > unlocked_balance_subtotal. THROW EXCEPTION: error::not_enough_unlocked_money
+2021-09-14 07:49:09.436	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 07:49:09.852	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:9905	needed_money + min_fee > unlocked_balance_subtotal. THROW EXCEPTION: error::not_enough_unlocked_money
+2021-09-14 07:49:12.862	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 07:49:12.862	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:9905	needed_money + min_fee > unlocked_balance_subtotal. THROW EXCEPTION: error::not_enough_unlocked_money
+2021-09-14 07:49:13.593	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 07:49:13.593	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:9905	needed_money + min_fee > unlocked_balance_subtotal. THROW EXCEPTION: error::not_enough_unlocked_money
+2021-09-14 07:49:14.263	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 07:49:14.263	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:9905	needed_money + min_fee > unlocked_balance_subtotal. THROW EXCEPTION: error::not_enough_unlocked_money
+2021-09-14 07:49:14.896	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 07:49:14.896	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:9905	needed_money + min_fee > unlocked_balance_subtotal. THROW EXCEPTION: error::not_enough_unlocked_money
+2021-09-14 07:49:29.064	    7ff9b9f5b640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <01d3a5577c5527ecba3bb978b150f8e4142ff6d081c2b31e8ca49cc337ce1cb2>
+2021-09-14 07:49:29.072	    7ff9b9f5b640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <5c83014cdfe156d675b9f5fcf57ba4ff12b4dfec62f1008c414e166fb59b2fc0>
+2021-09-14 07:49:39.432	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:7576	Requested ring size 1 too low, using 11
+2021-09-14 07:49:39.729	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:9905	needed_money + min_fee > unlocked_balance_subtotal. THROW EXCEPTION: error::not_enough_unlocked_money
+2021-09-14 07:50:21.371	    7ff9ba95d640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <59ea365b7e4d32c22615c8206932a8be9ee567387bffd3375dbd9c74028e4f25>
+2021-09-14 07:50:44.968	    7ff9b9f5b640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <39fd816a02d64287d74956b6de2ff1d4b7e41fd8a1ed71f1e4499f83af1a431b>
+2021-09-14 07:51:31.542	    7ff9ba95d640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <882501a48c6c109741b1ec66c0a14df054e011519da5e92ffb5f62029d49afd8>
+2021-09-14 07:52:16.470	    7ff9b9f5b640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <e94adf93c45e02683d47b0eb4963c2fc139aceb334359d342ae171db3e485ccf>
+2021-09-14 07:52:43.146	    7ff9ba45c640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <d4f188d9a4f6dd0552a75184b9ccf76c1e0086bb17c8b47e40e749585973324b>
+2021-09-14 07:53:11.952	    7ff9ba45c640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <3e54ee05376fb7df9c7662fc04d9d7460b29de1be913d00fe836a36e818ec611>
+2021-09-14 07:53:11.952	    7ff9ba45c640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <89150bdafb5dba984dbf101f4abc075a88e466a7951132aa23ca3b2b6990a6e5>
+2021-09-14 07:53:11.952	    7ff9ba95d640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <90c511bccf92dd47a345ac33ba60828bd4efb9f5a7167fbe7086e9219c87b752>
+2021-09-14 07:54:28.864	    7ff9ba45c640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <1e4992bff493fee8bb5f42348a6fee54f1d2732d485b2e7d51cacaade6978a1e>
+2021-09-14 07:54:28.865	    7ff9b9f5b640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <2913fd6bc5457a7b5e0254ac1455f3ed21daa29b27d6f840af108fc6dacac3f9>
+2021-09-14 07:56:42.865	    7ff9b9f5b640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <a2ee5ee7957d3346663193ac4a9a71622cbd58f116abd4c9e2b632880d3d509f>
+2021-09-14 07:56:42.865	    7ff9b9f5b640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <178123a09d81317e8e4fb6e7c5898e2a3dbaaac60b589ea863f0adc5824444e7>
+2021-09-14 07:57:04.139	    7ff9ba95d640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <716105d615256167bf61a61155fb3ef902729e84acbd12fef844fc5aee05e8f1>
+2021-09-14 07:57:55.915	    7ff9ba45c640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <4e5437d0450914e61d9c036b1dd7a96910e3ac5ab94f681f121e95a651f56371>
+2021-09-14 07:58:21.152	    7ff9b9f5b640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <1d37a27844de1bb07fd63c869660ff07a65ddb9a5bd15473c9ac8d5af09107dc>
+2021-09-14 07:58:21.153	    7ff9ba95d640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <f4be71f8733fe0927e592c1b3df5fcac341c483d6e895f76052e313aa3e6f44d>
+2021-09-14 07:58:48.164	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <6ea306f422bbc602b61453b5883182e7d715ab8b4eaf1d653533ca68500f94c4>
+2021-09-14 07:59:33.530	    7ff9b9f5b640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <74bebd4e402dfd9a3e88840e26161d42f6a4f1749ac237247c5baba31522cf1f>
+2021-09-14 08:02:04.785	    7ff9ba95d640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <3bc1b0c27dcf069ccc6996c774dc5a862a521ac58a15ff185e9737cc2ca10d27>
+2021-09-14 08:02:27.398	    7ff9ba45c640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <cc341015b60fd2389c42848c1be85fef447e716663c00e859269a05ec8d0bd6e>
+2021-09-14 08:02:27.398	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <148bdb8fe09821f3f2d38f40c8d84dfc28167ebee04bca2d89d02728abf6c0f6>
+2021-09-14 08:02:27.398	    7ff9ba45c640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <fa928143d5f211a9cd448c9547b5f9c583f93e495ea61df9f1a4d6b76dcd4cdb>
+2021-09-14 08:03:14.093	    7ff9ba45c640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <01aa6d218503b4f15bc5fa1faa9013ff92ce4649b8c01be9651e93c20aff56cf>
+2021-09-14 08:03:14.093	    7ff9b9f5b640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <a892fc2509b5ebdf3d0a33d4d053ef2ce03dd3742c7ecaa104b05cf5e103b3a1>
+2021-09-14 08:03:14.093	    7ff9ba95d640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <7d39da2d375810efc1acc8ad93ec1d1ac3149cdde19239964dd25d1c268c62d5>
+2021-09-14 08:03:43.513	    7ff9b9f5b640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <a892fc2509b5ebdf3d0a33d4d053ef2ce03dd3742c7ecaa104b05cf5e103b3a1>
+2021-09-14 08:05:30.703	    7ff9ba45c640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <bf871cd6bf5bef386bd2044e71abd25148e1b48b563071a145fa7bcdf6263368>
+2021-09-14 08:05:30.705	    7ff9b9f5b640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <74327049a71df54e6cf006fb8e609f305efc5bf09bed46b914fe065229371b91>
+2021-09-14 08:07:44.615	    7ff9ba45c640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <3385c1c78a3733de970dd59aebc727b52a5affb0bb4c2e954b0659e1c8867119>
+2021-09-14 08:07:44.616	    7ff9b9f5b640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <01e7163434d3ab11ae3477cce05964ca94226edead6cc96395c6058ba1c156f4>
+2021-09-14 08:07:44.620	    7ff9ba95d640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <2e40b27c2043c3e14ff3c135ce366984e9840b5e27169a294fc87c36b3712a95>
+2021-09-14 08:08:09.361	    7ff9ba95d640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <5d5d6cd3056cc7076704dd8eb44ca11f31e596b228d814709c108f272e29a5a7>
+2021-09-14 08:08:37.225	    7ff9ba45c640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <5d5d6cd3056cc7076704dd8eb44ca11f31e596b228d814709c108f272e29a5a7>
+2021-09-14 08:08:37.226	    7ff9b9f5b640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <3f1dce45eacccf37664af1d8520d0f4ab963e89dbb94b705f269fe1f0cfb04c3>
+2021-09-14 08:08:37.227	    7ff9ba95d640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <f3d899203a35a3e9b8ac88c654fe34609526ad4f852a804ff9a018d7e49e5a4e>
+2021-09-14 08:09:24.289	    7ff9b9f5b640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <0b66694072272e2fa11e1123fa06e3243fa43bb2cfe0885e5243ffd7786abbad>
+2021-09-14 08:09:50.593	    7ff9b9f5b640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <8818c46f9a673b73af2ef9a6de46c4a1c1501b14240bacb34d860040412cb341>
+2021-09-14 08:10:43.363	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <9aaf1329108ed41a3e92c96dfc7b432e9dfc2d825b7933cbe1c69aca76dba2fb>
+2021-09-14 08:10:43.365	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <b0d350bb45d46829982ec2bdce68eb0dc9662674df195437bf017a8f3ef125be>
+2021-09-14 08:10:43.366	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <95eb0b55b7eed2f62dae36f2b77dfabc7e894d0b245bb9d9eddc59d37413fca3>
+2021-09-14 08:10:43.369	    7ff9ba45c640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <7ca2ac3cae0ace4d45006c131f588b255beab471defd11689028f6e5ffaac89d>
+2021-09-14 08:11:43.162	    7ff9ba45c640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <bc5c8203123060ecb6d4526d94592c9b77ccaac006c138f5ed0510a57e7f1d3a>
+2021-09-14 08:12:58.396	    7ff9ba45c640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <00637ef703ca27993f34aea38dfd31c89560da9c5a17fe8dc0ba67d8758c7555>
+2021-09-14 08:12:58.397	    7ff9ba95d640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <b5f2e53d8a7035c41dbb545934ea5ca597b9bf0bd75e5ea72d48e3a1f820b2e2>
+2021-09-14 08:12:58.398	    7ff9ba95d640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <930dd7a70453c19b132c03c9e44f4e662366a7ca7e11ad98ef38fe409732c523>
+2021-09-14 08:13:20.903	    7ff9ba95d640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <3977377f439a0941590818214e98af111c2e2b3fc9106f00e61c45a7d4bde0a8>
+2021-09-14 08:13:44.741	    7ff9ba45c640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <48130dca7bd93bf0843f4b6b26e1c07ab0a53f1d04ac9609cdc5b1a55b2a1043>
+2021-09-14 08:13:44.741	    7ff9ba45c640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <0a0e002fcfc9d926423bba859bc0c7bea75b3055b385f91cd6727a7a8de1d7c7>
+2021-09-14 08:14:33.426	    7ff9b9f5b640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <e78ab73c2d647bd8b40c701c864b6650f3e11186c196797374bc19770133c9b4>
+2021-09-14 08:14:33.428	    7ff9ba45c640	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:1890	Transaction extra has unsupported format: <f9bb7cdbadf7cce26b9b9d1f7d12a4bc26877c3907ff2d54b8669f29f208d555>

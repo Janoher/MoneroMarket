@@ -1,0 +1,261 @@
+{% extends "abstracts/layout.html" %}
+
+
+{% block content %}
+	<section class="favorites-view" style="min-height: 500px">
+		<h1>Favorites</h1>
+
+
+
+		<section class="favorites-left-column">
+			<h1>Users ({{ favorite_users.total }})</h1>
+
+			<p>Filter:<strong><span>All</span></strong> Page:
+
+			<!-- Print page numbers on top based upon the iteration and number of messages in each category -->
+			<span>
+				{% if not favorite_users.total %}
+					<a class="blue-link">0</a>
+				{% endif %}
+
+				{% for page_num in favorite_users.iter_pages() %}
+					{% if page_num == page_item %}
+						<a class="blue-link" style="font-weight: bold" href="{{ url_for('users.favorites', page_user=page_num) }}">{{ page_num }}</a>
+					{% elif page_num %}
+						<a class="blue-link" href="{{ url_for('users.favorites', page_user=page_num) }}">{{ page_num }}</a>
+
+					{% else %}
+						...
+					{% endif %}
+				{% endfor %}
+				
+			</span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<table class="favorites-users-table">
+				<thead>
+					<tr>
+						<th>Username</th>
+						<th colspan="2">Link</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% if favorite_users.total %}
+						{% for user in favorite_users.items %}
+						<tr>
+							{% if user.user_id %}
+								<td><a href="{{ url_for('users.profile', username=User.query.filter_by(id=user.favorited_user).first().username) }}" style="color: orange; text-decoration: none;">{{ User.query.filter_by(id=user.favorited_user).first().username }}</td>
+								<td><a class="blue-link" href="{{ url_for('users.profile', username=User.query.filter_by(id=user.favorited_user).first().username) }}">Go to profile</a></td>
+								<td><a href="{{ url_for('users.delete_favorites_user', favorite_id=user.id) }}"><p class="cart-quick-view-remove" style="margin-left: 0px">Remove <span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></p></a></td>
+
+							{% else %}
+								<td><strong><a style="color: #AD4E22">Deleted user&nbsp;):</a></strong></td>
+								<td><a class="blue-link">----------</a></td>
+								<td><a href="{{ url_for('users.delete_favorites_user', favorite_id=user.id) }}"><p class="cart-quick-view-remove" style="margin-left: 0px">Remove <span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></p></a></td>
+							{% endif %}
+						</tr>
+						{% endfor %}
+
+					{% else %}
+					<tr>
+						<td>None</td>
+						<td><p><a class="blue-link">----------</a></p></td>
+					</tr>
+
+
+					{% endif %}
+				</tbody>
+			</table>
+
+
+		</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<section class="favorites-middle-white-column">
+			i
+		</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<section class="favorites-right-column">
+			<h1>Items ({{ favorite_items.total }})</h1>
+
+			<p>Filter:<strong><span>All</span></strong> Page:
+
+			<!-- Print page numbers on top based upon the iteration and number of messages in each category -->
+			<span>
+				{% if not favorite_items.total %}
+					<a class="blue-link">0</a>
+				{% endif %}
+
+				{% for page_num in favorite_items.iter_pages() %}
+					{% if page_num == page_item %}
+						<a class="blue-link" style="font-weight: bold" href="{{ url_for('users.favorites', page_item=page_num) }}">{{ page_num }}</a>
+					{% elif page_num %}
+						<a class="blue-link" href="{{ url_for('users.favorites', page_item=page_num) }}">{{ page_num }}</a>
+
+					{% else %}
+						...
+					{% endif %}
+				{% endfor %}
+				
+			</span>
+
+
+
+
+
+
+			<table class="favorites-users-table" style="width: 98% ;">
+				<thead>
+					<tr>
+						<th>Title</th>
+						<th>Vendor</th>
+						<th>Price</th>
+						<th colspan="2">Link</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% if favorite_items.total %}
+						{% for listing in favorite_items.items %}
+							<tr>
+								{% if listing.post_id %}
+									<td><strong><a href="{{ url_for('listings.item', post_id=listing.post_id, username=current_user.username, previous_page='users.favorites') }}" style="color: #AD4E22; text-decoration: none">{{ Post.query.filter_by(id=listing.post_id).first().title }}</a></strong></td>
+									<td><a href="{{ url_for('users.profile', username=Post.query.filter_by(id=listing.post_id).first().vendor.username) }}" style="color: orange; text-decoration: none;">{{ Post.query.filter_by(id=listing.post_id).first().vendor.username }}</a></td>
+									{% if Post.query.filter_by(id=listing.post_id).first().fixed_to_fiat %}
+										<td><div class="monero-hover-reveal" style="display: inline"><img style="height: 18px; width: 18px ; position: absolute ; margin: 1px 0 0 0px;" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+
+											<div class="monero-dropdown-menu" style="margin-top: 20px; margin-left: -5px">
+											<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+										 	<!-- USDT -->
+											<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #F0F0F0">$ {{ "{:.2f}".format(float(Post.query.filter_by(id=listing.post_id).first().price)) }}</a>
+												</a>
+												
+												<!-- BTC -->
+												<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #F0F0F0">₿ {{ "{:.5f}".format(float(Post.query.filter_by(id=listing.post_id).first().price) / usdt * btc) }}</a>
+												</a>
+
+												<!-- BCH -->
+												<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #F0F0F0">₿ {{ "{:.5f}".format(float(Post.query.filter_by(id=listing.post_id).first().price) / usdt * bch) }}</a>
+												</a>
+
+												<!-- LTC -->
+												<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #F0F0F0">Ł {{ "{:.5f}".format(float(Post.query.filter_by(id=listing.post_id).first().price) / usdt * ltc) }}</a>
+												</a>
+
+												<!-- DOGE -->
+												<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #F0F0F0">Ð {{ "{:.2f}".format(float(Post.query.filter_by(id=listing.post_id).first().price) / usdt * doge) }}</a>
+												</a>
+
+												<!-- ETH -->
+												<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #F0F0F0">₮ {{ "{:.5f}".format(float(Post.query.filter_by(id=listing.post_id).first().price) / usdt * xaut) }}</a>
+												</a>
+
+												<!-- ETH -->
+												<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #F0F0F0">♦ {{ "{:.5f}".format(float(Post.query.filter_by(id=listing.post_id).first().price) / usdt * eth) }}</a>
+												</a>
+											</div>
+
+
+
+											<span style="margin-left: 23px ; color: green">{{ numpy.format_float_positional(Post.query.filter_by(id=listing.post_id).first().price / usdt, trim='-', precision=8) }}</span></td>
+									{% else %}
+										<td><img style="height: 18px; width: 18px ; position: absolute ; margin: 1px 0 0 -23px;" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}"><span style="margin-left: 0px ; color: green">{{ numpy.format_float_positional(Post.query.filter_by(id=listing.post_id).first().price, trim='-', precision=8) }}</span></td>
+									{% endif %}
+									<td class="no-phone-only"><a class="blue-link" href="{{ url_for('listings.item', post_id=listing.post_id, username=current_user.username, previous_page='users.favorites') }}">Go to listing</a></td>
+									<td><a href="{{ url_for('users.delete_favorites_listing', favorite_id=listing.id) }}"><p class="cart-quick-view-remove" style="margin-left: 0px">Remove <span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></p></a></td>
+
+								{% else %}
+								<td><strong><a style="color: #AD4E22">Post was deleted &nbsp;):</a></strong></td>
+								<td>----------</td>
+								<td>----------</td>
+								<td><a class="blue-link">----------</a></td>
+								<td><a href="{{ url_for('users.delete_favorites_listing', favorite_id=listing.id) }}"><p class="cart-quick-view-remove" style="margin-left: 0px">Remove <span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></p></a></td>
+								{% endif %}
+							</tr>
+						{% endfor %}
+
+					{% else %}
+						<tr>
+							<td>None</td>
+							<td><p>----------</p></td>
+							<td>----------</td>
+							<td><a class="blue-link">----------</a></td>
+						</tr>
+
+
+					{% endif %}
+				</tbody>
+			</table>
+
+
+		</section>
+
+
+
+	</section>
+
+
+
+{% endblock content %}

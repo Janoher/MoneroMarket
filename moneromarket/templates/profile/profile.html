@@ -1,0 +1,673 @@
+{% extends "abstracts/layout.html" %}
+
+
+{% block content %}
+
+	<section class="profile-view">
+		{% if user.suspended %}
+			<h1>{{ user.username }}'s profile <span style="color: red">(SUSPENDED)</span></h1>
+		{% else %}
+			<h1>{{ user.username }}'s profile</h1>
+		{% endif %}
+
+
+
+
+		<img class="profile-user-picture-img" src="{{ url_for('static', filename='img/profiles/' + user.profile_picture) }}">
+
+
+		<div class="profile-user-info-view">
+
+			<div class="user-profile-buttons">
+
+
+				{% if current_user == user %}
+					<!-- User's profile buttons -->
+					<a href="{{ url_for('users.edit_profile') }}"><button class="yellow-button" href="{{ url_for('users.edit_profile') }}">Update Profile</button></a>
+					<a href="{{ url_for('orders.list', filter_by='selling') }}"><button class="blue-button">View Orders</button></a>
+					<a href="{{ url_for('listings.view', username=user.username, filter_by='newest') }}"><button class="green-button">Edit Listings ({{ Post.query.filter_by(user_id=current_user.id).all() | count }})</button></a>
+					<button class="red-button">Dispute</button>
+
+				{% else %}
+					<!-- Other profiles -->
+					<a href="{{ url_for('users.add_to_favorites_users', username=user.username) }}"><button class="yellow-button">Add to Favorites</button></a>
+					<a href="{{ url_for('messages.forward', username=user.username, previous_page='users.profile') }}"><button class="blue-button">Send Message</button></a>
+					<a href="{{ url_for('listings.view', username=user.username, filter_by='newest') }}"><button class="green-button">View Listings ({{ Post.query.filter_by(user_id=user.id).all() | count }})</button></a>
+					<a href="{{ url_for('messages.forward', message_type='REPORT', previous_page='users.profile', previous_page_id=user.username, ) }}"><button class="red-button">Report</button></a>
+
+					{% if current_user.is_admin %}
+						{% if not user.suspended %}
+							<a href="{{ url_for('employees.suspend_user', username=user.username) }}"><button class="search_button">Suspend</button></a>
+						{% else %}
+							<a href="{{ url_for('employees.unsuspend_user', username=user.username) }}"><button class="search_button">Unsuspend</button></a>
+						{% endif %}
+					{% endif %}
+					
+
+				{% endif %}
+			</div>
+
+
+			<div class="profile-user-general-info">
+				<p>Joined: {{ user.date_created.strftime("%b %-d, %Y") }}</p>
+				{% if user.last_seen %}
+					<p>Last Online: {{ user.last_seen.strftime("%b %-d, %H:%M") }}</p>
+				{% else %}
+					<p>Last Online: <span style="color: crimson">Has never been online.</span></p>
+				{% endif %}
+				<p>Total Buys: {{ user.buys }}</p>
+				<p>Total Sales: {{ user.sales }}</p>
+				<p>Disputes: <span style="color: green ;">{{ user.disputes_won }}</span> won / <span style="color: orange ;">{{ user.disputes_neutral }}</span> neutral / <span style="color: red ;">{{ user.disputes_lost }}</span> lost</p>
+				
+
+
+
+
+				{% if buyer_points == 0 %}
+					<p>Buyer Ratings: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/zero_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;" href="#rating-post">({{ reviews_buyer.total }})</a></p>
+
+				{% elif buyer_points < 0.9 %}
+					<p>Buyer Ratings: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/zero_half_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;" href="#rating-post">({{ reviews_buyer.total }})</a></p>
+
+				{% elif buyer_points < 1.3 %}
+					<p>Buyer Ratings: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/one_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;" href="#rating-post">({{ reviews_buyer.total }})</a></p>
+
+				{% elif buyer_points < 1.9 %}
+					<p>Buyer Ratings: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/one_half_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;" href="#rating-post">({{ reviews_buyer.total }})</a></p>
+
+				{% elif buyer_points < 2.3 %}
+					<p>Buyer Ratings: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/two_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;" href="#rating-post">({{ reviews_buyer.total }})</a></p>
+
+				{% elif buyer_points < 2.9 %}
+					<p>Buyer Ratings: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/two_half_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;" href="#rating-post">({{ reviews_buyer.total }})</a></p>
+
+				{% elif buyer_points < 3.3 %}
+					<p>Buyer Ratings: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/three_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;" href="#rating-post">({{ reviews_buyer.total }})</a></p>
+
+				{% elif buyer_points < 3.9 %}
+					<p>Buyer Ratings: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/three_half_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;" href="#rating-post">({{ reviews_buyer.total }})</a></p>
+
+				{% elif buyer_points < 4.3 %}
+					<p>Buyer Ratings: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/four_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;" href="#rating-post">({{ reviews_buyer.total }})</a></p>
+
+				{% elif buyer_points < 4.9 %}
+					<p>Buyer Ratings: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/four_half_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;" href="#rating-post">({{ reviews_buyer.total }})</a></p>
+
+				{% else %}
+					<p>Buyer Ratings: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/five_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;" href="#rating-post">({{ reviews_buyer.total }})</a></p>
+
+
+				{% endif %}
+
+
+
+
+
+				{% if seller_points == 0 %}
+					<p>Seller Ratings: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/zero_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;" href="#rating-post">({{ reviews_seller.total }})</a></p>
+
+				{% elif seller_points < 0.9 %}
+					<p>Seller Ratings: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/zero_half_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;" href="#rating-post">({{ reviews_seller.total }})</a></p>
+
+				{% elif seller_points < 1.3 %}
+					<p>Seller Ratings: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/one_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;" href="#rating-post">({{ reviews_seller.total }})</a></p>
+
+				{% elif seller_points < 1.9 %}
+					<p>Seller Ratings: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/one_half_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;" href="#rating-post">({{ reviews_seller.total }})</a></p>
+
+				{% elif seller_points < 2.3 %}
+					<p>Seller Ratings: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/two_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;" href="#rating-post">({{ reviews_seller.total }})</a></p>
+
+				{% elif seller_points < 2.9 %}
+					<p>Seller Ratings: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/two_half_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;" href="#rating-post">({{ reviews_seller.total }})</a></p>
+
+				{% elif seller_points < 3.3 %}
+					<p>Seller Ratings: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/three_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;" href="#rating-post">({{ reviews_seller.total }})</a></p>
+
+				{% elif seller_points < 3.9 %}
+					<p>Seller Ratings: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/three_half_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;" href="#rating-post">({{ reviews_seller.total }})</a></p>
+
+				{% elif seller_points < 4.3 %}
+					<p>Seller Ratings: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/four_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;" href="#rating-post">({{ reviews_seller.total }})</a></p>
+
+				{% elif seller_points < 4.9 %}
+					<p>Seller Ratings: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/four_half_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;" href="#rating-post">({{ reviews_seller.total }})</a></p>
+
+				{% else %}
+					<p>Seller Ratings: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/five_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;" href="#rating-post">({{ reviews_seller.total }})</a></p>
+
+
+				{% endif %}
+
+
+
+				<p>Current Transactions: {{ user.currently_buying }} buying / {{ user.currently_selling }} selling</p>
+			</div>
+
+
+		</div>
+
+		<br>
+
+		<!-- Tables are put over here to stick below the photo gallery at all times -->
+		<!--<section style="margin-top: 10px ;">
+			<div style="">
+				<div style="float: left">
+					<p style="margin-left: 15px ; color: grey ;">Description:</p>
+					<textarea style="width: 140% ; margin: 0 0 0 15px ; height: 120px ; resize: none ; padding: 5px ; font-size: 16px ; border-radius: 6px ;" readonly>{{ user.description }}</textarea>
+				</div>
+
+
+				<div style="float: right">
+					<p style="margin-left: 15px ; color: grey ;">Return Policy:</p>
+					<textarea style="width: 47% ; margin: 0 0 0 15px ; height: 120px ; resize: none ; padding: 5px ; font-size: 16px ; border-radius: 6px ;" readonly>{{ user.refund_policy }}</textarea>
+				</div>
+			</div>-->
+		<!--</section>-->
+
+
+
+
+
+
+
+
+		<table class="buyer-seller-table">
+			<tr class="top-row">
+				<th class="table-header-feedbacks">Buyer feedbacks</th>
+				<th class="table-header-one-month">1 month</th>
+				<th class="table-header-six-months">6 months</th>
+				<th class="table-header-twelve-months">12 months</th>
+				<th class="table-header-all-time">All time</th>
+			</tr>
+			<tr>
+				<th class="table-header-rating" style="color: green">Positive</th>
+				<td>{{ buyer_one_month[2] }}</td>
+				<td>{{ buyer_six_months[2] }}</td>
+				<td>{{ buyer_twelve_months[2] }}</td>
+				<td>{{ buyer_all_time[2] }}</td>
+			</tr>
+			<tr>
+				<th class="table-header-rating" style="color: orange">Neutral</th>
+				<td>{{ buyer_one_month[1] }}</td>
+				<td>{{ buyer_six_months[1] }}</td>
+				<td>{{ buyer_twelve_months[1] }}</td>
+				<td>{{ buyer_all_time[1] }}</td>
+			</tr>
+			<tr>
+				<th class="table-header-rating" style="color: red">Negative</th>
+				<td>{{ buyer_one_month[0] }}</td>
+				<td>{{ buyer_six_months[0] }}</td>
+				<td>{{ buyer_twelve_months[0] }}</td>
+				<td>{{ buyer_all_time[0] }}</td>
+			</tr>
+		</table>
+
+
+		<table class="buyer-seller-table">
+			<tr class="top-row">
+				<th class="table-header-feedbacks">Seller feedbacks</th>
+				<th class="table-header-one-month">1 month</th>
+				<th class="table-header-six-months">6 months</th>
+				<th class="table-header-twelve-months">12 months</th>
+				<th class="table-header-all-time">All time</th>
+			</tr>
+			<tr>
+				<th class="table-header-rating" style="color: green">Positive</th>
+				<td>{{ seller_one_month[2] }}</td>
+				<td>{{ seller_six_months[2] }}</td>
+				<td>{{ seller_twelve_months[2] }}</td>
+				<td>{{ seller_all_time[2] }}</td>
+			</tr>
+			<tr>
+				<th class="table-header-rating" style="color: orange">Neutral</th>
+				<td>{{ seller_one_month[1] }}</td>
+				<td>{{ seller_six_months[1] }}</td>
+				<td>{{ seller_twelve_months[1] }}</td>
+				<td>{{ seller_all_time[1] }}</td>
+			</tr>
+			<tr>
+				<th class="table-header-rating" style="color: red">Negative</th>
+				<td>{{ seller_one_month[0] }}</td>
+				<td>{{ seller_six_months[0] }}</td>
+				<td>{{ seller_twelve_months[0] }}</td>
+				<td>{{ seller_all_time[0] }}</td>
+			</tr>
+		</table>
+	</section>
+
+
+
+
+
+
+
+
+
+
+
+	<section class="profile-user-reviews">
+		{% if filter_by == "buyer" %}
+			<h1 id="rating-post">Reviews ({{ reviews_buyer.total }})</h1>
+		{% elif filter_by == "seller" %}
+			<h1 id="rating-post">Reviews ({{ reviews_seller.total }})</h1>
+		{% endif %}
+
+		<div class="profile-user-filter">
+			Filter:
+
+			{% if filter_by == "buyer" %}
+				<a href="{{ url_for('users.profile', username=user.username, page=page_num, filter_by=filter_by) }}" style="text-decoration: none"><strong><span class="right-orange-text">Buyer</span></strong></a>
+
+			{% else %}
+				<a href="{{ url_for('users.profile', username=user.username, page=page_num, filter_by='buyer') }}" style="text-decoration: none"><span class="right-orange-text">Buyer</span></a>
+			
+			{% endif %}
+
+
+			{% if filter_by == "seller" %}
+				<a href="{{ url_for('users.profile', username=user.username, page=page_num, filter_by=filter_by) }}" style="text-decoration: none"><strong><span class="right-orange-text">Seller</span></strong></a>
+
+			{% else %}
+				<a href="{{ url_for('users.profile', username=user.username, page=page_num, filter_by='seller') }}" style="text-decoration: none"><span class="right-orange-text">Seller</span></a>
+			
+			{% endif %}
+
+		</div>
+
+		{% if filter_by == "buyer" %}
+			{% for review in reviews_buyer.items %}
+				<div class="profile-user-pages" style="margin-top: 0px; margin-bottom: 5px; padding-bottom: 5px">
+					<section style="float: left; width: 10%" class="item-view-review" >
+					<!-- Make photo gallery -->
+					<!-- Source: https://www.youtube.com/watch?v=9Irz0c-6UGw -->
+					<div class="slidershow-review">
+
+						<div class="slides-review">
+
+							<!-- Invisible radio fields to allow for picure switches -->
+							<input type="radio" name="radio-picture" id="radio-picture-review-1" checked>
+							<input type="radio" name="radio-picture" id="radio-picture-review-2">
+							<input type="radio" name="radio-picture" id="radio-picture-review-3">
+
+
+
+							<!-- 'alt=""' is absolutely required so the images can shift!! -->
+							{% if not review.gallery_1 %}
+								{% if review.rating < 3.6 and review.rating > 2.4 %}
+									<div class="slide-review current-slide">
+										<a href="{{ url_for('static', filename='img/icons/ratings/' + 'neutral_face.png') }}"><img src="{{ url_for('static', filename='img/icons/ratings/' + 'neutral_face.png') }}" alt=""></a>
+									</div>
+
+								{% elif review.rating < 2.5 %}
+									<div class="slide-review current-slide">
+										<a href="{{ url_for('static', filename='img/icons/ratings/' + 'sad_face.png') }}"><img src="{{ url_for('static', filename='img/icons/ratings/' + 'sad_face.png') }}" alt=""></a>
+									</div>
+
+								{% elif review.rating > 3.5 %}
+									<div class="slide-review current-slide">
+										<a href="{{ url_for('static', filename='img/icons/ratings/' + 'happy_face.png') }}"><img src="{{ url_for('static', filename='img/icons/ratings/' + 'happy_face.png') }}" alt=""></a>
+									</div>
+								{% endif %}
+
+
+							{% else %}
+								<div class="slide-review current-slide">
+									<a href="{{ url_for('static', filename='img/reviews/' + review.gallery_1) }}"><img src="{{ url_for('static', filename='img/reviews/' + review.gallery_1) }}" alt=""></a>
+								</div>
+
+								{% if review.gallery_2 %}
+									<div class="slide-review">
+										<a href="{{ url_for('static', filename='img/reviews/' + review.gallery_2) }}"><img src="{{ url_for('static', filename='img/reviews/' + review.gallery_2) }}"></a>
+									</div>
+								{% endif %}
+
+								{% if review.gallery_3 %}
+									<div class="slide-review">
+										<a href="{{ url_for('static', filename='img/reviews/' + review.gallery_3) }}"><img src="{{ url_for('static', filename='img/reviews/' + review.gallery_3) }}"></a>
+									</div>
+								{% endif %}
+							{% endif %}
+
+						
+
+						</div>
+
+						<!-- The bars at the bottom to change radio buttons which are hidden and are associated with an image -->
+						<div class="navigation-review">
+							{% if review.gallery_1 %}
+								<label for="radio-picture-review-1" class="bar-review"></label>
+							{% endif %}
+
+							{% if review.gallery_2 %}
+								<label for="radio-picture-review-2" class="bar-review"></label>
+							{% endif %}
+
+							{% if review.gallery_3 %}
+								<label for="radio-picture-review-3" class="bar-review"></label>
+							{% endif %}
+
+						</div>
+
+					</div>
+				</section>
+
+
+
+					<textarea style="width: 88.5% ; height: 20px ; font-size: 16px ; padding: 5px ; resize: none ; border-radius: 6px ;" class="user-review-title" readonly>{{ review.title }}</textarea>
+
+					<div style="float: left" class="user-review-rating">
+						{% if review.rating == 1 %}
+							<p>Rating: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/one_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;">(1)</a></p>
+						{% elif review.rating == 2 %}
+							<p>Rating: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/two_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;">(2)</a></p>
+						{% elif review.rating == 3 %}
+							<p>Rating: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/three_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;">(3)</a></p>
+						{% elif review.rating == 4 %}
+							<p>Rating: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/four_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;">(4)</a></p>
+						{% elif review.rating == 5 %}
+							<p>Rating: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/five_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;">(5)</a></p>
+						{% endif %}
+
+						<p style="color: grey" class="user-review-date">{{ review.date_posted.strftime("%b %-d, %Y | %H:%M") }}</p>
+						<a href="{{ url_for('users.profile', username=User.query.filter_by(id=review.user_id).first().username) }}" style="text-decoration: none;"><span class="right-orange-text" style="margin-left: 4px">{{ User.query.filter_by(id=review.user_id).first().username }}</span></a>
+
+
+
+						<!-- Submit Dispute -->
+						<form class="" method="POST" action="">
+							{{ dispute_form.hidden_tag() }}
+							<input type="text" name="hidden_post_id" value="{{ review.post_id }}" style="position: absolute; visibility: hidden">
+							<input type="text" name="hidden_review_id" value="{{ review.id }}" style="position: absolute; visibility: hidden">
+
+							<div id="blackout-extend" style="">
+								<div id="modal-box">
+
+									<p>Type reasoning for removing review.</p>
+
+									{{ dispute_form.description(placeholder="Write reasoning for removal (less than 300 characters)..", class="login-register-form-input invalid-field-border", style="width: 250px; height: 55px; font-size: 16px ; padding: 5px ; resize: none ; border-radius: 6px ; margin-bottom: -5px") }}
+
+									{{ dispute_form.submit(class="close-modal", style="padding: 3px; padding-top:1.5px; padding-right:11px; padding-left: 10px") }}
+									<a href="#" class="close-modal">Cancel</a>
+								</div>
+							</div>
+						</form>
+
+
+						<!-- Show dispute option within 7 days when review was posted to dispute and possibly remove a fake/false review -->
+						{% if current_user.id == review.to_buyer and review.dispute_date %}
+							<a href="" style="text-decoration: none; color: red;"><p style="font-size: 14px; color: red; margin-top: -3px; margin-left: 3px">Disputed<img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}" style="margin-left: 5px;"></a></p>
+
+						{% elif current_user.id == review.to_buyer and datetime < review.date_posted + timedelta(hours=24*7) %}
+							<a href="#blackout-extend" style="text-decoration: none; color: red;"><p style="font-size: 14px; color: red; margin-top: -3px; margin-left: 3px">Dispute<img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}" style="margin-left: 5px;"></a></p>
+						{% endif %}
+					</div>
+
+					<textarea class="user-review-summary" readonly>{{ review.description }}</textarea>
+
+
+				</div>
+
+
+
+
+				<div style="clear: both"></div>
+			{% endfor %}
+
+
+
+		{% elif filter_by == "seller" %}
+			{% for review in reviews_seller.items %}
+				<div class="profile-user-pages" style="margin-top: 0px; margin-bottom: 5px; padding-bottom: 5px">
+					<section class="item-view-review" style="float: left; width: 10%">
+					<!-- Make photo gallery -->
+					<!-- Source: https://www.youtube.com/watch?v=9Irz0c-6UGw -->
+					<div class="slidershow-review">
+
+						<div class="slides-review">
+
+							<!-- Invisible radio fields to allow for picure switches -->
+							<input type="radio" name="radio-picture" id="radio-picture-review-1" checked>
+							<input type="radio" name="radio-picture" id="radio-picture-review-2">
+							<input type="radio" name="radio-picture" id="radio-picture-review-3">
+
+
+
+							<!-- 'alt=""' is absolutely required so the images can shift!! -->
+							{% if not review.gallery_1 %}
+								{% if review.rating < 3.6 and review.rating > 2.4 %}
+									<div class="slide-review current-slide">
+										<a href="{{ url_for('static', filename='img/icons/ratings/' + 'neutral_face.png') }}"><img src="{{ url_for('static', filename='img/icons/ratings/' + 'neutral_face.png') }}" alt=""></a>
+									</div>
+
+								{% elif review.rating < 2.5 %}
+									<div class="slide-review current-slide">
+										<a href="{{ url_for('static', filename='img/icons/ratings/' + 'sad_face.png') }}"><img src="{{ url_for('static', filename='img/icons/ratings/' + 'sad_face.png') }}" alt=""></a>
+									</div>
+
+								{% elif review.rating > 3.5 %}
+									<div class="slide-review current-slide">
+										<a href="{{ url_for('static', filename='img/icons/ratings/' + 'happy_face.png') }}"><img src="{{ url_for('static', filename='img/icons/ratings/' + 'happy_face.png') }}" alt=""></a>
+									</div>
+								{% endif %}
+
+
+							{% else %}
+								<div class="slide-review current-slide">
+									<a href="{{ url_for('static', filename='img/reviews/' + review.gallery_1) }}"><img src="{{ url_for('static', filename='img/reviews/' + review.gallery_1) }}" alt=""></a>
+								</div>
+
+								{% if review.gallery_2 %}
+									<div class="slide-review">
+										<a href="{{ url_for('static', filename='img/reviews/' + review.gallery_2) }}"><img src="{{ url_for('static', filename='img/reviews/' + review.gallery_2) }}"></a>
+									</div>
+								{% endif %}
+
+								{% if review.gallery_3 %}
+									<div class="slide-review">
+										<a href="{{ url_for('static', filename='img/reviews/' + review.gallery_3) }}"><img src="{{ url_for('static', filename='img/reviews/' + review.gallery_3) }}"></a>
+									</div>
+								{% endif %}
+							{% endif %}
+
+						
+
+						</div>
+
+						<!-- The bars at the bottom to change radio buttons which are hidden and are associated with an image -->
+						<div class="navigation-review">
+							{% if review.gallery_1 %}
+								
+								<!-- Make bar wider to fill up entire picture block -->
+								{% if not review.gallery_2 %}
+									<label for="radio-picture-review-1" class="bar-review" style="width: 96px"></label>
+								{% else %}
+									<label for="radio-picture-review-1" class="bar-review"></label>
+								{% endif %}
+								
+							{% endif %}
+
+							{% if review.gallery_2 %}
+								<label for="radio-picture-review-2" class="bar-review"></label>
+							{% endif %}
+
+							{% if review.gallery_3 %}
+								<label for="radio-picture-review-3" class="bar-review"></label>
+							{% endif %}
+
+						</div>
+
+					</div>
+				</section>
+
+
+
+					<textarea style="width: 88.5% ; height: 20px ; font-size: 16px ; padding: 5px ; resize: none ; border-radius: 6px ;" class="user-review-title" readonly>{{ review.title }}</textarea>
+
+					<div style="float: left" class="user-review-rating">
+						{% if review.rating == 1 %}
+							<p>Rating: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/one_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;">(1)</a></p>
+						{% elif review.rating == 2 %}
+							<p>Rating: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/two_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;">(2)</a></p>
+						{% elif review.rating == 3 %}
+							<p>Rating: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/three_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;">(3)</a></p>
+						{% elif review.rating == 4 %}
+							<p>Rating: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/four_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;">(4)</a></p>
+						{% elif review.rating == 5 %}
+							<p>Rating: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/five_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;">(5)</a></p>
+						{% endif %}
+
+						<p style="color: grey">{{ review.date_posted.strftime("%b %-d, %Y | %H:%M") }}</p>
+						<a href="{{ url_for('users.profile', username=User.query.filter_by(id=review.user_id).first().username) }}" style="text-decoration: none;"><span class="right-orange-text" style="margin-left: 4px">{{ User.query.filter_by(id=review.user_id).first().username }}</span></a>
+
+
+
+
+						<!-- Submit Dispute -->
+						<form class="" method="POST" action="">
+							{{ dispute_form.hidden_tag() }}
+							<input type="text" name="hidden_post_id" value="{{ review.post_id }}" style="position: absolute; visibility: hidden">
+							<input type="text" name="hidden_review_id" value="{{ review.id }}" style="position: absolute; visibility: hidden">
+
+							<div id="blackout-extend" style="">
+								<div id="modal-box">
+
+									<p>Type reasoning for removing review.</p>
+
+									{{ dispute_form.description(placeholder="Write reasoning for removal (less than 300 characters)..", class="login-register-form-input invalid-field-border", style="width: 250px; height: 55px; font-size: 16px ; padding: 5px ; resize: none ; border-radius: 6px ; margin-bottom: -5px") }}
+
+									{{ dispute_form.submit(class="close-modal", style="padding: 3px; padding-top:1.5px; padding-right:11px; padding-left: 10px") }}
+									<a href="#" class="close-modal">Cancel</a>
+								</div>
+							</div>
+						</form>
+
+
+						<!-- Show dispute option within 7 days when review was posted to dispute and possibly remove a fake/false review -->
+						{% if current_user.id == review.vendor_id and not review.to_buyer and review.dispute_date %}
+							<a style="text-decoration: none; color: red;"><p style="font-size: 14px; color: red; margin-top: -3px; margin-left: 3px">Disputed<img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}" style="margin-left: 5px;"></a></p>
+
+						{% elif current_user.id == review.vendor_id and not review.to_buyer and datetime < review.date_posted + timedelta(hours=24*7) %}
+							<a href="#blackout-extend" style="text-decoration: none; color: red;"><p style="font-size: 14px; color: red; margin-top: -3px; margin-left: 3px">Dispute<img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}" style="margin-left: 5px;"></a></p>
+						{% endif %}
+
+					</div>
+
+					<textarea class="user-review-summary" readonly>{{ review.description }}</textarea>
+
+
+				</div>
+
+
+
+
+				<div style="clear: both"></div>
+			{% endfor %}
+
+		{% endif %}
+
+
+
+
+
+
+
+		
+
+		<div class="profile-user-pages">
+			Page:
+
+			{% if filter_by == "buyer" %}
+				<span class="right-orange-text">
+					{% if reviews_buyer.total == 0 %}
+						<a class="blue-link">0</a>
+					{% endif %}
+
+					{% for page_num in reviews_buyer.iter_pages() %}
+						{% if page_num == page %}
+							<strong><a class="blue-link" href="{{ url_for('users.profile', username=user.username, page=page_num, filter_by=filter_by) }}">{{ page_num }}</a></strong>
+						{% elif page_num %}
+							<a class="blue-link" href="{{ url_for('users.profile', username=user.username, page=page_num, filter_by=filter_by) }}">{{ page_num }}</a>
+
+						{% else %}
+							...
+						{% endif %}
+					{% endfor %}
+				</span>
+
+
+
+			{% elif filter_by == "seller" %}
+				<span class="right-orange-text">
+					{% if reviews_seller.total == 0 %}
+						<a class="blue-link">0</a>
+					{% endif %}
+
+					{% for page_num in reviews_seller.iter_pages() %}
+						{% if page_num == page %}
+							<strong><a class="blue-link" href="{{ url_for('users.profile', username=user.username, page=page_num, filter_by=filter_by) }}">{{ page_num }}</a></strong>
+						{% elif page_num %}
+							<a class="blue-link" href="{{ url_for('users.profile', username=user.username, page=page_num, filter_by=filter_by) }}">{{ page_num }}</a>
+
+						{% else %}
+							...
+						{% endif %}
+					{% endfor %}
+				</span>
+
+
+			{% endif %}
+
+
+
+
+		</div>
+
+	</section>
+
+
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,183 @@
+{% extends "abstracts/layout.html" %}
+
+
+
+{% block content %}
+	<section class="orders-view">
+		<h1>Messages</h1>
+
+		{% if previous_page == "messages.view" %}
+			<a href="{{ url_for('messages.view', message_id=id, direction='received') }}" style="float: right; margin: 6px 12px 0 0"><button class="search_button">Go Back</button></a>
+		{% elif previous_page == "users.profile" %}
+			<a href="{{ url_for('users.profile', username=user) }}" style="float: right; margin: 6px 12px 0 0"><button class="search_button">Go Back</button></a>
+		{% elif previous_page == "orders.accept" %}
+			<a href="{{ url_for('orders.accept', order_id=id) }}" style="float: right; margin: 6px 12px 0 0"><button class="search_button">Go Back</button></a>
+		{% elif previous_page == "orders.view_order" %}
+			<a href="{{ url_for('orders.view_order', order_id=id) }}" style="float: right; margin: 6px 12px 0 0"><button class="search_button">Go Back</button></a>
+		{% elif previous_page == "orders.view_payment_id" %}
+			<a href="{{ url_for('orders.view_payment_id', payment_id=id) }}" style="float: right; margin: 6px 12px 0 0"><button class="search_button">Go Back</button></a>
+		{% elif previous_page == "orders.checkout" %}
+			<a href="{{ url_for('orders.checkout') }}" style="float: right; margin: 6px 12px 0 0"><button class="search_button">Go Back</button></a>
+		{% else %}
+			<a href="{{ url_for('messages.list', filter_by='recieved') }}" style="float: right; margin: 6px 12px 0 0"><button class="search_button">Go Back</button></a>
+		{% endif %}
+
+
+
+		{% if user != "ADMIN" %}
+			<p>Report to <a class="red-link" href="{{ url_for('users.profile', username='ADMIN') }}">ADMIN?</a> <a href="{{ url_for('messages.forward', username='ADMIN', previous_page='messages.forward', previous_page_id=previous_page_id) }}" style="text-decoration: none"><span>Click here</span></a>
+		{% else %}
+			<p>Report to <a class="red-link" href="{{ url_for('users.profile', username='ADMIN') }}">ADMIN?</a> <span>Write down below</span></a>
+		{% endif %}
+
+
+
+
+
+
+		<form method="POST" action="">
+			<!-- SECRET KEY to protect from foreign attacks -->
+			{{ form.hidden_tag() }}
+
+
+			<table class="orders-table">
+				<thead>
+					<tr>
+						{% if message_type == "REPORT" %}
+							<th style="text-align: center ;" colspan="2">Write new report</th>
+						{% else %}
+							<th style="text-align: center ;" colspan="2">Write new message</th>
+						{% endif %}
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr style="border-bottom: none ;">
+						<!--
+						<td>Order ID</td>
+						<td>Status</td>
+						<td>Seller</td>
+						<td>Date</td>
+						<td>Details</td>
+					-->
+
+						<!-- Print this if there are no values -->
+						<td>
+							<legend>Message to:</legend>
+							{% if user == "ADMIN" %}
+								{% if disputes_id != 0 %}
+									<div class="crimson-color-placeholder">
+										<input class="login-register-form-input" placeholder="{{ user }} (DISPUTE)" disabled type="text">
+									</div>
+								{% elif order %}
+									{% if order.status == "DISPUTING" %}
+										<div class="crimson-color-placeholder">
+											<input class="login-register-form-input" placeholder="{{ user }} (DISPUTE)" disabled type="text">
+										</div>
+									{% endif %}
+
+								{% else %}
+									<div class="crimson-color-placeholder">
+										<input class="login-register-form-input" placeholder="{{ user }}" disabled type="text">
+									</div>
+								{% endif %}
+							{% else %}
+								<input class="login-register-form-input" placeholder="{{ user }}"disabled style="color: black ;">
+							{% endif %}
+						</td>
+
+
+						<td>
+							<legend>Message from:</legend>
+							{% if order %}
+								{% if current_user.is_employee or current_user.is_admin %}
+									{% if order.status == "DISPUTING" %}
+										<div class="crimson-color-placeholder">
+											<input class="login-register-form-input" placeholder="ADMIN (DISPUTE)" disabled type="text">
+										</div>
+									{% else %}
+										<div class="crimson-color-placeholder">
+											<input class="login-register-form-input" placeholder="ADMIN" disabled type="text">
+										</div>
+									{% endif %}
+										
+								{% endif %}
+
+							{% elif sender == "ADMIN" %}
+								<div class="crimson-color-placeholder">
+									<input class="login-register-form-input" placeholder="ADMIN" disabled type="text">
+								</div>
+									
+									
+							{% elif disputes_id == 0 or user == "ADMIN" %}
+								<input class="login-register-form-input" placeholder="{{ current_user.username }}"disabled style="color: black ;">
+							{% else %}
+								<div class="crimson-color-placeholder">
+									<input class="login-register-form-input" placeholder="ADMIN (DISPUTE)" disabled type="text">
+								</div>
+							{% endif %}
+						</td>
+					</tr>
+					<tr style="border-bottom: none ;">
+						<td colspan="2">
+							<legend>Subject:</legend>
+							
+							{% if form.subject.errors %}
+
+								{{ form.subject(placeholder="Enter subject..", class="login-register-form-input invalid-field-border") }}
+
+								<div class="display-invalid-field">
+									{% for error in form.subject.errors %}
+										<span> {{ error }} </span>
+
+									{% endfor %}
+								</div>
+
+							{% else %}
+								<!-- This is processed as an <input> -->
+								{{ form.subject(placeholder="Enter subject..", class="login-register-form-input") }}
+
+							{% endif %}
+
+						</td>
+					</tr>
+					<tr style="border-bottom: none ;">
+						<td colspan="2">
+							<legend>Write message here:</legend>
+							
+							{% if form.body.errors %}
+
+								{{ form.body(placeholder="Enter message here..", class="login-register-form-input invalid-field-border", style="padding: 0 0 0 50px") }}
+
+								<div class="display-invalid-field">
+									{% for error in form.body.errors %}
+										<span> {{ error }} </span>
+
+									{% endfor %}
+								</div>
+
+							{% else %}
+								<!-- This is processed as an <input> -->
+								<!-- TextArea resizing source: https://stackoverflow.com/questions/36825227/i-want-my-textarea-to-have-a-fixed-width -->
+								{{ form.body(placeholder="Enter message here..", class="login-register-form-input", style="padding: 5px 0 140px 5px; resize: vertical ;") }}
+
+							{% endif %}
+
+						</td>
+					</tr>
+					<tr>
+						<!-- Button -->
+						<td colspan="2">{{ form.submit(class="search_button") }}</td>
+					</tr>
+				</tbody>
+
+			
+			</table>
+		</form>
+
+		<p style="color: #828282">Questions? <a class="blue-link" href="{{ url_for('users.register') }}">Click here</a></p>
+
+
+	</section>
+
+{% endblock content %}

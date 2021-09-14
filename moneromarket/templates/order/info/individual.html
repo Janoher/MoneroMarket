@@ -1,0 +1,1065 @@
+{% extends "abstracts/layout.html" %}
+
+{% block content %}
+	<section class="login-register-view">	
+		<!-- Banner to appear above the register form describing the requirments needed to register an account --><!--
+		<ul class="login-register-alert">
+			<li>Please allow up to <span style="color: orange ;">24 HOURS</span> after payment has been verified and accepted for vendor(s) to confirm order.</li>
+			<li>If <span style="color: blue ;">PAYMENT ID</span> is incorrect, please message <a href="" class="blue-link">MoneroMarket</a> for help or questions.</li>
+			<li>If <span style="color: lime ;">REFUND ADDRESS</span> was mistyped or incorrect, please message <a href="" class="blue-link">MoneroMarket</a> to update address.</li>
+			<li>If you want to cancel order(s), please cancel <span style="color: #AAAEEE">BEFORE</span> vendor accepts transaction.</li>
+			<li>If canceled after vendor accepts and sends item(s), we will return the item back to the vendor and your Monero will be refunded with a <span style="color: crimson">FEE</span> to pay for the shipping costs.</li>
+			<li>If item is canceled after we ship the item to you from our office, you will have to reship back to our office, and a <span style="color: crimson">FEE</span> will be subtracted from your refund to ship back to vendor from our office.</li>
+		</ul>-->
+
+
+		<!--<p style="margin-top: 5px ;">Payment ID: <span class="blue-link">#{{ payment_id }}</span></p>-->
+
+		{% if order.status == "NO PAYMENT" %}
+			<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+			<ul class="login-register-alert">
+				<li>If <span style="color: blue ;">PAYMENT ID</span> is incorrect, please message <a href="#" class="red-link">ADMIN,</a> for help or questions.</li>
+				<li>If you sent <span style="color: orange">MONERO,</span> please confirm with the public address and provide your <span style="color: purple ;">Transaction ID</span> to <a href="#" class="red-link">ADMIN,</a> as you might have sent your funds to a different address, and your funds <span style="color: green">MIGHT</span> be recoverable if it was sent to one of our addresses.</li>
+				
+			</ul>
+
+			<p style="margin-top: 5px ;">Order: <a href="" style="text-decoration: none"><span class="orange-link">#{{ order.id }}</span></a></p>
+			<p style="margin-top: -2px ;">Payment ID: <a class="blue-link" href="{{ url_for('orders.view_payment_id', payment_id=order.payment_id) }}">#{{ order.payment_id }}</a></p>
+			<p style="margin-top: -2px ;">Status: <span style="color: red ;">NO CONFIRMATIONS WERE EVER RECEIVED AFTER 2 HOURS.</p>
+
+			<legend style="margin-top: 5px ;">Public address :</legend>
+			<textarea readonly style="overflow: scroll ; width: 98% ; resize: none ; min-height: 10px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: orange ;">{{ public_address }}</textarea>
+
+
+
+
+
+		{% elif order.status == "INSUFFICIENT FUNDS" %}
+			<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+			<ul class="login-register-alert">
+				<li>Insufficient funds refund was issued on <span style="color: magenta">{{ order.order_cancelled.strftime("%b %-d %Y, %H:%M:%S") }} UTC time.</span></li>
+				{% if order.escrow_released %}
+					<li>Monero was refunded on <span style="color: blue">{{ order.escrow_released.strftime("%b %-d %Y, %H:%M:%S") }} UTC time.</span></li>
+				{% else %}
+					<li>The <span style="color: orange">MONERO,</span> you sent will be <span style="color: green">REFUNDED</span> back to your specified address after <span style="color: red">24 HOURS</span> <span style="color: grey">IF</span> amount sent is <span style="color: red">LESS</span> than network transaction fee <span style="color: crimson">PLUS 2% FEE.</span></li>
+				{% endif %}
+				
+			</ul>
+
+			<p style="margin-top: 5px ;">Order: <a href="" style="text-decoration: none"><span class="orange-link">#{{ order.id }}</span></a></p>
+			<p style="margin-top: -2px ;">Payment ID: <a class="blue-link" href="{{ url_for('orders.view_payment_id', payment_id=order.payment_id) }}">#{{ order.payment_id }}</a></p>
+
+
+			{% if order.escrow_released %}
+				<p style="margin-top: 0px ;">Transaction ID: <span style="color: blue">#{{ fernet.decrypt(order.transaction_id.encode()).decode() }}</a></p>
+			{% endif %}
+
+
+
+			<legend style="margin: 0px 0 0px 0">Amount Needed: 
+				<div class="monero-hover-reveal" style="display: inline"><img class="tiny-monero-coin" style="height: 18px; width: 18px ; position: absolute ; margin: -3px 2px 0 0px; cursor: pointer" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+						
+						<div class="monero-dropdown-menu" style="margin-top: -4px; margin-left: 112px">
+							<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+						 	<!-- USDT -->
+							<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">$ {{ "{:.2f}".format(float(fernet.decrypt(order.total_amount_for_payment_id.encode()).decode()) * usdt) }}</a>
+								</a>
+								
+								<!-- BTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">₿ {{ "{:.5f}".format(float(fernet.decrypt(order.total_amount_for_payment_id.encode()).decode()) * btc) }}</a>
+								</a>
+
+								<!-- BCH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">₿ {{ "{:.5f}".format(float(fernet.decrypt(order.total_amount_for_payment_id.encode()).decode()) * bch) }}</a>
+								</a>
+
+								<!-- LTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">Ł {{ "{:.5f}".format(float(fernet.decrypt(order.total_amount_for_payment_id.encode()).decode()) * ltc) }}</a>
+								</a>
+
+								<!-- DOGE -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">Ð {{ "{:.2f}".format(float(fernet.decrypt(order.total_amount_for_payment_id.encode()).decode()) * doge) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">₮ {{ "{:.5f}".format(float(fernet.decrypt(order.total_amount_for_payment_id.encode()).decode()) * xaut) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">♦ {{ "{:.5f}".format(float(fernet.decrypt(order.total_amount_for_payment_id.encode()).decode()) * eth) }}</a>
+								</a>
+							</div>
+
+			 		<a style="margin-left: 20px; color: green">{{numpy.format_float_positional(float(fernet.decrypt(order.total_amount_for_payment_id.encode()).decode()), trim='-', precision=8) }}</a></div>
+				</legend>
+
+
+
+
+
+				<legend style="margin: 0px 0 0px 0">Amount Sent: 
+				<div class="monero-hover-reveal" style="display: inline"><img class="tiny-monero-coin" style="height: 18px; width: 18px ; position: absolute ; margin: -3px 2px 0 0px; cursor: pointer" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+						
+						<div class="monero-dropdown-menu" style="margin-top: -4px; margin-left: 90px">
+							<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+						 	<!-- USDT -->
+							<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">$ {{ "{:.2f}".format(float(fernet.decrypt(order.total_amount_received.encode()).decode()) * usdt) }}</a>
+								</a>
+								
+								<!-- BTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">₿ {{ "{:.5f}".format(float(fernet.decrypt(order.total_amount_received.encode()).decode()) * btc) }}</a>
+								</a>
+
+								<!-- BCH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">₿ {{ "{:.5f}".format(float(fernet.decrypt(order.total_amount_received.encode()).decode()) * bch) }}</a>
+								</a>
+
+								<!-- LTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">Ł {{ "{:.5f}".format(float(fernet.decrypt(order.total_amount_received.encode()).decode()) * ltc) }}</a>
+								</a>
+
+								<!-- DOGE -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">Ð {{ "{:.2f}".format(float(fernet.decrypt(order.total_amount_received.encode()).decode()) * doge) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">₮ {{ "{:.5f}".format(float(fernet.decrypt(order.total_amount_received.encode()).decode()) * xaut) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">♦ {{ "{:.5f}".format(float(fernet.decrypt(order.total_amount_received.encode()).decode()) * eth) }}</a>
+								</a>
+							</div>
+
+			 		<a style="margin-left: 23px; color: red">{{numpy.format_float_positional(float(fernet.decrypt(order.total_amount_received.encode()).decode()), trim='-', precision=8) }}</a></div>
+				</legend>
+
+
+
+
+
+
+
+				{% if order.escrow_released %}
+					<legend style="margin: 0px 0 0px 0">Amount Refunded: 
+					<div class="monero-hover-reveal" style="display: inline"><img class="tiny-monero-coin" style="height: 18px; width: 18px ; position: absolute ; margin: -3px 2px 0 0px; cursor: pointer" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+							
+							<div class="monero-dropdown-menu" style="margin-top: -4px; margin-left: 124px">
+								<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+							 	<!-- USDT -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">$ {{ "{:.2f}".format(float(fernet.decrypt(order.amount_refunded.encode()).decode()) * usdt) }}</a>
+									</a>
+									
+									<!-- BTC -->
+									<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">₿ {{ "{:.5f}".format(float(fernet.decrypt(order.amount_refunded.encode()).decode()) * btc) }}</a>
+									</a>
+
+									<!-- BCH -->
+									<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">₿ {{ "{:.5f}".format(float(fernet.decrypt(order.amount_refunded.encode()).decode()) * bch) }}</a>
+									</a>
+
+									<!-- LTC -->
+									<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">Ł {{ "{:.5f}".format(float(fernet.decrypt(order.amount_refunded.encode()).decode()) * ltc) }}</a>
+									</a>
+
+									<!-- DOGE -->
+									<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">Ð {{ "{:.2f}".format(float(fernet.decrypt(order.amount_refunded.encode()).decode()) * doge) }}</a>
+									</a>
+
+									<!-- ETH -->
+									<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">₮ {{ "{:.5f}".format(float(fernet.decrypt(order.amount_refunded.encode()).decode()) * xaut) }}</a>
+									</a>
+
+									<!-- ETH -->
+									<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">♦ {{ "{:.5f}".format(float(fernet.decrypt(order.amount_refunded.encode()).decode()) * eth) }}</a>
+									</a>
+								</div>
+
+				 		<a style="margin-left: 23px; color: orange">{{numpy.format_float_positional(float(fernet.decrypt(order.amount_refunded.encode()).decode()), trim='-', precision=8) }}</a></div>
+					</legend>
+				{% endif %}
+
+
+
+
+
+
+
+
+
+			<p style="margin-top: 0px ;">Status: <span style="color: crimson ;">INSUFFICIENT FUNDS.</p>
+
+			<legend style="margin-top: 5px ;">Public Address :</legend>
+			<textarea readonly style="overflow: scroll ; width: 98% ; resize: none ; min-height: 10px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: orange ;">{{ public_address }}</textarea>
+
+			<legend style="margin-top: 5px ;">Refund Address :</legend>
+			<textarea readonly style="overflow: scroll ; width: 98% ; resize: none ; min-height: 10px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: red ;">{{ fernet.decrypt(order.return_address.encode()).decode() }}</textarea>
+
+
+
+
+		{% elif confirmations == 0 %}
+			<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+			<ul class="login-register-alert">
+				<li>Order was <span style="color: green">REQUESTED</span> on <span style="color: blue">{{ order.date_ordered.strftime('%b %-d, %H:%M:%S') }} UTC time.</span></li>
+				<li>A Payment for order that has not received a single confirmation by <span style="color: crimson">{{ (order.date_ordered + timedelta( hours=2)).strftime('%H:%M:%S') }} UTC time </span>(2 hours from purchase) will be <span style="color: red">CANCELLED.</span></li>
+				<li>Please <span style="color: red">DO NOT</span> double send to this address, as your Monero <span style="color: blue">WILL</span> be lost.</li>
+				<li>If <span style="color: blue ;">PAYMENT ID</span> is incorrect, please <a href="{{ url_for('messages.forward', username='ADMIN', previous_page='orders.accept', previous_page_id=order.id) }}" class="blue-link">message us</a> for help or questions.</li>
+				<li>If you sent <span style="color: orange">MONERO,</span> please wait until <span style="color: purple">30 minutes</span> have passed to see if a single <span style="color: green">CONFIRMATION</span> pings.</li>
+			</ul>
+
+			<p style="margin-top: 5px ;">Order: <a href="" style="text-decoration: none"><span class="orange-link">#{{ order.id }}</span></a></p>
+			<p style="margin-top: -2px ;">Payment ID: <a class="blue-link" href="{{ url_for('orders.view_payment_id', payment_id=order.payment_id) }}">#{{ order.payment_id }}</a></p>
+			<p style="margin-top: 0px ;">Status: <span style="color: red ;">PAYMENT HAS NOT BEEN RECEIVED YET.</p>
+
+			<!--
+			<legend style="margin-top: 5px ;">Public address:</legend>
+			<textarea readonly style="overflow: scroll ; width: 98% ; resize: none ; min-height: 10px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: orange ;">{{ public_address }}</textarea>-->
+
+
+
+
+
+		<!-- Waiting for vendorto accept purchase. 10/10 confirmations have been reached -->
+		{% elif order.status == "WAITING FOR VENDOR" %}
+			<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+			<ul class="login-register-alert">
+				<li>Payment for order was <span style="color: green">SUCCESSFULLY</span> verified and accepted on <span style="color: blue">{{ order.date_ordered.strftime('%b %-d, %H:%M:%S') }} UTC time.</span></li>
+				<li>Please allow up to <span style="color: orange ;">24 HOURS</span> after payment has been verified and accepted for vendor to confirm order.</li>
+				<li>If <span style="color: blue ;">PAYMENT ID</span> is incorrect, please <a href="{{ url_for('messages.forward', username='ADMIN', previous_page='orders.accept', previous_page_id=order.id) }}" class="blue-link">message us</a> for help or questions.</li>
+				<li>If <span style="color: lime ;">REFUND ADDRESS</span> was mistyped or incorrect, please message <a href="" class="blue-link">MoneroMarket</a> to update address.</li>
+				<li>If you want to cancel order(s), please cancel <span style="color: #AAAEEE">BEFORE</span> vendor accepts transaction.</li>
+				<li>If canceled after vendor accepts and sends item(s), we will return the item back to the vendor and your Monero will be refunded with a <span style="color: crimson">FEE</span> to pay for the shipping costs.</li>
+				<li>If item is canceled after we ship the item to you from our office, you will have to reship back to our office, and a <span style="color: crimson">FEE</span> will be subtracted from your refund to ship back to vendor from our office.</li>
+				{% if order.excess_received %}
+					{% if order.excess_received_refunded %}
+						<li>Excess amount was sent, and excess amount was refunded to return address on <span style="color: magenta">{{ order.excess_received_refunded.strftime('%b %-d, %H:%M:%S') }} UTC time.</span></li>
+					{% else %}
+						<li>Excess amount was discovered on <span style="color: magenta">{{ order.excess_received.strftime('%b %-d, %H:%M:%S') }} UTC time,</span> and will be refunded to return address after 24 hours.</li>
+					{% endif %}
+				{% endif %}
+			</ul>
+
+			<p style="margin-top: 5px ;">Order: <a href="" style="text-decoration: none"><span class="orange-link">#{{ order.id }}</span></a></p>
+			<p style="margin-top: -2px ;">Payment ID: <a class="blue-link" href="{{ url_for('orders.view_payment_id', payment_id=order.payment_id) }}">#{{ order.payment_id }}</a></p>
+
+
+			{% if order.excess_received %}
+				{% if order.excess_received_refunded %}
+					<legend style="margin: 0px 0 0px 0">Amount Refunded: 
+				{% else %}
+					<legend style="margin: 0px 0 0px 0">Amount Refunding: 
+				{% endif %}
+					<div class="monero-hover-reveal" style="display: inline"><img class="tiny-monero-coin" style="height: 18px; width: 18px ; position: absolute ; margin: -3px 2px 0 -2px; cursor: pointer" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+						
+						<div class="monero-dropdown-menu" style="margin-top: -4px; margin-left: 124.5px">
+							<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+						 	<!-- USDT -->
+							<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">$ {{ "{:.2f}".format((float(fernet.decrypt(order.total_amount_received.encode()).decode()) - float(fernet.decrypt(order.total_amount_for_payment_id.encode()).decode())) * usdt) }}</a>
+								</a>
+								
+								<!-- BTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">₿ {{ "{:.5f}".format((float(fernet.decrypt(order.total_amount_received.encode()).decode()) - float(fernet.decrypt(order.total_amount_for_payment_id.encode()).decode())) * btc) }}</a>
+								</a>
+
+								<!-- BCH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">₿ {{ "{:.5f}".format((float(fernet.decrypt(order.total_amount_received.encode()).decode()) - float(fernet.decrypt(order.total_amount_for_payment_id.encode()).decode())) * bch) }}</a>
+								</a>
+
+								<!-- LTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">Ł {{ "{:.5f}".format((float(fernet.decrypt(order.total_amount_received.encode()).decode()) - float(fernet.decrypt(order.total_amount_for_payment_id.encode()).decode())) * ltc) }}</a>
+								</a>
+
+								<!-- DOGE -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">Ð {{ "{:.2f}".format((float(fernet.decrypt(order.total_amount_received.encode()).decode()) - float(fernet.decrypt(order.total_amount_for_payment_id.encode()).decode())) * doge) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">₮ {{ "{:.5f}".format((float(fernet.decrypt(order.total_amount_received.encode()).decode()) - float(fernet.decrypt(order.total_amount_for_payment_id.encode()).decode())) * xaut) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">♦ {{ "{:.5f}".format((float(fernet.decrypt(order.total_amount_received.encode()).decode()) - float(fernet.decrypt(order.total_amount_for_payment_id.encode()).decode())) * eth) }}</a>
+								</a>
+							</div>
+
+			 		<a style="margin-left: 20px; color: green">{{numpy.format_float_positional((float(fernet.decrypt(order.total_amount_received.encode()).decode()) - float(fernet.decrypt(order.total_amount_for_payment_id.encode()).decode())), trim='-', precision=8) }}</a></div>
+			 	</legend>
+			{% endif %}
+
+
+			{% if confirmations >= 10 %}
+				<p style="margin-top: -2px ;">Status: <span style="color: lime ;">Confirmed! ({{ confirmations }}/10 confirmations)</span></p>
+			{% elif confirmations < 10 %}
+				<p style="margin-top: 0px ;">Status: <span style="color: orange ;">Confirming.. ({{ confirmations }}/10 confirmations)</span></p>
+			{% endif %}
+
+			<!-- Only display transaction ID if there are any transactions 
+			<legend style="margin-top: 5px ;">Transaction ID :</legend>
+			<textarea readonly style="overflow: scroll ; width: 98% ; resize: none ; min-height: 10px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: blue ;">{{ transaction_id }}</textarea> -->
+			<legend style="margin-top: 5px ;">Public address :</legend>
+			<textarea readonly style="overflow: scroll ; width: 98% ; resize: none ; min-height: 10px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: blue ;">{{ public_address }}</textarea> 
+
+
+			<!--
+			<p>Transaction ID: <span style="color: lime ; font-size: 13px ; overflow: hidden"> {{ transaction_id }}</span></p> -->
+
+			<legend>Refund Address :</legend>
+			<textarea readonly style="overflow: scroll ; width: 98% ; resize: none ; min-height: 10px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: red ;">{{ refund_address }}</textarea>
+			<!--<p>Refund Address: <span style="color: cyan ; font-size: 13px ; overflow: hidden;"> {{ refund_address }}</span></p>-->
+
+			<legend style="margin-top: 5px ;">Address and Name:</legend>
+			<textarea readonly style="overflow: scroll ; width: 98% ; resize: vertical ; min-height: 70px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: grey ;">{{ fernet.decrypt(order.name_and_address.encode()).decode() }}</textarea>
+
+
+
+
+		{% elif order.status == "VENDOR SHIPPED" %}
+			<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+			<ul class="login-register-alert">
+				<li>Vendor shipped on <span style="color: blue">{{ order.vendor_shipped.strftime("%b %-d %Y, %H:%M:%S") }} UTC time.</span></li>
+
+				{% if order.buying_amount == 1 %}
+					<li>Vendor ships to <span style="color: orange">US</span> so that we can <span style="color: green">VERIFY</span> that the item is <span style="color: purple">LEGIT</span> to prevent <span style="color: red">SCAMS</span> and <span style="color: red">FRAUD.</span></li>
+				{% else %}
+					<li>Vendor ships to <span style="color: orange">US</span> so that we can <span style="color: green">VERIFY</span> that the item is legit to prevent <span style="color: red">SCAMS</span> and <span style="color: red">FRAUD.</span></li>
+				{% endif %}
+				<li>If <span style="color: blue ;">PAYMENT ID</span> is incorrect, please <a href="{{ url_for('messages.forward', username='ADMIN', previous_page='orders.view_order', previous_page_id=order.id) }}" class="blue-link">message us</a> for help or questions.</li>
+				<li>If <span style="color: lime ;">REFUND ADDRESS</span> was mistyped or incorrect, please message <a href="{{ url_for('messages.forward', username='ADMIN', previous_page='orders.view_order', previous_page_id=order.id) }}" class="blue-link">message us</a> to update address.</li>
+				<li>If you want to cancel order(s), please cancel <span style="color: #AAAEEE">BEFORE</span> vendor accepts transaction.</li>
+				<li>If canceled after vendor accepts and sends item(s), we will return the item back to the vendor and your Monero will be refunded with a <span style="color: crimson">FEE</span> to pay for the shipping costs.</li>
+				<li>If item is canceled after we ship the item to you from our office, you will have to reship back to our office, and a <span style="color: crimson">FEE</span> will be subtracted from your refund to ship back to vendor from our office.</li>
+			</ul>
+
+			<p style="margin-top: 5px ;">Order: <a href="" style="text-decoration: none"><span class="orange-link">#{{ order.id }}</span></a></p>
+			<p style="margin-top: -2px ;">Payment ID: <a class="blue-link" href="{{ url_for('orders.view_payment_id', payment_id=order.payment_id) }}">#{{ order.payment_id }}</a></p>
+			
+
+
+
+
+			<p style="margin-top: -2px ;">Status: <span style="color: orange ;">VENDOR SHIPPED</span></p>
+			
+
+			<!-- Only display transaction ID if there are any transactions 
+			<legend style="margin-top: 5px ;">Transaction ID :</legend>
+			<textarea readonly style="overflow: scroll ; width: 98% ; resize: none ; min-height: 10px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: blue ;">{{ transaction_id }}</textarea> -->
+
+
+			<!--
+			<p>Transaction ID: <span style="color: lime ; font-size: 13px ; overflow: hidden"> {{ transaction_id }}</span></p> -->
+
+			<legend>Refund Address:</legend>
+			<textarea readonly style="overflow: scroll ; width: 98% ; resize: none ; min-height: 10px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: red ;">{{ refund_address }}</textarea>
+			<!--<p>Refund Address: <span style="color: cyan ; font-size: 13px ; overflow: hidden;"> {{ refund_address }}</span></p>-->
+
+			<legend style="margin-top: 5px ;">Address and Name:</legend>
+			<textarea readonly style="overflow: scroll ; width: 98% ; resize: vertical ; min-height: 70px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: grey ;">{{ fernet.decrypt(order.name_and_address.encode()).decode() }}</textarea>
+
+
+
+		{% elif order.status == "AUTO-FINALIZED" %}
+			<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+			<ul class="login-register-alert">
+				<li>Funds were released on <span style="color: blue">{{ order.escrow_released.strftime('%b %-d, %H:%M:%S') }} UTC time.</span></li>
+				<li>Please rate the vendor on your experience <a href="{{ url_for('reviews.create', order_id=order.id) }}" class="blue-link">here.</a></li>
+			</ul>
+
+			
+			
+
+			<p style="margin-top: 5px ;">Order: <a href="" style="text-decoration: none"><span class="orange-link">#{{ order.id }}</span></a></p>
+			<p style="margin-top: -2px ;">Payment ID: <a class="blue-link" href="{{ url_for('orders.view_payment_id', payment_id=order.payment_id) }}">#{{ order.payment_id }}</a></p>
+			<p style="margin-top: 0px ;">Status: <span style="color: green">{{ order.status }}</p>
+
+			<p style="margin-top: 0px ;">Auto-Finalization: <a href="" style="text-decoration: none"><span style="color: purple"> {{ order.auto_finalization_timer.strftime('%b %-d, %H:%M:%S') }} UTC time</span></a></p>
+
+
+
+		{% elif order.status == "SHIPPED TO BUYER" and order.auto_finalization_timer < datetime %}
+			<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+			<ul class="login-register-alert">
+				<li>Auto-finalization has started on <span style="color: blue">{{ order.auto_finalization_timer.strftime('%b %-d, %H:%M:%S') }} UTC time.</span></li>
+				<li>Funds should be released to vendor within <span style="color: orange; text-transform: uppercase">72 hours,</span> but usually no more than <span style="color: crimson; text-transform: uppercase">24 hours.</span></li>
+				<li>Please rate the <span style="color: green; text-transform: uppercase">vendor</span> on your experience afterwards.</a></li>
+			</ul>
+
+			<p style="margin-top: 5px ;">Order: <a href="" style="text-decoration: none"><span class="orange-link">#{{ order.id }}</span></a></p>
+			<p style="margin-top: -2px ;">Payment ID: <a class="blue-link" href="{{ url_for('orders.view_payment_id', payment_id=order.payment_id) }}">#{{ order.payment_id }}</a></p>
+			<p style="margin-top: -2px ;">Tracking Number/ID: <a style="color: magenta">#{{ fernet.decrypt(order.tracking_number.encode()).decode() }}</a></p>
+			
+
+
+
+
+			<p style="margin-top: -2px ;">Status: <span style="color: orange ;">AUTO-RELEASING FUNDS</span></p>
+
+
+
+
+
+
+
+
+		{% elif order.status == "SHIPPED TO BUYER" %}
+			<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+			<div id="blackout-extend">
+				<div id="modal-box">
+					<p>Extending auto-finalization will make funds releasing automatically take place a few more days later.</p>
+					<a href="{{ url_for('orders.extend_finalization', order_id=order.id) }}" class="close-modal">Extend</a>
+					<a href="#" class="close-modal">Cancel</a>
+				</div>
+			</div>
+
+			<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+			<div id="blackout-release">
+				<div id="modal-box">
+					{% if order.buying_amount == 1 %}
+						<p>Release funds only if you have received the item and are satisfied, as funds can't be recovered after.</p>
+					{% else %}
+						<p>Release funds only if you have received the items and are satisfied, as funds can't be recovered after.</p>
+					{% endif %}
+					<a href="{{ url_for('orders.release_funds', order_id=order.id) }}" class="close-modal">Release</a>
+					<a href="#" class="close-modal">Cancel</a>
+				</div>
+			</div>
+
+
+			<ul class="login-register-alert">
+				<li>Order was shipped to buyer on <span style="color: blue">{{ order.shipped_from_office.strftime('%b %-d, %H:%M:%S') }} UTC time.</span></li>
+				<li>Expected delivery date is on <span style="color: green">{{ OrderPictures.query.filter_by(id=order.order_pictures_id).first().date_arrival.strftime('%b %-d, %H:%M:%S') }} UTC time.</span></li>
+				<li>Auto-finalization is on <span style="color: purple">{{ order.auto_finalization_timer.strftime('%b %-d, %H:%M:%S') }} UTC time.</span> <a href="#" class="blue-link">Questions?</a></li>
+				<li>You can <span style="color: orange">EXTEND AUTO-FINALIZATION</span> 3 days before auto-finalization is suppposed to occur if the package(s) haven't arrived, or if you haven't had enough time to test out the item.</li>
+				{% if order.buying_amount == 1 %}
+					<li>We had received the package and <span style="color: orange ;">VERIFIED</span> that the item is <span style="color: green">LEGIT.</span></li>
+				{% else %}
+					<li>We had received the packages and <span style="color: orange ;">VERIFIED</span> that the items are <span style="color: green">LEGIT.</span></li>
+				{% endif %}
+				<li>You reserve the right to <span style="color: red">DISPUTE</span> if order wasn't what it was described to be or if item still hasn't arrived after extending auto-finalization, and we will analyze the situation and decide on the outcome of the <span style="color: red">DISPUTE.</span></li>
+				<li>You can also <span style="color: green">RELEASE FUNDS</span> early to the vendor if item checks out and is described as what it was.</li>
+				<li>If <span style="color: #AAAEEE ;">REFUND ADDRESS</span> was mistyped or incorrect, please <a href="{{ url_for('messages.forward', username='ADMIN', previous_page='orders.view_order', previous_page_id=order.id) }}" class="blue-link">message us</a> to update address.</li>
+				<li>If you want to cancel order(s), you will have to reship back to our office, and a <span style="color: crimson">FEE</span> will be subtracted from your refund to ship back to vendor from our office.</li>
+			</ul>
+
+			<div style="float: right; margin-top: 5px">
+				<a href="#blackout-extend"><button class="yellow-button search_button">Extend Auto-Finalization</button></a>
+				<a href="#blackout-release"><button class="green-button search_button">Release Funds</button></a>
+				<a href="{{ url_for('messages.start_dispute', order_id=order.id, previous_page='orders.view_order') }}"><button class="red-button search_button">Dispute</button></a>
+			</div>
+			<p style="margin-top: 5px ;">Order: <a href="" style="text-decoration: none"><span class="orange-link">#{{ order.id }}</span></a></p>
+			<p style="margin-top: -2px ;">Payment ID: <a class="blue-link" href="{{ url_for('orders.view_payment_id', payment_id=order.payment_id) }}">#{{ order.payment_id }}</a></p>
+			<p style="margin-top: -2px ;">Tracking Number/ID: <a style="color: magenta">#{{ fernet.decrypt(order.tracking_number.encode()).decode() }}</a></p>
+			
+
+
+
+			<p style="margin-top: -2px ;">Expected Delivery Date: <span style="color: green">{{ OrderPictures.query.filter_by(id=order.order_pictures_id).first().date_arrival.strftime('%b %-d, %H:%M:%S') }} UTC time.</span></p>
+			<p style="margin-top: -2px ;">Auto-Finalization: <a href="" style="text-decoration: none"><span style="color: purple"> {{ order.auto_finalization_timer.strftime('%b %-d, %H:%M:%S') }} UTC time</span></a></p>
+			<p style="margin-top: -2px ;">Status: <span style="color: orange ;">VENDOR SHIPPED</span></p>
+
+			
+
+			<!-- Only display transaction ID if there are any transactions 
+			<legend style="margin-top: 5px ;">Transaction ID :</legend>
+			<textarea readonly style="overflow: scroll ; width: 98% ; resize: none ; min-height: 10px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: blue ;">{{ transaction_id }}</textarea> -->
+
+
+			<!--
+			<p>Transaction ID: <span style="color: lime ; font-size: 13px ; overflow: hidden"> {{ transaction_id }}</span></p> -->
+
+			<legend>Refund Address:</legend>
+			<textarea readonly style="overflow: scroll ; width: 98% ; resize: none ; min-height: 10px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: red ;">{{ refund_address }}</textarea>
+			<!--<p>Refund Address: <span style="color: cyan ; font-size: 13px ; overflow: hidden;"> {{ refund_address }}</span></p>-->
+
+			<legend style="margin-top: 5px ;">Address and Name:</legend>
+			<textarea readonly style="overflow: scroll ; width: 98% ; resize: vertical ; min-height: 70px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: grey ;">{{ fernet.decrypt(order.name_and_address.encode()).decode() }}</textarea>
+
+
+			{% if order.description_digital %}
+				<legend style="margin-top: 5px ;">Description:</legend>
+				<textarea readonly style="overflow: scroll ; width: 98% ; resize: vertical ; min-height: 70px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: grey ;">{{ fernet.decrypt(order.description_digital.encode()).decode() }}</textarea>
+			{% endif %}
+
+
+
+
+
+
+
+
+		{% elif order.status == "DISPUTING" and order.request_buyer_return %}
+			<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+			<ul class="login-register-alert">
+
+				{% if datetime > order.request_buyer_return + timedelta(hours=48, minutes=5) and not order.buyer_shipped %}
+					<li>You had started a dispute on <span style="color: blue">{{ order.buyer_disputed.strftime('%b %-d, %H:%M:%S') }} UTC time.</span></li>
+					<li>We had requested a return for the item on <span style="color: purple">{{ order.request_buyer_return.strftime('%b %-d, %H:%M:%S') }} UTC time.</span></li>
+					<li>You have  <span style="color: red; text-transform: uppercase;">failed</span> to submit request buyer return form within <span style="color: crimson; text-transform: uppercase;">48 hours,</span> and now your funds are being <span style="color: green; text-transform: uppercase;">RELEASED</span> back to the vendor.</li>
+					<li>If you have any additional questions, please  <a href="{{ url_for('messages.forward', username='ADMIN', previous_page='orders.view_order', previous_page_id=order.id) }}" class="blue-link">message us</a> for information.</li>
+
+
+				{% elif order.buyer_shipped %}
+					<li>You have started a dispute on <span style="color: blue">{{ order.buyer_disputed.strftime('%b %-d, %H:%M:%S') }} UTC time.</span></li>
+					<li>We had requested a return for the item on <span style="color: purple">{{ order.request_buyer_return.strftime('%b %-d, %H:%M:%S') }} UTC time.</span></li>
+					<li>You have  <span style="color: green; text-transform: uppercase;">successfully</span> submitted request buyer return form within <span style="color: crimson; text-transform: uppercase;">48 hours,</span> and we are now awaiting on arrival for package and will begin <span style="color: orange; text-transform: uppercase;">inspecting</span> item.</li>
+					<li>If you are in the <span style="color: green; text-transform: uppercase;">right,</span> we will refund your <span class="monero-orange">Monero</span> back.</li>
+					<li>If you are in the <span style="color: red; text-transform: uppercase;">wrong,</span> we will release funds to vendor and you will incur a <span style="color: crimson; text-transform: uppercase;">10% FEE</span> for false wrongdoing.</span></li>
+					<li>If you and vendor have come to a <span style="color: goldenrod; text-transform: uppercase;">settlement,</span> funds will be split between you and the vendor and the dispute will become <span style="color: orange; text-transform: uppercase;">neutral.</span></li>
+					<li>If you have any additional questions, please  <a href="{{ url_for('messages.forward', username='ADMIN', previous_page='orders.view_order', previous_page_id=order.id) }}" class="blue-link">message us</a> for information.</li>
+
+				{% else %}
+					<!-- Change to order . buyer_disputed later -->
+					<li>You have started a dispute on <span style="color: blue">{{ order.buyer_disputed.strftime('%b %-d, %H:%M:%S') }} UTC time.</span></li>
+					<li>We have requested a return for the item on <span style="color: purple">{{ order.request_buyer_return.strftime('%b %-d, %H:%M:%S') }} UTC time.</span></li>
+					<li>You will have <span style="color: crimson; text-transform: uppercase;">48 hours</span> to submit request buyer return form down below or your funds will be <span style="color: green; text-transform: uppercase;">RELEASED</span> back to the vendor.</li>
+					<li>If the <span style="color: maroon;">Tracking Number/ID</span> is <span style="color: red; text-transform: uppercase;">FAKE,</span> we will close the <span style="color: crimson; text-transform: uppercase;">dispute</span> and <span style="color: green; text-transform: uppercase;">release</span> funds back to the vendor.</li>
+					<li>If you are in the <span style="color: green; text-transform: uppercase;">right,</span> we will give you a refund and <span style="color: blue; text-transform: uppercase;">may</span> or <span style="color: red; text-transform: uppercase;">may not</span> ship the item(s) back to you, depending on the circumstances.</li>
+					<li>If <span style="color: #AAAEEE">REFUND ADDRESS</span> was mistyped or incorrect, please  <a href="{{ url_for('messages.forward', username='ADMIN', previous_page='orders.view_order', previous_page_id=order.id) }}" class="blue-link">message us</a> to update address.</li>
+
+				{% endif %}
+			</ul>
+
+			<p style="margin-top: 5px ;">Order: <a href="" style="text-decoration: none"><span class="orange-link">#{{ order.id }}</span></a></p>
+			<p style="margin-top: -2px ;">Payment ID: <a class="blue-link" href="{{ url_for('orders.view_payment_id', payment_id=order.payment_id) }}">#{{ order.payment_id }}</a></p>
+			<p style="margin-top: -1px ;">Disputes: <a href="{{ url_for('messages.disputes_list', order_id=order.id) }}" class="blue-link">View here</a></p>
+
+
+			<legend style="margin: 0px 0 0px 0">Requested Buyer Return: <span style="color: purple">{{ order.request_buyer_return.strftime("%b %-d, %H:%M:%S") }} UTC time</span></legend>
+
+
+
+
+
+
+
+			{% if datetime > order.request_buyer_return + timedelta(hours=48, minutes=5) and not order.buyer_shipped %}
+				<legend style="margin: 0px 0 0px 0">Requested Buyer Return Expired: <span style="color: orange">{{ (order.request_buyer_return + timedelta(hours=48)).strftime("%b %-d, %H:%M:%S") }} UTC time</span></legend>
+
+				<p style="margin-top: -1px ;">Status: <span style="color: green ;">RELEASING FUNDS</span></p>
+
+
+
+			{% elif order.buyer_shipped %}
+
+				<legend style="margin: 0px 0 0px 0">Requested Buyer Return Submitted: <span style="color: limegreen">{{ order.buyer_shipped.strftime("%b %-d, %H:%M:%S") }} UTC time</span></legend>
+
+				<legend style="margin: 0px 0 0px 0">Tracking Number/ID: <span style="color: blue">#{{ fernet.decrypt(order.tracking_number.encode()).decode() }}</span></legend>
+
+				{% if order.arrived_to_office %}
+					<legend style="margin: 0px 0 0px 0">Arrived to office: <span style="color: orange">ARRIVED TO OFFICE</span></legend>
+				{% else %}
+					<legend style="margin: 0px 0 0px 0">Arrived to office: <span style="color: red">HAS NOT ARRIVED YET</span></legend>
+				{% endif %}
+
+
+				<p style="margin-top: -1px ;">Status: <span style="color: crimson ;">DISPUTING</span></p>
+
+				<legend>Refund Address:</legend>
+				<textarea readonly style="overflow: scroll ; width: 98% ; resize: none ; min-height: 10px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: red ;">{{ refund_address }}</textarea>
+
+
+
+			{% else %}
+				<legend style="margin: 0px 0 0px 0">Requested Buyer Return Expires: <span style="color: blue">{{ (order.request_buyer_return + timedelta(hours=48)).strftime("%b %-d, %H:%M:%S") }} UTC time</span></legend>
+
+				<p style="margin-top: -1px ;">Status: <span style="color: crimson ;">DISPUTING</span></p> 
+
+				<legend>Refund Address:</legend>
+				<textarea readonly style="overflow: scroll ; width: 98% ; resize: none ; min-height: 10px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: red ;">{{ refund_address }}</textarea>
+			{% endif %}
+
+
+			
+			<!--<p>Refund Address: <span style="color: cyan ; font-size: 13px ; overflow: hidden;"> {{ refund_address }}</span></p>-->
+
+
+
+
+			{% if datetime < order.request_buyer_return + timedelta(hours=48, minutes=5) and not order.buyer_shipped %}
+				<h1 style="margin-top: 40px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; font-size: 14px; margin-bottom: -5px">Request Buyer Return Form</h1>
+				<form class="" method="POST" action="">
+					<!-- SECRET KEY to protect from foreign attacks -->
+					{{ request_buyer_return_form.hidden_tag() }}
+
+					<legend style="margin-top: 10px ;">Ship To:</legend>
+					<textarea class="login-register-form-input invalid-field-border", style="overflow: scroll ; width: 98.2% ; resize: vertical ; min-height: 100px ; padding: 7px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 16px ; color: #333333" readonly>{{ fernet.decrypt(AdminEditing.query.filter_by(id=1).first().shipping_address.encode()).decode() }}</textarea>
+
+
+					<legend style="margin: 10px 0 2px 0">{{ request_buyer_return_form.tracking_number.label }}:</legend>
+
+					{% if request_buyer_return_form.tracking_number.errors %}
+
+						{{ request_buyer_return_form.tracking_number(placeholder="Enter Tracking Number/ID..", class="login-register-form-input invalid-field-border", style="width: 100") }}
+
+						<div class="display-invalid-field">
+							{% for error in request_buyer_return_form.tracking_number.errors %}
+								<span> {{ error }} </span>
+
+							{% endfor %}
+						</div>
+
+					{% else %}
+						<!-- This is processed as an <input> -->
+						{{ request_buyer_return_form.tracking_number(placeholder="Enter Tracking Number/ID..", class="login-register-form-input", style="width: 100") }}
+
+					{% endif %}
+
+
+
+
+					<legend style="margin: 7px 0 2px 0">{{ request_buyer_return_form.description.label }}:</legend>
+
+					{% if request_buyer_return_form.description.errors %}
+
+						{{ request_buyer_return_form.description(placeholder="Notes pertaining to the item and/or shipment of the item..", class="login-register-form-input invalid-field-border", style="width: 100; resize: vertical; padding: 5px 0 50px 5px; margin-bottom: -7px") }}
+
+						<div class="display-invalid-field">
+							{% for error in request_buyer_return_form.description.errors %}
+								<span> {{ error }} </span>
+
+							{% endfor %}
+						</div>
+
+					{% else %}
+						<!-- This is processed as an <input> -->
+						{{ request_buyer_return_form.description(placeholder="Notes pertaining to the item and/or shipment of the item..", class="login-register-form-input", style="width: 100; resize: vertical; padding: 5px 0 50px 5px; margin-bottom: -7px") }}
+
+					{% endif %}
+
+					
+
+
+
+					<!-- Button -->
+					{{ request_buyer_return_form.submit(class="search_button", style="padding: 8px ; margin: 15px 0 10px 0px ;") }}	
+				</form>
+			{% endif %}
+
+
+
+
+
+
+
+
+		{% elif order.status == "DISPUTING" %}
+			<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+			<ul class="login-register-alert">
+				<!-- Change to order . buyer_disputed later -->
+				<li>You have started a dispute on <span style="color: blue">{{ order.recent_update.strftime('%b %-d, %H:%M:%S') }} UTC time.</span></li>
+				<li>We are reviewing your <span style="color: red; text-transform: uppercase;">dispute,</span> and will message you and update your order once we get input from the vendor and analyze the <span style="color: red; text-transform: uppercase;">dispute.</span> If you have more information that you would like to add, please <a href="{{ url_for('messages.forward', username='ADMIN', previous_page='orders.view_order', previous_page_id=order.id) }}" class="blue-link">message us.</a></li>
+				<li>If we <span style="color: crimson; text-transform: uppercase;">don't</span> get input from the vendor after a substantial amount of time and we feel that your dispute is valid, we will <span style="color: green; text-transform: uppercase;">refund</span> your <span style="color: orange; text-transform: capitalize;">Monero</span> back to you and <span style="color: purple; text-transform: uppercase;">may</span> have you ship the item(s) back to us depending on the severity of the <span style="color: red; text-transform: uppercase;">scam.</span>
+				<li>If vendor does <span style="color: blue; text-transform: uppercase;">respond</span> and we feel that we need to see the item(s) in person to verify who is in the right, we will have you ship the item back to us and analyze the <span style="color: red; text-transform: uppercase;">dispute claim.</span></li>
+				<li>If you are in the <span style="color: green; text-transform: uppercase;">right,</span> we will give you a refund and <span style="color: blue; text-transform: uppercase;">may</span> or <span style="color: red; text-transform: uppercase;">may not</span> ship the item(s) back to you, depending on the circumstances.</li>
+				<li>Even if vendor <span style="color: crimson; text-transform: uppercase;">doesn't</span> respond but we feel that we need to view the item(s) in person to <span style="color: blue; text-transform: uppercase;">analyze</span> the claim, we will still have you ship the item(s) back to us for us to <span style="color: green; text-transform: uppercase;">review</span> it.</li>
+				<li>If <span style="color: #AAAEEE">REFUND ADDRESS</span> was mistyped or incorrect, please  <a href="{{ url_for('messages.forward', username='ADMIN', previous_page='orders.view_order', previous_page_id=order.id) }}" class="blue-link">message us</a> to update address.</li>
+
+			</ul>
+
+			<p style="margin-top: 5px ;">Order: <a href="" style="text-decoration: none"><span class="orange-link">#{{ order.id }}</span></a></p>
+			<p style="margin-top: -2px ;">Payment ID: <a class="blue-link" href="{{ url_for('orders.view_payment_id', payment_id=order.payment_id) }}">#{{ order.payment_id }}</a></p>
+			<p style="margin-top: -2px ;">Disputes: <a href="{{ url_for('messages.disputes_list', order_id=order.id) }}" class="blue-link">View here</a></p>
+
+
+
+			<p style="margin-top: -1px ;">Status: <span style="color: crimson ;">DISPUTING</span></p> 
+
+
+			<legend>Refund Address:</legend>
+			<textarea readonly style="overflow: scroll ; width: 98% ; resize: none ; min-height: 10px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: red ;">{{ refund_address }}</textarea>
+			<!--<p>Refund Address: <span style="color: cyan ; font-size: 13px ; overflow: hidden;"> {{ refund_address }}</span></p>-->
+			
+
+
+
+
+		{% elif order.status == "RELEASING FUNDS" and not order.percentage_to_buyer %}
+			<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+			<ul class="login-register-alert">
+				<li>Releasing funds was requested on <span style="color: blue">{{ order.recent_update.strftime('%b %-d, %H:%M:%S') }} UTC time.</span></li>
+				<li>Please allow <span style="color: orange ;">24 - 72 HOURS</span> for funding to enter vendor's wallet.</li>
+				<li>Thank you for your purchase. If you were satisfied with order, please <a href="{{ url_for('messages.forward', username='ADMIN', previous_page='orders.view_order', previous_page_id=order.id) }}" class="blue-link">message us</a> and tell us how we did.</li>
+			</ul>
+
+			<p style="margin-top: 5px ;">Order: <a href="" style="text-decoration: none"><span class="orange-link">#{{ order.id }}</span></a></p>
+			<p style="margin-top: -2px ;">Payment ID: <a class="blue-link" href="{{ url_for('orders.view_payment_id', payment_id=order.payment_id) }}">#{{ order.payment_id }}</a></p>
+			
+
+
+
+			<p style="margin-top: 0px ;">Status: <span style="color: green ;">RELEASING FUNDS</span></p>
+
+			<!-- Only display transaction ID if there are any transactions 
+			<legend style="margin-top: 5px ;">Transaction ID :</legend>
+			<textarea readonly style="overflow: scroll ; width: 98% ; resize: none ; min-height: 10px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: blue ;">{{ transaction_id }}</textarea> -->
+			<!--<legend style="margin-top: 5px ;">Public address:</legend>
+			<textarea readonly style="overflow: scroll ; width: 98% ; resize: none ; min-height: 10px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: blue ;">{{ public_address }}</textarea> -->
+
+
+			<!--
+			<p>Transaction ID: <span style="color: lime ; font-size: 13px ; overflow: hidden"> {{ transaction_id }}</span></p> -->
+
+			
+
+
+
+
+
+		{% elif order.status == "RELEASING FUNDS" %}
+			<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+			<ul class="login-register-alert">
+				<li>Releasing funds was requested on <span style="color: blue">{{ order.recent_update.strftime('%b %-d, %H:%M:%S') }} UTC time.</span></li>
+				{% if order.percentage_to_buyer and order.percentage_to_vendor %}
+					<li>Order came to an <span style="color: goldenrod ; text-transform: uppercase">agreed settlement,</span> and you shall receive <span class="monero-orange" style="text-transform: uppercase">{{ fernet.decrypt(order.percentage_to_buyer.encode()).decode() }}%</span> of (<span style="color: purple ; text-transform: uppercase">total amount</span> - <span style="color: green ; text-transform: uppercase">shipping cost</span> - <span style="color: crimson ; text-transform: uppercase">10% FEE</span> of total amount).</li>
+
+				{% elif order.percentage_to_buyer %}
+						<li>You have <span style="color: limegreen">WON</span> the <span style="color: crimson; text-transform: uppercase;">dispute,</span> and <span style="color: goldenrod">100%</span> of Monero has are being given back to you, and a fee of <span style="color: crimson">MINUS 10%</span> of item and <span style="color: green; text-transform: uppercase">shipping costs</span> has been placed on the vendors fees, which you will receive the next time the vendor sells an item.</li>
+
+				{% elif order.buyer_disputed %}
+						<li>You have <span style="color: red">LOST</span> the <span style="color: crimson; text-transform: uppercase;">dispute,</span> and funds are being released to the vendor.</li>
+
+				{% endif %}
+				<li>Please allow <span style="color: orange ;">24 - 72 HOURS</span> for funds to enter your specified wallet.</li>
+				<li>If <span style="color: lime ;">REFUND ADDRESS</span> was mistyped or incorrect, please <a href="{{ url_for('messages.forward', username='ADMIN', previous_page='orders.view_order', previous_page_id=order.id) }}" class="blue-link">message us</a>  to update address.</li>
+			</ul>
+
+			<p style="margin-top: 5px ;">Order: <a href="" style="text-decoration: none"><span class="orange-link">#{{ order.id }}</span></a></p>
+
+			{% if order.percentage_to_buyer and order.percentage_to_vendor %}
+				<p style="margin-top: 0px ;">Disputes: <a href="{{ url_for('messages.disputes_list', order_id=order.id) }}" class="blue-link">View here</a></p>
+			{% elif order.percentage_to_buyer %}
+				<p style="margin-top: 0px ;">Disputes: <a href="{{ url_for('messages.disputes_list', order_id=order.id) }}" class="blue-link">View here</a></p>
+			{% elif order.buyer_disputed %}
+				<p style="margin-top: 0px ;">Disputes: <a href="{{ url_for('messages.disputes_list', order_id=order.id) }}" class="blue-link">View here</a></p>
+			{% endif %}
+
+
+			<p style="margin-top: -2px ;">Payment ID: <a class="blue-link" href="{{ url_for('orders.view_payment_id', payment_id=order.payment_id) }}">#{{ order.payment_id }}</a></p>
+			
+
+
+			{% if order.percentage_to_buyer and order.percentage_to_vendor %}
+				<p style="margin-top: 0px ;">Split Percentage Received: <a style="text-decoration: none; color: orange">{{ fernet.decrypt(order.percentage_to_buyer.encode()).decode() }}%</a></p>
+			
+
+			{% elif order.percentage_to_buyer %}
+				<p style="margin-top: 0px ;">Percentage Received: <a style="text-decoration: none; color: orange">100%</a></p>
+
+			{% endif %}
+
+			{% if order.percentage_to_buyer %}
+				<legend style="margin: 0px 0 0px 0">Shipping Cost: 
+				<div class="monero-hover-reveal" style="display: inline"><img class="tiny-monero-coin" style="height: 18px; width: 18px ; position: absolute ; margin: -3px 2px 0 -2px; cursor: pointer" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+						
+						<div class="monero-dropdown-menu" style="margin-top: -4px; margin-left: 93.5px">
+							<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+						 	<!-- USDT -->
+							<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">$ {{ "{:.2f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * usdt) }}</a>
+								</a>
+								
+								<!-- BTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">₿ {{ "{:.5f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * btc) }}</a>
+								</a>
+
+								<!-- BCH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">₿ {{ "{:.5f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * bch) }}</a>
+								</a>
+
+								<!-- LTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">Ł {{ "{:.5f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * ltc) }}</a>
+								</a>
+
+								<!-- DOGE -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">Ð {{ "{:.2f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * doge) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">₮ {{ "{:.5f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * xaut) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">♦ {{ "{:.5f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * eth) }}</a>
+								</a>
+							</div>
+
+			 		<a style="margin-left: 20px; color: green">{{numpy.format_float_positional(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()), trim='-', precision=8) }}</a></div>
+
+
+				
+				</legend>
+
+
+
+			{% endif %}
+
+			<p style="margin-top: 0px ;">Status: <span style="color: limegreen ;">RELEASING FUNDS</span></p>
+
+			<!-- Only display transaction ID if there are any transactions 
+			<legend style="margin-top: 5px ;">Transaction ID :</legend>
+			<textarea readonly style="overflow: scroll ; width: 98% ; resize: none ; min-height: 10px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: blue ;">{{ transaction_id }}</textarea> -->
+			<!--<legend style="margin-top: 5px ;">Public address:</legend>
+			<textarea readonly style="overflow: scroll ; width: 98% ; resize: none ; min-height: 10px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: blue ;">{{ public_address }}</textarea> -->
+
+
+			<!--
+			<p>Transaction ID: <span style="color: lime ; font-size: 13px ; overflow: hidden"> {{ transaction_id }}</span></p> -->
+
+			<legend style="margin-top: 2px">Refund Address:</legend>
+			<textarea readonly style="overflow: scroll ; width: 98% ; resize: none ; min-height: 10px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: red ;">{{ refund_address }}</textarea>
+			<!--<p>Refund Address: <span style="color: cyan ; font-size: 13px ; overflow: hidden;"> {{ refund_address }}</span></p>-->
+
+			<!--
+			<legend style="margin-top: 5px ;">Address and Name:</legend>
+			<textarea readonly style="overflow: scroll ; width: 98% ; resize: vertical ; min-height: 70px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: grey ;">{{ fernet.decrypt(order.name_and_address.encode()).decode() }}</textarea>-->
+
+
+
+
+		{% elif order.status == "RELEASED FUNDS" %}
+			<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+			<ul class="login-register-alert">
+				<li>Funds were released on <span style="color: blue">{{ order.escrow_released.strftime('%b %-d, %H:%M:%S') }} UTC time.</span></li>
+
+				{% if order.percentage_to_buyer and order.percentage_to_vendor %}
+					<li><span style="color: goldenrod">{{ fernet.decrypt(order.percentage_to_buyer.encode()).decode() }}%</span> of Monero has been refunded to you, <span style="color: crimson">MINUS 10%</span> of item and <span style="color: green; text-transform: uppercase">shipping costs.</span></li>
+				{% elif order.percentage_to_buyer %}
+					<li><span style="color: goldenrod">100%</span> of Monero has been refunded to the you, <span style="color: crimson">MINUS</span> the <span style="color: green; text-transform: uppercase">shipping costs</span> of the item.</li>
+				{% elif order.buyer_disputed %}
+						<li>You have <span style="color: red">LOST</span> the <span style="color: crimson; text-transform: uppercase;">dispute,</span> and funds have been released to the vendor.</li>
+				{% endif %}
+
+				{% if fernet.decrypt(order.percentage_to_vendor.encode()).decode() != "100" or (fernet.decrypt(order.percentage_to_vendor.encode()).decode() == "100" and not order.buyer_disputed) %}
+					<li>Please rate the vendor on your experience <a href="{{ url_for('reviews.create', order_id=order.id) }}" class="blue-link">here.</a></li>
+				{% endif %}
+			</ul>
+
+			<p style="margin-top: 5px ;">Order: <a href="" style="text-decoration: none"><span class="orange-link">#{{ order.id }}</span></a></p>
+
+			{% if order.percentage_to_buyer and order.percentage_to_vendor %}
+				<p style="margin-top: 0px ;">Disputes: <a href="{{ url_for('messages.disputes_list', order_id=order.id) }}" class="blue-link">View here</a></p>
+			{% elif order.percentage_to_buyer %}
+				<p style="margin-top: 0px ;">Disputes: <a href="{{ url_for('messages.disputes_list', order_id=order.id) }}" class="blue-link">View here</a></p>
+			{% elif order.buyer_disputed %}
+				<p style="margin-top: 0px ;">Disputes: <a href="{{ url_for('messages.disputes_list', order_id=order.id) }}" class="blue-link">View here</a></p>
+			{% endif %}
+
+			<p style="margin-top: -2px ;">Payment ID: <a class="blue-link" href="{{ url_for('orders.view_payment_id', payment_id=order.payment_id) }}">#{{ order.payment_id }}</a></p>
+			
+
+			{% if order.percentage_to_buyer and order.percentage_to_vendor %}
+				<p style="margin-top: 0px ;">Split Percentage Received: <a style="text-decoration: none; color: orange">{{ fernet.decrypt(order.percentage_to_buyer.encode()).decode() }}%</a></p>
+			
+
+			{% elif order.percentage_to_buyer %}
+				<p style="margin-top: 0px ;">Percentage Received: <a style="text-decoration: none; color: orange">100%</a></p>
+			{% endif %}
+
+			{% if order.percentage_to_buyer %}
+				<legend style="margin: 0px 0 0px 0">Shipping Cost: 
+				<div class="monero-hover-reveal" style="display: inline"><img class="tiny-monero-coin" style="height: 18px; width: 18px ; position: absolute ; margin: -3px 2px 0 -2px; cursor: pointer" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+						
+						<div class="monero-dropdown-menu" style="margin-top: -4px; margin-left: 93.5px">
+							<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+						 	<!-- USDT -->
+							<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">$ {{ "{:.2f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * usdt) }}</a>
+								</a>
+								
+								<!-- BTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">₿ {{ "{:.5f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * btc) }}</a>
+								</a>
+
+								<!-- BCH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">₿ {{ "{:.5f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * bch) }}</a>
+								</a>
+
+								<!-- LTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">Ł {{ "{:.5f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * ltc) }}</a>
+								</a>
+
+								<!-- DOGE -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">Ð {{ "{:.2f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * doge) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">₮ {{ "{:.5f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * xaut) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">♦ {{ "{:.5f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * eth) }}</a>
+								</a>
+							</div>
+
+			 		<a style="margin-left: 20px; color: green">{{numpy.format_float_positional(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()), trim='-', precision=8) }}</a></div>
+
+				</legend>
+			{% endif %}
+
+
+
+			<p style="margin-top: 0px ;">Status: <span style="color: limegreen ;">RELEASED FUNDS</span></p>
+
+			<!-- Only display transaction ID if there are any transactions 
+			<legend style="margin-top: 5px ;">Transaction ID :</legend>
+			<textarea readonly style="overflow: scroll ; width: 98% ; resize: none ; min-height: 10px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: blue ;">{{ transaction_id }}</textarea> -->
+			<!--<legend style="margin-top: 5px ;">Public address:</legend>
+			<textarea readonly style="overflow: scroll ; width: 98% ; resize: none ; min-height: 10px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: blue ;">{{ public_address }}</textarea> -->
+
+
+			<!--
+			<p>Transaction ID: <span style="color: lime ; font-size: 13px ; overflow: hidden"> {{ transaction_id }}</span></p> -->
+			<!--
+			</br>
+			<a href="#" class="grey-link">Write a review here.</a>-->
+
+
+
+
+
+		
+
+
+
+
+
+
+		{% elif confirmations > 0 %}
+			<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+			<ul class="login-register-alert">
+				<li>Payment for orders were <span style="color: orange ;">PINGED,</span> now waiting for 10 confirmations.</li>
+				<li>If <span style="color: blue ;">PAYMENT ID</span> is incorrect, please <a href="{{ url_for('messages.forward', username='ADMIN', previous_page='orders.accept', previous_page_id=order.id) }}" class="blue-link">message us</a> for help or questions.</li>
+				<li>If <span style="color: lime ;">REFUND ADDRESS</span> was mistyped or incorrect, please <a href="{{ url_for('messages.forward', username='ADMIN', previous_page='orders.accept', previous_page_id=order.id) }}" class="blue-link">message us</a>  to update address.</li>
+				<li>If you want to cancel order(s), please cancel <span style="color: #AAAEEE">BEFORE</span> vendor accepts transaction.</li>
+				<li>If canceled after vendor accepts and sends item(s), we will return the item back to the vendor and your Monero will be refunded with a <span style="color: crimson">FEE</span> to pay for the shipping costs.</li>
+				<li>If item is canceled after we ship the item to you from our office, you will have to reship back to our office, and a <span style="color: crimson">FEE</span> will be subtracted from your refund to ship back to vendor from our office.</li>
+			</ul>
+
+			<p style="margin-top: 5px ;">Order: <a href="" style="text-decoration: none"><span class="orange-link">#{{ order.id }}</span></a></p>
+			<p style="margin-top: -2px ;">Payment ID: <a class="blue-link" href="{{ url_for('orders.view_payment_id', payment_id=order.payment_id) }}">#{{ order.payment_id }}</a></p>
+			
+
+
+
+			{% if confirmations >= 10 %}
+				<p style="margin-top: -2px ;">Status: <span style="color: lime ;">Confirmed.. ({{ confirmations }}/10 confirmations)</span></p>
+			{% elif confirmations < 10 %}
+				<p style="margin-top: 0px ;">Status: <span style="color: orange ;">Confirming.. ({{ confirmations }}/10 confirmations)</span></p>
+			{% endif %}
+
+			<!-- Only display transaction ID if there are any transactions 
+			<legend style="margin-top: 5px ;">Transaction ID :</legend>
+			<textarea readonly style="overflow: scroll ; width: 98% ; resize: none ; min-height: 10px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: blue ;">{{ transaction_id }}</textarea> -->
+			<!--<legend style="margin-top: 5px ;">Public address:</legend>
+			<textarea readonly style="overflow: scroll ; width: 98% ; resize: none ; min-height: 10px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: blue ;">{{ public_address }}</textarea> -->
+
+
+			<!--
+			<p>Transaction ID: <span style="color: lime ; font-size: 13px ; overflow: hidden"> {{ transaction_id }}</span></p> -->
+
+			<legend>Refund Address:</legend>
+			<textarea readonly style="overflow: scroll ; width: 98% ; resize: none ; min-height: 10px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: red ;">{{ refund_address }}</textarea>
+			<!--<p>Refund Address: <span style="color: cyan ; font-size: 13px ; overflow: hidden;"> {{ refund_address }}</span></p>-->
+
+
+			<legend style="margin-top: 5px ;">Address and Name:</legend>
+			<textarea readonly style="overflow: scroll ; width: 98% ; resize: vertical ; min-height: 70px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: grey ;">{{ fernet.decrypt(order.name_and_address.encode()).decode() }}</textarea>
+			
+
+		{% endif %}
+
+
+
+
+
+
+		<p style="margin-top: 20px ; text-align: center ; color: grey ;"><span style="margin-right: 3px">Total price of order: </span>
+			<img class="tiny-monero-coin" style="position: absolute" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+			<span style="color: green; margin-left: 23px">{{ numpy.format_float_positional(total_price, trim='-', precision=8) }}</span>
+		</p>
+
+
+
+
+		<section class="cart-quick-view" style="">
+			<img class="cart-quick-view-img" src="{{ url_for('static', filename='img/posts/' + order.orders_post.gallery_1) }}">
+
+			<div class="cart-quick-view-content">
+				<a class="cart-quick-view-title" href="{{ url_for('listings.item', post_id=order.orders_post.id, previous_page='orders.view_order', username=order.id) }}">{{ order.orders_post.title }}</a>
+
+				<p style="color: orange"><span class="cart-quick-view-category">{{ SubCategory.query.get(order.orders_post.sub_category).name }}</span> - <a class="cart-quick-view-vendor" href="{{ url_for('users.profile', username=order.orders_post.vendor.username) }}">{{ order.orders_post.vendor.username }}</a></p>
+
+
+				<div class="cart-quick-view-amount">
+						<a style="float: left ; margin-right: 5px ; color: grey ;">Price: </a>
+						<div class="monero-hover-reveal" style="display: inline"><img class="tiny-monero-coin" style="height: 18px; width: 18px ; position: absolute ; margin: -3px 0px 0 0px; cursor: pointer" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+						
+							<div class="monero-dropdown-menu" style="margin-top: 19px; margin-left: 180px">
+								<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+							 	<!-- USDT -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #F0F0F0">$ {{ "{:.2f}".format(float(fernet.decrypt(order.price_per_item.encode()).decode()) * usdt) }}</a>
+								</a>
+								
+								<!-- BTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #F0F0F0">₿ {{ "{:.5f}".format(float(fernet.decrypt(order.price_per_item.encode()).decode()) * btc) }}</a>
+								</a>
+
+								<!-- BCH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #F0F0F0">₿ {{ "{:.5f}".format(float(fernet.decrypt(order.price_per_item.encode()).decode()) * bch) }}</a>
+								</a>
+
+								<!-- LTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #F0F0F0">Ł {{ "{:.5f}".format(float(fernet.decrypt(order.price_per_item.encode()).decode()) * ltc) }}</a>
+								</a>
+
+								<!-- DOGE -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #F0F0F0">Ð {{ "{:.2f}".format(float(fernet.decrypt(order.price_per_item.encode()).decode()) * doge) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #F0F0F0">₮ {{ "{:.5f}".format(float(fernet.decrypt(order.price_per_item.encode()).decode()) * xaut) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #F0F0F0">♦ {{ "{:.5f}".format(float(fernet.decrypt(order.price_per_item.encode()).decode()) * eth) }}</a>
+							</div>
+
+				 		<a style="margin-left: 22px; color: black">{{ numpy.format_float_positional(float(fernet.decrypt(order.price_per_item.encode()).decode()), trim='-', precision=8) }}</a></div>
+					</div>
+
+				<!-- <p class="cart-quick-view-stock" style="color: green ;">In stock</p> -->
+				<!-- <p class="cart-quick-view-stock" style="color: green ;">In stock</p> -->
+					<div class="cart-quick-view-amount">
+						{% if order.status == "RELEASED FUNDS" or order.status == "AUTO-FINALIZED" %}
+							<p><a href="" style="float: left ; margin-right: 7px ; color: lime ;">Released Funds</a></p>
+						{% elif order.status == "NO PAYMENT" %}
+							<p><a href="" style="float: left ; margin-right: 7px ; color: crimson ;">No Payment</a></p>
+						{% elif order.status == "INSUFFICIENT FUNDS" %}
+							<p><a href="" style="float: left ; margin-right: 7px ; color: crimson ;">Insufficient Funds</a></p>
+						{% else %}
+							<p><a href="{{ url_for('employees.original_item', order_id=order.id, previous_page='orders.view_order') }}" style="float: left ; margin-right: 7px ; color: lime ;">View original</a></p>
+						{% endif %}
+						<br>
+					</div>
+
+
+				<p class="checkout-quick-view-quantity">Quantity: </p>
+					<span class="checkout-quick-view-quantity-input-field"><input placeholder="{{ fernet.decrypt(order.buying_amount.encode()).decode() }}" readonly></span>
+
+				<a href="{{ url_for('messages.forward', username=User.query.filter_by(id=order.vendor_id).first().username, previous_page='orders.view_order', previous_page_id=order.id) }}"><p class="checkout-quick-view-message" style="margin-top:-70px">Message vendor</p></a>
+
+				{% if not order.auto_finalization_timer and order.status != "NO PAYMENT" %}
+					<a href="#"><p class="checkout-quick-view-remove" style="margin-top:-45px">Cancel <span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></p></a>
+				{% elif order.status == "RELEASED FUNDS" or order.status == "NO PAYMENT" or order.auto_finalization_timer < datetime or order.status == "DISPUTING" %}
+					<a href="{{ url_for('orders.delete_order', order_id=order.id) }}"><p class="checkout-quick-view-remove" style="margin-top:-45px">Delete <span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></p></a>
+				{% elif order.status == "SHIPPED TO BUYER" %}
+					<a href="{{ url_for('messages.start_dispute', order_id=order.id, previous_page='orders.view_order') }}"><p class="checkout-quick-view-remove" style="margin-top:-45px">Dispute <span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></p></a>
+				{% else %}
+					<a href="#"><p class="checkout-quick-view-remove" style="margin-top:-45px">Cancel <span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></p></a>
+				{% endif %}
+				<a><p class="checkout-quick-view-status light-blue">{{ order.status }}</p></a>
+			</div>
+		</section>
+
+
+
+	</section>
+{% endblock content %}

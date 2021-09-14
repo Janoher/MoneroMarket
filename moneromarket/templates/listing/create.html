@@ -1,0 +1,355 @@
+{% extends "abstracts/layout.html" %}
+
+{% block content %}
+	<section class="login-register-view">	
+		<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+		<ul class="login-register-alert">
+			<li>Post <span style="color: green ;">ALL</span> available knowledge about the item(s) being sold, i.e. IMEI number of a cellphone and iCloud lock status.</li>
+			<li>Post at <span style="color: blue ;">LEAST</span> 3 pictures, maximum 9, showing the item in full detail, highlighting flaws with the item like scratches or dents (if any) and identifiable information like the IMEI and serial number of a phone.</li>
+			<li>Failure to do so may result in a <span style="color: red ;">LOSS</span> against a dispute.</li>
+			<li>Please include shipping price from you to our office and our office to the buyer in your price (basically include double the price of shipping to account for the shipping to the buyer).</li>
+		</ul>
+
+
+		<form class="register-form" method="POST" action="" enctype="multipart/form-data">
+
+			<!-- SECRET KEY to protect from foreign attacks -->
+			{{ form.hidden_tag() }}
+
+
+
+
+			<!-- Print label for the Title field -->
+			<legend>{{ form.title.label }}:</legend>
+
+			<!-- Title input field -->
+			{% if form.title.errors %}
+
+				{{ form.title(placeholder="5 - 50 characters long..", class="login-register-form-input invalid-field-border") }}
+
+				<div class="display-invalid-field">
+					{% for error in form.title.errors %}
+						<span> {{ error }} </span>
+
+					{% endfor %}
+				</div>
+
+			{% else %}
+				<!-- This is processed as an <input> -->
+				{{ form.title(placeholder="5 - 50 characters long..", class="login-register-form-input") }}
+
+			{% endif %}
+
+
+
+
+
+
+
+
+			<!-- In order to split the columns evenly and put them side by side, wrap each item a div and give them these styles:
+			{
+				width: 48.1% ;
+				display: inline-block ;
+			}
+			Then put one of them float right with margin-right to make it even if need be 
+			And then add an empty div after the two divs with style to clear float -->
+
+
+			<!-- Left side -->
+			<div class="create-post-left-price" style="float: right ; margin-right: 4px ;">
+
+				<!-- Print label for the Supply field -->
+				<legend>{{ form.supply.label }}:</legend>
+
+				<!-- Supply input field -->
+				{% if form.supply.errors %}
+
+					{{ form.supply(placeholder="Amount of inventory available..", class="login-register-form-input invalid-field-border") }}
+
+					<div class="display-invalid-field">
+						{% for error in form.supply.errors %}
+							<span> {{ error }} </span>
+
+						{% endfor %}
+					</div>
+
+				{% else %}
+					<!-- This is processed as an <input> -->
+					{{ form.supply(placeholder="Amount of inventory available..", class="login-register-form-input") }}
+
+				{% endif %}
+			</div>
+
+
+
+			<!-- Right side -->
+			<div class="create-post-left-price">
+
+				<!-- Print label for the Title field -->
+				<legend style="float: left">{{ form.price.label }}:</legend>
+
+				<div style="float: left; margin-left: 5px">
+					<select name="currency" id="currency" placeholder="Select currency"> 
+						<optgroup label="Currencies">
+
+							<option value="xmr">Monero (XMR)</option>
+							<option value="usdt">Tether (USDT)</option>
+							<option value="btc">Bitcoin (BTC)</option>
+							<option value="bch">Bitcoin Cash (BCH)</option>
+							<option value="ltc">Litecoin (LTC)</option>
+							<option value="doge">Dogecoin (DOGE)</option>
+							<option value="xaut">Tether Gold (XAUT)</option>
+							<option value="eth">Ethereum (ETH)</option>
+
+						</optgroup>
+					</select>
+				</div>
+
+
+				<div style="float: right">
+					<span style="font-size: 13px">Tied to fiat:</span>
+					<!-- Disabled for now, but will add static prices in the future.... -->
+					<input type="checkbox" id="fiat" name="fiat" value="Fiat" checked disabled>
+				</div>
+
+				<!-- Title input field -->
+				{% if form.price.errors %}
+
+					{{ form.price(placeholder="In selected currency..", class="login-register-form-input invalid-field-border") }}
+
+					<div class="display-invalid-field">
+						{% for error in form.price.errors %}
+							<span> {{ error }} </span>
+
+						{% endfor %}
+					</div>
+
+				{% else %}
+					<!-- This is processed as an <input> -->
+					{{ form.price(placeholder="In selected currency..", class="login-register-form-input") }}
+
+				{% endif %}
+			</div>
+
+			<!-- Get rid of float element -->
+			<div style="clear: both ;"></div>
+
+
+
+
+			
+
+			<!-- Will add other countries later, will first start with only digital, USA, and shipments coming FROM worldwide ONLY! -->
+			<div class="create-listing-category-float">
+				<legend>Shipping to:</legend>
+				<select name="shipping_to" id="shipping_to" placeholder="Select category"> 
+					<option value="Digital">Digital</option>
+					<!--<option value="Worldwide">Worldwide</option>-->
+
+					<optgroup label="Countries">
+						<option value="United States of America">United States of America</option>
+						<!--<option value="European Union">European Union</option>-->
+						<!--<option value="Great Britain">Great Britain</option>-->
+						<!--<option value="Hong Kong">Hong Kong</option>-->
+						<!--<option value="Japan">Japan</option>-->
+						<!--<option value="South Korea">South Korea</option>-->
+						<!--<option value="Sweden">Sweden</option>-->
+						<!--<option value="Switzerland">Switzerland</option>-->
+					</optgroup>
+				</select>
+			</div>
+
+			<div class="create-listing-category-float" style="margin-right: 10px ;">
+				<legend>Shipping from:</legend>
+				<select name="shipping_from" id="shipping_from" placeholder="Select category"> 
+					<option value="Digital">Digital</option>
+					<option value="Worldwide">Worldwide</option>
+
+					<optgroup label="Countries">
+						<option value="United States of America">United States of America</option>
+						<!--<option value="European Union">European Union</option>-->
+						<!--<option value="Great Britain">Great Britain</option>-->
+						<!--<option value="Hong Kong">Hong Kong</option>-->
+						<!--<option value="Japan">Japan</option>-->
+						<!--<option value="South Korea">South Korea</option>-->
+						<!--<option value="Sweden">Sweden</option>-->
+						<!--<option value="Switzerland">Switzerland</option>-->
+					</optgroup>
+				</select>
+			</div>
+
+
+			<legend>Category:</legend>
+			<select name="sub-category" id="sub-category" placeholder="Select category"> 
+				<optgroup label="Books">
+
+					<option value="e-books">E-Books</option>
+					<option value="hardcopy">Hard Copies</option>
+
+				</optgroup>
+				<optgroup label="Electronics">
+
+					<option value="cell-phones">Cell Phones</option>
+					<option value="computers">Computers</option>
+					<option value="mining">Mining</option>
+					<option value="stereos">Stereos</option>
+					<option value="video-games">Video Games</option>
+					<option value="electronics-other">- Other -</option>
+					<!--
+					<optgroup label="&nbsp;&nbsp;&nbsp;&nbsp;Cell Phones">
+						<option value="android">&nbsp;&nbsp;Android</option>
+						<option value="iPhone">&nbsp;&nbsp;iPhone</option>
+						<option value="linux-phone">&nbsp;&nbsp;Linux</option>
+						<option value="phone-parts">&nbsp;&nbsp;Parts</option>
+						<option value="phone-accessories">&nbsp;&nbsp;Accessories</option>
+					</optgroup>
+
+					<optgroup label="&nbsp;&nbsp;&nbsp;&nbsp;Computers">
+						<option value="linux-computer">&nbsp;&nbsp;Linux</option>
+						<option value="apple-computer">&nbsp;&nbsp;Mac</option>
+						<option value="windows-computer">&nbsp;&nbsp;Windows</option>
+						<option value="computer-parts">&nbsp;&nbsp;Parts</option>
+						<option value="computer-accesories">&nbsp;&nbsp;Accessories</option>
+					</optgroup>
+
+					<optgroup label="&nbsp;&nbsp;&nbsp;&nbsp;Mining">
+						<option value="mining-asics">&nbsp;&nbsp;ASICS</option>
+						<option value="mining-cpu">&nbsp;&nbsp;CPU's</option>
+						<option value="mining-gpu">&nbsp;&nbsp;GPU's</option>
+						<option value="mining-pools">&nbsp;&nbsp;Pools</option>
+						<option value="mining-software">&nbsp;&nbsp;Software</option>
+					</optgroup>
+
+					<optgroup label="&nbsp;&nbsp;&nbsp;&nbsp;Stereos">
+						<option value="headphones">&nbsp;&nbsp;Headphones</option>
+						<option value="speakers">&nbsp;&nbsp;Speakers</option>
+					</optgroup>
+
+					<optgroup label="&nbsp;&nbsp;&nbsp;&nbsp;Video Games">
+						<option value="vg-consoles">&nbsp;&nbsp;Consoles</option>
+						<option value="vg-disks">&nbsp;&nbsp;Disks & Digital</option>
+					</optgroup>
+					<option value="electronics-other">&nbsp;&nbsp;&nbsp;&nbsp;- Other -</option>
+					-->
+				</optgroup><!-- Electronics -->
+
+
+				<optgroup label="Arts & Collectables">
+					<option value="antiques">Antiques</option>
+					<!--<option value="arts-coins">Bills & Coins</option>-->
+					<option value="music">Music</option>
+					<option value="paintings">Paintings</option>
+					<option value="stamps">Stamps</option>
+					<option value="art-other">- Other -</option>
+				</optgroup>
+
+				<optgroup label="Clothing & Accessories">
+
+					<option value="mens-clothe">Men's Clothing</option>
+					<option value="womens-clothe">Women's Clothing</option>
+					<option value="mens-shoes">Men's Shoes</option>
+					<option value="womens-shoes">Women's Shoes</option>
+					<option value="mens-accessories">Men's Accessories</option>
+					<option value="womens-accessories">Women's Accessories</option>
+					<option value="kids-clothe">Kid's Clothing</option>
+					<option value="kids-shoes">Kid's Shoes</option>
+					<option value="kids-accessories">Kid's Accessories</option>
+					<option value="fashion-costumes">Costumes</option>
+					<option value="fashion-make-up">Make-up</option>
+					<option value="fashion-other">- Other -</option>
+
+				</optgroup>
+
+				<optgroup label="Sports">
+
+					<option value="sport-ball">Balls & Equipment</option>
+					<option value="sport-camp">Camping</option>
+					<option value="sport-gear">Padding & Gear</option>
+					<option value="sport-other">- Other -</option>
+
+				</optgroup>
+
+				<optgroup label="Toys">
+
+					<option value="toys-action">Action Figures</option>
+					<option value="toys-board">Board Games</option>
+					<option value="toys-doll">Dolls</option>
+					<option value="toys-puzzle">Puzzles</option>
+					<option value="toys-outdoor">Outdoor Toys</option>
+					<option value="toys-house-car">Houses & Vehicles</option>
+					<option value="toys-other">- Other -</option>
+
+				</optgroup>
+
+				<option value="other-other">- All Other Items -</option>
+
+
+			</select>
+
+
+			
+
+			<!-- Print label for the Title field -->
+			<legend style="margin-top: 5px ;">{{ form.description.label }}:</legend>
+
+			<!-- description input field -->
+			{% if form.description.errors %}
+
+				{{ form.description(placeholder="Write a description of the item in full detail; More is better than less..", class="login-register-form-input invalid-field-border", style="resize: vertical; padding: 5px 0 50px 5px") }}
+
+				<div class="display-invalid-field">
+					{% for error in form.description.errors %}
+						<span> {{ error }} </span>
+
+					{% endfor %}
+				</div>
+
+			{% else %}
+				<!-- This is processed as an <input> -->
+				{{ form.description(placeholder="Write a description of the item in full detail; More is better than less..", class="login-register-form-input", style="resize: vertical; padding: 5px 0 50px 5px") }}
+
+			{% endif %}
+
+
+			<!-- Print label for the refund_policy field -->
+			<legend>{{ form.refund_policy.label }}:</legend>
+
+			<!-- refund_policy input field -->
+			{% if form.refund_policy.errors %}
+
+				{{ form.refund_policy(placeholder="Policy of refunds and returns on the item..", class="login-register-form-input invalid-field-border", style="resize: vertical; padding: 5px 0 50px 5px") }}
+
+				<div class="display-invalid-field">
+					{% for error in form.refund_policy.errors %}
+						<span> {{ error }} </span>
+
+					{% endfor %}
+				</div>
+
+			{% else %}
+				<!-- This is processed as an <input> -->
+				{{ form.refund_policy(placeholder="Policy of refunds and returns on the item..", class="login-register-form-input", style="resize: vertical; padding: 5px 0 50px 5px") }}
+
+			{% endif %}
+
+
+			<!-- Button -->
+			<legend>Jpeg, Jpg, Png, and Pneg ONLY: </legend>
+
+			{{ form.pictures(class="upload-file-blue-button", placeholder="Upload Pictures (3 - 12)", style="margin: 0 0 5px 0") }}
+			<br />
+
+			{{ form.submit(class="search_button login-register-view-button") }}
+
+		</form>
+
+		<br>
+		<span style="color: #828282">Don't know what to post in the description or refund policy?</span> <a class="blue-link" href="{{ url_for('users.register') }}">More info.</a>
+
+	</section>
+
+
+
+	</section>
+{% endblock content %}

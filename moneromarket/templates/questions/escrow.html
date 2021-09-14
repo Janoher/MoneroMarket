@@ -1,0 +1,123 @@
+{% extends "abstracts/layout.html" %}
+
+{% block content %}
+	<section class="login-register-view">	
+		<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+		<ul class="login-register-alert">
+			<li>PGP keys allow for secure encryption to protect information like messages and order information.</li>
+			<li>Here, all our messages are secured with OpenPGP encryption, with the passwords acting as keys.</li>
+			<li style="color: #FFF6BE ;">. </li>
+			<li>Save our PGP public key and veryify our signed message. We update message at least once every week.</li>
+			<li>Pay attention to the key fingerprint, as the key name and creation date can be easily faked.</li>
+			<li>More info on what PGP is can be found <a href="#" class="blue-link">here.</a></li>
+			<li>{{ password }}</li>
+		</ul>
+
+
+		<p style="margin-top: 5px ;">Key fingerprint: <a href="#" class="blue-link" style="margin-left: 2px">3799 44E2 5A42 FF3E FE45  AA3D 06F0 7987 70BB 64BB</a></p>
+
+		<p>Name: <span style="color: orange ; margin-left: 2px ;">MoneroMarket</span> 
+		<p>Email: <span style="color: lime ; margin-left: 2px ;">moneromarket@elude.in</span> </p>
+		<p>Date created: <span style="color: crimson ; margin-left: 2px ;">02-20/2021</span></p> 
+
+
+		<img style="display: block ; margin: auto ; width: 32% ;" src="{{ url_for('static', filename='img/qrcodes/pgp.png') }}">
+
+
+		<legend>Public Key:</legend>
+		<textarea style="overflow: scroll ; width: 98% ; resize: none ; min-height: 800px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ;">-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+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
+nbkUXsSG
+=Jxkg
+-----END PGP PUBLIC KEY BLOCK-----
+</textarea>
+
+
+
+		<legend style="margin-top: 50px ;">Signed message:</legend>
+		<textarea style="overflow: scroll ; width: 98% ; resize: none ; min-height: 450px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; margin-bottom: 40px ;">-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+Current time: 02-20/2021 09:37:39 UTC
+
+I, the creator of https://www.MoneroMarket.org, am alive and have possession to my PGP private key.
+
+Long live Monero, the true decentralized, private currency; the currency of the world, for the people, ran by the people.
+
+
+Made sure you VERIFY this message signature!
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEN5lE4lpC/z7+Rao9BvB5h3C7ZLsFAmAw2YYACgkQBvB5h3C7
+ZLvp6A//YS8i9whUvH1hsFFqKnD2gJ/J0bsZBhLlsVsI3Uj4W5eArtpzyFDBXULn
+VefouVC9TRaHKX87w3v7FnfNBSTS1KJfqvM4HoyHC0ML5HfF2uOjStuAIZVWJt2w
+uzHGNtysPkF+S+6JGn2BdYGH/0MsbXl0LHJ+wKYSOyvDoVgRsyy2nrFjQlee2uRT
++u9KmabGE55jY7OJ2Db3Bqd4Sw2kI2vP8TbD8ZA2mha9vqypg3IG4Zvg7wkd51Im
+y7uXgkoF/7FAOu0RtUKeW5IVDbOVGtbPQB/4Ptr3GXM/KdLT0Rs88IMPeDha1GYq
+u7AJIBQn41tDEtj7i9YFyaT9LjeIShUFwDirJ5oMDAQhSgkOnbS03Z5Qk1+mGXB9
+0OeHxoryy0OrqFxWUK1F+Ib0T4OyCxltYOrShIt2YTB4avAds+YdiI2ZObk3PDKK
+CXl14qL/3GlFjhjsLLSUUthtFxLDiG6cM3r/gui2/Qih6sx5d3Ji3MvshAgneMYI
+8Y45n+eUQSdyO8J+FHv1q6/AsB6eAkHUCgmLwbdMJejzojVkvvK+tJ2gMYmSaTjD
+fDBtB1Cfmc9LNgGLv9yYmNTgCUq0FxYgSvpYDjhkcPvnQCcrdyLD5zD2CaDhy9QE
+ALBc38sAVUoXvQp8cMOD8aLPGpGDBgMVHfJeKmQ7Q0/RFv4qSW8=
+=tXrK
+-----END PGP SIGNATURE-----
+</textarea>
+
+
+		<br>
+		<span style="color: #828282 ;">Confused about decrypting and verifying messages?</span> <a class="blue-link" href="#">More info.</a>
+
+	</section>
+
+
+
+	</section>
+{% endblock content %}

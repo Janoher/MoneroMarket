@@ -1,0 +1,503 @@
+{% extends "abstracts/layout.html" %}
+
+
+
+{% block content %}
+	<section class="orders-view">
+		<h1>Orders ({{ orders.total }})</h1>
+
+
+		<p>Filter: 
+		{% if filter_by == "buying" %}
+			<a style="text-decoration: none" href="{{ url_for('orders.list', filter_by='buying') }}"><strong><span style="margin-right: 14px">Buying</span></strong></a>
+			<a style="text-decoration: none" href="{{ url_for('orders.list', filter_by='selling') }}"><span>Selling</span></a>
+
+		{% elif filter_by == "selling" %}
+			<a style="text-decoration: none" href="{{ url_for('orders.list', filter_by='buying') }}"><span>Buying</span></a>
+			<a style="text-decoration: none" href="{{ url_for('orders.list', filter_by='selling') }}"><strong><span style="margin-left: 0px">Selling</span></strong></a>
+
+		{% endif %}
+
+
+
+
+		Page: <span>
+
+		{% if orders.total == 0 %}
+			<a class="blue-link" href="{{ url_for('orders.list', filter_by='buying') }}">0</a>
+		{% endif %}
+
+
+		{% for page_num in orders.iter_pages() %}
+			{% if page_num == page %}
+				<strong><a class="blue-link" href="{{ url_for('orders.list', filter_by='buying', page=page_num) }}">{{ page_num }}</a></strong>
+			{% elif page_num %}
+				<a class="blue-link" href="{{ url_for('orders.list', filter_by='buying', page=page_num) }}">{{ page_num }}</a>
+
+			{% else %}
+				...
+			{% endif %}
+		{% endfor %}
+
+		</span></p>
+
+
+
+
+
+
+
+
+
+
+
+		<p style="margin-top: -4px; ">Type: 
+			{% if type_of_table == "individual" %}
+				<strong><a href="{{ url_for('orders.list', filter_by=filter_by, type_of_table='individual') }}" style="text-decoration: none"><span style="color: orange; margin-left: 3px; margin-right: 0px; font-size: 15px">Individual Orders</span></a></strong>
+			{% else %}
+				<a href="{{ url_for('orders.list', filter_by=filter_by, type_of_table='individual') }}" style="text-decoration: none"><span style="text-decoration: none"><span style="color: orange; margin-left: -1px; margin-right: 0px; font-size: 15px">Individual Orders</span></a>
+			{% endif %}
+
+			{% if filter_by == "buying" %}
+				{% if type_of_table == "all" %}
+					<strong><a href="{{ url_for('orders.list', filter_by=filter_by, type_of_table='all') }}" style="text-decoration: none"><span style="text-decoration: none"><span style="color: orange; margin-left: -12px; margin-right: 0px; font-size: 15px">All Orders in Payment</span></a></strong>
+				{% else %}
+					<a href="{{ url_for('orders.list', filter_by=filter_by, type_of_table='all') }}" style="text-decoration: none"><span style="text-decoration: none"><span style="color: orange; margin-left: 8px; margin-right: 0px; font-size: 15px">All Orders in Payment</span></a>
+				{% endif %}
+			{% endif %}
+		</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+		{% if type_of_table == "individual" %}
+			<table class="orders-table desktop-table">
+				<thead>
+					<tr>
+						<th>Order ID</th>
+						<th>Title</th>
+
+						{% if filter_by == "buying" %}
+							<th>Vendor</th>
+						{% elif filter_by == "selling" %}
+							<th>Buyer</th>
+						{% endif %}
+
+						<th>Status</th>
+						<th colspan="2">Date & Time</th>
+					</tr>
+				</thead>
+				<tbody>
+
+
+					<!-- Buying tables -->
+					{% for order in orders.items %}
+						<tr>
+							{% if filter_by == "buying" %}
+								<td><p><a href="{{ url_for('orders.view_order', order_id=order.id) }}" class="grey-link">#{{ order.id }}</a></p></td>
+							{% else %}
+								<td><p><a href="{{ url_for('orders.view_order', order_id=order.id) }}" class="grey-link">#{{ order.id }}</a></p></td>
+							{% endif %}
+
+							
+							<td><a class="blue-link" href="{{ url_for('listings.item', post_id=order.orders_post.id, previous_page='orders.list', username=filter_by) }}">{{ order.orders_post.title }}</a></td>
+
+							{% if filter_by == "buying" %}
+								<td><a class="orange-link" href="{{ url_for('users.profile', username=order.orders_post.vendor.username) }}">{{ order.orders_post.vendor.username }}</a></td>
+							{% elif filter_by == "selling" %}
+								<td><a class="orange-link" href="{{ url_for('users.profile', username=User.query.filter_by(id=current_user.id).first().username) }}">{{ User.query.filter_by(id=order.user_id).first().username }}</a></td>
+							{% endif %}
+
+
+							{% if order.status == "WAITING FOR VENDOR" %}
+								{% if filter_by == "buying" %}
+									<td><a style="color: blue ;">WAITING FOR VENDOR</a></td>
+								{% elif filter_by == "selling" %}
+									<td><a style="color: blue ;">WAITING FOR YOU</a></td>
+								{% endif %}
+							{% elif order.status == "CANCELLED" or order.status == "DISPUTE" or order.status == "NO PAYMENT" or order.status == "UNCONFIRMED" or order.status == "INSUFFICIENT FUNDS" %}
+								<td><a style="color: crimson ;">{{ order.status }}</a></td>
+							{% elif order.status == "VENDOR SHIPPED" %}
+								{% if filter_by == "buying" %}
+									<td><a style="color: orange ;">VENDOR SHIPPED</a></td>
+								{% elif filter_by == "selling" %}
+									<td><a style="color: orange ;">SHIPPED TO US</a></td>
+								{% endif %}
+							{% elif order.status == "SHIPPED TO BUYER" and order.auto_finalization_timer < datetime %}
+								{% if filter_by == "buying" %}
+									<td><a style="color: darkorange ;">AUTO-FINALIZED</a></td>
+								{% elif filter_by == "selling" %}
+									<td><a style="color: darkorange ;">AUTO-FINALIZED</a></td>
+								{% endif %}
+							{% elif order.status == "SHIPPED TO BUYER" and not order.order_cancelled %}
+								{% if filter_by == "buying" %}
+									<td><a style="color: maroon ;">SHIPPED TO YOU</a></td>
+								{% elif filter_by == "selling" %}
+									<td><a style="color: maroon ;">SHIPPED TO BUYER</a></td>
+								{% endif %}
+							{% elif order.status == "DISPUTING" %}
+								<td><a style="color: red ;">DISPUTING</a></td>
+							{% elif order.status == "PENDING" %}
+								<td><a style="color: orange ;">PENDING</a></td>
+							{% elif order.status == "WAITING FOR PAYMENT" %}
+								<td><a style="color: red ;">WAITING FOR PAYMENT</a></td>
+
+							{% elif order.status == "RELEASING FUNDS" or order.status == "RELEASED FUNDS" %}
+								<td><a style="color: green ;">{{ order.status }}</a></td>
+
+							{% elif order.auto_finalization_timer %} 
+								{% if order.auto_finalization_timer < datetime %}
+									{% if filter_by == "buying" %}
+										<td><a style="color: magenta ;">AUTO-FINALIZED</a></td>
+									{% elif filter_by == "selling" %}
+										<td><a style="color: magenta ;">AUTO-FINALIZED</a></td>
+									{% endif %}
+								{% endif %}
+
+
+							{% else %}
+								<td><a style="color: black ;">{{ order.status }}</a></td>
+
+
+							{% endif %}
+							
+							<td>{{ order.recent_update.strftime("%b %-d %Y, %H:%M") }}</td>
+
+							<td><a href="{{ url_for('orders.delete_order', order_id=order.id, previous_page='orders.list', filter_by=filter_by) }}" class="red-link">Remove<span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></a></td>
+						</tr>
+					{% endfor %}
+
+					{% if orders.total == 0 %}
+						<tr>
+							<!-- Print this if there are no values -->
+							<td><p>None</p></td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+						</tr>
+					{% endif %}
+		
+				</tbody>
+			</table>
+
+
+
+
+
+
+
+
+
+
+			<table class="orders-table phone-table">
+				{% if orders.total == 0 %}
+					<thead>
+						<tr>
+							<th>Order ID</th>
+							<th>Title</th>
+
+							{% if filter_by == "buying" %}
+								<th>Vendor</th>
+							{% elif filter_by == "selling" %}
+								<th>Buyer</th>
+							{% endif %}
+
+							<th>Status</th>
+							<th colspan="2">Date & Time</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<!-- Print this if there are no values -->
+							<td><p>None</p></td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+						</tr>
+					</tbody>
+
+
+				{% else %}
+					<thead>
+						<tr>
+							<th>Order ID /<span style="">Status</span></th>
+							<th>Title /<span style="">Time</span></th>
+
+							{% if filter_by == "buying" %}
+								<th>Vendor</th>
+							{% elif filter_by == "selling" %}
+								<th>Buyer</th>
+							{% endif %}
+
+							<!--
+							<th>Status</th>
+							<th colspan="2">Date & Time</th>-->
+						</tr>
+					</thead>
+					<tbody>
+
+
+						<!-- Buying tables -->
+						{% for order in orders.items %}
+							<tr style="border-bottom: none">
+								{% if filter_by == "buying" %}
+									<td><p><a href="{{ url_for('orders.view_order', order_id=order.id) }}" class="grey-link">#{{ order.id }}</a></p></td>
+								{% else %}
+									<td><p><a href="{{ url_for('orders.view_order', order_id=order.id) }}" class="grey-link">#{{ order.id }}</a></p></td>
+								{% endif %}
+
+								
+								<td><a class="blue-link" href="{{ url_for('listings.item', post_id=order.orders_post.id, previous_page='orders.list', username=filter_by) }}">{{ order.orders_post.title }}</a></td>
+
+								{% if filter_by == "buying" %}
+									<td><a class="orange-link" href="{{ url_for('users.profile', username=order.orders_post.vendor.username) }}">{{ order.orders_post.vendor.username }}</a></td>
+								{% elif filter_by == "selling" %}
+									<td><a class="orange-link" href="{{ url_for('users.profile', username=User.query.filter_by(id=current_user.id).first().username) }}">{{ User.query.filter_by(id=order.user_id).first().username }}</a></td>
+								{% endif %}
+
+							</tr>
+							<tr style="border-top: none">
+								{% if order.status == "WAITING FOR VENDOR" %}
+									{% if filter_by == "buying" %}
+										<td><a style="color: blue ; padding-left: 10px">WAITING FOR VENDOR</a></td>
+									{% elif filter_by == "selling" %}
+										<td><a style="color: blue ; padding-left: 10px">WAITING FOR YOU</a></td>
+									{% endif %}
+								{% elif order.status == "CANCELLED" or order.status == "DISPUTE" or order.status == "NO PAYMENT" or order.status == "UNCONFIRMED" or order.status == "INSUFFICIENT FUNDS" %}
+									<td><a style="color: crimson ; padding-left: 10px">{{ order.status }}</a></td>
+								{% elif order.status == "VENDOR SHIPPED" %}
+									{% if filter_by == "buying" %}
+										<td><a style="color: orange ; padding-left: 10px">VENDOR SHIPPED</a></td>
+									{% elif filter_by == "selling" %}
+										<td><a style="color: orange ; padding-left: 10px">SHIPPED TO US</a></td>
+									{% endif %}
+								{% elif order.status == "SHIPPED TO BUYER" and order.auto_finalization_timer < datetime %}
+									{% if filter_by == "buying" %}
+										<td><a style="color: darkorange ; padding-left: 10px">AUTO-FINALIZED</a></td>
+									{% elif filter_by == "selling" %}
+										<td><a style="color: darkorange ; padding-left: 10px">AUTO-FINALIZED</a></td>
+									{% endif %}
+								{% elif order.status == "SHIPPED TO BUYER" and not order.order_cancelled %}
+									{% if filter_by == "buying" %}
+										<td><a style="color: maroon ; padding-left: 10px">SHIPPED TO YOU</a></td>
+									{% elif filter_by == "selling" %}
+										<td><a style="color: maroon ; padding-left: 10px">SHIPPED TO BUYER</a></td>
+									{% endif %}
+								{% elif order.status == "DISPUTING" %}
+									<td><a style="color: red ; padding-left: 10px">DISPUTING</a></td>
+								{% elif order.status == "PENDING" %}
+									<td><a style="color: orange ; padding-left: 10px">PENDING</a></td>
+								{% elif order.status == "WAITING FOR PAYMENT" %}
+									<td><a style="color: red ; padding-left: 10px">WAITING FOR PAYMENT</a></td>
+
+								{% elif order.status == "RELEASING FUNDS" or order.status == "RELEASED FUNDS" %}
+									<td><a style="color: green ; padding-left: 10px">{{ order.status }}</a></td>
+
+								{% elif order.auto_finalization_timer %} 
+									{% if order.auto_finalization_timer < datetime %}
+										{% if filter_by == "buying" %}
+											<td><a style="color: magenta ; padding-left: 10px">AUTO-FINALIZED</a></td>
+										{% elif filter_by == "selling" %}
+											<td><a style="color: magenta ; padding-left: 10px">AUTO-FINALIZED</a></td>
+										{% endif %}
+									{% endif %}
+
+
+								{% else %}
+									<td><a style="color: black ; padding-left: 10px">{{ order.status }}</a></td>
+
+
+								{% endif %}
+								
+								<td>{{ order.recent_update.strftime("%b %-d %Y, %H:%M") }}</td>
+
+								<td><a href="{{ url_for('orders.delete_order', order_id=order.id, previous_page='orders.list', filter_by=filter_by) }}" class="red-link">Remove<span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></a></td>
+							</tr>
+						</tbody>
+					{% endfor %}
+				{% endif %}
+
+				
+		
+				</tbody>
+			</table>
+
+
+
+
+
+
+
+
+
+
+
+
+		{% elif type_of_table == "all" %}
+			<table class="orders-table phone-table">
+				{% if orders.total == 0 %}
+					<thead>
+					<tr>
+						<th>Payment ID</th>
+						<th>Items</th>
+
+						<th>Total Price</th>
+						<th>Status</th>
+						<th colspan="2">Date & Time</th>
+					</tr>
+				</thead>
+
+
+
+				{% else %}
+					<thead>
+						<tr>
+							<th>Payment ID /<span>Status</span></th>
+							<th>Items /<span>Time</span></th>
+
+							<th>Total Price</th>
+						</tr>
+					</thead>
+				{% endif %}
+				<tbody>
+
+
+					<!-- Buying tables -->
+					{% for order in orders.items %}
+						<tr style="border-bottom: none">
+							<td><p><a href="{{ url_for('orders.view_payment_id', payment_id=order.payment_id) }}" class="grey-link">#{{ order.payment_id }}</a></p></td>
+
+							<td><a style="color: #34A4EB; text-decoration: none;">{{ fernet.decrypt(order.total_amount_of_orders_for_payment_id.encode()).decode() }}</a></td>
+
+							<td><img style="height: 18px; width: 18px ; position: absolute ; margin: 1px 0 0 0px;" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}"><a href="#" style="text-decoration: none"><span style="margin-left: 23px ; color: green">{{ numpy.format_float_positional(float(fernet.decrypt(order.total_amount_for_payment_id.encode()).decode()), trim='-', precision=5) }}</span></a></td><!--
+							<td><a class="orange-link" href="#">{{ numpy.format_float_positional(float(fernet.decrypt(order.total_amount_for_payment_id.encode()).decode()), trim='-', precision=8) }}</a></td>-->
+
+						</tr>
+						<tr style="border-top: none">
+
+							{% if order.status == "INSUFFICIENT FUNDS" %}
+								<td><a style="color: crimson ; padding-left: 10px">INSUFFICIENT FUNDS</a></td>
+							{% elif order.excess_received %}
+								<td><a style="color: lime ; padding-left: 10px">EXCESS RECEIVED</a></td>
+							{% elif order.status == "UNCONFIRMED" %}
+								<td><a style="color: crimson ; padding-left: 10px">NEVER CONFIRMED</a></td>
+							{% elif order.status == "NO PAYMENT" %}
+								<td><a style="color: crimson ; padding-left: 10px">NO PAYMENT</a></td>
+							{% elif order.confirmations == 0 %}
+								<td><a style="color: red ; padding-left: 10px">NO CONFIRMATIONS YET</a></td>
+							{% elif order.status == "PENDING" %}
+								<td><a style="color: orange; padding-left: 10px">CONFIRMING PAYMENT</a></td>
+							{% else %}
+								<td><a style="color: blue; padding-left: 10px">PAYMENT RECEIVED</a></td>
+							{% endif %}
+
+
+
+							
+							<td>{{ order.date_ordered.strftime("%b %-d %Y, %H:%M") }}</td>
+
+							<td><a href="#" class="red-link">Remove<span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></a></td>
+						</tr>
+					</tbody>
+					{% endfor %}
+
+					{% if orders.total == 0 %}
+						<tr>
+							<!-- Print this if there are no values -->
+							<td><p>None</p></td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+						</tr>
+					{% endif %}
+		
+				</tbody>
+			</table>
+
+
+
+
+
+
+			<table class="orders-table desktop-table">
+				<thead>
+					<tr>
+						<th>Payment ID</th>
+						<th>Items</th>
+
+						<th>Total Price</th>
+						<th>Status</th>
+						<th colspan="2">Date & Time</th>
+					</tr>
+				</thead>
+				<tbody>
+
+
+					<!-- Buying tables -->
+					{% for order in orders.items %}
+						<tr>
+							<td><p><a href="{{ url_for('orders.view_payment_id', payment_id=order.payment_id) }}" class="grey-link">#{{ order.payment_id }}</a></p></td>
+
+							<td><a style="color: #34A4EB; text-decoration: none;">{{ fernet.decrypt(order.total_amount_of_orders_for_payment_id.encode()).decode() }}</a></td>
+
+							<td><img style="height: 18px; width: 18px ; position: absolute ; margin: 1px 0 0 0px;" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}"><a href="#" style="text-decoration: none"><span style="margin-left: 23px ; color: green">{{ numpy.format_float_positional(float(fernet.decrypt(order.total_amount_for_payment_id.encode()).decode()), trim='-', precision=5) }}</span></a></td><!--
+							<td><a class="orange-link" href="#">{{ numpy.format_float_positional(float(fernet.decrypt(order.total_amount_for_payment_id.encode()).decode()), trim='-', precision=8) }}</a></td>-->
+
+
+							{% if order.status == "INSUFFICIENT FUNDS" %}
+								<td><a style="color: crimson ; padding-left: 10px">INSUFFICIENT FUNDS</a></td>
+							{% elif order.excess_received %}
+								<td><a style="color: lime ; padding-left: 10px">EXCESS RECEIVED</a></td>
+							{% elif order.status == "UNCONFIRMED" %}
+								<td><a style="color: crimson ; padding-left: 10px">NEVER CONFIRMED</a></td>
+							{% elif order.status == "NO PAYMENT" %}
+								<td><a style="color: crimson ; padding-left: 10px">NO PAYMENT</a></td>
+							{% elif order.confirmations == 0 %}
+								<td><a style="color: red ; padding-left: 10px">NO CONFIRMATIONS YET</a></td>
+							{% elif order.status == "PENDING" %}
+								<td><a style="color: orange; padding-left: 10px">CONFIRMING PAYMENT</a></td>
+							{% else %}
+								<td><a style="color: blue; padding-left: 10px">PAYMENT RECEIVED</a></td>
+							{% endif %}
+
+
+
+							
+							<td>{{ order.date_ordered.strftime("%b %-d %Y, %H:%M") }}</td>
+
+							<td><a href="#" class="red-link">Remove<span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></a></td>
+						</tr>
+					</tbody>
+					{% endfor %}
+
+					{% if orders.total == 0 %}
+						<tr>
+							<!-- Print this if there are no values -->
+							<td><p>None</p></td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+						</tr>
+					{% endif %}
+		
+				</tbody>
+			</table>
+		{% endif %}
+
+
+	</section>
+
+{% endblock content %}

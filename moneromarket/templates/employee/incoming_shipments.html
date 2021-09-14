@@ -1,0 +1,235 @@
+{% extends "abstracts/layout.html" %}
+
+
+
+{% block content %}
+	<section class="orders-view">
+		
+		<h1>Incoming Shipments ({{ incoming_shipments.total }})</h1>
+
+
+		<a href="{{ url_for('employees.outgoing_shipments', filter_by=filter_by) }}" style="float: right; margin: 6px 12px 0 0"><button class="search_button">Outgoing Shipments</button></a>
+
+		<p>Filter: 
+		{% if filter_by == "all" %}
+			<a style="margin-right: -18px ; text-decoration: none ;" href="{{ url_for('employees.incoming_shipments', filter_by='all') }}"><strong><span>All</span></strong></a> 
+		{% else %}
+			<a style="margin-right: -18px ; text-decoration: none ;" href="{{ url_for('employees.incoming_shipments', filter_by='all') }}"><span>All</span></a> 
+		{% endif %}
+		
+		{% if filter_by == "buyer" %}
+			<a style="margin-right: -18px ; text-decoration: none ;" href="{{ url_for('employees.incoming_shipments', filter_by='buyer') }}"><strong><span>Buyer</span></strong></a> 
+		{% else %}
+			<a style="margin-right: -18px ; text-decoration: none ;" href="{{ url_for('employees.incoming_shipments', filter_by='buyer') }}"><span>Buyer</span></a> 
+		{% endif %}
+
+		{% if filter_by == "vendor" %}
+			<a style="margin-right: 0px ; text-decoration: none ;" href="{{ url_for('employees.incoming_shipments', filter_by='vendor') }}"><strong><span>Vendor</span></strong></a> 
+		{% else %}
+			<a style="margin-right: 0px ; text-decoration: none ;" href="{{ url_for('employees.incoming_shipments', filter_by='vendor') }}"><span>Vendor</span></a> 
+		{% endif %}
+
+
+
+
+		Page:
+		<!-- Print page numbers on top based upon the iteration and number of messages in each category -->
+		<span>
+
+			{% if not incoming_shipments.total %}
+				<a class="blue-link">0</a>
+			{% endif %}
+
+			{% for page_num in incoming_shipments.iter_pages() %}
+				{% if page_num == page %}
+					<strong><a class="blue-link"href="{{ url_for('employees.incoming_shipments', filter_by=filter_by, page=page_num) }}">{{ page_num }}</a></strong>
+				{% elif page_num %}
+					<a class="blue-link"href="{{ url_for('employees.incoming_shipments', filter_by=filter_by, page=page_num) }}">{{ page_num }}</a>
+
+				{% else %}
+					...
+				{% endif %}
+			{% endfor %}
+
+		</span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<table class="orders-table desktop-table">
+			<thead>
+				<tr>
+					<th>Order ID</th>
+					<th>Title</th>
+					{% if filter_by == "vendor" %}
+						<th>Vendor</th>
+					{% elif filter_by == "buyer" %}
+						<th>Buyer</th>
+					{% elif filter_by == "all" %}
+						<th>User</th>
+					{% endif %}
+					<th>Status</th>
+					<th>Date & Time</th>
+					<th>Tracking Number/ID</th>
+				</tr>
+			</thead>
+			<tbody>
+
+				{% if incoming_shipments.total %}
+					{% for order in incoming_shipments.items %}
+					<tr>
+
+						{% if order.buyer_shipped %}
+							<td><p><a href="{{ url_for('employees.view_order', order_id=order.id) }}" class="grey-link">#{{ order.id }}</a></p></td>
+						{% else %}
+							<td><p><a href="{{ url_for('employees.view_incoming_shipment', order_id=order.id) }}" class="grey-link">#{{ order.id }}</a></p></td>
+						{% endif %}
+
+
+						<td><a class="blue-link" href="{{ url_for('listings.item', post_id=order.orders_post.id, previous_page='employees.incoming_shipments', username=filter_by) }}">{{ order.orders_post.title }}</a></td>
+
+						{% if order.buyer_shipped == None or order.buyer_shipped < order.vendor_shipped %}
+							<td><a class="orange-link" href="{{ url_for('users.profile', username=order.orders_post.vendor.username) }}">{{ order.orders_post.vendor.username }}</a></td>
+						{% elif order.vendor_shipped == None or order.vendor_shipped < order.buyer_shipped %}
+							<td><a class="orange-link" href="{{ url_for('users.profile', username=User.query.filter_by(id=order.user_id).first().username) }}">{{ User.query.filter_by(id=order.user_id).first().username }}</a></td>
+						{% endif %}
+
+						{% if order.status == "DISPUTING" %}
+							<td><a style="color: crimson ;">DISPUTING</a></td>
+						{% else %}
+							<td><a style="color: orange ;">PENDING</a></td>
+						{% endif %}
+						
+						<td>{{ order.recent_update.strftime("%b %-d %Y, %H:%M") }}</td>
+
+						<td style="color: purple">#{{ fernet.decrypt(order.tracking_number.encode()).decode() }}</td>
+					</tr>
+					{% endfor %}
+
+				{% else %}
+					<tr>
+						<!-- Print this if there are no values -->
+						<td><p>None</p></td>
+						<td>----------</td>
+						<td>----------</td>
+						<td>----------</td>
+						<td>----------</td>
+						<td>----------</td>
+					</tr>
+
+				{% endif %}
+			</tbody>
+
+		
+		</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<table class="orders-table phone-table">
+			{% if incoming_shipments.total == 0 %}
+				<thead>
+				<tr>
+					<th>Order ID</th>
+					<th>Title</th>
+					{% if filter_by == "vendor" %}
+						<th>Vendor</th>
+					{% elif filter_by == "buyer" %}
+						<th>Buyer</th>
+					{% elif filter_by == "all" %}
+						<th>User</th>
+					{% endif %}
+					<th>Status</th>
+					<th>Date Time</th>
+					<th>Track ID</th>
+				</tr>
+			</thead>
+			{% else %}
+				<thead>
+					<tr>
+						<th>Order ID /<span>Status</span></th>
+						<th>Title /<span>Date</span></th>
+						<th>User /<span>Tracking ID</span></th>
+					</tr>
+				</thead>
+			{% endif %}
+			<tbody>
+
+				{% if incoming_shipments.total %}
+					{% for order in incoming_shipments.items %}
+					<tr style="border-bottom: none">
+
+						{% if order.buyer_shipped %}
+							<td><p><a href="{{ url_for('employees.view_order', order_id=order.id) }}" class="grey-link">#{{ order.id }}</a></p></td>
+						{% else %}
+							<td><p><a href="{{ url_for('employees.view_incoming_shipment', order_id=order.id) }}" class="grey-link">#{{ order.id }}</a></p></td>
+						{% endif %}
+
+
+						<td><a class="blue-link" href="{{ url_for('listings.item', post_id=order.orders_post.id, previous_page='employees.incoming_shipments', username=filter_by) }}">{{ order.orders_post.title }}</a></td>
+
+						{% if order.buyer_shipped == None or order.buyer_shipped < order.vendor_shipped %}
+							<td><a class="orange-link" href="{{ url_for('users.profile', username=order.orders_post.vendor.username) }}">{{ order.orders_post.vendor.username }}</a></td>
+						{% elif order.vendor_shipped == None or order.vendor_shipped < order.buyer_shipped %}
+							<td><a class="orange-link" href="{{ url_for('users.profile', username=User.query.filter_by(id=order.user_id).first().username) }}">{{ User.query.filter_by(id=order.user_id).first().username }}</a></td>
+						{% endif %}
+					</tr>
+					<tr style="border-top: none">
+
+						{% if order.status == "DISPUTING" %}
+							<td><a style="color: crimson ;">DISPUTING</a></td>
+						{% else %}
+							<td><a style="color: orange ;">PENDING</a></td>
+						{% endif %}
+						
+						<td>{{ order.recent_update.strftime("%b %-d %Y, %H:%M") }}</td>
+
+						<td style="color: purple">#{{ fernet.decrypt(order.tracking_number.encode()).decode() }}</td>
+					</tr>
+					{% endfor %}
+
+				{% else %}
+					<tr>
+						<!-- Print this if there are no values -->
+						<td><p>N/A</p></td>
+						<td>-------</td>
+						<td>-------</td>
+						<td>-------</td>
+						<td>-------</td>
+						<td>-------</td>
+					</tr>
+
+				{% endif %}
+			</tbody>
+
+		
+		</table>
+
+
+	</section>
+
+{% endblock content %}

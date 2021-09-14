@@ -1,0 +1,478 @@
+{% extends "abstracts/home_shopping_layout.html" %}
+
+{% block right_column %}
+	
+		<div class="cart-view">
+			<h1 style="margin-bottom: -3px ;">Cart ({{ items.total }})</h1>
+
+		<div class="cart-container">
+			<!-- Main Card -->
+			{% for item in items.items %}
+				{% if item == None or item.cart_post == None %}
+					<section class="cart-quick-view">
+						<img class="cart-quick-view-img" src="{{ url_for('static', filename='img/posts/' + 'none') }}">
+
+						<div class="cart-quick-view-content">
+							<a class="cart-quick-view-title" style="color:red" href="">N/A</a>
+
+							<p style="color: orange"><span class="cart-quick-view-category">N/A</span> - <a class="cart-quick-view-vendor" href="">N/A</a></p>
+
+							<div class="cart-quick-view-amount">
+								<img class="tiny-monero-coin" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+							 	<p>0.00</p>
+							</div>
+
+							{% if item.cart_post == None %}
+								<p class="cart-quick-view-stock" style="color: red ;">Post deleted.</p>
+							{% elif item == None %}
+								<p class="cart-quick-view-stock" style="color: red ;">Cart deleted.</p>
+							{% endif %}
+
+							
+							<p class="cart-quick-view-quantity">Quantity: </p>
+							<input type="text" name="hidden_cart_id" value="0" style="position: absolute; visibility: hidden">
+
+							<div class="cart-quick-view-quantity-input-field">
+								<input type="number" id="cart-view-amount" name="cart-view-amount" placeholder="0" min="0" max="0" style="width: 38px ; border-radius: 6px ; border: grey 1px solid ; height: 15px ; padding: 2px ;">
+								<button class="cart-quick-view-quantity-button" style="width: 52px" disabled>Submit</button>
+								<!-- Button -->
+							</div>
+
+							<a href="{{ url_for('orders.cart_delete', cart_id=item.id) }}"><p class="cart-quick-view-remove">Remove <span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></p></a>
+							<a href="{{ url_for('orders.cart_delete', cart_id=item.id) }}"><p class="cart-quick-view-save blue-link">Save for later</p></a>
+							
+
+						</div>
+					</section>
+				{% else %}
+					<section class="cart-quick-view" style="">
+						<img class="cart-quick-view-img" src="{{ url_for('static', filename='img/posts/' + item.cart_post.gallery_1) }}">
+
+						<div class="cart-quick-view-content">
+							<a class="cart-quick-view-title" href="{{ url_for('listings.item', post_id=item.cart_post.id, previous_page='orders.cart') }}">{{ item.cart_post.title }}</a>
+
+							<p style="color: orange"><span class="cart-quick-view-category">{{ SubCategory.query.get(item.cart_post.sub_category).name }}</span> - <a class="cart-quick-view-vendor" href="{{ url_for('users.profile', username=item.cart_post.vendor.username) }}">{{ item.cart_post.vendor.username }}</a></p>
+
+							{% if item.cart_post.fixed_to_fiat == True %}
+							<div class="cart-quick-view-amount">
+								<div class="monero-hover-reveal"><img class="tiny-monero-coin" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}" style="cursor: pointer; position: relative; margin-top: -2px">
+									<div class="monero-dropdown-menu" style="margin-top: 19px; margin-left: 137px">
+
+
+											<!-- USDT -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">$ {{ "{:.2f}".format(item.cart_post.price / usdt * usdt) }}</a>
+								</a>
+								
+								<!-- BTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(item.cart_post.price / usdt * btc) }}</a>
+								</a>
+
+								<!-- BCH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(item.cart_post.price / usdt * bch) }}</a>
+								</a>
+
+								<!-- LTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ł {{ "{:.5f}".format(item.cart_post.price / usdt * ltc) }}</a>
+								</a>
+
+								<!-- DOGE -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ð {{ "{:.2f}".format(item.cart_post.price / usdt * doge) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₮ {{ "{:.5f}".format(item.cart_post.price / usdt * xaut) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">♦ {{ "{:.5f}".format(item.cart_post.price / usdt * eth) }}</a>
+								</a>
+
+									</div>
+								</div>
+
+						 		<p>{{ numpy.format_float_positional(item.cart_post.price / Currency.query.filter_by(country="USDT").first().price, trim='-', precision=8) }}</p>
+							</div>
+
+
+
+						{% elif item.cart_post.fixed_to_fiat == False %}
+							<div class="monero-hover-reveal"><img class="tiny-monero-coin" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}" style="cursor: pointer; position: relative">
+								<div class="monero-dropdown-menu">
+
+									<!-- USDT -->
+									<a><span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}"></span> <span class="exchange-rates-country-name"> </span> <span class="exchange-rates-amount" style="margin-left: 20px">$ {{ "{:.2f}".format(0.21 * usdt) }}</span></a>
+									
+									<!-- BTC -->
+									<a><span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}"></span> <span class="exchange-rates-country-name"> </span> <span class="exchange-rates-amount" style="margin-left: 20px">₿ {{ "{:.5f}".format(0.21 * btc) }}</span></a>
+
+									<!-- BCH -->
+									<a><span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}"></span> <span class="exchange-rates-country-name"> </span> <span class="exchange-rates-amount" style="margin-left: 20px">₿ {{ "{:.5f}".format(0.21 * bch) }}</span></a>
+
+									<!-- LTC -->
+									<a><span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}"></span> <span class="exchange-rates-country-name"> </span> <span class="exchange-rates-amount" style="margin-left: 20px">Ł {{ "{:.5f}".format(0.21 * ltc) }}</span></a>
+
+									<!-- DOGE -->
+									<a><span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}"></span> <span class="exchange-rates-country-name"> </span> <span class="exchange-rates-amount" style="margin-left: 20px">Ð {{ "{:.2f}".format(0.21 * doge) }}</span></a>
+
+									<!-- ETH -->
+									<a><span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}"></span> <span class="exchange-rates-country-name"> </span> <span class="exchange-rates-amount" style="margin-left: 20px">♦ {{ "{:.5f}".format(0.21 * eth) }}</span></a>
+								</div>
+							</div>
+							 	
+							 <p>{{ numpy.format_float_positional(item.cart_post.price, trim='-', precision=8) }}</p>
+							</div>
+						{% endif %}
+
+
+							{% if item.cart_post.supply - item.cart_post.pending > 0 %}
+								<p class="cart-quick-view-stock" style="color: green ;">In stock <span style="color: black">(</span><span style="color: #34A4EB">{{ item.cart_post.supply - item.cart_post.pending}}</span><span style="color: black">)</span></p>
+							{% else %}
+								<p class="cart-quick-view-stock" style="color: red ;">Out of stock</p>
+							{% endif %}
+
+							<p class="cart-quick-view-quantity">Quantity: </p>
+							<form class="" method="POST" action="">
+								{{ update_cart_amount_form.hidden_tag() }}
+								<input type="text" name="hidden_cart_id" value="{{ item.id }}" style="position: absolute; visibility: hidden">
+
+								<div class="cart-quick-view-quantity-input-field">
+									<input type="number" id="cart-view-amount" name="cart-view-amount" placeholder="{{ item.buying }}" min="1" max="{{ item.cart_post.supply - item.cart_post.pending }}" style="width: 38px ; border-radius: 6px ; border: grey 1px solid ; height: 15px ; padding: 2px ;">
+									<!--<input type="submit" id="update_quantity_cart" name="update_quantity_cart" class="cart-quick-view-quantity-button" value="Update" style="width: 52px">-->
+									<!-- Button -->
+									{{ update_cart_amount_form.submit_update_cart(class="cart-quick-view-quantity-button", style="width: 50px; margin-right: -3px") }}
+								</div>
+
+								<a href="{{ url_for('orders.cart_delete', cart_id=item.id) }}"><p class="cart-quick-view-remove">Remove <span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></p></a>
+								<a href="{{ url_for('orders.cart_save_for_later', cart_id=item.id) }}"><p class="cart-quick-view-save blue-link">Save for later</p></a>
+
+
+							</form>
+						</div>
+					</section>
+				{% endif %}
+			{% endfor %}
+
+		</div>
+
+		{% if items.total == 0 %}
+			<p style="text-align: center ; padding: 0 0 10px 0 ;">No items in cart. </p>
+
+		{% else %}
+			<div class="cart-page">
+				<span style="color: #AD4E22; margin-right: 8px; margin-left: 4px">Page:</span>
+				{% for page_num in items.iter_pages() %}
+					{% if page_num == page %}
+						<strong><a class="blue-link" href="{{ url_for('orders.cart', page=page_num) }}">{{ page_num }}</a></strong>
+					{% elif page_num %}
+						<a class="blue-link" href="{{ url_for('orders.cart', page=page_num) }}">{{ page_num }}</a>
+
+					{% else %}
+						...
+					{% endif %}
+				{% endfor %}
+			</div>
+
+
+
+			<div class="cart-checkout">
+
+				{% if items.total == 1 %}
+					<p style="margin-left: 40px ; margin-bottom: 5px ; margin-top: -4px ;">Total ({{ items.total }} item) </p>
+				{% elif items.total > 1 %}
+					<p style="margin-left: 40px ; margin-bottom: 5px ; margin-top: -4px ;">Total ({{ items.total }} items) </p>
+
+				{% endif %}
+
+				
+				
+				<a href="{{ url_for('orders.pend_order') }}"><button class="search_button" style="float: right ; margin-top: -0px ;">Checkout</button></a>
+				
+
+			
+			</div>
+			<div class="added-up-price">
+		<div class="cart-quick-view-amount" style="float: right ; margin: 21px -40px 0 0;">
+			<div class="monero-hover-reveal" style="display: inline"><img class="tiny-monero-coin" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}" style="height: 18px; width: 18px ; position: absolute ; margin: -2px 40px 0 -2px; cursor: pointer">
+				<div class="monero-dropdown-menu" style="margin-top: 20px; margin-left: -5px">
+
+					<!-- USDT -->
+					<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 2px; float: left"><a style="padding-left: 38px;">$ {{ "{:.2f}".format(total_price * usdt) }}</a>
+								</a>
+								
+								<!-- BTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(total_price * btc) }}</a>
+								</a>
+
+								<!-- BCH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(total_price * bch) }}</a>
+								</a>
+
+								<!-- LTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ł {{ "{:.5f}".format(total_price * ltc) }}</a>
+								</a>
+
+								<!-- DOGE -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ð {{ "{:.2f}".format(total_price * doge) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₮ {{ "{:.5f}".format(total_price * xaut) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">♦ {{ "{:.5f}".format(total_price * eth) }}</a>
+								</a>
+					</a>
+				</div>
+		
+		 	
+			 <a style="margin-left: 20px;">{{ numpy.format_float_positional(total_price, trim='-', precision=8) }}</a>
+			</div>
+		</div>
+	</div>
+
+		<div style="float: none ; color: white ; margin-bottom: 46px ;">hi</div>
+
+		{% endif %}
+		
+
+	</div>
+
+
+
+
+
+		<!-- Saved for later -->
+		<section class="newest-posts">
+			<h1>Saved for Later ({{ saved_for_later.total }})</h1>
+
+			<!-- Main Card -->
+		<div class="cart-container">
+
+			<!-- Main Card -->
+			{% for item in saved_for_later.items %}
+				<section class="cart-quick-view" style="border-top: none ; margin-top: -2px ;">
+					{% if not item.saved_for_later_post %}
+						<img class="cart-quick-view-img" src="#">
+					{% else %}
+						<img class="cart-quick-view-img" src="{{ url_for('static', filename='img/posts/' + item.saved_for_later_post.gallery_1) }}">
+					{% endif %}
+
+
+					<div class="cart-quick-view-content">
+						{% if item.saved_for_later_post %}
+							<a class="cart-quick-view-title" href="{{ url_for('listings.item', post_id=item.saved_for_later_post.id, previous_page='orders.cart', username=current_user.username) }}">{{ item.saved_for_later_post.title }}</a>
+
+							<p style="color: orange"><span class="cart-quick-view-category">{{ SubCategory.query.get(item.saved_for_later_post.sub_category).name }}</span> - <a class="cart-quick-view-vendor" href="{{ url_for('users.profile', username=item.saved_for_later_post.vendor.username) }}">{{ item.saved_for_later_post.vendor.username }}</a></p>
+
+							{% if item.saved_for_later_post.fixed_to_fiat == True %}
+							<div class="cart-quick-view-amount">
+								<div class="monero-hover-reveal"><img class="tiny-monero-coin" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}" style="cursor: pointer; position: relative; margin-top: -2px">
+									<div class="monero-dropdown-menu" style="margin-top: 19px; margin-left: 137px">
+
+
+											<!-- USDT -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">$ {{ "{:.2f}".format(item.saved_for_later_post.price / usdt * usdt) }}</a>
+								</a>
+								
+								<!-- BTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(item.saved_for_later_post.price / usdt * btc) }}</a>
+								</a>
+
+								<!-- BCH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(item.saved_for_later_post.price / usdt * bch) }}</a>
+								</a>
+
+								<!-- LTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ł {{ "{:.5f}".format(item.saved_for_later_post.price / usdt * ltc) }}</a>
+								</a>
+
+								<!-- DOGE -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ð {{ "{:.2f}".format(item.saved_for_later_post.price / usdt * doge) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₮ {{ "{:.5f}".format(item.saved_for_later_post.price / usdt * xaut) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">♦ {{ "{:.5f}".format(item.saved_for_later_post.price / usdt * eth) }}</a>
+								</a>
+
+									</div>
+								</div>
+
+						 		<p>{{ numpy.format_float_positional(item.saved_for_later_post.price / Currency.query.filter_by(country="USDT").first().price, trim='-', precision=8) }}</p>
+							</div>
+
+
+
+						{% elif item.saved_for_later_post.fixed_to_fiat == False %}
+							<div class="monero-hover-reveal"><img class="tiny-monero-coin" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}" style="cursor: pointer; position: relative">
+								<div class="monero-dropdown-menu">
+
+									<!-- USDT -->
+									<a><span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}"></span> <span class="exchange-rates-country-name"> </span> <span class="exchange-rates-amount" style="margin-left: 20px">$ {{ "{:.2f}".format(0.21 * usdt) }}</span></a>
+									
+									<!-- BTC -->
+									<a><span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}"></span> <span class="exchange-rates-country-name"> </span> <span class="exchange-rates-amount" style="margin-left: 20px">₿ {{ "{:.5f}".format(0.21 * btc) }}</span></a>
+
+									<!-- BCH -->
+									<a><span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}"></span> <span class="exchange-rates-country-name"> </span> <span class="exchange-rates-amount" style="margin-left: 20px">₿ {{ "{:.5f}".format(0.21 * bch) }}</span></a>
+
+									<!-- LTC -->
+									<a><span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}"></span> <span class="exchange-rates-country-name"> </span> <span class="exchange-rates-amount" style="margin-left: 20px">Ł {{ "{:.5f}".format(0.21 * ltc) }}</span></a>
+
+									<!-- DOGE -->
+									<a><span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}"></span> <span class="exchange-rates-country-name"> </span> <span class="exchange-rates-amount" style="margin-left: 20px">Ð {{ "{:.2f}".format(0.21 * doge) }}</span></a>
+
+									<!-- ETH -->
+									<a><span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}"></span> <span class="exchange-rates-country-name"> </span> <span class="exchange-rates-amount" style="margin-left: 20px">♦ {{ "{:.5f}".format(0.21 * eth) }}</span></a>
+								</div>
+							</div>
+							 	
+							 <p>{{ numpy.format_float_positional(item.saved_for_later_post.price, trim='-', precision=8) }}</p>
+							</div>
+						{% endif %}
+
+
+							{% if item.saved_for_later_post.supply - item.saved_for_later_post.pending > 0 %}
+							<p class="cart-quick-view-stock" style="color: green ;">In stock <span style="color: black">(</span><span style="color: #34A4EB">{{ item.saved_for_later_post.supply - item.saved_for_later_post.pending}}</span><span style="color: black">)</span></p>
+						{% else %}
+							<p class="cart-quick-view-stock" style="color: red ;">Out of stock</p>
+						{% endif %}
+
+
+							<p class="cart-quick-view-quantity">Quantity: </p>
+							<form class="" method="POST" action="">
+								{{ update_saved_amount_form.hidden_tag() }}
+								<input type="text" name="hidden_saved_id" value="{{ item.id }}" style="position: absolute; visibility: hidden">
+
+								<div class="cart-quick-view-quantity-input-field">
+									<input type="number" id="saved-view-amount" name="saved-view-amount" placeholder="{{ item.buying }}" min="1" max="{{ item.saved_for_later_post.supply }}" style="width: 38px ; border-radius: 6px ; border: grey 1px solid ; height: 15px ; padding: 2px ;">
+									<!--<input type="submit" id="update_quantity_cart" name="update_quantity_cart" class="cart-quick-view-quantity-button" value="Update" style="width: 52px">-->
+									<!-- Button -->
+									{{ update_saved_amount_form.submit_update_saved(class="cart-quick-view-quantity-button", style="width: 50px; margin-right: -3px") }}
+								</div>
+
+
+								<!-- Replace orders.cart_delete with orders.saved_for_later_delete -->
+								<a href="{{ url_for('orders.saved_delete', saved_id=item.id) }}"><p class="cart-quick-view-remove">Remove <span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></p></a>
+
+								{{ update_saved_amount_form.submit_add_to_cart(class="link", style="border: none; color: #34A4EB; background: none; padding: 0; cursor: pointer; float: right; width: 70px; margin-right: 20px; margin-top: -15px") }}
+								<!--
+								<a href="{{ url_for('orders.add_to_cart', post_id=item.saved_for_later_post.id, buying=item.buying) }}"><button class="link" style="float: right"><p class="cart-quick-view-save blue-link">Add to Cart</p></button></a>-->
+
+
+							</form>
+
+						{% else %}
+							<p style="text-align: center; font-size: 30px; margin-top: 30px; margin-right: 75px; color: #AD4E22">Post was deleted &nbsp;):</p>
+
+							<a href="{{ url_for('orders.saved_delete', saved_id=item.id) }}"><p class="cart-quick-view-remove" style="margin-top: -25px">Remove <span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></p></a>
+						{% endif %}
+					</div>
+				</section>
+			{% endfor %}
+
+			{% if saved_for_later.total != 0 %}
+			<div style="margin-top: 8px;">
+				<span style="color: #AD4E22; margin-right: 8px; margin-left: 4px">Page:</span>
+				{% for page_num in saved_for_later.iter_pages() %}
+					{% if page_num == page %}
+						<strong><a class="blue-link" href="{{ url_for('orders.cart', page=page_num) }}">{{ page_num }}</a></strong>
+					{% elif page_num %}
+						<a class="blue-link" href="{{ url_for('orders.cart', page=page_num) }}">{{ page_num }}</a>
+					{% else %}
+						...
+					{% endif %}
+				{% endfor %}
+			</div>
+			{% endif %}
+
+				
+
+
+			{% if saved_for_later.total == 0 %}
+				<p style="text-align: center ; padding: 6px 0 2px 0 ;">No items saved for later. </p>
+			{% endif %}
+
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<!-- Main Card --><!---
+			<section class="cart-quick-view">
+				<img class="cart-quick-view-img" src="{{ url_for('static', filename='img/profiles/default_profile.png') }}">
+
+				<div class="cart-quick-view-content">
+					<a class="cart-quick-view-title" href="#">How To Code a Simple Website</a>
+
+					<p><span class="cart-quick-view-category">E-books</span> - <a class="cart-quick-view-vendor" href="#">BlewSky</a></p>
+
+					<div class="cart-quick-view-amount">
+						<img class="tiny-monero-coin" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+					 	<p>0.05</p>
+					</div>
+
+					<p class="cart-quick-view-stock" style="color: red ;">Not in stock</p>
+
+
+					<p class="cart-quick-view-quantity">Quantity: </p>
+					<div class="cart-quick-view-quantity-input-field"><input placeholder="1"><button class="cart-quick-view-quantity-button">Update</button></div>
+					<p class="cart-quick-view-remove">Remove <span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></p>
+					<p class="cart-quick-view-save blue-link">Add to cart</p>
+				</div>
+			</section> --->
+
+
+			<!-- Main Card --> <!---
+			<section class="cart-quick-view">
+				<img class="cart-quick-view-img" src="{{ url_for('static', filename='img/profiles/default_profile.png') }}">
+
+				<div class="cart-quick-view-content">
+					<a class="cart-quick-view-title" href="#">How To Code a Simple Website</a>
+
+					<p><span class="cart-quick-view-category">E-books</span> - <a class="cart-quick-view-vendor" href="#">BlewSky</a></p>
+
+					<div class="cart-quick-view-amount">
+						<img class="tiny-monero-coin" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+					 	<p>0.05</p>
+					</div>
+
+					<p class="cart-quick-view-stock" style="color: green ;">In stock</p>
+
+
+					<p class="cart-quick-view-quantity">Quantity: </p>
+					<div class="cart-quick-view-quantity-input-field"><input placeholder="1"><button class="cart-quick-view-quantity-button">Update</button></div>
+					<p class="cart-quick-view-remove">Remove <span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></p>
+					<p class="cart-quick-view-save blue-link">Add to cart</p>
+				</div>
+			</section>
+		</section> -->
+
+
+</section>
+	
+{% endblock right_column %}

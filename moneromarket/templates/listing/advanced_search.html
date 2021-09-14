@@ -1,0 +1,241 @@
+{% extends "abstracts/home_shopping_layout.html" %}
+
+{% block right_column %}
+
+	<section class="listings-view">
+		<h1>Results ({{ posts.total }})</h1>
+
+		<div class="listings-categories-top-bar">
+			<!-- <p style="font-size: 15px ;">Filter: <span>Books ➞ E-Books</span></p> -->
+			<p style="font-size: 15px ;">Filter: <span>{{ item }} - {{ vendor }} - {{ price_from }} - {{ price_to }} - {{ shipping_from }} - {{ shipping_to }} </span></p>
+
+		</div>
+
+		<p>Sort: 
+			{% if filter_by == "newest" %}
+				<strong><a href="{{ url_for('listings.advanced_search', item=item, vendor=vendor, shipping_from=shipping_from, shipping_to=shipping_to, currency=currency, price_from=price_from, price_to=price_to, rating_5=rating_5, rating_4=rating_4,
+				rating_3=rating_3, rating_2=rating_2, rating_1=rating_1, filter_by='newest', page=page) }}" style="text-decoration: none"><span class="listings-sort-clickable">Newest</span></a></strong>
+			{% else %}
+				<a href="{{ url_for('listings.advanced_search', item=item, vendor=vendor, shipping_from=shipping_from, shipping_to=shipping_to, currency=currency, price_from=price_from, price_to=price_to, rating_5=rating_5, rating_4=rating_4,
+				rating_3=rating_3, rating_2=rating_2, rating_1=rating_1, filter_by='newest', page=page) }}" style="text-decoration: none"><span class="listings-sort-clickable">Newest</span></a>
+			{% endif %}
+
+			{% if filter_by == "oldest" %}
+				<strong><a href="{{ url_for('listings.advanced_search', item=item, vendor=vendor, shipping_from=shipping_from, shipping_to=shipping_to, currency=currency, price_from=price_from, price_to=price_to, rating_5=rating_5, rating_4=rating_4,
+				rating_3=rating_3, rating_2=rating_2, rating_1=rating_1, filter_by='oldest', page=page) }}" style="text-decoration: none"><span class="listings-sort-clickable">Oldest</span></a></strong>
+			{% else %}
+				<a href="{{ url_for('listings.advanced_search', item=item, vendor=vendor, shipping_from=shipping_from, shipping_to=shipping_to, currency=currency, price_from=price_from, price_to=price_to, rating_5=rating_5, rating_4=rating_4,
+				rating_3=rating_3, rating_2=rating_2, rating_1=rating_1, filter_by='oldest', page=page) }}" style="text-decoration: none"><span class="listings-sort-clickable">Oldest</span></a>
+			{% endif %}
+
+			{% if filter_by == "random" %}
+				<strong><a href="{{ url_for('listings.advanced_search', item=item, vendor=vendor, shipping_from=shipping_from, shipping_to=shipping_to, currency=currency, price_from=price_from, price_to=price_to, rating_5=rating_5, rating_4=rating_4,
+				rating_3=rating_3, rating_2=rating_2, rating_1=rating_1, filter_by='random', page=page) }}" style="text-decoration: none"><span class="listings-sort-clickable">Random</span></a></strong>
+			{% else %}
+				<a href="{{ url_for('listings.advanced_search', item=item, vendor=vendor, shipping_from=shipping_from, shipping_to=shipping_to, currency=currency, price_from=price_from, price_to=price_to, rating_5=rating_5, rating_4=rating_4,
+				rating_3=rating_3, rating_2=rating_2, rating_1=rating_1, filter_by='random', page=page) }}" style="text-decoration: none"><span class="listings-sort-clickable">Random</span></a>
+			{% endif %}
+
+			{% if filter_by == "high" %}
+				<strong><a href="{{ url_for('listings.advanced_search', item=item, vendor=vendor, shipping_from=shipping_from, shipping_to=shipping_to, currency=currency, price_from=price_from, price_to=price_to, rating_5=rating_5, rating_4=rating_4,
+				rating_3=rating_3, rating_2=rating_2, rating_1=rating_1, filter_by='high', page=page) }}" style="text-decoration: none"><span class="listings-sort-clickable">Price (High)</span></a></strong>
+			{% else %}
+				<a href="{{ url_for('listings.advanced_search', item=item, vendor=vendor, shipping_from=shipping_from, shipping_to=shipping_to, currency=currency, price_from=price_from, price_to=price_to, rating_5=rating_5, rating_4=rating_4,
+				rating_3=rating_3, rating_2=rating_2, rating_1=rating_1, filter_by='high', page=page) }}" style="text-decoration: none"><span class="listings-sort-clickable">Price (High)</span></a>
+			{% endif %}
+
+			{% if filter_by == "low" %}
+				<strong><a href="{{ url_for('listings.advanced_search', item=item, vendor=vendor, shipping_from=shipping_from, shipping_to=shipping_to, currency=currency, price_from=price_from, price_to=price_to, rating_5=rating_5, rating_4=rating_4,
+				rating_3=rating_3, rating_2=rating_2, rating_1=rating_1, filter_by='low', page=page) }}" style="text-decoration: none"><span class="listings-sort-clickable">Price (Low)</span></a></strong>
+			{% else %}
+				<a href="{{ url_for('listings.advanced_search', item=item, vendor=vendor, shipping_from=shipping_from, shipping_to=shipping_to, currency=currency, price_from=price_from, price_to=price_to, rating_5=rating_5, rating_4=rating_4,
+				rating_3=rating_3, rating_2=rating_2, rating_1=rating_1, filter_by='low', page=page) }}" style="text-decoration: none"><span class="listings-sort-clickable">Price (Low)</span></a>
+			{% endif %}
+		</p>
+
+
+			<!-- Main Card -->
+		<div class="cart-container">
+
+			{% for post in posts.items %}
+				<!-- Main Card -->
+				<section class="cart-quick-view" style="border-top: none ; margin-top: -2px ;">
+					<img class="cart-quick-view-img" src="{{ url_for('static', filename='img/posts/' + post.gallery_1) }}">
+
+					<div class="cart-quick-view-content">
+						<a class="cart-quick-view-title" href="{{ url_for('listings.item', post_id=post.id, previous_page=link_back, username=text, filter_by=filter_by) }}">{{ post.title }}</a>
+
+						<p><span class="cart-quick-view-category">{{ SubCategory.query.get(post.sub_category).name }}</span> - <a class="cart-quick-view-vendor" href="{{ url_for('users.profile', username=post.vendor.username) }}">{{ post.vendor.username }}</a></p>
+
+						{% if post.fixed_to_fiat == True %}
+							<div style="margin-top: 5px">
+								<div style="float: left; color: grey; font-size: 15px;">Price:</div><div class="monero-hover-reveal" style="display: inline"><img class="tiny-monero-coin" style="height: 18px; width: 18px ; position: relative ; margin: -2px -1px 0 5px; cursor: pointer" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+						
+							<div class="monero-dropdown-menu" style="margin-top: 20px; margin-left: 180px">
+								<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+							 	<!-- USDT -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">$ {{ "{:.2f}".format(post.price / usdt * usdt) }}</a>
+								</a>
+								
+								<!-- BTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(post.price / usdt * btc) }}</a>
+								</a>
+
+								<!-- BCH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(post.price / usdt * bch) }}</a>
+								</a>
+
+								<!-- LTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ł {{ "{:.5f}".format(post.price / usdt * ltc) }}</a>
+								</a>
+
+								<!-- DOGE -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ð {{ "{:.2f}".format(post.price / usdt * doge) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₮ {{ "{:.5f}".format(post.price / usdt * xaut) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">♦ {{ "{:.5f}".format(post.price / usdt * eth) }}</a>
+								</a>
+							</div>
+								
+
+						 		<p style="font-size: 15px">{{ numpy.format_float_positional(post.price / Currency.query.filter_by(country="USDT").first().price, trim='-', precision=8) }}</p></div>
+							</div>
+
+
+
+						{% elif post.fixed_to_fiat == False %}
+							<div class="monero-hover-reveal"><img class="tiny-monero-coin" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}" style="cursor: pointer; position: relative">
+								<div class="monero-dropdown-menu">
+
+									<!-- USDT -->
+									<a><span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}"></span> <span class="exchange-rates-country-name"> </span> <span class="exchange-rates-amount" style="margin-left: 20px">$ {{ "{:.2f}".format(0.21 * usdt) }}</span></a>
+									
+									<!-- BTC -->
+									<a><span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}"></span> <span class="exchange-rates-country-name"> </span> <span class="exchange-rates-amount" style="margin-left: 20px">₿ {{ "{:.5f}".format(0.21 * btc) }}</span></a>
+
+									<!-- BCH -->
+									<a><span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}"></span> <span class="exchange-rates-country-name"> </span> <span class="exchange-rates-amount" style="margin-left: 20px">₿ {{ "{:.5f}".format(0.21 * bch) }}</span></a>
+
+									<!-- LTC -->
+									<a><span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}"></span> <span class="exchange-rates-country-name"> </span> <span class="exchange-rates-amount" style="margin-left: 20px">Ł {{ "{:.5f}".format(0.21 * ltc) }}</span></a>
+
+									<!-- DOGE -->
+									<a><span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}"></span> <span class="exchange-rates-country-name"> </span> <span class="exchange-rates-amount" style="margin-left: 20px">Ð {{ "{:.2f}".format(0.21 * doge) }}</span></a>
+
+									<!-- ETH -->
+									<a><span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}"></span> <span class="exchange-rates-country-name"> </span> <span class="exchange-rates-amount" style="margin-left: 20px">♦ {{ "{:.5f}".format(0.21 * eth) }}</span></a>
+								</div>
+							</div>
+							 	
+							 <p>{{ numpy.format_float_positional(post.price, trim='-', precision=8) }}</p>
+							</div>
+						{% endif %}
+
+
+						{% if post.supply - post.pending > 0 %}
+							<p class="cart-quick-view-stock" style="color: green ;">In stock</p>
+						{% else %}
+							<p class="cart-quick-view-stock" style="color: red ;">Not in stock</p>
+						{% endif %}
+
+
+
+						<form class="listing-view-right-float" method="POST" action="">
+							{{ form.hidden_tag() }}
+
+							<input type="text" name="hidden_post_id" value="{{ post.id }}" style="position: absolute; visibility: hidden">
+
+
+							{% if current_user.username == post.vendor.username %}
+								<p class="listing-quick-view-quantity listing-quick-view-quantity-margins" style="">Quantity: </p>
+								<span class="listing-quick-view-quantity-input-field listing-quick-view-quantity-input-field-margins" style=""><input type="number" placeholder="{{ post.supply }}" disabled style="width: 38px ; border-radius: 6px ; border: grey 1px solid ; height: 15px ; padding: 2px ;"></span>
+
+								<p class="listing-quick-view-minimum listing-quick-view-minimum-margins" style="">Pending: </p>
+								<span class="listing-quick-view-minimum-input-field listing-quick-view-minimum-input-field-margins" style=""><input type="number" placeholder="{{ post.pending }}" disabled style="width: 38px ; border-radius: 6px ; border: grey 1px solid ; height: 15px ; padding: 2px ;"></span>
+
+								<p class="listing-quick-view-sales listing-quick-view-sales-margins" style="">Sales: 0</p>
+							
+								<p class="listing-quick-view-rating listing-quick-view-rating-margins" style="">Ratings: 0</p>
+
+
+							{% else %}
+								<p class="listing-quick-view-quantity listing-quick-view-quantity-avaialable-margins" style="">Available: </p>
+								<span class="listing-quick-view-quantity-input-field"><input lass="listing-quick-view-quantity-input-field" type="number" min="0" max="{{ post.supply }}" placeholder="{{ post.supply - post.pending }}" disabled style="width: 38px ; border-radius: 6px ; border: grey 1px solid ; height: 15px ; padding: 2px ;"></span>
+
+								<p class="listing-quick-view-minimum listing-quick-view-minimum-buy-margins" style="">Buy: </p>
+
+
+								<!-- This is processed as an <input> -->
+								<div class="listing-quick-view-minimum-buying" style="">
+								<input type="number" name="quantity-buying" min="1" max="{{ post.supply - post.pending }}" placeholder="1", class="listing-quick-view-minimum-input-field-buying" style="width: 38px ; border-radius: 6px ; border: grey 1px solid ; height: 15px ; padding: 2px ;"></div>
+
+								<p class="listing-quick-view-sales">Sales: 0</p>
+							
+								<p class="listing-quick-view-rating">Ratings: 0</p>
+
+
+								<!-- <span class="listing-quick-view-minimum-input-field"><input placeholder="1"></span> -->
+							{% endif %}
+					
+
+					
+
+							
+							{% if current_user.username == post.vendor.username %}
+								<a href="{{ url_for('listings.delete', post_id=post.id) }}"><p class="listing-quick-view-save red-link" style="margin-right: 15px">Delete listing</p></a>
+							{% else %}
+								
+								<!--
+								<a href="{{ url_for('orders.add_to_cart', post_id=post.id, buying=3) }}"><p class="listing-quick-view-save blue-link">Add to Cart</p></a>-->
+
+
+								{{ form.submit_cart(class="link", style="border: none; color: #34A4EB; background: none; padding: 0; cursor: pointer; float: right; width: 70px; margin-right: 20px") }}
+							{% endif %}
+						</form>
+
+					</div>
+
+					{% if post.supply - post.pending > 0 %}
+						<div class="listing-quick-view-date-and-shipping-edit container">
+							<p class="listing-quick-view-date-and-shipping-left">Date: {{ post.date_posted.strftime("%b %-d, %H:%M") }}</p>
+							<p class="listing-quick-view-date-and-shipping-right">Shipping: {{ post.shipping_from }} ➞ {{ post.shipping_to }}</p>
+						</div>
+
+					{% else %}
+						<div class="listing-quick-view-date-and-shipping-out-of-stock-edit container">
+							<p class="listing-quick-view-date-and-shipping-left">Date: {{ post.date_posted.strftime("%b %-d, %H:%M") }}</p>
+							<p class="listing-quick-view-date-and-shipping-right">Shipping: {{ post.shipping_from }} ➞ {{ post.shipping_to }}</p>
+						</div>
+					{% endif %}
+				</section>
+
+			{% endfor %}
+
+
+
+
+			<!-- Pagination -->
+			{% if posts.total != 0 %}
+			<div style="margin-top: 8px">
+				<span style="color: #AD4E22; margin-right: 8px; margin-left: 4px;">Page:</span>
+				{% for page_num in posts.iter_pages() %}
+					{% if page_num %}
+						<a class="blue-link" href="{{ url_for('listings.advanced_search', item=item, vendor=vendor, shipping_from=shipping_from, shipping_to=shipping_to, currency=currency, price_from=price_from, price_to=price_to, rating_5=rating_5, rating_4=rating_4, rating_3=rating_3, rating_2=rating_2, rating_1=rating_1, page=page_num, filter_by=filter_by) }}">{{ page_num }}</a>
+
+					{% else %}
+						...
+					{% endif %}
+				{% endfor %}
+			</div>
+			{% endif %}
+
+			
+		</section>
+
+
+{% endblock right_column %}

@@ -1,0 +1,340 @@
+<!-- 	
+	Date Started: 	02-03/2021
+	Creator: 		Janoher
+	Email:			janoher@tuta.io
+
+	Website Email:	moneromarket@tuta.io
+ -->
+
+<!DOCTYPE HTML>
+<html lang="en">
+
+	<head>
+		<title>MoneroMarket - Home</title>
+
+		<!-- CSS -->
+		<meta name="author" content="Janoher-Dev">
+		<meta name="viewpoint" content="width=device-width" initial-scale="1.0" charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+
+
+
+	</head>
+
+
+
+	<body>
+
+
+		<!-- Top part where the brand name and the right shopping links are -->
+		<header>
+			<!-- Monero Market banner on top left corner -->
+			<div class="header-brand" style="margin-bottom: -30px">
+				<span><img class="header-image" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}" height="50px"></span>
+				
+			</div>
+			<h1 style="margin-top: 40px"><span class="brand-monero-text">onero</span> <span class="brand-market-text">Market</span></h1>
+
+			<!-- Small blue links all the way on the right -->
+			<!-- Order goes from right to left -->
+			<ul class="header-right-links">
+
+				{% if current_user.is_admin %}
+					<li class="admin-menu-top-right" style="margin-top: 2px ; margin-left: 5px"><span><a style="color: crimson" href="{{ url_for('employees.home') }}">Admin</a></span></li>
+
+				{% elif current_user.is_employee %}
+					<li class="employee-menu-top-right" style="margin-top: 2px ; margin-left: 5px"><span><a style="color: crimson" href="{{ url_for('employees.home') }}">Employee</a></span></li>
+
+				{% endif %}
+
+
+
+				<!-- Time -->
+				<li><span><img style="margin-bottom: -4px ;" class="cart_icon" src="{{ url_for('static', filename='img/icons/clock.png') }}"></span>
+					<span class="header-right-links-monero-value"><a href="">{{ datetime.strftime("%b %-d, %H:%M:%S") }} UTC</a></span></li>
+
+
+
+				{% if current_user.is_authenticated %}
+
+					<!-- Will put Monero Wallet funcionality in later in a future version/update
+					<li><span><img class="tiny-monero-coin" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}"></span>
+						<span class="header-right-links-monero-value" style="margin-top: 5px"><a href="{{ url_for('wallets.home') }}" style="margin: 0px ">0.000000</a></span></li>-->
+					<li><span><img class="tiny-monero-coin" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}"></span>
+						<span class="header-right-links-monero-value" style="margin-top: 0px;"><a href="{{ url_for('wallets.home') }}" style="margin: 0px 0 0px 0;">Wallet</a></span></li>
+					
+
+					
+					<li><span><img class="messages_icon" src="{{ url_for('static', filename='img/icons/envelope_message.png') }}"></span>
+						<span><a href="{{ url_for('messages.list', filter_by='received') }}">Messages</a></span></li>
+
+				{% endif %}
+					<li><span><img class="cart_icon" src="{{ url_for('static', filename='img/icons/shopping_cart.png') }}"></span>
+						<span><a href="{{ url_for('orders.cart') }}">Cart</a></span></li>
+
+			</ul>
+
+		</header>
+
+
+
+		<!-- Main links -->
+		<nav class="main-nav">
+
+			<!-- Negative margin top was added to cancel out form margin -->
+			<ul class="main-nav-list">
+
+				{% if current_page == "home" %}
+					<li><a class="current" href="{{ url_for('main.home') }}">Home</a></li>
+				{% else %}
+					<li><a href="{{ url_for('main.home') }}">Home</a></li>
+				{% endif %}
+
+
+				<!-- Navigation bar to show if user is logged in -->
+				{% if current_user.is_authenticated %}
+
+					<!-- Make navigation tabs have an orange background if at the current page -->
+					{% if current_page == "account" %}
+						<li class="nav-account"><a class="current" href="">Account ▼</a>
+
+							<!-- Split the dropdown into multiple different ul's so that they
+								 don't take up the space of the whole entire nav bar -->
+							<ul class="nav-dropdown">
+								<li><a href="{{ url_for('users.favorites') }}">Favorites</a></li>
+								<ul>
+									<li><a href="{{ url_for('orders.list', filter_by='buying') }}">Orders</a></li>
+									<ul>
+										<li><a href="{{ url_for('users.settings') }}">Settings</a></li>
+									</ul>
+									
+								</ul>
+								
+							</ul>
+						</li>
+
+					{% else %}
+						<li class="nav-account"><a href="">Account ▼</a>
+
+							<!-- Split the dropdown into multiple different ul's so that they
+								 don't take up the space of the whole entire nav bar -->
+							<ul class="nav-dropdown">
+								<li><a href="{{ url_for('users.favorites') }}">Favorites</a></li>
+								<ul>
+									<li><a href="{{ url_for('orders.list', filter_by='buying') }}">Orders</a></li>
+									<ul>
+										<li><a href="{{ url_for('users.settings') }}">Settings</a></li>
+									</ul>
+									
+								</ul>
+								
+							</ul>
+						</li>
+
+					{% endif %}
+
+					{% if current_page == "profile" %}
+						<li><a class="current" href="{{ url_for('users.profile', username=current_user.username) }}">Profile</a></li>
+					{% else %}
+						<li><a href="{{ url_for('users.profile', username=current_user.username) }}">Profile</a></li>
+					{% endif %}
+
+					<!--
+					{% if current_page == "faq" %}
+						<li><a class="current" href="#">FAQ</a></li>
+					{% else %}
+						<li><a href="#">FAQ</a></li>
+					{% endif %}
+
+					{% if current_page == "support" %}
+						<li><a class="current" href="#">Support</a></li>
+					{% else %}
+						<li><a href="#">Support</a></li>
+					{% endif %}
+					-->
+
+
+					<!-- Sign out button -->
+					<li><a href="{{ url_for('users.logout') }}">Sign Out</a></li>
+
+
+				<!-- Navigation bar to show if user is NOT logged in -->
+				{% else %}
+
+					{% if current_page == "pgp" %}
+						<li><a class="current" href="{{ url_for('main.pgp', key=key) }}">PGP</a></li>
+					{% else %}
+						<li><a href="{{ url_for('main.pgp', key=key) }}">PGP</a></li>
+					{% endif %}
+
+					{% if current_page == "faq" %}
+						<li><a class="current" href="{{ url_for('main.faq') }}">FAQ</a></li>
+					{% else %}
+						<li><a href="{{ url_for('main.faq') }}">FAQ</a></li>
+					{% endif %}
+
+
+					{% if current_page == "login" %}
+						<li><a class="current" href="{{ url_for('users.login') }}">Sign In</a></li>
+					{% else %}
+						<li><a href="{{ url_for('users.login') }}">Sign In</a></li>
+					{% endif %}
+
+
+					{% if current_page == "register" %}
+						<li><a class="current" href="{{ url_for('users.register') }}">Sign Up</a></li>
+					{% else %}
+						<li><a href="{{ url_for('users.register') }}">Sign Up</a></li>
+					{% endif %}
+
+				{% endif %}
+
+
+				<!-- The original search button view -->
+				<!-- Search button on right of navigation bar --><!--
+				<li class="main-nav-search-bar"><button class="search_button">Search</button></li>
+				<li class="main-nav-search-bar"><input type="text" placeholder="Search.."></li>-->
+
+
+					<!-- Form for the search bar at the right side -->
+				<form class="search-bar-nav-form" method="POST" action="">
+					<!-- SECRET KEY to protect from foreign attacks -->
+					{{ search_form.hidden_tag() }}
+					<!-- Button -->
+					<li class="main-nav-search-bar">{{ search_form.submit_search(class="search_button", style="margin: 10px 20px 0 0; padding: 10px; padding-top: 6px; padding-bottom: 6px" ) }}</li>
+					
+					<li class="main-nav-search-bar">
+						
+						<!-- This is processed as an <input> -->
+						{{ search_form.text(placeholder="Search..") }}
+
+					</li>
+
+				</form>
+			</ul>
+			
+		</nav>
+
+
+
+		
+		<section class="container">
+			{% with messages = get_flashed_messages(with_categories=true) %}
+
+				{% if messages %}
+
+					{% for category, message in messages %}
+
+						<div class="{{ category }}">
+							{{ message }}
+						</div>
+					{% endfor %}
+
+				{% endif %}
+			{% endwith %}
+
+
+
+
+
+
+
+
+
+
+			<!-- Where all child's will extend from -->
+			{% block content %}
+			{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+		</section> <!-- Container -->
+
+		<footer>
+			<div style="margin: auto">
+				<div style="width: 24%; display: inline-block">
+					<strong><p style="text-align: center; margin-bottom: 7px;">Help Desk</p></strong>
+					<p style="text-align: center; margin-bottom: 5px;"><a href="/faq#what-is-monero" target="_blank" class="white-link">What is Monero?</a></p>
+					<p style="text-align: center; margin-bottom: 5px;"><a href="/faq#send-receive-monero" target="_blank" class="white-link">How to Deposit & Withdraw</a></p>
+					<p style="text-align: center; margin-bottom: 5px;"><a href="/faq#why-use-monero" target="_blank" class="white-link">Why Use & How This Site Works</a></p>
+					<p style="text-align: center; margin-bottom: 5px;"><a href="/faq#how-to-contact-us" target="_blank" class="white-link">Contact Us</a></p>
+
+				</div>
+				<div style="width: 24%; display: inline-block">
+					<strong><p style="text-align: center; margin-bottom: 7px;">Useful Links</p></strong>
+					<p style="text-align: center; margin-bottom: 5px;"><a href="https://getmonero.org/downloads" target="_blank" class="white-link">GetMonero.org</a></p>
+					<p style="text-align: center; margin-bottom: 5px;"><a href="https://localmonero.co/nojs/buy-monero-with-usd-in-united-states-of-america" target="_blank" class="white-link">LocalMonero.co</a></p>
+					<p style="text-align: center; margin-bottom: 5px;"><a href="https://monerohash.com/explorer" target="_blank" class="white-link">MoneroHash.com</a></p>
+					<p style="text-align: center; margin-bottom: 5px;"><a href="https://changenow.io/?from=xmr&to=btc&amount=1" target="_blank" class="white-link">ChangeNOW.io</a></p>
+				</div>
+				<div style="width: 24%; display: inline-block">
+					<strong><p style="text-align: center; margin-bottom: 7px;">Statistics</p></strong>
+					<p style="text-align: center; margin-bottom: 5px;">Users: {{ statistic_users }}</p>
+					<p style="text-align: center; margin-bottom: 5px;">Listings: {{ statistic_listings }}</p>
+					<p style="text-align: center; margin-bottom: 5px;">Disputes: {{ statistic_disputes }}</p>
+					<p style="text-align: center; margin-bottom: 5px;">Sales: 0</p>
+				</div>
+				<div style="width: 24%; display: inline-block">
+					<strong><p style="text-align: center; margin-bottom: 7px;">Other</p></strong>
+					<p style="text-align: center; margin-bottom: 5px;"><a href="#" class="white-link">White Paper</a></p>
+					<p style="text-align: center; margin-bottom: 5px;"><a href="#" class="white-link">Regulations and Use</a></p>
+					<p style="text-align: center; margin-bottom: 5px;"><a href="#" class="white-link">Terms of Service and Privacy</a></p>
+					<p style="text-align: center; margin-bottom: 5px;"><a href="#" class="white-link">Source Code</a></p>
+				</div>
+			</div>
+
+		</footer>
+		<!-- <p>Copyright 2021</p> -->
+	</body>
+
+
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

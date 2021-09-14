@@ -1,0 +1,384 @@
+{% extends "abstracts/layout.html" %}
+
+{% block content %}
+	<section class="login-register-view">	
+		<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+		<ul class="login-register-alert">
+			<li><a style="margin-right: 2px">Please send</a> <div class="monero-hover-reveal" style="display: inline;"><img class="tiny-monero-coin" style="height: 18px; width: 18px ; position: absolute ; margin: -1px 2px 0 -2px; cursor: pointer" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+						
+							<div class="monero-dropdown-menu" style="margin-top: -3px; margin-left: 95px;">
+								<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+							 	<!-- USDT -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #FFF6BE ">$ {{ "{:.2f}".format(total_price * usdt) }}</a>
+								</a>
+								
+								<!-- BTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #FFF6BE ">₿ {{ "{:.5f}".format(total_price * btc) }}</a>
+								</a>
+
+								<!-- BCH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #FFF6BE ">₿ {{ "{:.5f}".format(total_price * bch) }}</a>
+								</a>
+
+								<!-- LTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #FFF6BE ">Ł {{ "{:.5f}".format(total_price * ltc) }}</a>
+								</a>
+
+								<!-- DOGE -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #FFF6BE ">Ð {{ "{:.2f}".format(total_price * doge) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #FFF6BE ">₮ {{ "{:.5f}".format(total_price * xaut) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #FFF6BE ">♦ {{ "{:.5f}".format(total_price * eth) }}</a>
+								</a>
+							</div>
+
+				 		<a style="margin-left: 20px; color: orange">{{ numpy.format_float_positional(total_price, trim='-', precision=8) }}</a></div> to the address on the next screen after submitting order.</li>
+
+
+
+
+			<li>If you edit your <span style="color: green">CART</span> before pressing the <span style="font-style: italic">"Place Order"</span> button, your order will be <span style="color: red; text-transform: uppercase;">canceled</span> and you will have to <span style="color: blue; text-transform: uppercase;">checkout</span> the items again.</li>
+
+			<!--
+			<li>Product(s) have been put on <span style="color: orange ;">PENDING</span> so that the item(s) won't be sold out when you pay for it.</li>
+			-->
+			<li>You will have 15 minutes to fill out information below and submit the order(s) or it will be canceled on <span style="color: red">{{ (pending_order.date_reserved + timedelta(minutes=+15)).strftime("%b %-d, %H:%M:%S") }} UTC time</span>. <a class="blue-link" href="#">Get help.</a></li>
+			<!--<li>You will have 2 hours (<span style="color: orange ;">120 minutes</span>) to pay to the address on the next screen after submitting or the order(s) will be canceled on <span style="color: red">{{ (pending_order.date_reserved + timedelta(hours=+2)).strftime("%b %-d, %H:%M:%S") }} UTC time.</span></li>-->
+			<!--<li>If time <span style="color: crimson">EXPIRED</span>, click to generate new address <a class="blue-link" href="{{ url_for('orders.pend_order') }}">here.</a></li>-->
+			
+			
+
+			<!--
+			<li>Please allow up to <span style="color: blue ;">24 HOURS</span> after payment has been verified and accepted for vendor(s) to confirm order.</li>
+			<li>Monero is sent to <span style="color: magenta" ;>ESCROW</span> to prevent <span style="color: red ;">SCAMS</span> and also to allow <span style="color: lime ;">REFUNDS</span> and <span style="color: orange ;">RETURNS</span>.</li>
+
+			-->
+			<li>Refunds will be sent to your <span style="color: #AAAFFF ;">cold wallet</span> (or <span style="color: grey ;">in-store wallet</span> if return address is not specified).</li>
+			<!-- <li>Refunds will be sent to your <span style="color: #AAAFFF ;">cold wallet's </span><span style="color: grey ;">RETURN ADDRESS</span>, so please make sure address is typed correctly.</li> -->
+			<li>Please make sure that your <span style="color: #AAAFFF ;">cold wallet's</span> return address (if submitting a return address) is typed <span style="color: green">CORRECTLY</span>, as funds sent to incorrectly typed return addresses <span style="color: crimson">CANNOT</span> be recovered.</li>
+
+			<!--
+			<li>Anything <span style="color: blue ;">MORE</span> than the required amount will be refunded at <span style="color: lime">NO CHARGE</span> (if the slowest network fee is <span style="color: red ;">LESS</span> than excess amount) and the order will carry on.</li>
+			<li>Anything <span style="color: red ;">LESS</span> than the required amount will cancel the order and will be refunded, but with a <span style="color: magenta ;">5% FEE</span>.</li>
+
+			
+			<li>Keep track of your <span style="color: purple ;">TRANSACTION ID (Tx ID)</span> in case something goes wrong with the payment for us to <span style="color: green">CONFIRM</span> and <span style="color: orange">FIX</span> things.</li>
+			<li>Failure to provide <span style="color: brown">TRANSACTION ID (Tx ID)</span> will result in a <span style="color: red">LOSS</span> as there will be no way to prove that the payment came from you, so <span style="color: green">PLEASE</span> save your <span style="color: purple">Tx ID</span>.</li>
+
+			<li><span style="color: crimson">LATE</span> payments or payments to the <span style="color: crimson">WRONG ADDRESS</span> (if recoverable) will be <span style="color: lime">REFUNDED</span> with a <span style="color: magenta ;">5% FEE</span>.</li>
+			<li><span style="color: crimson">ALWAYS</span> refresh the page before submitting, and avoid using the back and foward buttons on the browser as this may cancel the orders.</li>
+			<li>As a <span style="color: green">REMINDER</span>, please save your <span style="color: purple">TRANSACTION ID</span> to recover funds if sent to an <span style="color: brown">EXPIRED ADDRESS</span>, as this will be the <span style="color: blue">ONLY</span> way to recover them.</li>-->
+			<!--
+			<li>Failure to provide correct Transaction ID may result in a <span style="color: red" ;>LOSS</span> of <span style="color: orange ;">Monero</span> and order <span style="color: crimson ;">NOT</span> being fully processed.</li>
+			-->
+			<!-- <li>In-store wallet purchases do not require a Transaction ID.</li> -->
+			<!--
+			<li>Order details will appear in your messages with the type: <span style="color: blue ;">TRANSACTION</span>.</li>-->
+
+
+			<li style="color: #FFF6BE ;">.</li>
+			<li>Please put real name along with real address on the address field, as errors and false identity may result in a <span style="color: red" ;>LOSS</span> for you.</li>
+			<li>Your name and address will be <span style="color: orange ;">ENCRYPTED</span> and only sent to us to send your order to you.</li>
+			<li>Vendors ship items to our office so that we can inspect item and make sure there are no <span style="color: crimson ;">SCAMS</span> or <span style="color: crimson ;">FRAUD</span> taking place.</li>
+			<li>We then repack the item and ship to you, so the <span style="color: blue ;">BUYER</span> and <span style="color: green ;">SELLER</span> don't know any personal information about each other.</li>
+			<li>Once <span style="color: magenta ;">ESCROW</span> is released, we permanently <span style="color: red ;">DELETE</span> all traces of address and name from our database.</li>
+		</ul>
+
+
+		<p style="margin-top: 5px ;">Payment ID: <span class="blue-link" style="margin-left: 2px">#{{ payment_id }}</span></p>
+
+		<!--
+		<img style="display: block ; margin: auto ; width: 32% ;" src="{{ url_for('static', filename='img/wallets/escrow_qr_code.png') }}">
+		-->
+
+		<!--<img style="display: block ; margin: auto ; width: 32% ;" src="{{ url_for('static', filename='img/qrcodes/' + qrcode) }}">-->
+
+
+
+
+
+		<form class="" method="POST" action="">
+			<!-- SECRET KEY to protect from foreign attacks -->
+			{{ form.hidden_tag() }}
+			<!-- 
+			<div style="float: right ;">
+				<label>Pay with in-store wallet</label>
+				<input type="checkbox" style="margin-right: 3px ;">
+			</div> 
+			-->
+
+			<!-- 
+			<legend>Address:</legend>
+			<textarea readonly style="overflow: scroll ; width: 98% ; resize: none ; min-height: 50px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ;">87x7gQar44u9ckNV1CNaHcCYixvg4nh3Agz7dzjYkMLeFsZszoimnan1LzWFbeCfqLeZ3DSiGfhCoUQs5QRAsUxkKxbE1Bd</textarea>
+			-->
+
+			
+
+
+			<!--
+			<legend>Address:</legend>
+			<textarea readonly style="overflow: scroll ; width: 98% ; resize: none ; min-height: 50px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ;">{{ wallet_address }}</textarea>-->
+
+
+
+
+
+
+			<legend>{{ form.return_address.label }}:</legend>
+			{% if form.return_address.errors %}
+
+				{{ form.return_address(placeholder="Optional..", class="login-register-form-input invalid-field-border", style="width: 98.5%") }}
+
+				<div class="display-invalid-field">
+					{% for error in form.return_address.errors %}
+						<span> {{ error }} </span>
+
+					{% endfor %}
+				</div>
+
+			{% else %}
+				<!-- This is processed as an <input> -->
+				{{ form.return_address(placeholder="Optional..", class="login-register-form-input", style="width: 98.5%") }}
+
+			{% endif %}
+
+
+
+			
+
+			
+
+			<legend style="margin-top: 10px ;">{{ form.name_and_address.label }}:</legend>
+			{% if form.name_and_address.errors %}
+
+				{{ form.name_and_address(placeholder="Example:
+
+	Kurt Cobain
+	123 Banana St, Apt 256C
+	Manhattan, New York 10001
+	United States of America", class="login-register-form-input invalid-field-border", style="overflow: scroll ; width: 98% ; resize: vertical ; min-height: 100px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13px ;") }}
+
+				<div class="display-invalid-field">
+					{% for error in form.name_and_address.errors %}
+						<span> {{ error }} </span>
+
+					{% endfor %}
+				</div>
+
+			{% else %}
+				<!-- This is processed as an <input> -->
+				{{ form.name_and_address(placeholder="Example:
+
+	Kurt Cobain
+	123 Banana St, Apt 256C
+	Manhattan, New York 10001
+	United States of America", class="login-register-form-input", style="overflow: scroll ; font-size: 13px ; width: 98% ; resize: vertical ; min-height: 100px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ;") }}
+
+			{% endif %}
+
+		
+			<div class="cart-quick-view-amount">
+				<legend>Amount:</legend>
+				<div class="monero-hover-reveal" style="display: inline"><img class="tiny-monero-coin" style="height: 18px; width: 18px ; position: absolute ; margin: -3px 0px 0 -2px; cursor: pointer" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+						
+							<div class="monero-dropdown-menu" style="margin-top: 19px; margin-left: -7px">
+								<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+							 	<!-- USDT -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; ">$ {{ "{:.2f}".format(total_price * usdt) }}</a>
+								</a>
+								
+								<!-- BTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; ">₿ {{ "{:.5f}".format(total_price * btc) }}</a>
+								</a>
+
+								<!-- BCH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; ">₿ {{ "{:.5f}".format(total_price * bch) }}</a>
+								</a>
+
+								<!-- LTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; ">Ł {{ "{:.5f}".format(total_price * ltc) }}</a>
+								</a>
+
+								<!-- DOGE -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; ">Ð {{ "{:.2f}".format(total_price * doge) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; ">₮ {{ "{:.5f}".format(total_price * xaut) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; ">♦ {{ "{:.5f}".format(total_price * eth) }}</a>
+								</a>
+							</div>
+
+				 		<a style="margin-left: 20px; color: orange">{{ numpy.format_float_positional(total_price, trim='-', precision=8) }}</a></div>
+			</div>
+
+
+			<br>
+			<p>Time since last refresh: <span style="color: green">{{ datetime.strftime('%b %-d, %H:%M:%S') }} UTC</span></p>
+			<p>Time order expires: <span style="color: red">{{ (pending_order.date_reserved + timedelta(minutes=+15)).strftime("%b %-d, %H:%M:%S") }} UTC</span></p>
+			<p><a class="blue-link" href="">REFRESH TIME</a></p>
+			<!--<p><a class="blue-link" href="{{ url_for('orders.cart') }}">View Cart (Orders)</a></p>-->
+
+			
+
+
+			<!-- Button -->
+			{{ form.submit(class="search_button", style="padding: 8px ; margin: 15px 0 10px 0px ;") }}
+
+		</form>
+
+
+
+
+
+		<p style="margin-top: 20px ; text-align: center ;">Orders (<span style="color: grey">{{ cart_items.total }}</span>)</p>
+
+		<!-- Print Total Price of order -->
+		<div style="float: right; margin-right: 10px ;">
+			<a style="float: left ; margin-right: 8px ; color: grey ;">Total price of orders: </a>
+			<div class="monero-hover-reveal" style="display: inline"><img class="tiny-monero-coin" style="height: 18px; width: 18px ; position: absolute ; margin: -3px 0px 0 -2px; cursor: pointer" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+						
+							<div class="monero-dropdown-menu" style="margin-top: 20px; margin-left: 137px">
+								<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+							 	<!-- USDT -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; ">$ {{ "{:.2f}".format(total_price * usdt) }}</a>
+								</a>
+								
+								<!-- BTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; ">₿ {{ "{:.5f}".format(total_price * btc) }}</a>
+								</a>
+
+								<!-- BCH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; ">₿ {{ "{:.5f}".format(total_price * bch) }}</a>
+								</a>
+
+								<!-- LTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; ">Ł {{ "{:.5f}".format(total_price * ltc) }}</a>
+								</a>
+
+								<!-- DOGE -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; ">Ð {{ "{:.2f}".format(total_price * doge) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; ">₮ {{ "{:.5f}".format(total_price * xaut) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; ">♦ {{ "{:.5f}".format(total_price * eth) }}</a>
+								</a>
+							</div>
+						
+
+				 		<a style="margin-left: 20px; color: green">{{ numpy.format_float_positional(total_price, trim='-', precision=8) }}</a></div>
+		</div>
+
+
+
+		<!-- Page numbers -->
+		<!-- page iterations on top right -->
+		<span style="margin-left: 5px; margin-right: 5px">Page:</span>
+		<span>
+			{% if not cart_items.total %}
+				<a class="blue-link">0</a>
+			{% endif %}
+
+			{% for page_num in cart_items.iter_pages() %}
+				{% if page_num == page %}
+					<strong><a class="blue-link" href="{{ url_for('orders.checkout', page=page_num) }}">{{ page_num }}</a></strong>
+
+				{% elif page_num %}
+					<a class="blue-link" href="{{ url_for('order.checkout', page=page_num) }}">{{ page_num }}</a>
+
+				{% else %}
+					...
+				{% endif %}
+			{% endfor %}
+			
+		</span>
+
+
+
+		{% set index = 0 %}
+		{% for item in cart_items.items %}
+			{% set splitted_cart_info = cart_info_txt[index].strip(")(").split("_") %}
+			<section class="cart-quick-view" style="">
+				<img class="cart-quick-view-img" src="{{ url_for('static', filename='img/posts/originals/' + OrderPostDetails.query.filter_by(post_id=item.post_id, payment_id=payment_id).first().gallery_1) }}">
+
+
+				<div class="cart-quick-view-content">
+					<a class="cart-quick-view-title" href="{{ url_for('listings.item', post_id=item.post_id, previous_page='orders.checkout', username=current_user.username) }}">{{ fernet.decrypt(OrderPostDetails.query.filter_by(post_id=item.post_id, payment_id=payment_id).first().post_title.encode()).decode() }}</a>
+
+					<p style="color: orange"><span class="cart-quick-view-category">{{ SubCategory.query.get(Post.query.filter_by(id=item.post_id).first().sub_category).name }}</span> - <a class="cart-quick-view-vendor" href="{{ url_for('users.profile', username=Post.query.filter_by(id=item.post_id).first().vendor.username) }}">{{ Post.query.filter_by(id=item.post_id).first().vendor.username }}</a></p>
+
+
+					<div class="cart-quick-view-amount">
+						<a style="float: left ; margin-right: 5px ; color: grey ;">Price: </a>
+						<div class="monero-hover-reveal" style="display: inline"><img class="tiny-monero-coin" style="height: 18px; width: 18px ; position: absolute ; margin: -3px 0px 0 0px; cursor: pointer" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+						
+							<div class="monero-dropdown-menu" style="margin-top: 19px; margin-left: 180px">
+								<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+							 	<!-- USDT -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #F0F0F0">$ {{ "{:.2f}".format(float(fernet.decrypt(OrderPostDetails.query.filter_by(post_id=item.post_id, payment_id=payment_id).first().price_per_item.encode()).decode()) * usdt) }}</a>
+								</a>
+								
+								<!-- BTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #F0F0F0">₿ {{ "{:.5f}".format(float(fernet.decrypt(OrderPostDetails.query.filter_by(post_id=item.post_id, payment_id=payment_id).first().price_per_item.encode()).decode()) * btc) }}</a>
+								</a>
+
+								<!-- BCH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #F0F0F0">₿ {{ "{:.5f}".format(float(fernet.decrypt(OrderPostDetails.query.filter_by(post_id=item.post_id, payment_id=payment_id).first().price_per_item.encode()).decode()) * bch) }}</a>
+								</a>
+
+								<!-- LTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #F0F0F0">Ł {{ "{:.5f}".format(float(fernet.decrypt(OrderPostDetails.query.filter_by(post_id=item.post_id, payment_id=payment_id).first().price_per_item.encode()).decode()) * ltc) }}</a>
+								</a>
+
+								<!-- DOGE -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #F0F0F0">Ð {{ "{:.2f}".format(float(fernet.decrypt(OrderPostDetails.query.filter_by(post_id=item.post_id, payment_id=payment_id).first().price_per_item.encode()).decode()) * doge) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #F0F0F0">₮ {{ "{:.5f}".format(float(fernet.decrypt(OrderPostDetails.query.filter_by(post_id=item.post_id, payment_id=payment_id).first().price_per_item.encode()).decode()) * xaut) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #F0F0F0">♦ {{ "{:.5f}".format(float(fernet.decrypt(OrderPostDetails.query.filter_by(post_id=item.post_id, payment_id=payment_id).first().price_per_item.encode()).decode()) * eth) }}</a>
+								</a>
+								<!-- ETH -->
+								
+							</div>
+
+				 		<a style="margin-left: 20px; color: black">{{ numpy.format_float_positional(float(fernet.decrypt(OrderPostDetails.query.filter_by(post_id=item.post_id, payment_id=payment_id).first().price_per_item.encode()).decode()), trim='-', precision=8) }}</a></div>
+					</div>
+
+					<div class="cart-quick-view-amount">
+					<p><a href="{{ url_for('orders.checkout_original_item', post_id=item.post_id, payment_id=payment_id) }}" style="float: left ; margin-right: 7px ; color: lime ;">View original</a></p>
+					<br>
+				</div>
+
+
+					<p class="checkout-quick-view-quantity">Quantity: </p>
+						<span class="checkout-quick-view-quantity-input-field"><input placeholder="{{ fernet.decrypt(OrderPostDetails.query.filter_by(post_id=item.post_id, payment_id=payment_id).first().buying_amount.encode()).decode() }}" readonly></span>
+
+					<a href="{{ url_for('messages.forward', username=Post.query.filter_by(id=item.post_id).first().vendor.username, previous_page='orders.checkout') }}"><p class="checkout-quick-view-message" style="margin-top:-70px">Message vendor</p></a>
+
+					<a href="#"><p class="payment-quick-view-remove" style="margin-top:-45px">Cancel <span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></p></a>
+					<a><p class="checkout-quick-view-status-checkout light-blue" style="margin-top: -22px ;">CHECKING OUT</p></a>
+					
+				</div>
+			</section>
+		{% endfor %}
+
+
+
+	</section>
+{% endblock content %}

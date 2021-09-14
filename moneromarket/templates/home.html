@@ -1,0 +1,594 @@
+{% extends "abstracts/home_shopping_layout.html" %}
+
+
+{% block right_column %}
+
+	<h1 class="message-banner" style="background-color: #EFD23A">Welcome to MoneroMarket!</h1>
+
+
+		<section class="latest-update">
+			<span class="latest-version">Version 1.0</span>.. <span class="latest-version-date">February 3, 2021</span>
+			<p>First launch of website, with support for only Monero currently.</p>
+		</section>
+
+		<section class="market-statement">
+			<h2>Monero, the future of money.</h2>
+			<p>Anonymous, private, secure; the way money should be!</p>
+			<p>We value your privacy.</p>
+		</section>
+
+
+
+
+
+		<section class="featured-posts">
+			<h1>Featured Posts</h1>
+
+			<div class="item-quick-view-list">
+
+				<!-- Left Card -->
+				<section class="item-quick-view">
+					<img class="item-quick-view-img" src="{{ url_for('static', filename='img/profiles/default_profile.png') }}">
+
+					<div class="item-quick-view-content">
+						<a class="item-quick-view-title" href="#">How To Code a Simple Website</a>
+
+						<p><span class="item-quick-view-category">E-books</span> - <a class="item-quick-view-vendor" href="#">BlewSky</a></p>
+
+						<div class="item-quick-view-amount">
+							<div class="monero-hover-reveal"><img class="tiny-monero-coin" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}" style="cursor: pointer; position: relative">
+							<div class="monero-dropdown-menu" style="margin-top: 21px; margin-left: 127px">
+
+								<!-- USDT -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px"><span style="padding-left: 110px;" >$ {{ "{:.2f}".format(0.05 * usdt) }}</span>
+								</a>
+								
+								<!-- BTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px"><span style="padding-left: 110px;" >₿ {{ "{:.5f}".format(0.05 * btc) }}</span>
+								</a>
+
+								<!-- BCH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px"><span style="padding-left: 110px;" >₿ {{ "{:.5f}".format(0.05 * bch) }}</span>
+								</a>
+
+								<!-- LTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px"><span style="padding-left: 110px;" >Ł {{ "{:.5f}".format(0.05 * ltc) }}</span>
+								</a>
+
+								<!-- DOGE -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px"><span style="padding-left: 110px;" >Ð {{ "{:.2f}".format(0.05 * doge) }}</span>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px"><span style="padding-left: 110px;" >♦ {{ "{:.5f}".format(0.05 * eth) }}</span>
+								</a>
+							</div></div>
+						 	<p>{{ 0.05 }}</p>
+
+						 	<p class="item-quick-view-stock" style="color: green ;">In stock</p>
+						</div>
+					</div>
+				</section>
+
+
+
+				<!-- Right card -->
+				<section class="item-quick-view">
+					<img class="item-quick-view-img" src="{{ url_for('static', filename='img/profiles/default_profile.png') }}">
+
+					<div class="item-quick-view-content">
+						<a class="item-quick-view-title" href="#">How To Code a Simple Website</a>
+
+						<p><span class="item-quick-view-category">E-books</span> - <a class="item-quick-view-vendor" href="#">BlewSky</a></p>
+
+						<div class="item-quick-view-amount">
+							<div class="monero-hover-reveal"><img class="tiny-monero-coin" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}" style="cursor: pointer; position: relative">
+							<div class="monero-dropdown-menu">
+
+								<!-- USDT -->
+								<a><span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}"></span> <span class="exchange-rates-country-name"> </span> <span class="exchange-rates-amount" style="margin-left: 20px">$ {{ "{:.2f}".format(0.21 * usdt) }}</span></a>
+								
+								<!-- BTC -->
+								<a><span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}"></span> <span class="exchange-rates-country-name"> </span> <span class="exchange-rates-amount" style="margin-left: 20px">₿ {{ "{:.5f}".format(0.21 * btc) }}</span></a>
+
+								<!-- BCH -->
+								<a><span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}"></span> <span class="exchange-rates-country-name"> </span> <span class="exchange-rates-amount" style="margin-left: 20px">₿ {{ "{:.5f}".format(0.21 * bch) }}</span></a>
+
+								<!-- LTC -->
+								<a><span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}"></span> <span class="exchange-rates-country-name"> </span> <span class="exchange-rates-amount" style="margin-left: 20px">Ł {{ "{:.5f}".format(0.21 * ltc) }}</span></a>
+
+								<!-- DOGE -->
+								<a><span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}"></span> <span class="exchange-rates-country-name"> </span> <span class="exchange-rates-amount" style="margin-left: 20px">Ð {{ "{:.2f}".format(0.21 * doge) }}</span></a>
+
+								<!-- ETH -->
+								<a><span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}"></span> <span class="exchange-rates-country-name"> </span> <span class="exchange-rates-amount" style="margin-left: 20px">♦ {{ "{:.5f}".format(0.21 * eth) }}</span></a>
+							</div></div>
+						 	<p>{{ 0.21 }}</p>
+
+						 	<p class="item-quick-view-stock" style="color: green ;">In stock</p>
+						</div>
+					</div>
+				</section>
+
+			</div>
+			
+
+
+
+			<div class="item-quick-view-list">
+
+				<!-- Left Card -->
+				<section class="item-quick-view">
+					<img class="item-quick-view-img" src="{{ url_for('static', filename='img/profiles/default_profile.png') }}">
+
+					<div class="item-quick-view-content">
+						<a class="item-quick-view-title" href="#">How To Code a Simple Website</a>
+
+						<p><span class="item-quick-view-category">E-books</span> - <a class="item-quick-view-vendor" href="#">BlewSky</a></p>
+
+						<div class="item-quick-view-amount">
+							<img class="tiny-monero-coin" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+						 	<p>0.05</p>
+
+						 	<p class="item-quick-view-stock" style="color: green ;">In stock</p>
+						</div>
+					</div>
+				</section>
+
+
+
+				<!-- Right card -->
+				<section class="item-quick-view">
+					<img class="item-quick-view-img" src="{{ url_for('static', filename='img/profiles/default_profile.png') }}">
+
+					<div class="item-quick-view-content">
+						<a class="item-quick-view-title" href="#">How To Code a Simple Website</a>
+
+						<p><span class="item-quick-view-category">E-books</span> - <a class="item-quick-view-vendor" href="#">BlewSky</a></p>
+
+						<div class="item-quick-view-amount">
+							<img class="tiny-monero-coin" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+						 	<p>0.05</p>
+
+						 	<p class="item-quick-view-stock" style="color: red ;">Not in stock</p>
+						</div>
+					</div>
+				</section>
+
+			</div>
+
+
+
+
+
+			<div class="item-quick-view-list">
+
+				<!-- Left Card -->
+				<section class="item-quick-view">
+					<img class="item-quick-view-img" src="{{ url_for('static', filename='img/profiles/default_profile.png') }}">
+
+					<div class="item-quick-view-content">
+						<a class="item-quick-view-title" href="#">How To Code a Simple Website</a>
+
+						<p><span class="item-quick-view-category">E-books</span> - <a class="item-quick-view-vendor" href="#">BlewSky</a></p>
+
+						<div class="item-quick-view-amount">
+							<img class="tiny-monero-coin" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+						 	<p>0.05</p>
+
+						 	<p class="item-quick-view-stock" style="color: green ;">In stock</p>
+						</div>
+					</div>
+				</section>
+
+
+
+				<!-- Right card -->
+				<section class="item-quick-view">
+					<img class="item-quick-view-img" src="{{ url_for('static', filename='img/profiles/default_profile.png') }}">
+
+					<div class="item-quick-view-content">
+						<a class="item-quick-view-title" href="#">How To Code a Simple Website</a>
+
+						<p><span class="item-quick-view-category">E-books</span> - <a class="item-quick-view-vendor" href="#">BlewSky</a></p>
+
+						<div class="item-quick-view-amount">
+							<img class="tiny-monero-coin" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+						 	<p>0.05</p>
+
+						 	<p class="item-quick-view-stock" style="color: green ;">In stock</p>
+						</div>
+					</div>
+				</section>
+
+			</div>
+
+		</section>
+
+
+
+
+
+
+
+
+
+		{% if newest_posts %}
+		<!-- Newest Posts -->
+		<section class="newest-posts">
+			<h1>Newest Posts</h1>
+
+				<div class="item-quick-view-list">
+
+					
+					<!-- Left Card -->
+					<section class="item-quick-view">
+						<img class="item-quick-view-img" src="{{ url_for('static', filename='img/posts/' + newest_posts[0].gallery_1) }}">
+
+						<div class="item-quick-view-content">
+							<a class="item-quick-view-title" href="{{ url_for('listings.item', post_id=newest_posts[0].id) }}">{{ newest_posts[0].title }}</a>
+
+							<p><span class="item-quick-view-category" style="color: orange">{{ SubCategory.query.filter_by(id=newest_posts[0].sub_category).first().name }}</span> - <a class="item-quick-view-vendor" href="#">{{ User.query.filter_by(id=newest_posts[0].user_id).first().username }}</a></p>
+
+							<div class="item-quick-view-amount">
+								<div style="margin-top: 5px">
+									<div class="monero-hover-reveal" style="display: inline"><img class="tiny-monero-coin" style="height: 18px; width: 18px ; position: relative ; margin: -2px -1px 0 0px; cursor: pointer" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+							
+									<div class="monero-dropdown-menu" style="margin-top: 20px; margin-left: 127px">
+										<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+									 	<!-- USDT -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">$ {{ "{:.2f}".format(newest_posts[0].price / usdt * usdt) }}</a>
+										</a>
+										
+										<!-- BTC -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(newest_posts[0].price / usdt * btc) }}</a>
+										</a>
+
+										<!-- BCH -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(newest_posts[0].price / usdt * bch) }}</a>
+										</a>
+
+										<!-- LTC -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ł {{ "{:.5f}".format(newest_posts[0].price / usdt * ltc) }}</a>
+										</a>
+
+										<!-- DOGE -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ð {{ "{:.2f}".format(newest_posts[0].price / usdt * doge) }}</a>
+										</a>
+
+										<!-- ETH -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₮ {{ "{:.5f}".format(newest_posts[0].price / usdt * xaut) }}</a>
+										</a>
+
+										<!-- ETH -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">♦ {{ "{:.5f}".format(newest_posts[0].price / usdt * eth) }}</a>
+										</a>
+									</div>
+									
+
+							 		<p style="font-size: 15px">{{ numpy.format_float_positional(newest_posts[0].price / Currency.query.filter_by(country="USDT").first().price, trim='-', precision=8) }}</p></div>
+								</div>
+
+
+
+
+
+
+								{% if newest_posts[0].supply - newest_posts[0].pending > 0 %}
+									<p class="item-quick-view-stock" style="color: green ;">In stock</p>
+								{% else %}
+									<p class="item-quick-view-stock" style="color: red ;">Not in stock</p>
+								{% endif %}
+
+							</div>
+						</div>
+					</section>
+
+					<!-- Right card -->
+					<section class="item-quick-view">
+						<img class="item-quick-view-img" src="{{ url_for('static', filename='img/posts/' + newest_posts[1].gallery_1) }}">
+
+						<div class="item-quick-view-content">
+							<a class="item-quick-view-title" href="{{ url_for('listings.item', post_id=newest_posts[1].id) }}">{{ newest_posts[1].title }}</a>
+
+							<p><span class="item-quick-view-category" style="color: orange">{{ SubCategory.query.filter_by(id=newest_posts[1].sub_category).first().name }}</span> - <a class="item-quick-view-vendor" href="#">{{ User.query.filter_by(id=newest_posts[1].user_id).first().username }}</a></p>
+
+							<div class="item-quick-view-amount">
+								<div style="margin-top: 5px">
+									<div class="monero-hover-reveal" style="display: inline"><img class="tiny-monero-coin" style="height: 18px; width: 18px ; position: relative ; margin: -2px -1px 0 0px; cursor: pointer" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+							
+									<div class="monero-dropdown-menu" style="margin-top: 20px; margin-left: 127px">
+										<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+									 	<!-- USDT -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">$ {{ "{:.2f}".format(newest_posts[1].price / usdt * usdt) }}</a>
+										</a>
+										
+										<!-- BTC -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(newest_posts[1].price / usdt * btc) }}</a>
+										</a>
+
+										<!-- BCH -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(newest_posts[1].price / usdt * bch) }}</a>
+										</a>
+
+										<!-- LTC -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ł {{ "{:.5f}".format(newest_posts[1].price / usdt * ltc) }}</a>
+										</a>
+
+										<!-- DOGE -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ð {{ "{:.2f}".format(newest_posts[1].price / usdt * doge) }}</a>
+										</a>
+
+										<!-- ETH -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₮ {{ "{:.5f}".format(newest_posts[1].price / usdt * xaut) }}</a>
+										</a>
+
+										<!-- ETH -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">♦ {{ "{:.5f}".format(newest_posts[1].price / usdt * eth) }}</a>
+										</a>
+									</div>
+									
+
+							 		<p style="font-size: 15px">{{ numpy.format_float_positional(newest_posts[1].price / Currency.query.filter_by(country="USDT").first().price, trim='-', precision=8) }}</p></div>
+								</div>
+
+							 	{% if newest_posts[1].supply - newest_posts[1].pending > 0 %}
+									<p class="item-quick-view-stock" style="color: green ;">In stock</p>
+								{% else %}
+									<p class="item-quick-view-stock" style="color: red ;">Not in stock</p>
+								{% endif %}
+							</div>
+						</div>
+					</section>
+
+				</div>
+				
+
+
+
+			<!-- List item #2 -->
+			<div class="item-quick-view-list">
+
+				<!-- Left Card -->
+					<section class="item-quick-view">
+						<img class="item-quick-view-img" src="{{ url_for('static', filename='img/posts/' + newest_posts[2].gallery_1) }}">
+
+						<div class="item-quick-view-content">
+							<a class="item-quick-view-title" href="{{ url_for('listings.item', post_id=newest_posts[2].id) }}">{{ newest_posts[2].title }}</a>
+
+							<p><span class="item-quick-view-category" style="color: orange">{{ SubCategory.query.filter_by(id=newest_posts[2].sub_category).first().name }}</span> - <a class="item-quick-view-vendor" href="#">{{ User.query.filter_by(id=newest_posts[2].user_id).first().username }}</a></p>
+
+							<div class="item-quick-view-amount">
+								<div style="margin-top: 5px">
+									<div class="monero-hover-reveal" style="display: inline"><img class="tiny-monero-coin" style="height: 18px; width: 18px ; position: relative ; margin: -2px -1px 0 0px; cursor: pointer" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+							
+									<div class="monero-dropdown-menu" style="margin-top: 20px; margin-left: 127px">
+										<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+									 	<!-- USDT -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">$ {{ "{:.2f}".format(newest_posts[2].price / usdt * usdt) }}</a>
+										</a>
+										
+										<!-- BTC -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(newest_posts[2].price / usdt * btc) }}</a>
+										</a>
+
+										<!-- BCH -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(newest_posts[2].price / usdt * bch) }}</a>
+										</a>
+
+										<!-- LTC -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ł {{ "{:.5f}".format(newest_posts[2].price / usdt * ltc) }}</a>
+										</a>
+
+										<!-- DOGE -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ð {{ "{:.2f}".format(newest_posts[2].price / usdt * doge) }}</a>
+										</a>
+
+										<!-- ETH -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₮ {{ "{:.5f}".format(newest_posts[2].price / usdt * xaut) }}</a>
+										</a>
+
+										<!-- ETH -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">♦ {{ "{:.5f}".format(newest_posts[2].price / usdt * eth) }}</a>
+										</a>
+									</div>
+									
+
+							 		<p style="font-size: 15px">{{ numpy.format_float_positional(newest_posts[2].price / Currency.query.filter_by(country="USDT").first().price, trim='-', precision=8) }}</p></div>
+								</div>
+
+							 	{% if newest_posts[2].supply - newest_posts[2].pending > 0 %}
+									<p class="item-quick-view-stock" style="color: green ;">In stock</p>
+								{% else %}
+									<p class="item-quick-view-stock" style="color: red ;">Not in stock</p>
+								{% endif %}
+							</div>
+						</div>
+					</section>
+
+					<!-- Right card -->
+					<section class="item-quick-view">
+						<img class="item-quick-view-img" src="{{ url_for('static', filename='img/posts/' + newest_posts[3].gallery_1) }}">
+
+						<div class="item-quick-view-content">
+							<a class="item-quick-view-title" href="{{ url_for('listings.item', post_id=newest_posts[3].id) }}">{{ newest_posts[3].title }}</a>
+
+							<p><span class="item-quick-view-category" style="color: orange">{{ SubCategory.query.filter_by(id=newest_posts[3].sub_category).first().name }}</span> - <a class="item-quick-view-vendor" href="#">{{ User.query.filter_by(id=newest_posts[3].user_id).first().username }}</a></p>
+
+							<div class="item-quick-view-amount">
+								<div style="margin-top: 5px">
+									<div class="monero-hover-reveal" style="display: inline"><img class="tiny-monero-coin" style="height: 18px; width: 18px ; position: relative ; margin: -2px -1px 0 0px; cursor: pointer" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+							
+									<div class="monero-dropdown-menu" style="margin-top: 20px; margin-left: 127px">
+										<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+									 	<!-- USDT -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">$ {{ "{:.2f}".format(newest_posts[3].price / usdt * usdt) }}</a>
+										</a>
+										
+										<!-- BTC -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(newest_posts[3].price / usdt * btc) }}</a>
+										</a>
+
+										<!-- BCH -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(newest_posts[3].price / usdt * bch) }}</a>
+										</a>
+
+										<!-- LTC -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ł {{ "{:.5f}".format(newest_posts[3].price / usdt * ltc) }}</a>
+										</a>
+
+										<!-- DOGE -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ð {{ "{:.2f}".format(newest_posts[3].price / usdt * doge) }}</a>
+										</a>
+
+										<!-- ETH -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₮ {{ "{:.5f}".format(newest_posts[3].price / usdt * xaut) }}</a>
+										</a>
+
+										<!-- ETH -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">♦ {{ "{:.5f}".format(newest_posts[3].price / usdt * eth) }}</a>
+										</a>
+									</div>
+									
+
+							 		<p style="font-size: 15px">{{ numpy.format_float_positional(newest_posts[3].price / Currency.query.filter_by(country="USDT").first().price, trim='-', precision=8) }}</p></div>
+								</div>
+
+							 	{% if newest_posts[3].supply - newest_posts[3].pending > 0 %}
+									<p class="item-quick-view-stock" style="color: green ;">In stock</p>
+								{% else %}
+									<p class="item-quick-view-stock" style="color: red ;">Not in stock</p>
+								{% endif %}
+							</div>
+						</div>
+					</section>
+
+				</div>
+
+
+
+
+
+
+			<div class="item-quick-view-list">
+
+				<!-- Left Card -->
+					<section class="item-quick-view">
+						<img class="item-quick-view-img" src="{{ url_for('static', filename='img/posts/' + newest_posts[4].gallery_1) }}">
+
+						<div class="item-quick-view-content">
+							<a class="item-quick-view-title" href="{{ url_for('listings.item', post_id=newest_posts[4].id) }}">{{ newest_posts[4].title }}</a>
+
+							<p><span class="item-quick-view-category" style="color: orange">{{ SubCategory.query.filter_by(id=newest_posts[4].sub_category).first().name }}</span> - <a class="item-quick-view-vendor" href="#">{{ User.query.filter_by(id=newest_posts[4].user_id).first().username }}</a></p>
+
+							<div class="item-quick-view-amount">
+								<div style="margin-top: 5px">
+									<div class="monero-hover-reveal" style="display: inline"><img class="tiny-monero-coin" style="height: 18px; width: 18px ; position: relative ; margin: -2px -1px 0 0px; cursor: pointer" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+							
+									<div class="monero-dropdown-menu" style="margin-top: 20px; margin-left: 127px">
+										<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+									 	<!-- USDT -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">$ {{ "{:.2f}".format(newest_posts[4].price / usdt * usdt) }}</a>
+										</a>
+										
+										<!-- BTC -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(newest_posts[4].price / usdt * btc) }}</a>
+										</a>
+
+										<!-- BCH -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(newest_posts[4].price / usdt * bch) }}</a>
+										</a>
+
+										<!-- LTC -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ł {{ "{:.5f}".format(newest_posts[4].price / usdt * ltc) }}</a>
+										</a>
+
+										<!-- DOGE -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ð {{ "{:.2f}".format(newest_posts[4].price / usdt * doge) }}</a>
+										</a>
+
+										<!-- ETH -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₮ {{ "{:.5f}".format(newest_posts[4].price / usdt * xaut) }}</a>
+										</a>
+
+										<!-- ETH -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">♦ {{ "{:.5f}".format(newest_posts[4].price / usdt * eth) }}</a>
+										</a>
+									</div>
+									
+
+							 		<p style="font-size: 15px">{{ numpy.format_float_positional(newest_posts[4].price / Currency.query.filter_by(country="USDT").first().price, trim='-', precision=8) }}</p></div>
+								</div>
+
+							 	{% if newest_posts[4].supply - newest_posts[4].pending > 0 %}
+									<p class="item-quick-view-stock" style="color: green ;">In stock</p>
+								{% else %}
+									<p class="item-quick-view-stock" style="color: red ;">Not in stock</p>
+								{% endif %}
+							</div>
+						</div>
+					</section>
+
+					<!-- Right card -->
+					<section class="item-quick-view">
+						<img class="item-quick-view-img" src="{{ url_for('static', filename='img/posts/' + newest_posts[5].gallery_1) }}">
+
+						<div class="item-quick-view-content">
+							<a class="item-quick-view-title" href="{{ url_for('listings.item', post_id=newest_posts[5].id) }}">{{ newest_posts[5].title }}</a>
+
+							<p><span class="item-quick-view-category" style="color: orange">{{ SubCategory.query.filter_by(id=newest_posts[5].sub_category).first().name }}</span> - <a class="item-quick-view-vendor" href="#">{{ User.query.filter_by(id=newest_posts[5].user_id).first().username }}</a></p>
+
+							<div class="item-quick-view-amount">
+								<div style="margin-top: 5px">
+									<div class="monero-hover-reveal" style="display: inline"><img class="tiny-monero-coin" style="height: 18px; width: 18px ; position: relative ; margin: -2px -1px 0 0px; cursor: pointer" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+							
+									<div class="monero-dropdown-menu" style="margin-top: 20px; margin-left: 127px">
+										<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+									 	<!-- USDT -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">$ {{ "{:.2f}".format(newest_posts[5].price / usdt * usdt) }}</a>
+										</a>
+										
+										<!-- BTC -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(newest_posts[5].price / usdt * btc) }}</a>
+										</a>
+
+										<!-- BCH -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(newest_posts[5].price / usdt * bch) }}</a>
+										</a>
+
+										<!-- LTC -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ł {{ "{:.5f}".format(newest_posts[5].price / usdt * ltc) }}</a>
+										</a>
+
+										<!-- DOGE -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ð {{ "{:.2f}".format(newest_posts[5].price / usdt * doge) }}</a>
+										</a>
+
+										<!-- ETH -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₮ {{ "{:.5f}".format(newest_posts[5].price / usdt * xaut) }}</a>
+										</a>
+
+										<!-- ETH -->
+										<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">♦ {{ "{:.5f}".format(newest_posts[5].price / usdt * eth) }}</a>
+										</a>
+									</div>
+									
+
+							 		<p style="font-size: 15px">{{ numpy.format_float_positional(newest_posts[5].price / Currency.query.filter_by(country="USDT").first().price, trim='-', precision=8) }}</p></div>
+								</div>
+
+							 	{% if newest_posts[5].supply - newest_posts[5].pending > 0 %}
+									<p class="item-quick-view-stock" style="color: green ;">In stock</p>
+								{% else %}
+									<p class="item-quick-view-stock" style="color: red ;">Not in stock</p>
+								{% endif %}
+							</div>
+						</div>
+					</section>
+
+				</div>
+
+		</section>
+		{% endif %}
+
+{% endblock right_column %}

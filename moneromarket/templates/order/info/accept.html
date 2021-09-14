@@ -1,0 +1,304 @@
+{% extends "abstracts/layout.html" %}
+
+
+
+{% block content %}
+
+	{% if fernet.decrypt(OrderPostDetails.query.filter_by(post_id=order.post_id, payment_id=order.payment_id).first().shipping_from.encode()).decode() == "Digital" or fernet.decrypt(OrderPostDetails.query.filter_by(post_id=order.post_id, payment_id=order.payment_id).first().shipping_to.encode()).decode() == "Digital" %}
+
+		<section class="login-register-view">
+		<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+			<ul class="login-register-alert">
+				<li>Today's date is <span style="color: magenta">{{ datetime.strftime('%b %-d, %H:%M:%S') }} UTC time.</span></li>
+				<li>Order was sent to you on <span style="color: blue">{{ order.date_ordered.strftime('%b %-d, %H:%M:%S') }} UTC time.</span></li>
+				<li>Accepting/Declining within 24 hours results in <span style="color: green">NO FEES,</span> while 24 to 48 hours is a <span style="color: crimson">1% FEE,</span> 48 to 72 hours is a <span style="color: crimson">3% FEE,</span> and after 72 hours we will cancel the order and charge you a <span style="color: red">6% FEE.</span></li>
+				<li>Post in the description any <span style="color: #AAAFFF">account numbers</span> or <span style="color: #AAAFFF">scratch off numbers</span> if that pertains to the item that you are selling.</li>
+				<li>If you are selling software, e-books, PDF's, tutorials, videos, etc.., upload the file to a service like <span style="color: orange">Google Drive,</span> <span style="color: blue">DropBox,</span> or <span style="color: green">NextCloud</span> and attach the link to the file in the description, as file uploads are not permitted.</li>
+				<li>We have <span style="color: blue">YOU</span> send details of the item to <span style="color: blue">US</span> so that we can make sure no <span style="color: red">SCAMS</span> or <span style="color: red">FRAUD</span> are taking place.</li>
+				<li>Understand that all information sent to us will be <span style="color: orange">ERASED</span> after escrow has been released, and we will never use or access anything except to <span style="color: green">VERIFY</span> that what you are selling is legit.</li>
+				<li>By accepting order, you certify that <span style="color: crimson">NOTHING</span> is copyrighted, stolen, or pirated and that you have the means, rights, and/or permits to sell whatever digital item it is that you are selling.</li>
+				<li>If item is out of stock, please message us <a href="{{ url_for('messages.forward', username='ADMIN', previous_page='orders.accept', previous_page_id=order.id) }}" class="blue-link">here.</a></li>
+
+				<li>If what you are selling is <span style="color: purple">FAKE,</span> Monero will be refunded back to the buyer and you will receive a <span style="color: crimson">LOSS.</span></li>
+				<li>Filling out description when <span style="color: crimson">DECLINING</span> an order will make it much more likely for us to accept your decision if we feel it is justified.</li>
+				<li>If post details were <span style="color: orange">CHANGED</span> from date of ordering, please  <a href="{{ url_for('messages.forward', username='ADMIN', previous_page='orders.accept', previous_page_id=order.id) }}" class="blue-link">message us</a> and we'll sort things out.</li>
+			</ul>
+
+			<div class="container" style="border: none ;">
+				<h1 style="border-radius: 6px ; margin-bottom: 7px; margin-top: 4px ;">Order info</h1>
+				<section class="cart-quick-view" style="margin: auto ; border-top: dotted 0.5px grey">
+					<img class="cart-quick-view-img" src="{{ url_for('static', filename='img/posts/' + order.orders_post.gallery_1) }}">
+
+					<div class="cart-quick-view-content">
+						<a class="cart-quick-view-title" href="{{ url_for('listings.item', post_id=order.orders_post.id, previous_page='orders.accept', username=order.id) }}">{{ order.orders_post.title }}</a>
+
+						<p style="color: orange"><span class="cart-quick-view-category">{{ SubCategory.query.get(order.orders_post.sub_category).name }}</span> - <a class="cart-quick-view-vendor" href="{{ url_for('users.profile', username=order.orders_post.vendor.username) }}">{{ order.orders_post.vendor.username }}</a></p>
+
+
+						<div class="cart-quick-view-amount">
+							<a style="float: left ; margin-right: 5px ; color: grey ;">Price: </a>
+							<img class="tiny-monero-coin" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+						 	<p>{{ numpy.format_float_positional(float(fernet.decrypt(order.price_per_item.encode()).decode()), trim='-') }}</p>
+						</div>
+
+						<!-- <p class="cart-quick-view-stock" style="color: green ;">In stock</p> -->
+						<div class="cart-quick-view-amount">
+							<p><a href="{{ url_for('employees.original_item', order_id=order.id, previous_page='orders.view_order') }}" style="float: left ; margin-right: 7px ; color: lime ;">View original</a></p>
+							<br>
+						</div>
+
+
+						{% if float(fernet.decrypt(order.buying_amount.encode()).decode()) < 999 %}
+						<p class="checkout-quick-view-quantity">Quantity: </p>
+							<span class="checkout-quick-view-quantity-input-field"><input placeholder="{{ fernet.decrypt(order.buying_amount.encode()).decode() }}" readonly style="padding-left: 2px;"></span>
+						<!-- up to 999,999 figures -->
+						{% else %}
+						<p class="checkout-quick-view-quantity" style="margin-right: 80px">Quantity: </p>
+							<span class="checkout-quick-view-quantity-input-field"><input placeholder="{{ fernet.decrypt(order.buying_amount.encode()).decode() }}" readonly style="padding-left: 2px; padding-right: 24px"></span>
+						{% endif %}
+							
+
+						<a href="{{ url_for('messages.forward', username=User.query.filter_by(id=order.user_id).first().username, previous_page='orders.accept', previous_page_id=order.id) }}"><p class="checkout-quick-view-message" style="margin-top: -70px">Message buyer</p></a>
+
+						<a href="{{ url_for('orders.cart_delete', cart_id=order.orders_post.id) }}"><p class="payment-quick-view-remove" style="margin-top: -45px">Decline <span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></p></a>
+						<a><p class="checkout-quick-view-status blue-link">{{ order.status }}</p></a>
+
+					</div>
+				</section>
+
+
+
+				<form class="" method="POST" action="">
+					<!-- SECRET KEY to protect from foreign attacks -->
+					{{ form_digital.hidden_tag() }}
+
+
+					<legend style="margin: 10px 0 2px 0">{{ form_digital.wallet_address.label }}:</legend>
+
+					{% if form_digital.wallet_address.errors %}
+
+						{{ form_digital.wallet_address(placeholder="Optional..", class="login-register-form-input invalid-field-border", style="width: 100") }}
+
+						<div class="display-invalid-field">
+							{% for error in form_digital.wallet_address.errors %}
+								<span> {{ error }} </span>
+
+							{% endfor %}
+						</div>
+
+					{% else %}
+						<!-- This is processed as an <input> -->
+						{{ form_digital.wallet_address(placeholder="Optional..", class="login-register-form-input", style="width: 100") }}
+
+					{% endif %}
+
+
+
+
+					<legend style="margin: 7px 0 2px 0">{{ form_digital.description.label }}:</legend>
+
+					{% if form_digital.description.errors %}
+
+						{{ form_digital.description(placeholder="Notes pertaining to the digital item..", class="login-register-form-input invalid-field-border", style="width: 100; resize: vertical; padding: 5px 0 50px 5px; margin-bottom: -7px") }}
+
+						<div class="display-invalid-field">
+							{% for error in form_digital.description.errors %}
+								<span> {{ error }} </span>
+
+							{% endfor %}
+						</div>
+
+					{% else %}
+						<!-- This is processed as an <input> -->
+						{{ form_digital.description(placeholder="Notes pertaining to the digital item..", class="login-register-form-input", style="width: 100; resize: vertical; padding: 5px 0 50px 5px; margin-bottom: -7px") }}
+
+					{% endif %}
+
+					
+
+
+
+					<!-- Button -->
+					{{ form_digital.submit(class="search_button", style="padding: 8px ; margin: 15px 0 10px 0px ;") }}	
+				</form>
+				<a href="#"><button class="search_button red-button" style="padding: 8px ; position: relative; top: -42px; left: 70px">Decline</button></a>
+			</div>
+		</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	{% else %}
+
+		<section class="login-register-view">
+		<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+			<ul class="login-register-alert">
+				<li>Today's date is <span style="color: magenta">{{ datetime.strftime('%b %-d, %H:%M:%S') }} UTC time.</span></li>
+				<li>Order was sent to you on <span style="color: blue">{{ order.date_ordered.strftime('%b %-d, %H:%M:%S') }} UTC time.</span></li>
+				<li>Accepting/Declining within 24 hours results in <span style="color: green">NO FEES,</span> while 24 to 48 hours is a <span style="color: crimson">1% FEE,</span> 48 to 72 hours is a <span style="color: crimson">3% FEE,</span> and after 72 hours we will cancel the order and charge you a <span style="color: crimson">6% FEE.</span></li>
+				<li>Ship your item(s) to <span style="color: orange">OUR OFFICE</span> to the address below.</li>
+				<li>We have <span style="color: blue">YOU</span> ship the item to <span style="color: blue">US</span> so that we can inspect the item to make sure no <span style="color: red">SCAMS</span> or <span style="color: red">FRAUD</span> are taking place.</li>
+				<li>Please remember that you are <span style="color: green">PAYING</span> for shipping costs from our office to the buyer as well.</li>
+				<li>We will ship with the same day shipping you used to ship to us by <span style="color: blue; text-transform: uppercase;">default.</span> If you would like us to ship differently, please write that down in the <span style="color: orange">DESCRIPTION.</span></li>
+				<li>If item is out of stock, please message us <a href="{{ url_for('messages.forward', username='ADMIN', previous_page='orders.accept', previous_page_id=order.id) }}" class="blue-link">here.</a></li>
+
+				<li>If <span style="color: purple">Transaction Number/ID</span> is fake, Monero will be refunded back to the buyer and you will receive a <span style="color: crimson">LOSS.</span></li>
+				<li>Filling out description when <span style="color: crimson">DECLINING</span> an order will make it much more likely for us to accept your decision if we feel it is justified.</li>
+				<li>Please note that if shipping from worldwide you <span style="color: orange">MUST FOLLOW</span> the borders and customs laws of the countries that the package will travel through and to.</li>
+				<li>If post details were <span style="color: orange">CHANGED</span> from date of ordering, send the <span style="color: lime; text-transform: uppercase">originally</span> listed item or please  <a href="{{ url_for('messages.forward', username='ADMIN', previous_page='orders.accept', previous_page_id=order.id) }}" class="blue-link">message us</a> for questions.</li>
+			</ul>
+
+			<div class="container" style="border: none ;">
+				<h1 style="border-radius: 6px ; margin-bottom: 7px; margin-top: 4px ;">Order info</h1>
+				<section class="cart-quick-view" style="margin: auto ; border-top: dotted 0.5px grey">
+					<img class="cart-quick-view-img" src="{{ url_for('static', filename='img/posts/' + order.orders_post.gallery_1) }}">
+
+					<div class="cart-quick-view-content">
+						<a class="cart-quick-view-title" href="{{ url_for('listings.item', post_id=order.orders_post.id, previous_page='orders.accept', username=order.id) }}">{{ order.orders_post.title }}</a>
+
+						<p style="color: orange"><span class="cart-quick-view-category">{{ SubCategory.query.get(order.orders_post.sub_category).name }}</span> - <a class="cart-quick-view-vendor" href="{{ url_for('users.profile', username=order.orders_post.vendor.username) }}">{{ order.orders_post.vendor.username }}</a></p>
+
+
+						<div class="cart-quick-view-amount">
+							<a style="float: left ; margin-right: 5px ; color: grey ;">Price: </a>
+							<img class="tiny-monero-coin" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+						 	<p>{{ numpy.format_float_positional(float(fernet.decrypt(order.price_per_item.encode()).decode()), trim='-') }}</p>
+						</div>
+
+						<!-- <p class="cart-quick-view-stock" style="color: green ;">In stock</p> -->
+						<div class="cart-quick-view-amount">
+							<p><a href="{{ url_for('employees.original_item', order_id=order.id, previous_page='orders.view_order') }}" style="float: left ; margin-right: 7px ; color: lime ;">View original</a></p>
+							<br>
+						</div>
+
+
+						{% if float(fernet.decrypt(order.buying_amount.encode()).decode()) < 999 %}
+						<p class="checkout-quick-view-quantity">Quantity: </p>
+							<span class="checkout-quick-view-quantity-input-field"><input placeholder="{{ fernet.decrypt(order.buying_amount.encode()).decode() }}" readonly style="padding-left: 2px;"></span>
+						<!-- up to 999,999 figures -->
+						{% else %}
+						<p class="listing-quick-view-quantity" style="margin-right: 80px">Quantity: </p>
+							<span class="listing-quick-view-quantity-input-field"><input placeholder="{{ fernet.decrypt(order.buying_amount.encode()).decode() }}" readonly style="padding-left: 2px; padding-right: 24px"></span>
+						{% endif %}
+							
+
+						<a href="{{ url_for('messages.forward', username=User.query.filter_by(id=order.user_id).first().username, previous_page='orders.accept', previous_page_id=order.id) }}"><p class="checkout-quick-view-message" style="margin-top: -70px">Message buyer</p></a>
+
+						<a href="{{ url_for('orders.cart_delete', cart_id=order.orders_post.id) }}"><p class="cart-quick-view-remove" style="margin-top: -45px">Decline <span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></p></a>
+						<a><p class="cart-quick-view-save blue-link">{{ order.status }}</p></a>
+
+					</div>
+				</section>
+
+
+
+				<form class="" method="POST" action="">
+					<!-- SECRET KEY to protect from foreign attacks -->
+					{{ form_physical.hidden_tag() }}
+
+
+					<legend style="margin-top: 10px ;">Ship To:</legend>
+					<textarea class="login-register-form-input invalid-field-border", style="overflow: scroll ; width: 98.2% ; resize: vertical ; min-height: 100px ; padding: 7px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 16px ; color: #333333" readonly>{{ fernet.decrypt(AdminEditing.query.filter_by(id=1).first().shipping_address.encode()).decode() }}</textarea>
+
+
+
+					<legend style="margin: 7px 0 2px 0">{{ form_physical.tracking_number.label }}:</legend>
+
+					{% if form_physical.tracking_number.errors %}
+
+						{{ form_physical.tracking_number(placeholder="Enter Tracking Number/ID..", class="login-register-form-input invalid-field-border", style="width: 100") }}
+
+						<div class="display-invalid-field">
+							{% for error in form_physical.tracking_number.errors %}
+								<span> {{ error }} </span>
+
+							{% endfor %}
+						</div>
+
+					{% else %}
+						<!-- This is processed as an <input> -->
+						{{ form_physical.tracking_number(placeholder="Enter Tracking Number/ID..", class="login-register-form-input", style="width: 100") }}
+
+					{% endif %}
+
+
+
+					<legend style="margin: 7px 0 2px 0">{{ form_physical.wallet_address.label }}:</legend>
+
+					{% if form_physical.wallet_address.errors %}
+
+						{{ form_physical.wallet_address(placeholder="Optional..", class="login-register-form-input invalid-field-border", style="width: 100") }}
+
+						<div class="display-invalid-field">
+							{% for error in form_physical.wallet_address.errors %}
+								<span> {{ error }} </span>
+
+							{% endfor %}
+						</div>
+
+					{% else %}
+						<!-- This is processed as an <input> -->
+						{{ form_physical.wallet_address(placeholder="Optional..", class="login-register-form-input", style="width: 100") }}
+
+					{% endif %}
+
+
+
+
+					<legend style="margin: 7px 0 2px 0">{{ form_physical.description.label }}:</legend>
+
+					{% if form_physical.description.errors %}
+
+						{{ form_physical.description(placeholder="Optional notes..", class="login-register-form-input invalid-field-border", style="width: 100; resize: vertical; padding: 5px 0 50px 5px; margin-bottom: -10px") }}
+
+						<div class="display-invalid-field">
+							{% for error in form_physical.description.errors %}
+								<span> {{ error }} </span>
+
+							{% endfor %}
+						</div>
+
+					{% else %}
+						<!-- This is processed as an <input> -->
+						{{ form_physical.description(placeholder="Optional notes..", class="login-register-form-input", style="width: 100; resize: vertical; padding: 5px 0 50px 5px; margin-bottom: -10px") }}
+
+					{% endif %}
+
+					
+
+
+
+					<!-- Button -->
+					{{ form_physical.submit(class="search_button", style="padding: 8px ; margin: 15px 0 10px 0px ;") }}	
+				</form>
+				<a href="#"><button class="search_button red-button" style="padding: 8px ; position: relative; top: -42px; left: 70px">Decline</button></a>
+			</div>
+		</section>
+
+	{% endif %}
+
+{% endblock %}

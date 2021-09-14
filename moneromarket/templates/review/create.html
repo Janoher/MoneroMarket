@@ -1,0 +1,446 @@
+{% extends "abstracts/layout.html" %}
+
+{% block content %}
+	{% if order.user_id == current_user.id %}
+		<section class="login-register-view" style="min-height: 400px">	
+			<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+			<ul class="login-register-alert">
+				<li>Please put your <span style="color: orange; text-transform: uppercase;">rating</span> about the order below.</li>
+				<li>Escrow was released on <span style="color: blue">{{ order.escrow_released.strftime('%b %-d, %H:%M:%S') }} UTC time.</span></li>
+				<li>You have until <span style="color: crimson; text-transform: uppercase;">7 days</span> to write a review.</li>
+				<li>Photos are <span style="color: green; text-transform: uppercase;">optional,</span> and you can upload up to 3 photos.</li>
+			</ul>
+
+
+			<p style="margin-top: 5px ;">Order: <a href="" style="text-decoration: none"><span class="orange-link">#{{ order.id }}</span></a></p>
+
+
+
+
+
+
+
+
+
+			<h1 style="border-radius: 6px ; margin-bottom: 7px; margin-top: 4px ;">Order info</h1>
+
+			<section class="cart-quick-view" style="">
+				<img class="cart-quick-view-img" src="{{ url_for('static', filename='img/posts/' + order.orders_post.gallery_1) }}">
+
+				<div class="cart-quick-view-content">
+					<a class="cart-quick-view-title" href="{{ url_for('listings.item', post_id=order.orders_post.id, previous_page='orders.view_order', username=order.id) }}">{{ order.orders_post.title }}</a>
+
+					<p style="color: orange"><span class="cart-quick-view-category">{{ SubCategory.query.get(order.orders_post.sub_category).name }}</span> - <a class="cart-quick-view-vendor" href="{{ url_for('users.profile', username=order.orders_post.vendor.username) }}">{{ order.orders_post.vendor.username }}</a></p>
+
+
+					<div class="cart-quick-view-amount">
+							<a style="float: left ; margin-right: 5px ; color: grey ;">Price: </a>
+						<div class="monero-hover-reveal" style="display: inline"><img class="tiny-monero-coin" style="height: 18px; width: 18px ; position: absolute ; margin: -3px 0px 0 0px; cursor: pointer" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+						
+							<div class="monero-dropdown-menu" style="margin-top: 19px; margin-left: 180px">
+								<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+							 	<!-- USDT -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #F0F0F0">$ {{ "{:.2f}".format(float(fernet.decrypt(order.price_per_item.encode()).decode()) * usdt) }}</a>
+								</a>
+								
+								<!-- BTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #F0F0F0">₿ {{ "{:.5f}".format(float(fernet.decrypt(order.price_per_item.encode()).decode()) * btc) }}</a>
+								</a>
+
+								<!-- BCH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #F0F0F0">₿ {{ "{:.5f}".format(float(fernet.decrypt(order.price_per_item.encode()).decode()) * bch) }}</a>
+								</a>
+
+								<!-- LTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #F0F0F0">Ł {{ "{:.5f}".format(float(fernet.decrypt(order.price_per_item.encode()).decode()) * ltc) }}</a>
+								</a>
+
+								<!-- DOGE -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #F0F0F0">Ð {{ "{:.2f}".format(float(fernet.decrypt(order.price_per_item.encode()).decode()) * doge) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #F0F0F0">₮ {{ "{:.5f}".format(float(fernet.decrypt(order.price_per_item.encode()).decode()) * xaut) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #F0F0F0">♦ {{ "{:.5f}".format(float(fernet.decrypt(order.price_per_item.encode()).decode()) * eth) }}</a>
+							</div>
+
+				 		<a style="margin-left: 22px; color: black">{{ numpy.format_float_positional(float(fernet.decrypt(order.price_per_item.encode()).decode()), trim='-', precision=8) }}</a></div>
+						</div>
+
+					<!-- <p class="cart-quick-view-stock" style="color: green ;">In stock</p> -->
+					<!-- <p class="cart-quick-view-stock" style="color: green ;">In stock</p> -->
+						<div class="cart-quick-view-amount">
+							{% if order.status == "RELEASED FUNDS" %}
+								<p><a href="" style="float: left ; margin-right: 7px ; color: lime ;">Released Funds</a></p>
+							{% else %}
+								<p><a href="{{ url_for('employees.original_item', order_id=order.id, previous_page='orders.view_order') }}" style="float: left ; margin-right: 7px ; color: lime ;">View original</a></p>
+							{% endif %}
+							<br>
+						</div>
+
+
+					<p class="listing-quick-view-quantity">Quantity: </p>
+						<span class="listing-quick-view-quantity-input-field"><input placeholder="{{ fernet.decrypt(order.buying_amount.encode()).decode() }}" readonly></span>
+
+
+					{% if order.vendor_id == current_user.id %}
+						<a href="{{ url_for('messages.forward', username=User.query.filter_by(id=order.user_id).first().username, previous_page='orders.view_order', previous_page_id=order.id) }}"><p class="checkout-quick-view-message" style="margin-top:-70px">Message buyer</p></a>
+					{% else %}
+						<a href="{{ url_for('messages.forward', username=User.query.filter_by(id=order.vendor_id).first().username, previous_page='orders.view_order', previous_page_id=order.id) }}"><p class="checkout-quick-view-message" style="margin-top:-70px">Message vendor</p></a>
+					{% endif %}
+
+					{% if order.status == "RELEASED FUNDS" %}
+						<a href="#"><p class="checkout-quick-view-remove" style="margin-top:-45px">Delete <span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></p></a>
+					{% else %}
+						<a href="#"><p class="checkout-quick-view-remove" style="margin-top:-45px">Cancel <span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></p></a>
+					{% endif %}
+					<a><p class="checkout-quick-view-status-vendor light-blue">{{ order.status }}</p></a>
+				</div>
+			</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div style="margin-top: 35px; color: white">H</div>
+
+
+
+
+
+
+			
+
+
+
+
+
+
+			<form class="" method="POST" action="" enctype="multipart/form-data" style="margin-top: -55px">
+
+				<!-- SECRET KEY to protect from foreign attacks -->
+				{{ form.hidden_tag() }}
+
+				<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+				<div style="margin-top: 35px; color: white">H</div>
+				<!-- source: https://www.youtube.com/watch?v=Ep78KjstQuw -->
+				<div class="rating" style="margin-bottom: -35px">
+					<input type="radio" name="star" id="star1" value="star1"><label for="star1"></label>
+					<input type="radio" name="star" id="star2" value="star2"><label for="star2"></label>
+					<input type="radio" name="star" id="star3" value="star3"><label for="star3"></label>
+					<input type="radio" name="star" id="star4" value="star4"><label for="star4"></label>
+					<input type="radio" name="star" id="star5" value="star5"><label for="star5"></label>
+				</div>
+
+
+				<!-- Print label for the Title field -->
+				<legend>{{ form.title.label }}:</legend>
+
+				<!-- Title input field -->
+				{% if form.title.errors %}
+
+					{{ form.title(placeholder="5 - 50 characters long..", class="login-register-form-input invalid-field-border") }}
+
+					<div class="display-invalid-field">
+						{% for error in form.title.errors %}
+							<span> {{ error }} </span>
+
+						{% endfor %}
+					</div>
+
+				{% else %}
+					<!-- This is processed as an <input> -->
+					{{ form.title(placeholder="5 - 50 characters long..", class="login-register-form-input") }}
+
+				{% endif %}
+
+
+
+
+
+				<!-- Print label for the Title field -->
+				<legend style="margin-top: 5px ;">{{ form.description.label }}:</legend>
+
+				<!-- description input field -->
+				{% if form.description.errors %}
+
+					{% if current_user.id == order.vendor_id %}
+						{{ form.description(placeholder="Write a description of the experience with the buyer..", class="login-register-form-input invalid-field-border", style="resize: vertical; padding: 5px 0 50px 5px") }}
+					{% else %}
+						{{ form.description(placeholder="Write a description of the experience with the vendor..", class="login-register-form-input invalid-field-border", style="resize: vertical; padding: 5px 0 50px 5px") }}
+					{% endif %}
+
+					<div class="display-invalid-field">
+						{% for error in form.description.errors %}
+							<span> {{ error }} </span>
+
+						{% endfor %}
+					</div>
+
+				{% else %}
+					<!-- This is processed as an <input> -->
+					{% if current_user.id == order.vendor_id %}
+						{{ form.description(placeholder="Write a description of the experience with the buyer..", class="login-register-form-input", style="resize: vertical; padding: 5px 0 50px 5px") }}
+					{% else %}
+						{{ form.description(placeholder="Write a description of the experience with the vendor..", class="login-register-form-input", style="resize: vertical; padding: 5px 0 50px 5px") }}
+					{% endif %}
+
+				{% endif %}
+
+
+
+
+
+				<!-- Button -->
+				<legend>(Optional) Jpeg, Jpg, Png, and Pneg ONLY: </legend>
+
+				{{ form.pictures(class="upload-file-green-button", placeholder="Upload Pictures (3 - 12)", style="margin: 0 0 5px 0") }}
+				<br />
+
+				{{ form.submit(class="search_button login-register-view-button") }}
+
+				
+
+			</form>
+
+
+			
+
+
+
+
+		</section>
+
+
+
+
+
+
+
+
+
+
+
+	{% elif order.vendor_id == current_user.id %}
+		<section class="login-register-view" style="min-height: 400px">	
+			<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+			<ul class="login-register-alert">
+				<li>Please put your <span style="color: orange; text-transform: uppercase">rating</span> for the buyer below.</li>
+				<li>Escrow was released on <span style="color: blue">{{ order.escrow_released.strftime('%b %-d, %H:%M:%S') }} UTC time.</span></li>
+				<li>You have until <span style="color: crimson; text-transform: uppercase">7 days</span> to write a review.</li>
+				<li>Writing a review to the buyer lets other vendors know about the <span style="color: green; text-transform: uppercase">trust-worthiness</span> of the buyer.</li>
+			</ul>
+
+
+			<p style="margin-top: 5px ;">Order: <a href="" style="text-decoration: none"><span class="orange-link">#{{ order.id }}</span></a></p>
+
+
+
+
+
+
+
+
+
+			<h1 style="border-radius: 6px ; margin-bottom: 7px; margin-top: 4px ;">Order info</h1>
+
+			<section class="cart-quick-view" style="">
+				<img class="cart-quick-view-img" src="{{ url_for('static', filename='img/posts/' + order.orders_post.gallery_1) }}">
+
+				<div class="cart-quick-view-content">
+					<a class="cart-quick-view-title" href="{{ url_for('listings.item', post_id=order.orders_post.id, previous_page='orders.view_order', username=order.id) }}">{{ order.orders_post.title }}</a>
+
+					<p style="color: orange"><span class="cart-quick-view-category">{{ SubCategory.query.get(order.orders_post.sub_category).name }}</span> - <a class="cart-quick-view-vendor" href="{{ url_for('users.profile', username=order.orders_post.vendor.username) }}">{{ order.orders_post.vendor.username }}</a></p>
+
+
+					<div class="cart-quick-view-amount">
+							<a style="float: left ; margin-right: 5px ; color: grey ;">Price: </a>
+							<div class="monero-hover-reveal" style="display: inline"><img class="tiny-monero-coin" style="height: 18px; width: 18px ; position: absolute ; margin: -3px 0px 0 0px; cursor: pointer" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+							
+								<div class="monero-dropdown-menu" style="margin-top: 19px; margin-left: 180px">
+									<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+								 	<!-- USDT -->
+									<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px"><span style="padding-left: 110px;" >$ {{ "{:.2f}".format(float(fernet.decrypt(order.price_per_item.encode()).decode()) * usdt) }}</span>
+									</a>
+									
+									<!-- BTC -->
+									<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px"><span style="padding-left: 110px;" >₿ {{ "{:.5f}".format(float(fernet.decrypt(order.price_per_item.encode()).decode()) * btc) }}</span>
+									</a>
+
+									<!-- BCH -->
+									<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px"><span style="padding-left: 110px;" >₿ {{ "{:.5f}".format(float(fernet.decrypt(order.price_per_item.encode()).decode()) * bch) }}</span>
+									</a>
+
+									<!-- LTC -->
+									<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px"><span style="padding-left: 110px;" >Ł {{ "{:.5f}".format(float(fernet.decrypt(order.price_per_item.encode()).decode()) * ltc) }}</span>
+									</a>
+
+									<!-- DOGE -->
+									<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px"><span style="padding-left: 110px;" >Ð {{ "{:.2f}".format(float(fernet.decrypt(order.price_per_item.encode()).decode()) * doge) }}</span>
+									</a>
+
+									<!-- ETH -->
+									<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px"><span style="padding-left: 110px;" >♦ {{ "{:.5f}".format(float(fernet.decrypt(order.price_per_item.encode()).decode()) * eth) }}</span>
+									</a>
+								</div>
+
+					 		<a style="margin-left: 20px; color: black">{{ numpy.format_float_positional(float(fernet.decrypt(order.price_per_item.encode()).decode()), trim='-', precision=8) }}</a></div>
+						</div>
+
+					<!-- <p class="cart-quick-view-stock" style="color: green ;">In stock</p> -->
+					<!-- <p class="cart-quick-view-stock" style="color: green ;">In stock</p> -->
+						<div class="cart-quick-view-amount">
+							{% if order.status == "RELEASED FUNDS" %}
+								<p><a href="" style="float: left ; margin-right: 7px ; color: lime ;">Released Funds</a></p>
+							{% else %}
+								<p><a href="{{ url_for('employees.original_item', order_id=order.id, previous_page='orders.view_order') }}" style="float: left ; margin-right: 7px ; color: lime ;">View original</a></p>
+							{% endif %}
+							<br>
+						</div>
+
+
+					<p class="listing-quick-view-quantity">Quantity: </p>
+						<span class="listing-quick-view-quantity-input-field"><input placeholder="{{ fernet.decrypt(order.buying_amount.encode()).decode() }}" readonly></span>
+
+					<a href="{{ url_for('messages.forward', username=User.query.filter_by(id=order.user_id).first().username, previous_page='reviews.create', previous_page_id=order.id) }}"><p class="checkout-quick-view-message" style="margin-top:-70px">Message buyer</p></a>
+
+					{% if order.status == "RELEASED FUNDS" %}
+						<a href="#"><p class="payment-quick-view-remove" style="margin-top:-45px">Delete <span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></p></a>
+					{% else %}
+						<a href="#"><p class="payment-quick-view-remove" style="margin-top:-45px">Cancel <span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></p></a>
+					{% endif %}
+					<a><p class="listing-quick-view-status-vendor light-blue">{{ order.status }}</p></a>
+				</div>
+			</section>
+
+
+
+
+
+
+
+
+			<div style="margin-top: 35px; color: white">H</div>
+
+
+
+
+
+
+			
+
+
+
+
+
+
+			<form class="" method="POST" action="" enctype="multipart/form-data" style="margin-top: -55px">
+
+				<!-- SECRET KEY to protect from foreign attacks -->
+				{{ form.hidden_tag() }}
+
+				<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+				<div style="margin-top: 35px; color: white">H</div>
+				<!-- source: https://www.youtube.com/watch?v=Ep78KjstQuw -->
+				<div class="rating" style="margin-bottom: -35px">
+					<input type="radio" name="star" id="star1" value="star1"><label for="star1"></label>
+					<input type="radio" name="star" id="star2" value="star2"><label for="star2"></label>
+					<input type="radio" name="star" id="star3" value="star3"><label for="star3"></label>
+					<input type="radio" name="star" id="star4" value="star4"><label for="star4"></label>
+					<input type="radio" name="star" id="star5" value="star5"><label for="star5"></label>
+				</div>
+
+
+				<!-- Print label for the Title field -->
+				<legend>{{ form.title.label }}:</legend>
+
+				<!-- Title input field -->
+				{% if form.title.errors %}
+
+					{{ form.title(placeholder="5 - 50 characters long..", class="login-register-form-input invalid-field-border") }}
+
+					<div class="display-invalid-field">
+						{% for error in form.title.errors %}
+							<span> {{ error }} </span>
+
+						{% endfor %}
+					</div>
+
+				{% else %}
+					<!-- This is processed as an <input> -->
+					{{ form.title(placeholder="5 - 50 characters long..", class="login-register-form-input") }}
+
+				{% endif %}
+
+
+
+
+
+				<!-- Print label for the Title field -->
+				<legend style="margin-top: 5px ;">{{ form.description.label }}:</legend>
+
+				<!-- description input field -->
+				{% if form.description.errors %}
+
+					{{ form.description(placeholder="Write a description of the experience with the buyer..", class="login-register-form-input invalid-field-border", style="resize: vertical; padding: 5px 0 50px 5px") }}
+
+					<div class="display-invalid-field">
+						{% for error in form.description.errors %}
+							<span> {{ error }} </span>
+
+						{% endfor %}
+					</div>
+
+				{% else %}
+					<!-- This is processed as an <input> -->
+					{{ form.description(placeholder="Write a description of the experience with the buyer..", class="login-register-form-input", style="resize: vertical; padding: 5px 0 50px 5px") }}
+
+				{% endif %}
+
+
+
+
+
+				<!-- Button -->
+				<div style="visibility: hidden; position: absolute">
+				<legend>(Optional) Jpeg, Jpg, Png, and Pneg ONLY: </legend>
+
+				{{ form.pictures(class="upload-file-green-button", placeholder="Upload Pictures (3 - 12)", style="margin: 0 0 5px 0") }}
+				<br /></div>
+
+				{{ form.submit(class="search_button login-register-view-button") }}
+
+				
+
+			</form>
+
+
+
+
+
+			
+
+
+
+
+		</section>
+	{% endif %}
+{% endblock content %}

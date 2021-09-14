@@ -1,0 +1,130 @@
+{% extends "abstracts/layout.html" %}
+
+
+
+{% block content %}
+	<section class="orders-view">
+		<h1>Messages</h1>
+
+
+		<a href="{{ url_for('messages.list', filter_by=filter_by, page=page) }}" style="float: right; margin: 6px 12px 0 0"><button class="search_button">Go Back</button></a>
+		<p>Message to admin? <span>Click here</span>
+
+
+		<form method="POST" action="">
+			<!-- SECRET KEY to protect from foreign attacks -->
+			{{ form.hidden_tag() }}
+
+
+			<table class="orders-table">
+				<thead>
+					<tr>
+						{% if message_type == "MESSAGE" %}
+							<th style="text-align: center ;" colspan="2">Write new message</th>
+						{% elif message_type == "REPORT" %}
+							<th style="text-align: center ;" colspan="2">Write new report</th>
+						{% endif %}
+					</tr>
+				</thead>
+				<tbody>
+					<tr style="border-bottom: none ;">
+						<!--
+						<td>Order ID</td>
+						<td>Status</td>
+						<td>Seller</td>
+						<td>Date</td>
+						<td>Details</td>
+					-->
+
+						<!-- Print this if there are no values -->
+						<td>
+							<legend>Message to:</legend>
+
+
+							{% if form.message_to.errors %}
+
+								{{ form.message_to(placeholder="Username..", class="login-register-form-input invalid-field-border") }}
+
+								<div class="display-invalid-field">
+									{% for error in form.message_to.errors %}
+										<span> {{ error }} </span>
+
+									{% endfor %}
+								</div>
+
+							{% else %}
+								<!-- This is processed as an <input> -->
+								{{ form.message_to(placeholder="Enter username..", class="login-register-form-input") }}
+
+							{% endif %}
+						</td>
+
+
+						<td>
+							<legend>Message from:</legend>
+							<input class="login-register-form-input" placeholder="{{ current_user.username }}"disabled style="color: black ;">
+						</td>
+					</tr>
+					<tr style="border-bottom: none ;">
+						<td colspan="2">
+							<legend>Subject:</legend>
+							
+							{% if form.subject.errors %}
+
+								{{ form.subject(placeholder="Enter subject..", class="login-register-form-input invalid-field-border") }}
+
+								<div class="display-invalid-field">
+									{% for error in form.subject.errors %}
+										<span> {{ error }} </span>
+
+									{% endfor %}
+								</div>
+
+							{% else %}
+								<!-- This is processed as an <input> -->
+								{{ form.subject(placeholder="Enter subject..", class="login-register-form-input") }}
+
+							{% endif %}
+
+						</td>
+					</tr>
+					<tr style="border-bottom: none ;">
+						<td colspan="2">
+							<legend>Write message here:</legend>
+							
+							{% if form.body.errors %}
+
+								{{ form.body(placeholder="Enter message here..", class="login-register-form-input invalid-field-border", style="padding: 0 0 0 50px") }}
+
+								<div class="display-invalid-field">
+									{% for error in form.body.errors %}
+										<span> {{ error }} </span>
+
+									{% endfor %}
+								</div>
+
+							{% else %}
+								<!-- This is processed as an <input> -->
+								<!-- TextArea resizing source: https://stackoverflow.com/questions/36825227/i-want-my-textarea-to-have-a-fixed-width -->
+								{{ form.body(placeholder="Enter message here..", class="login-register-form-input", style="padding: 5px 0 140px 5px; resize: vertical ;") }}
+
+							{% endif %}
+
+						</td>
+					</tr>
+					<tr>
+						<!-- Button -->
+						<td colspan="2">{{ form.submit(class="search_button") }}</td>
+					</tr>
+				</tbody>
+
+			
+			</table>
+		</form>
+
+		<p style="color: #828282">Questions? <a class="blue-link" href="{{ url_for('users.register') }}">Click here</a></p>
+
+
+	</section>
+
+{% endblock content %}

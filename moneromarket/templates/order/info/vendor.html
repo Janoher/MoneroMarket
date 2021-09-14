@@ -1,0 +1,563 @@
+{% extends "abstracts/layout.html" %}
+
+{% block content %}
+	<section class="login-register-view">	
+
+
+
+		{% if OrderPostDetails.query.filter_by(post_id=order.post_id).first().shipping_from != "Digital" or OrderPostDetails.query.filter_by(post_id=order.post_id).first().shipping_to != "Digital" %}
+
+
+			{% if order.status == "VENDOR SHIPPED" %}
+				<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+				<ul class="login-register-alert">
+					<li>If <span style="color: blue ;">TRACKING NUMBER/ID</span> is incorrect, please <a href="{{ url_for('messages.forward', username='ADMIN', previous_page='orders.view_order', previous_page_id=order.id) }}" class="blue-link">message us</a> to update information.</li>
+					<li>If <span style="color: lime ;">WALLET ADDRESS</span> was mistyped or incorrect, please <a href="{{ url_for('messages.forward', username='ADMIN', previous_page='orders.view_order', previous_page_id=order.id) }}" class="blue-link">message us</a> to update address.</li>
+					{% if order.buying_amount == 1 %}
+						<li>Once we receive the package, we will inspect to <span style="color: orange ;">VERIFY</span> that the item is legit.</li>
+						<li>If item is <span style="color: green ;">LEGIT,</span> we will proceed to ship to the buyer.</li>
+						<li>If item is <span style="color: red ;">NOT</span> what the post showed or described it to be, we will message both you and the buyer for further action.</li>
+					{% else %}
+						<li>Once we receive the packages, we will inspect to verifry that the items are legit.</li>
+						<li>If items are legit, we will proceed to ship to the buyer.</li>
+						<li>If items are not what the post showed or described them to be, we will message both you and the buyer for further action.</li>
+					{% endif %}
+				</ul>
+
+
+				<p style="margin-top: 5px ;">Order: <a href="" style="text-decoration: none"><span class="orange-link">#{{ order.id }}</span></a></p>
+				<p style="margin-top: 0px ;">Tracking Number/ID: <a class="light-blue">#{{ fernet.decrypt(order.tracking_number.encode()).decode() }}</a></p>
+				{% if not order.arrived_to_office and order.status == "VENDOR SHIPPED" %}
+					{% if order.buying_amount == 1 %}
+						<p style="margin-top: 0px ;">Status: <span style="color: crimson ;">ITEM HAS NOT BEEN RECEIVED YET.</p>
+					{% else %}
+						<p style="margin-top: 0px ;">Status: <span style="color: crimson ;">ITEMS HAVE NOT BEEN RECEIVED YET.</p>
+					{% endif %}
+				{% else %}
+					<p style="margin-top: 0px ;">Status: <span style="color: green ;">VENDOR SHIPPED.</p>
+				{% endif %}
+
+				<legend style="margin-top: 5px ;">Wallet address:</legend>
+				<textarea readonly style="overflow: scroll ; width: 98% ; resize: none ; min-height: 10px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: orange ;">{{ fernet.decrypt(order.vendor_address.encode()).decode() }}</textarea>
+
+				<legend style="margin-top: 5px ;">Description:</legend>
+				<textarea readonly style="overflow: scroll ; width: 98% ; resize: vertical ; min-height: 60px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: grey ;">{{ fernet.decrypt(order.description_vendor.encode()).decode() }}</textarea>
+
+
+
+			{% elif order.status == "SHIPPED TO BUYER" %}
+				<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+				<ul class="login-register-alert">
+					<li>Order was shipped to buyer on <span style="color: blue">{{ order.shipped_from_office.strftime('%b %-d, %H:%M:%S') }} UTC time.</span></li>
+					<li>If <span style="color: lime ;">WALLET ADDRESS</span> was mistyped or incorrect, please <a href="{{ url_for('messages.forward', username='ADMIN', previous_page='orders.view_order', previous_page_id=order.id) }}" class="blue-link">message us</a> to update address.</li>
+					{% if order.buying_amount == 1 %}
+						<li>We have received the package and <span style="color: orange ;">VERIFIED</span> that the item is <span style="color: green">LEGIT.</span></li>
+					{% else %}
+						<li>We have received the packages and <span style="color: orange ;">VERIFIED</span> that the items are <span style="color: green">LEGIT.</span></li>
+					{% endif %}
+					<li>Buyer reserves the right to <span style="color: red">DISPUTE</span> and we will analyze the situation and decide on the outcome of the <span style="color: red">DISPUTE</span>
+				</ul>
+
+
+				<p style="margin-top: 5px ;">Order: <a href="" style="text-decoration: none"><span class="orange-link">#{{ order.id }}</span></a></p>
+				{% if not order.arrived_to_office and order.status == "VENDOR SHIPPED" %}
+					{% if order.buying_amount == 1 %}
+						<p style="margin-top: 0px ;">Status: <span style="color: crimson ;">ITEM HAS NOT BEEN RECEIVED YET.</p>
+					{% else %}
+						<p style="margin-top: 0px ;">Status: <span style="color: crimson ;">ITEMS HAVE NOT BEEN RECEIVED YET.</p>
+					{% endif %}
+				{% else %}
+					<p style="margin-top: 0px ;">Status: <span class="light-blue">SHIPPED TO BUYER</p>
+				{% endif %}
+
+				<p style="margin-top: 0px ;">Auto-Finalization: <a href="" style="text-decoration: none"><span style="color: purple"> {{ order.auto_finalization_timer.strftime('%b %-d, %H:%M:%S') }} UTC time</span></a></p>
+
+
+
+				<legend style="margin: 0px 0 0px 0">Shipping Cost: 
+				<div class="monero-hover-reveal" style="display: inline"><img class="tiny-monero-coin" style="height: 18px; width: 18px ; position: absolute ; margin: -3px 2px 0 -2px; cursor: pointer" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+						
+						<div class="monero-dropdown-menu" style="margin-top: -4px; margin-left: 93.5px">
+							<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+						 	<!-- USDT -->
+							<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">$ {{ "{:.2f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * usdt) }}</a>
+								</a>
+								
+								<!-- BTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">₿ {{ "{:.5f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * btc) }}</a>
+								</a>
+
+								<!-- BCH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">₿ {{ "{:.5f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * bch) }}</a>
+								</a>
+
+								<!-- LTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">Ł {{ "{:.5f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * ltc) }}</a>
+								</a>
+
+								<!-- DOGE -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">Ð {{ "{:.2f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * doge) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">₮ {{ "{:.5f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * xaut) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">♦ {{ "{:.5f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * eth) }}</a>
+								</a>
+							</div>
+
+					{% if float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) == 0 %}
+						<a style="margin-left: 20px; color: green">0.00</a></div>
+					{% else %}
+			 			<a style="margin-left: 20px; color: green">{{numpy.format_float_positional(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()), trim='-', precision=8) }}</a></div>
+			 		{% endif %}
+
+
+				
+			</legend>
+
+
+
+
+
+
+				<legend style="margin-top: 5px ;">Wallet address:</legend>
+				<textarea readonly style="overflow: scroll ; width: 98% ; resize: none ; min-height: 10px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: orange ;">{{ fernet.decrypt(order.vendor_address.encode()).decode() }}</textarea>
+
+
+			{% elif order.status == "DISPUTING" %}
+				<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+				<ul class="login-register-alert">
+					<li>Buyer initiated a dispute against you on <span style="color: blue">{{ order.buyer_disputed.strftime('%b %-d, %H:%M:%S') }} UTC time.</span></li>
+					{% if order.request_buyer_return and order.buyer_shipped %}
+						<li>Buyer has shipped the item back to <span style="color: orange">US</span> to inspect, and we will notify you of the outcome of the <span style="color: red">DISPUTE</span> after we have received the item.</li>
+					{% elif order.request_buyer_return %}
+						<li>Buyer has been requested to ship the item back to <span style="color: orange">US,</span> and they will have <span style="color: red">48 HOURS</span> to complete the request form or funds will be <span style="color: green">RELEASED</span> back to you.</li>
+					{% else %}
+						<li>Buyer reserves the right to <span style="color: red">DISPUTE</span> and we will analyze the situation and decide on the outcome of the <span style="color: red">DISPUTE.</span>
+						{% endif %}
+					<li>If you sold the <span style="color: green">CORRECT</span> items and did not do any scams, you have nothing to worry about.</li>
+				</ul>
+
+
+				<p style="margin-top: 5px ;">Order: <a href="" style="text-decoration: none"><span class="orange-link">#{{ order.id }}</span></a></p>
+				<p style="margin-top: -2px ;">Disputes: <a href="{{ url_for('messages.disputes_list', order_id=order.id) }}" class="blue-link">View here</a></p>
+
+
+				<legend style="margin: -2px 0 0px 0">Buyer Disputed: <span style="color: purple">{{ order.buyer_disputed.strftime("%b %-d, %H:%M:%S") }} UTC time</span></legend>
+
+				{% if order.request_buyer_return %}
+					<legend style="margin: 0px 0 0px 0">Requested Buyer Return: <span style="color: green">{{ order.request_buyer_return.strftime("%b %-d, %H:%M:%S") }} UTC time</span></legend>
+
+					{% if order.buyer_shipped %}
+						<legend style="margin: 0px 0 0px 0">Requested Buyer Return Submitted: <span style="color: limegreen">{{ order.buyer_shipped.strftime("%b %-d, %H:%M:%S") }} UTC time</span></legend>
+					{% endif %}
+				{% endif %}
+
+				<p style="margin-top: 0px ;">Status: <span style="color: crimson ;">BUYER IS DISPUTING AGAINST YOU</p>
+
+				<legend style="margin-top: 5px ;">Wallet address:</legend>
+				<textarea readonly style="overflow: scroll ; width: 98% ; resize: none ; min-height: 10px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: orange ;">{{ fernet.decrypt(order.vendor_address.encode()).decode() }}</textarea>
+
+
+
+
+			{% elif order.status == "RELEASING FUNDS" %}
+				<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+				<ul class="login-register-alert">
+					<li>Releasing funds was requested on <span style="color: blue">{{ order.recent_update.strftime('%b %-d, %H:%M:%S') }} UTC time.</span></li>
+
+					{% if order.percentage_to_buyer and order.percentage_to_vendor %}
+						<li>Order came to an <span style="color: goldenrod ; text-transform: uppercase">agreed settlement,</span> and you shall receive <span class="monero-orange" style="text-transform: uppercase">{{ fernet.decrypt(order.percentage_to_vendor.encode()).decode() }}%</span> of (<span style="color: purple ; text-transform: uppercase">total amount</span> - <span style="color: green ; text-transform: uppercase">shipping cost</span> - <span style="color: crimson ; text-transform: uppercase">10% FEE</span> of total amount).</li>
+					{% elif order.percentage_to_buyer %}
+						<li><span style="color: goldenrod">100%</span> of Monero are being given to the buyer, and a fee of <span style="color: crimson">MINUS 10%</span> of item and <span style="color: green; text-transform: uppercase">shipping costs</span> has been placed on your fees, which you can view in your wallet.</li>
+
+					{% elif order.buyer_disputed %}
+						<li>You have <span style="color: limegreen">WON</span> the <span style="color: crimson; text-transform: uppercase;">dispute,</span> and funds are being released to you!</li>
+					{% endif %}
+
+					<li>Please allow <span style="color: orange ;">24 - 72 HOURS</span> for funding to enter your wallet.</li>
+				</ul>
+
+
+				<p style="margin-top: 5px ;">Order: <a href="" style="text-decoration: none"><span class="orange-link">#{{ order.id }}</span></a></p>
+				{% if order.percentage_to_buyer and order.percentage_to_vendor %}
+					<p style="margin-top: 0px ;">Disputes: <a href="{{ url_for('messages.disputes_list', order_id=order.id) }}" class="blue-link">View here</a></p>
+
+					<p style="margin-top: 0px ;">Split Percentage Received: <a style="text-decoration: none; color: orange">{{ fernet.decrypt(order.percentage_to_buyer.encode()).decode() }}%</a></p>
+
+				{% elif order.percentage_to_buyer %}
+					<p style="margin-top: 0px ;">Disputes: <a href="{{ url_for('messages.disputes_list', order_id=order.id) }}" class="blue-link">View here</a></p>
+
+					<p style="margin-top: 0px ;">Percentage Received: <a style="text-decoration: none; color: orange">0%</a></p>
+
+				{% elif order.percentage_to_vendor %}
+					{% if order.buyer_disputed %}
+						<p style="margin-top: 0px ;">Disputes: <a href="{{ url_for('messages.disputes_list', order_id=order.id) }}" class="blue-link">View here</a></p>
+					{% endif %}
+
+					<p style="margin-top: 0px ;">Percentage Received: <a style="text-decoration: none; color: orange">100%</a></p>
+				{% endif %}
+
+				
+
+
+
+				<legend style="margin: 0px 0 0px 0">Shipping Cost: 
+				<div class="monero-hover-reveal" style="display: inline"><img class="tiny-monero-coin" style="height: 18px; width: 18px ; position: absolute ; margin: -3px 2px 0 -2px; cursor: pointer" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+						
+						<div class="monero-dropdown-menu" style="margin-top: -4px; margin-left: 93.5px">
+							<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+						 	<!-- USDT -->
+							<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">$ {{ "{:.2f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * usdt) }}</a>
+								</a>
+								
+								<!-- BTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">₿ {{ "{:.5f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * btc) }}</a>
+								</a>
+
+								<!-- BCH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">₿ {{ "{:.5f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * bch) }}</a>
+								</a>
+
+								<!-- LTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">Ł {{ "{:.5f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * ltc) }}</a>
+								</a>
+
+								<!-- DOGE -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">Ð {{ "{:.2f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * doge) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">₮ {{ "{:.5f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * xaut) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">♦ {{ "{:.5f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * eth) }}</a>
+								</a>
+							</div>
+
+					{% if float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) == 0 %}
+						<a style="margin-left: 20px; color: green">0.00</a></div>
+					{% else %}
+			 			<a style="margin-left: 20px; color: green">{{numpy.format_float_positional(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()), trim='-', precision=8) }}</a></div>
+			 		{% endif %}
+
+				</legend>
+
+				<p style="margin-top: 0px ;">Status: <span style="color: limegreen">RELEASING FUNDS</p>
+
+
+
+
+				<legend style="margin-top: 5px ;">Wallet address:</legend>
+				<textarea readonly style="overflow: scroll ; width: 98% ; resize: none ; min-height: 10px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: orange ;">{{ fernet.decrypt(order.vendor_address.encode()).decode() }}</textarea>
+
+
+
+
+
+			{% elif order.status == "RELEASED FUNDS" %}
+				<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+				<ul class="login-register-alert">
+					<li>Funds were released on <span style="color: blue">{{ order.escrow_released.strftime('%b %-d, %H:%M:%S') }} UTC time.</span></li>
+
+					{% if order.percentage_to_buyer and order.percentage_to_vendor %}
+						<li><span style="color: goldenrod">{{ fernet.decrypt(order.percentage_to_vendor.encode()).decode() }}%</span> of Monero has been given to you, <span style="color: crimson">MINUS 10%</span> of item and <span style="color: green; text-transform: uppercase">shipping costs.</span></li>
+					{% elif order.percentage_to_buyer %}
+						<li><span style="color: goldenrod">100%</span> of Monero has been given to the buyer, and a fee of <span style="color: crimson">MINUS 10%</span> of item and <span style="color: green; text-transform: uppercase">shipping costs</span> has been placed on your fees, which you can view in your wallet.</li>
+
+					{% elif order.buyer_disputed %}
+						<li>You have <span style="color: limegreen">WON</span> the <span style="color: crimson; text-transform: uppercase;">dispute,</span> and funds have been released to you!</li>
+					{% endif %}
+
+					{% if order.percentage_to_vendor %}
+						<li>Please rate the buyer on your experience <a href="{{ url_for('reviews.create', order_id=order.id) }}" class="blue-link">here.</a></li>
+					{% endif %}
+				</ul>
+
+
+				<p style="margin-top: 5px ;">Order: <a href="" style="text-decoration: none"><span class="orange-link">#{{ order.id }}</span></a></p>
+
+				{% if order.percentage_to_buyer and order.percentage_to_vendor %}
+					<p style="margin-top: 0px ;">Disputes: <a href="{{ url_for('messages.disputes_list', order_id=order.id) }}" class="blue-link">View here</a></p>
+
+					<p style="margin-top: 0px ;">Split Percentage Received: <a style="text-decoration: none; color: goldenrod">{{ fernet.decrypt(order.percentage_to_vendor.encode()).decode() }}%</a></p>
+
+				{% elif order.percentage_to_buyer %}
+					<p style="margin-top: 0px ;">Disputes: <a href="{{ url_for('messages.disputes_list', order_id=order.id) }}" class="blue-link">View here</a></p>
+
+					<p style="margin-top: 0px ;">Percentage Received: <a style="text-decoration: none; color: goldenrod">0%</a></p>
+
+				{% elif order.percentage_to_vendor %}
+					{% if order.buyer_disputed %}
+						<p style="margin-top: 0px ;">Disputes: <a href="{{ url_for('messages.disputes_list', order_id=order.id) }}" class="blue-link">View here</a></p>
+					{% endif %}
+					
+					<p style="margin-top: 0px ;">Percentage Received: <a style="text-decoration: none; color: goldenrod">100%</a></p>
+				{% endif %}
+
+
+				<!-- <p style="margin-top: 0px ;">Status: <span class="light-blue">RELEASED FUNDS</p> -->
+
+				<p style="margin-top: -1px ;">Auto-Finalization: <a href="" style="text-decoration: none"><span style="color: purple"> {{ order.auto_finalization_timer.strftime('%b %-d, %H:%M:%S') }} UTC time</span></a></p>
+
+
+
+				<!--
+				{% if order.percentage_to_buyer and order.percentage_to_vendor %}
+					<legend style="margin: 0px 0 0px 0">Percentage to you: <span style="color: goldenrod">{{ fernet.decrypt(order.percentage_to_vendor.encode()).decode() }}%</span></legend>
+
+				{% elif order.percentage_to_buyer %}
+					<legend style="margin: 0px 0 0px 0">Percentage to buyer: <span style="color: goldenrod">100%</span></legend>
+				{% endif %}-->
+
+
+
+
+				<legend style="margin: 0px 0 0px 0">Shipping Cost: 
+				<div class="monero-hover-reveal" style="display: inline"><img class="tiny-monero-coin" style="height: 18px; width: 18px ; position: absolute ; margin: -3px 2px 0 -2px; cursor: pointer" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+						
+						<div class="monero-dropdown-menu" style="margin-top: -4px; margin-left: 93.5px">
+							<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+						 	<!-- USDT -->
+							<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">$ {{ "{:.2f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * usdt) }}</a>
+								</a>
+								
+								<!-- BTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">₿ {{ "{:.5f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * btc) }}</a>
+								</a>
+
+								<!-- BCH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">₿ {{ "{:.5f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * bch) }}</a>
+								</a>
+
+								<!-- LTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">Ł {{ "{:.5f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * ltc) }}</a>
+								</a>
+
+								<!-- DOGE -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">Ð {{ "{:.2f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * doge) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">₮ {{ "{:.5f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * xaut) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">♦ {{ "{:.5f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * eth) }}</a>
+								</a>
+							</div>
+
+			 		{% if float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) == 0 %}
+						<a style="margin-left: 20px; color: green">0.00</a></div>
+					{% else %}
+			 			<a style="margin-left: 20px; color: green">{{numpy.format_float_positional(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()), trim='-', precision=8) }}</a></div>
+			 		{% endif %}
+
+				</legend>
+
+
+				<p style="margin-top: 0px ;">Status: <span style="color: limegreen">RELEASED FUNDS</p>
+
+
+
+				<legend style="margin-top: 5px ;">Wallet address:</legend>
+				<textarea readonly style="overflow: scroll ; width: 98% ; resize: none ; min-height: 10px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: orange ;">{{ fernet.decrypt(order.vendor_address.encode()).decode() }}</textarea>
+
+
+
+
+
+			{% elif order.status == "AUTO-FINALIZED" %}
+				<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+				<ul class="login-register-alert">
+					<li>Funds were released on <span style="color: blue">{{ order.escrow_released.strftime('%b %-d, %H:%M:%S') }} UTC time.</span></li>
+					<li>Please rate the buyer on your experience <a href="{{ url_for('reviews.create', order_id=order.id) }}" class="blue-link">here.</a></li>
+				</ul>
+
+
+				<p style="margin-top: 5px ;">Order: <a href="" style="text-decoration: none"><span class="orange-link">#{{ order.id }}</span></a></p>
+				<p style="margin-top: 0px ;">Status: <span class="light-blue">{{ order.status }}</p>
+
+				<p style="margin-top: 0px ;">Auto-Finalization: <a href="" style="text-decoration: none"><span style="color: purple"> {{ order.auto_finalization_timer.strftime('%b %-d, %H:%M:%S') }} UTC time</span></a></p>
+
+
+
+				<legend style="margin: 1px 0 0px 0">Shipping Cost: 
+				<div class="monero-hover-reveal" style="display: inline"><img class="tiny-monero-coin" style="height: 18px; width: 18px ; position: absolute ; margin: -3px 2px 0 -2px; cursor: pointer" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+						
+						<div class="monero-dropdown-menu" style="margin-top: -4px; margin-left: 94.5px">
+							<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+						 	<!-- USDT -->
+							<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">$ {{ "{:.2f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * usdt) }}</a>
+								</a>
+								
+								<!-- BTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">₿ {{ "{:.5f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * btc) }}</a>
+								</a>
+
+								<!-- BCH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">₿ {{ "{:.5f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * bch) }}</a>
+								</a>
+
+								<!-- LTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">Ł {{ "{:.5f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * ltc) }}</a>
+								</a>
+
+								<!-- DOGE -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">Ð {{ "{:.2f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * doge) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">₮ {{ "{:.5f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * xaut) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">♦ {{ "{:.5f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * eth) }}</a>
+								</a>
+							</div>
+
+					{% if float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) == 0 %}
+						<a style="margin-left: 20px; color: red">0.00</a></div>
+					{% else %}
+			 			<a style="margin-left: 20px; color: red">{{numpy.format_float_positional(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()), trim='-', precision=8) }}</a></div>
+			 		{% endif %}
+
+
+				
+			</legend>
+
+
+
+
+
+			
+
+
+
+
+
+
+
+
+
+
+
+
+				<legend style="margin-top: 5px ;">Wallet address:</legend>
+				<textarea readonly style="overflow: scroll ; width: 98% ; resize: none ; min-height: 10px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: orange ;">{{ fernet.decrypt(order.vendor_address.encode()).decode() }}</textarea>
+
+			
+
+			{% elif order.confirmations >= 10 %}
+				<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+				<ul class="login-register-alert">
+					<li>Page isn't supposed to be accessible.</li>
+				</ul>
+
+
+				<p style="margin-top: 5px ;">Order: <a href="" style="text-decoration: none"><span class="orange-link">#{{ order.id }}</span></a></p>
+			
+
+
+			{% elif order.confirmations < 10 %}
+				<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+				<ul class="login-register-alert">
+					<li>Page really isn't supposed to be accessable</li>
+				</ul>
+
+
+				<p style="margin-top: 5px ;">Order: <a href="" style="text-decoration: none"><span class="orange-link">#{{ order.id }}</span></a></p>
+
+			{% endif %}
+		{% endif %}
+
+
+
+
+
+
+		<p style="margin-top: 20px ; text-align: center ; color: grey ;"><span style="margin-right: 3px">Total price of order: </span>
+			<img class="tiny-monero-coin" style="position: absolute" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+			<span style="color: green; margin-left: 23px">{{ numpy.format_float_positional(float(fernet.decrypt(order.buying_amount.encode()).decode()) * float(fernet.decrypt(order.price_per_item.encode()).decode()), trim='-', precision=8) }}</span>
+		</p>
+
+		<section class="cart-quick-view" style="">
+			<img class="cart-quick-view-img" src="{{ url_for('static', filename='img/posts/' + order.orders_post.gallery_1) }}">
+
+			<div class="cart-quick-view-content">
+				<a class="cart-quick-view-title" href="{{ url_for('listings.item', post_id=order.orders_post.id, previous_page='orders.view_order', username=order.id) }}">{{ order.orders_post.title }}</a>
+
+				<p style="color: orange"><span class="cart-quick-view-category">{{ SubCategory.query.get(order.orders_post.sub_category).name }}</span> - <a class="cart-quick-view-vendor" href="{{ url_for('users.profile', username=order.orders_post.vendor.username) }}">{{ order.orders_post.vendor.username }}</a></p>
+
+
+				<div class="cart-quick-view-amount">
+					<a style="float: left ; margin-right: 5px ; color: grey ;">Price: </a>
+						<div class="monero-hover-reveal" style="display: inline"><img class="tiny-monero-coin" style="height: 18px; width: 18px ; position: absolute ; margin: -3px 0px 0 0px; cursor: pointer" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+						
+							<div class="monero-dropdown-menu" style="margin-top: 19px; margin-left: 180px">
+								<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+							 	<!-- USDT -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #F0F0F0">$ {{ "{:.2f}".format(float(fernet.decrypt(order.price_per_item.encode()).decode()) * usdt) }}</a>
+								</a>
+								
+								<!-- BTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #F0F0F0">₿ {{ "{:.5f}".format(float(fernet.decrypt(order.price_per_item.encode()).decode()) * btc) }}</a>
+								</a>
+
+								<!-- BCH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #F0F0F0">₿ {{ "{:.5f}".format(float(fernet.decrypt(order.price_per_item.encode()).decode()) * bch) }}</a>
+								</a>
+
+								<!-- LTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #F0F0F0">Ł {{ "{:.5f}".format(float(fernet.decrypt(order.price_per_item.encode()).decode()) * ltc) }}</a>
+								</a>
+
+								<!-- DOGE -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #F0F0F0">Ð {{ "{:.2f}".format(float(fernet.decrypt(order.price_per_item.encode()).decode()) * doge) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #F0F0F0">₮ {{ "{:.5f}".format(float(fernet.decrypt(order.price_per_item.encode()).decode()) * xaut) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px; background-color: #F0F0F0">♦ {{ "{:.5f}".format(float(fernet.decrypt(order.price_per_item.encode()).decode()) * eth) }}</a>
+							</div>
+
+				 		<a style="margin-left: 22px; color: black">{{ numpy.format_float_positional(float(fernet.decrypt(order.price_per_item.encode()).decode()), trim='-', precision=8) }}</a></div>
+				</div>
+
+				<!-- <p class="cart-quick-view-stock" style="color: green ;">In stock</p> -->
+				<div class="cart-quick-view-amount">
+					{% if order.escrow_released %}
+						<p><a href="" style="float: left ; margin-right: 7px ; color: lime ;">Released Funds</a></p>
+					{% else %}
+						<p><a href="{{ url_for('employees.original_item', order_id=order.id, previous_page='orders.view_order') }}" style="float: left ; margin-right: 7px ; color: lime ;">View original</a></p>
+					{% endif %}
+					<br>
+				</div>
+
+
+				<p class="listing-quick-view-quantity">Quantity: </p>
+					<span class="listing-quick-view-quantity-input-field"><input placeholder="{{ fernet.decrypt(order.buying_amount.encode()).decode() }}" readonly></span>
+
+				<a href="{{ url_for('messages.forward', username=User.query.filter_by(id=order.user_id).first().username, previous_page='orders.view_order', previous_page_id=order.id) }}"><p class="checkout-quick-view-message" style="margin-top:-70px">Message buyer</p></a>
+
+
+				{% if order.status == "AUTO-FINALIZED" or order.status == "RELEASED FUNDS" or order.status == "RELEASING FUNDS" %}
+					<a href="{{ url_for('orders.delete_order', order_id=order.id) }}"><p class="checkout-quick-view-remove" style="margin-top:-45px">Delete <span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></p></a>
+
+				{% else %}
+					<a href="#"><p class="checkout-quick-view-remove" style="margin-top:-45px">Dispute <span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></p></a>
+				{% endif %}
+
+				<a><p class="checkout-quick-view-status-vendor light-blue">{{ order.status }}</p></a>
+			</div>
+		</section>
+
+	</section>
+{% endblock content %}

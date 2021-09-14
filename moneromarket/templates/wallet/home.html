@@ -1,0 +1,731 @@
+{% extends "abstracts/layout.html" %}
+
+
+
+{% block content %}
+
+	<section class="orders-view">
+		<h1 style="margin-bottom: 5px">{{ current_user.username }}'s Wallet</h1>
+
+
+		<ul class="login-register-alert" style="margin-top: 12px; margin-bottom: 10px; width: 95%; margin-left: auto; margin-right: auto">
+			<li>Current block height is <a style="color: blue">{{ wallet.height() }}</a></li>
+				<li>For questions about how <a style="color: orange">Monero</a> works, please visit <a href="#" class="blue-link">here.</a></li>
+				
+			</ul>
+
+
+		<!--<p>Filter <span>All</span> Page <span>1</span></p>-->
+		{% if wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance() == 0 %}
+			<a style="margin-left: 9px; margin-right: ">Total Balance: 
+
+
+
+				<div class="monero-hover-reveal" style="display: inline"><img class="tiny-monero-coin" style="height: 18px; width: 18px ; position: absolute ; margin: -2px -5px 0 -1px; cursor: pointer" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+						
+							<div class="monero-dropdown-menu" style="margin-top: -3px; margin-left: 101px">
+								<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+							 	<!-- USDT -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">$ {{ "{:.2f}".format(float(wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance()) * usdt) }}</a>
+								</a>
+								
+								<!-- BTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(float(wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance()) * btc) }}</a>
+								</a>
+
+								<!-- BCH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(float(wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance()) * bch) }}</a>
+								</a>
+
+								<!-- LTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ł {{ "{:.5f}".format(float(wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance()) * ltc) }}</a>
+								</a>
+
+								<!-- DOGE -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ð {{ "{:.2f}".format(float(wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance()) * doge) }}</a>
+								</a>
+
+								<!-- XAUT -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₮ {{ "{:.5f}".format(float(wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance()) * xaut) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">♦ {{ "{:.5f}".format(float(wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance()) * eth) }}</a>
+								</a>
+							</div>
+						
+						<!--
+				 		<a style="margin-left: 20px;">{{ numpy.format_float_positional(float(wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance()), trim='-', precision=8) }}</a></div>-->
+
+
+				 		<span style="margin-left: 14px">0.00</span></a></div>
+
+
+
+				
+
+		{% else %}
+			<a style="margin-left: 9px; margin-right: ">Total Balance: <div class="monero-hover-reveal" style="display: inline"><img class="tiny-monero-coin" style="height: 18px; width: 18px ; position: absolute ; margin: -2px -5px 0 -1px; cursor: pointer" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+						
+							<div class="monero-dropdown-menu" style="margin-top: -3px; margin-left: 101px">
+								<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+							 	<!-- USDT -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">$ {{ "{:.2f}".format(float(wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance()) * usdt) }}</a>
+								</a>
+								
+								<!-- BTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(float(wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance()) * btc) }}</a>
+								</a>
+
+								<!-- BCH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(float(wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance()) * bch) }}</a>
+								</a>
+
+								<!-- LTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ł {{ "{:.5f}".format(float(wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance()) * ltc) }}</a>
+								</a>
+
+								<!-- DOGE -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ð {{ "{:.2f}".format(float(wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance()) * doge) }}</a>
+								</a>
+
+								<!-- XAUT -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₮ {{ "{:.5f}".format(float(wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance()) * xaut) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">♦ {{ "{:.5f}".format(float(wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance()) * eth) }}</a>
+								</a>
+							</div>
+						
+						<!--
+				 		<a style="margin-left: 20px;">{{ numpy.format_float_positional(float(wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance()), trim='-', precision=8) }}</a></div>-->
+
+
+				 		<span style="margin-left: 14px">{{ numpy.format_float_positional(wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance(unlocked=False), trim='-', precision=12) }}</span></a></div>
+		{% endif %}
+		<div style="margin-top: 3px;"></div>
+
+		{% if wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance(unlocked=True) == 0 %}
+			<a style="margin-left: 9px; margin-right: ">Unlocked Balance: 
+
+
+
+				<div class="monero-hover-reveal" style="display: inline"><img class="tiny-monero-coin" style="height: 18px; width: 18px ; position: absolute ; margin: -2px -5px 0 -1px; cursor: pointer" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+						
+							<div class="monero-dropdown-menu" style="margin-top: -3px; margin-left: 132px">
+								<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+							 	<!-- USDT -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">$ {{ "{:.2f}".format(float(wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance(unlocked=True)) * usdt) }}</a>
+								</a>
+								
+								<!-- BTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(float(wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance(unlocked=True)) * btc) }}</a>
+								</a>
+
+								<!-- BCH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(float(wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance(unlocked=True)) * bch) }}</a>
+								</a>
+
+								<!-- LTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ł {{ "{:.5f}".format(float(wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance(unlocked=True)) * ltc) }}</a>
+								</a>
+
+								<!-- DOGE -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ð {{ "{:.2f}".format(float(wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance(unlocked=True)) * doge) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₮ {{ "{:.5f}".format(float(wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance(unlocked=True)) * xaut) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">♦ {{ "{:.5f}".format(float(wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance(unlocked=True)) * eth) }}</a>
+								</a>
+							</div>
+						
+						<!--
+				 		<a style="margin-left: 20px;">{{ numpy.format_float_positional(float(wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance()), trim='-', precision=8) }}</a></div>-->
+
+
+				 		<span style="margin-left: 14px">0.00</span></a></div>
+			
+		{% else %}
+			<a style="margin-left: 9px; margin-right: ">Unlocked Balance: <div class="monero-hover-reveal" style="display: inline"><img class="tiny-monero-coin" style="height: 18px; width: 18px ; position: absolute ; margin: -2px -5px 0 -1px; cursor: pointer" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+						
+							<div class="monero-dropdown-menu" style="margin-top: -3px; margin-left: 132px">
+								<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+							 	<!-- USDT -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">$ {{ "{:.2f}".format(float(wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance(unlocked=True)) * usdt) }}</a>
+								</a>
+								
+								<!-- BTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(float(wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance(unlocked=True)) * btc) }}</a>
+								</a>
+
+								<!-- BCH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(float(wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance(unlocked=True)) * bch) }}</a>
+								</a>
+
+								<!-- LTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ł {{ "{:.5f}".format(float(wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance(unlocked=True)) * ltc) }}</a>
+								</a>
+
+								<!-- DOGE -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ð {{ "{:.2f}".format(float(wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance(unlocked=True)) * doge) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₮ {{ "{:.5f}".format(float(wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance(unlocked=True)) * xaut) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">♦ {{ "{:.5f}".format(float(wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance(unlocked=True)) * eth) }}</a>
+								</a>
+							</div>
+						
+						<!--
+				 		<a style="margin-left: 20px;">{{ numpy.format_float_positional(float(wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance()), trim='-', precision=8) }}</a></div>-->
+
+
+				 		<span style="margin-left: 14px">{{ numpy.format_float_positional(wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].balance(unlocked=True), trim='-', precision=12) }}</span></a></div>
+		{% endif %}
+
+		<p style="margin-top: 3px">Public address: </p><span>
+			<div class="container" style="margin-top: -40px; border: none">
+		<textarea readonly style="overflow: scroll ; width: 98.9% ; resize: none ; min-height: 10px ; padding: 5px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 13.5px ; color: orange ;">{{ wallet.accounts[int(fernet.decrypt(current_user.account_number.encode()).decode())].address() }}</textarea></div></span>
+
+
+		
+			<img style="display: block ; margin: auto ;"class="" src="{{ url_for('static', filename='img/qrcodes/' + fernet.decrypt(current_user.qr_code.encode()).decode()) }}" height="152" width="152">
+		
+<!--
+		<img class="profile-user-picture-img" src="{{ url_for('static', filename='img/profiles/' + current_user.profile_picture) }}">
+		<img style="display: block ; margin: auto ; width: 32% ;" src="{{ url_for('static', filename='img/qrcodes/pgp.png') }}">-->
+
+
+
+
+
+		<form method="POST" action="">
+			<!-- SECRET KEY to protect from foreign attacks -->
+			{{ form.hidden_tag() }}
+		
+			<div class="container" style="border: none">
+			<legend>Address:</legend>
+			<!-- Title input field -->
+			{% if form.address.errors %}
+
+				{{ form.address(placeholder="Enter recipient's Monero address..", class="login-register-form-input invalid-field-border") }}
+
+				<div class="display-invalid-field">
+					{% for error in form.address.errors %}
+						<span> {{ error }} </span>
+
+					{% endfor %}
+				</div>
+
+			{% else %}
+				<!-- This is processed as an <input> -->
+				{{ form.address(placeholder="Enter recipient's Monero address..", class="login-register-form-input") }}
+
+			{% endif %}
+
+
+
+			<!-- Seperate into two div's to fit amount and fee into one line -->
+			<div>
+				<!-- Right side -->
+			<div class="create-post-left-price" style="float: left; width: 70%">
+
+				<!-- Print label for the Title field -->
+				<legend style="float: left">Amount:</legend>
+
+				<div style="float: left; margin-left: 5px">
+					<select name="currency" id="currency" placeholder="Select currency"> 
+						<optgroup label="Currencies">
+
+							<option value="xmr">Monero (XMR)</option>
+							<option value="usdt">Tether (USDT)</option>
+							<option value="btc">Bitcoin (BTC)</option>
+							<option value="bch">Bitcoin Cash (BCH)</option>
+							<option value="ltc">Litecoin (LTC)</option>
+							<option value="doge">Dogecoin (DOGE)</option>
+							<option value="xaut">Tether Gold (XAUT)</option>
+							<option value="eth">Ethereum (ETH)</option>
+
+						</optgroup>
+					</select>
+				</div>
+
+
+				<div style="float: right">
+					<span class="tied-to-fiat" style="font-size: 13px; margin-right: 0px">Tied to fiat:</span>
+					<!-- Disabled for now, but will add static prices in the future.... -->
+					<input type="checkbox" id="fiat" name="fiat" value="Fiat" disabled>
+				</div>
+
+				<!-- Title input field -->
+				{% if form.amount.errors %}
+
+
+					<div class="display-invalid-field">
+						{% for error in form.amount.errors %}
+							<span> {{ error }} </span>
+
+						{% endfor %}
+					</div>
+
+					{{ form.amount(placeholder="Enter amount of currency to send..", class="login-register-form-input invalid-field-border") }}
+
+					
+				{% else %}
+					<!-- This is processed as an <input> -->
+					{{ form.amount(placeholder="Enter amount of currency to send..", class="login-register-form-input") }}
+
+				{% endif %}
+			</div>
+
+
+				<div style="width: 30%; float: left;">
+					<legend style = "margin-left: 10px ">Priority:</legend>
+					<select style="margin-left: 10px; width: 96%; height: 34px; border-radius: 6px; border: 0.5px solid #E1D9D9" id="fee-priority" name="fee-priority">
+						<option value="0">Slow (x0.2 fee ~  {{ numpy.format_float_positional(float(network_fees[0]), trim='-') }} XMR)</option>
+						<option value="1">Normal ( x1 fee ~  {{ numpy.format_float_positional(float(network_fees[1]), trim='-') }} XMR)</option>
+						<option value="2">Fast (x5 fee ~  {{ numpy.format_float_positional(float(network_fees[2]), trim='-') }} XMR)</option>
+						<!--<option value="3">Fastest (x200 fee ~  {{ numpy.format_float_positional(float(network_fees[0]), trim='-') }} XMR)</option>-->
+					</select>
+				</div>
+
+			</div>
+
+
+			<div style="clear: both"></div>
+
+				<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+				<div id="blackout-send">
+					<div id="modal-box-wallet">
+						<p>Are you sure you want to send this amount of currency to this address? Please double-check info is correct.</p>
+						<legend style="float: left">Password:</legend>
+
+						{{ form.password(placeholder="Enter password to send..", class="login-register-form-input") }}
+
+
+						{{ form.submit(class="close-modal", style="padding: 3px; padding-top:1.5px; padding-right:11px; padding-left: 10px") }}
+						<a href="#" class="close-modal">Cancel</a>
+					</div>
+				</div>
+
+				<!-- Button to submit -->
+				<!--<p style="color: white; margin-bottom: -2px">-</p>-->
+				<div style="float: none; color: white; margin-bottom: -12px">-</div>
+				<!--<a href="#blackout-send">{{ form.submit(class="search_button") }}</a>-->
+				<a href="#blackout-send" class="search_button" style="text-decoration: none;">Send</a>
+			</div>
+		</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<p style="margin-bottom: -15px">Filter: 		
+			{% if filter_by == "all" %}
+				<a  style="text-decoration: none ; margin-right: -18px ;" href="{{ url_for('wallets.home', filter_by='all') }}"><strong><span>All</span></strong></a> 
+			{% else %}
+				<a  style="text-decoration: none ; margin-right: -18px ;" href="{{ url_for('wallets.home', filter_by='all') }}"><span>All</span></a> 
+			{% endif %}
+
+			{% if filter_by == "sent" %}
+				<a style="margin-right: -18px ; text-decoration: none ;" href="{{ url_for('wallets.home', filter_by='sent') }}"><strong><span>Sent</span></strong></a>
+			{% else %}
+				<a style="margin-right: -18px ; text-decoration: none ;" href="{{ url_for('wallets.home', filter_by='sent') }}"><span>Sent</span></a>
+			{% endif %}
+
+
+			{% if filter_by == "received" %}
+				<a style="margin-right: -18px ; text-decoration: none ;" href="{{ url_for('wallets.home', filter_by='received') }}"><strong><span>Received</span></strong></a>
+			{% else %}
+				<a style="margin-right: -18px ; text-decoration: none ;" href="{{ url_for('wallets.home', filter_by='received') }}"><span>Received</span></a>
+			{% endif %}	
+		</p>
+
+
+
+
+		<table class="orders-table desktop-table-wallet">
+			<caption>Transaction History</caption>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Transaction ID</th>
+					<th>Amount</th>
+
+					<th colspan="1">Confirmations</th>
+					<!--<th colspan="1">Date & Time</th>-->
+					<th colspan="1">Height</th>
+					<th>Network Fee</th>
+				</tr>
+			</thead>
+			<tbody>
+
+
+				{% if filter_by == "all" %}
+					{% for transaction in transactions %}
+					<tr>
+						<!-- Incoming/Outgoing status -->
+						{% if transaction[1] == "outgoing" %}
+							<td><a style="color: orange">Sent</a></td>
+						{% elif transaction[1] == "incoming" %}
+							<td><a style="color: lime">Received</a></td>
+						{% endif %}
+
+
+						<td class=""><p><a class="blue-link transaction-full" href="https://monerohash.com/explorer/search?value={{ transaction[0].transaction.hash }}" target="_blank">{{ transaction[0].transaction.hash }}</a></p></td>
+
+						
+
+
+
+
+						<td>
+							<div class="monero-hover-reveal" style="display: inline"><img class="tiny-monero-coin" style="height: 18px; width: 18px ; position: absolute ; margin: -2px -5px 0 -1px; cursor: pointer" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+						
+							<div class="monero-dropdown-menu" style="margin-top: 19px; margin-left: -5px">
+								<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+							 	<!-- USDT -->
+								<a style="width: 120px;"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 18px; width: 18px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">$ {{ "{:.2f}".format(float(transaction[0].amount) * usdt) }}</a>
+								</a>
+								
+								<!-- BTC -->
+								<a style="width: 120px; "><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 18px; width: 18px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(float(transaction[0].amount) * btc) }}</a>
+								</a>
+
+								<!-- BCH -->
+								<a style="width: 120px; "><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 18px; width: 18px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(float(transaction[0].amount) * bch) }}</a>
+								</a>
+
+								<!-- LTC -->
+								<a style="width: 120px; "><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 18px; width: 18px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ł {{ "{:.5f}".format(float(transaction[0].amount) * ltc) }}</a>
+								</a>
+
+								<!-- DOGE -->
+								<a style="width: 120px; "><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 18px; width: 18px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ð {{ "{:.2f}".format(float(transaction[0].amount) * doge) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px; "><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 18px; width: 18px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₮ {{ "{:.5f}".format(float(transaction[0].amount) * xaut) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px; "><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 18px; width: 18px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">♦ {{ "{:.5f}".format(float(transaction[0].amount) * eth) }}</a>
+								</a>
+							</div>
+
+
+							<a class="monero-orange" style="margin-left: 22px">{{ numpy.format_float_positional(float(transaction[0].amount), trim='-', precision=12) }}</a></td>
+
+
+
+
+
+						<td><a style="color: crimson ;">{{ wallet.confirmations(transaction[0]) }}</a></td>
+						
+						<td><a style="color: green ;">{{ transaction[0].transaction.height }}</a></td>
+						<td><a style="color: blue ;">{{ numpy.format_float_positional(float(transaction[0].transaction.fee), trim='-', precision=12) }}</a></td>
+					</tr>
+					{% endfor %}
+
+
+
+				{% else %}
+					{% for transaction in transactions %}
+					<tr>
+						<!-- Incoming/Outgoing status -->
+						{% if filter_by == "sent" %}
+							<td><a style="color: orange">Sent</a></td>
+						{% elif filter_by == "received" %}
+							<td><a style="color: lime">Received</a></td>
+						{% endif %}
+
+
+						<!-- Old
+							<td><p><a class="blue-link" href="https://xmrchain.net/tx/{{ transaction.transaction.hash }}" target="_blank">{{ transaction.transaction.hash }}</a></p></td> -->
+
+						<td><p><a class="blue-link" href="https://monerohash.com/explorer/search?value={{ transaction.transaction.hash }}" target="_blank">{{ transaction.transaction.hash }}</a></p></td>
+						<td><div class="monero-hover-reveal" style="display: inline"><img class="tiny-monero-coin" style="height: 18px; width: 18px ; position: absolute ; margin: -2px -5px 0 -1px; cursor: pointer" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+						
+							<div class="monero-dropdown-menu" style="margin-top: 19px; margin-left: -5px">
+								<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+							 	<!-- USDT -->
+								<a style="width: 120px;"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 18px; width: 18px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">$ {{ "{:.2f}".format(float(transaction.amount) * usdt) }}</a>
+								</a>
+								
+								<!-- BTC -->
+								<a style="width: 120px; "><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 18px; width: 18px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(float(transaction.amount) * btc) }}</a>
+								</a>
+
+								<!-- BCH -->
+								<a style="width: 120px; "><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 18px; width: 18px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(float(transaction.amount) * bch) }}</a>
+								</a>
+
+								<!-- LTC -->
+								<a style="width: 120px; "><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 18px; width: 18px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ł {{ "{:.5f}".format(float(transaction.amount) * ltc) }}</a>
+								</a>
+
+								<!-- DOGE -->
+								<a style="width: 120px; "><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 18px; width: 18px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ð {{ "{:.2f}".format(float(transaction.amount) * doge) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px; "><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 18px; width: 18px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₮ {{ "{:.5f}".format(float(transaction.amount) * xaut) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px; "><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 18px; width: 18px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">♦ {{ "{:.5f}".format(float(transaction.amount) * eth) }}</a>
+								</a>
+							</div>
+
+
+							<a class="monero-orange" style="margin-left: 22px">{{ numpy.format_float_positional(float(transaction.amount), trim='-', precision=12) }}</a></td>
+						<td><a style="color: crimson ;">{{ wallet.confirmations(transaction) }}</a></td>
+						
+						<td><a style="color: green ;">{{ transaction.transaction.height }}</a></td>
+						<td><a style="color: blue ;">{{ numpy.format_float_positional(float(transaction.transaction.fee), trim='-', precision=12) }}</a></td>
+					</tr>
+					{% endfor %}
+				{% endif %}
+
+
+
+
+
+				{% if not transactions %}
+					<tr>
+						<!-- Print this if there are no values -->
+						<td><p>None</p></td>
+						<td>----------</td>
+						<td>----------</td>
+						<td>----------</td>
+						<td>----------</td>
+						<td>----------</td>
+					</tr>
+				{% endif %}
+			</tbody>
+
+		
+		</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<table class="orders-table phone-table-wallet">
+			<caption>Transaction History</caption>
+			<thead>
+				<tr>
+					<th>Status /<span>Transaction ID</span></th>
+					<th>Amount /<span>Network Fee</span></th>
+
+					<th colspan="1">Confirmations /<span>Height</span></th>
+					<!--<th colspan="1">Date & Time</th>-->
+				</tr>
+			</thead>
+			<tbody>
+
+
+				{% if filter_by == "all" %}
+					{% for transaction in transactions %}
+					<tr style="border-bottom: none">
+						<!-- Incoming/Outgoing status -->
+						{% if transaction[1] == "outgoing" %}
+							<td><a style="color: orange">Sent</a></td>
+						{% elif transaction[1] == "incoming" %}
+							<td><a style="color: lime">Received</a></td>
+						{% endif %}
+
+
+						
+
+						
+
+
+
+
+						<td>
+							<div class="monero-hover-reveal" style="display: inline"><img class="tiny-monero-coin" style="height: 18px; width: 18px ; position: absolute ; margin: -2px -5px 0 -1px; cursor: pointer" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+						
+							<div class="monero-dropdown-menu" style="margin-top: 19px; margin-left: -5px">
+								<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+							 	<!-- USDT -->
+								<a style="width: 120px;"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 18px; width: 18px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">$ {{ "{:.2f}".format(float(transaction[0].amount) * usdt) }}</a>
+								</a>
+								
+								<!-- BTC -->
+								<a style="width: 120px; "><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 18px; width: 18px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(float(transaction[0].amount) * btc) }}</a>
+								</a>
+
+								<!-- BCH -->
+								<a style="width: 120px; "><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 18px; width: 18px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(float(transaction[0].amount) * bch) }}</a>
+								</a>
+
+								<!-- LTC -->
+								<a style="width: 120px; "><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 18px; width: 18px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ł {{ "{:.5f}".format(float(transaction[0].amount) * ltc) }}</a>
+								</a>
+
+								<!-- DOGE -->
+								<a style="width: 120px; "><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 18px; width: 18px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ð {{ "{:.2f}".format(float(transaction[0].amount) * doge) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px; "><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 18px; width: 18px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₮ {{ "{:.5f}".format(float(transaction[0].amount) * xaut) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px; "><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 18px; width: 18px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">♦ {{ "{:.5f}".format(float(transaction[0].amount) * eth) }}</a>
+								</a>
+							</div>
+
+
+							<a class="monero-orange" style="margin-left: 22px">{{ numpy.format_float_positional(float(transaction[0].amount), trim='-', precision=12) }}</a></td>
+
+
+
+
+
+						<td><a style="color: crimson ;">{{ wallet.confirmations(transaction[0]) }}</a></td>
+
+					</tr>
+					<tr style="border-top: none">
+						<td class=""><p><a class="blue-link transaction-full" href="https://monerohash.com/explorer/search?value={{ transaction[0].transaction.hash }}" target="_blank">{{ transaction[0].transaction.hash }}</a></p></td>
+						
+						
+						<td><a style="color: blue ;">{{ numpy.format_float_positional(float(transaction[0].transaction.fee), trim='-', precision=12) }}</a></td>
+						<td><a style="color: green ;">{{ transaction[0].transaction.height }}</a></td>
+					</tr>
+					{% endfor %}
+
+
+
+				{% else %}
+					{% for transaction in transactions %}
+					<tr style="border-bottom: none">
+						<!-- Incoming/Outgoing status -->
+						{% if filter_by == "sent" %}
+							<td><a style="color: orange">Sent</a></td>
+						{% elif filter_by == "received" %}
+							<td><a style="color: lime">Received</a></td>
+						{% endif %}
+
+
+						<!-- Old
+							<td><p><a class="blue-link" href="https://xmrchain.net/tx/{{ transaction.transaction.hash }}" target="_blank">{{ transaction.transaction.hash }}</a></p></td> -->
+
+					
+						<td><div class="monero-hover-reveal" style="display: inline"><img class="tiny-monero-coin" style="height: 18px; width: 18px ; position: absolute ; margin: -2px -5px 0 -1px; cursor: pointer" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+						
+							<div class="monero-dropdown-menu" style="margin-top: 19px; margin-left: -5px">
+								<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+							 	<!-- USDT -->
+								<a style="width: 120px;"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 18px; width: 18px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;">$ {{ "{:.2f}".format(float(transaction.amount) * usdt) }}</a>
+								</a>
+								
+								<!-- BTC -->
+								<a style="width: 120px; "><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 18px; width: 18px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(float(transaction.amount) * btc) }}</a>
+								</a>
+
+								<!-- BCH -->
+								<a style="width: 120px; "><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 18px; width: 18px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₿ {{ "{:.5f}".format(float(transaction.amount) * bch) }}</a>
+								</a>
+
+								<!-- LTC -->
+								<a style="width: 120px; "><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 18px; width: 18px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ł {{ "{:.5f}".format(float(transaction.amount) * ltc) }}</a>
+								</a>
+
+								<!-- DOGE -->
+								<a style="width: 120px; "><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 18px; width: 18px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">Ð {{ "{:.2f}".format(float(transaction.amount) * doge) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px; "><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 18px; width: 18px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">₮ {{ "{:.5f}".format(float(transaction.amount) * xaut) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px; "><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 18px; width: 18px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px">♦ {{ "{:.5f}".format(float(transaction.amount) * eth) }}</a>
+								</a>
+							</div>
+
+
+							<a class="monero-orange" style="margin-left: 22px">{{ numpy.format_float_positional(float(transaction.amount), trim='-', precision=12) }}</a></td>
+						<td><a style="color: crimson ;">{{ wallet.confirmations(transaction) }}</a></td>
+
+					</tr>
+					<tr style="border-top: none">
+						<td><p><a class="blue-link transaction-full" href="https://monerohash.com/explorer/search?value={{ transaction.transaction.hash }}" target="_blank">{{ transaction.transaction.hash }}</a></p></td>
+						
+						
+						<td><a style="color: blue ;">{{ numpy.format_float_positional(float(transaction.transaction.fee), trim='-', precision=12) }}</a></td>
+						<td><a style="color: green ;">{{ transaction.transaction.height }}</a></td>
+					</tr>
+					{% endfor %}
+				{% endif %}
+
+
+
+
+
+				{% if not transactions %}
+					<tr style="border-bottom: none">
+						<!-- Print this if there are no values -->
+						<td><p>None</p></td>
+						<td>----------</td>
+						<td>----------</td>
+					</tr>
+					<tr style="border-top: none">
+						<td>----------</td>
+						<td>----------</td>
+						<td>----------</td>
+					</tr>
+				{% endif %}
+			</tbody>
+
+		
+		</table>
+
+	</section>
+
+{% endblock content %}

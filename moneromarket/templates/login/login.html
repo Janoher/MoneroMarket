@@ -1,0 +1,170 @@
+{% extends "abstracts/layout.html" %}
+
+
+{% block content %}
+
+
+	<section class="login-register-view">	
+		<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+		<ul class="login-register-alert">
+			<li>Adivsed to NOT store Monero on website, but instead in a cold wallet.</li>
+			<li>Check PGP message and signature to confirm if this website is legit.</li>
+			<li>Email <a class="blue-link" href="#">moneromarket@elude.in</a> for questions or concerns.</li>
+		</ul>
+
+
+		<form class="register-form" method="POST" action="">
+			<!-- SECRET KEY to protect from foreign attacks -->
+			{{ form.hidden_tag() }}
+
+			<legend>{{ form.username_or_email.label }}:</legend>
+
+
+			{% if form.username_or_email.errors %}
+
+				{{ form.username_or_email(placeholder="Username or email", class="login-register-form-input invalid-field-border") }}
+
+				<div class="display-invalid-field">
+					{% for error in form.username_or_email.errors %}
+						<span> {{ error }} </span>
+
+					{% endfor %}
+				</div>
+
+			{% else %}
+				<!-- This is processed as an <input> -->
+				{{ form.username_or_email(placeholder="Username or email", class="login-register-form-input") }}
+
+			{% endif %}
+
+
+
+
+			<legend>Password:</legend>
+
+
+			{% if form.password.errors %}
+
+				{{ form.password(placeholder="Password", class="login-register-form-input invalid-field-border") }}
+
+				<div class="display-invalid-field">
+					{% for error in form.password.errors %}
+						<span> {{ error }} </span>
+
+					{% endfor %}
+				</div>
+
+			{% else %}
+				<!-- Not proccessed as an <input> -->
+				{{ form.password(placeholder="Password", class="login-register-form-input") }}
+
+			{% endif %}
+
+
+			<a class="blue-link" href="#">Forgot password?</a>
+			<br>
+
+			<!-- Button -->
+			{{ form.submit(class="search_button login-register-view-button") }}
+
+		</form>
+
+		<br>
+		<span style="color: #828282">Don't have an account?</span> <a class="blue-link" href="{{ url_for('users.register') }}">Sign up</a>
+
+	</section>
+
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

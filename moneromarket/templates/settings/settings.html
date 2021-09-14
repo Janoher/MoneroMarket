@@ -1,0 +1,488 @@
+{% extends "abstracts/layout.html" %}
+
+{% block content %}
+	<section class="settings-view">
+		<h1 class="settings-view-title">Settings</h1>
+
+		
+
+
+		<section class="settings-left-column">
+			<section class="settings-password">
+				<h1>Change Password</h1>
+
+				<!-- Banner to appear above the register form describing the requirments needed to change a password -->
+				<ul class="login-register-alert" style="border-top-right-radius: 0px; border-top-left-radius: 0px">
+					<li>Use a strong password.</li>
+					<li>Don't share password with anyone else.</li>
+					<li>Only way to recover account is with an email address.</li>
+				</ul>
+
+
+
+				<!-- Adding our password input field -->
+				<form class="settings-form" method="POST" action="">
+
+					<!-- SECRET KEY to protect from foreign attacks -->
+					{{ change_password_form.hidden_tag() }}
+
+
+
+
+
+					<!-- Change Password -->
+					<legend>Current password:</legend>
+
+					<!-- Check for errors -->
+					{% if change_password_form.current_password.errors %}
+
+						<!-- Change password field to red border -->
+						{{ change_password_form.current_password(placeholder="Current password..", class="settings-password-field invalid-field-border") }}
+
+
+						<!-- Loop and print the errors -->
+						<div class="display-invalid-field">
+							{% for error in change_password_form.current_password.errors %}
+								<span> {{ error }} </span>
+
+							{% endfor %}
+						</div>
+
+
+					<!-- If input is either correct or empty -->
+					{% else %}
+						<!-- Display like normal -->
+						{{ change_password_form.current_password(placeholder="Current password..", class="settings-password-field") }}
+
+					{% endif %}
+
+
+
+
+
+					<!-- New password field -->
+					<legend>New password:</legend>
+
+					<!-- Check for errors -->
+					{% if change_password_form.new_password.errors %}
+
+						<!-- Change password field to red border -->
+						{{ change_password_form.new_password(placeholder="New password..", class="settings-password-field invalid-field-border") }}
+
+
+						<!-- Loop and print the errors -->
+						<div class="display-invalid-field">
+							{% for error in change_password_form.new_password.errors %}
+								<span> {{ error }} </span>
+
+							{% endfor %}
+						</div>
+
+
+					<!-- If input is either correct or empty -->
+					{% else %}
+						<!-- Display like normal -->
+						{{ change_password_form.new_password(placeholder="New password..", class="settings-password-field") }}
+
+					{% endif %}
+
+
+
+
+
+
+					<!-- Confirm password field -->
+					<legend>Confirm password:</legend>
+					
+					<!-- Check for errors -->
+					{% if change_password_form.confirm_password.errors %}
+
+						<!-- Change password field to red border -->
+						{{ change_password_form.confirm_password(placeholder="Confirm password..", class="settings-password-field invalid-field-border") }}
+
+
+						<!-- Loop and print the errors -->
+						<div class="display-invalid-field">
+							{% for error in change_password_form.confirm_password.errors %}
+								<span> {{ error }} </span>
+
+							{% endfor %}
+						</div>
+
+
+					<!-- If input is either correct or empty -->
+					{% else %}
+						<!-- Display like normal -->
+						{{ change_password_form.confirm_password(placeholder="Confirm password..", class="settings-password-field") }}
+
+					{% endif %}
+
+
+
+
+					<!-- Button -->
+					{{ change_password_form.submit(class="search_button settings-password-button") }}
+				</form>
+
+			</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<!-- One Time Password page section -->
+			<section class="settings-delete-account">
+				<h1>One-Time Password</h1>
+
+				<!-- Banner to appear above the register form describing the requirments needed to change a password -->
+				<ul class="login-register-alert" style="border-top-right-radius: 0px; border-top-left-radius: 0px">
+					<li>One time password token for substitution of password.</li>
+					<li>Temporary password for unsafe or non-secure places to login.</li>
+					<li>One-time use and expires in 24 hours. </li>
+				</ul>
+
+
+
+				<!-- Adding our password input field -->
+				<form method="POST" action="">
+
+					<!-- SECRET KEY to protect from foreign attacks -->
+					{{ one_time_password_form.hidden_tag() }}
+
+					<!-- FormField data for one-time password -->
+					<legend>Enter password:</legend>
+
+					<!-- Check for errors -->
+					{% if one_time_password_form.password.errors %}
+
+						<!-- Change password field to red border -->
+						{{ one_time_password_form.password(placeholder="Enter password..", class="settings-password-field invalid-field-border") }}
+
+
+						<!-- Loop and print the errors -->
+						<div class="display-invalid-field">
+							{% for error in one_time_password_form.password.errors %}
+								<span> {{ error }} </span>
+
+							{% endfor %}
+						</div>
+
+
+					<!-- If input is either correct or empty -->
+					{% else %}
+						<!-- Display like normal -->
+						{{ one_time_password_form.password(placeholder="Enter password..", class="settings-password-field") }}
+
+					{% endif %}
+
+
+
+
+
+
+
+					<!-- Button -->
+					{{ one_time_password_form.submit_one_time_password(class="search_button settings-password-button") }}
+
+					<!-- Print out the hidden FormField below --><!--
+					<legend>One-time password:</legend>
+					<input type="text" placeholder="Search..">-->
+
+
+				</form>
+
+
+			</section>
+
+
+
+
+
+
+
+		</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<section class="settings-middle-white-column-seperator">_;</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<section class="settings-right-column">
+
+			<!-- Email -->
+			<section class="settings-email">
+				<h1>Update Email</h1>
+
+				<!-- Banner to appear above the register form describing the requirments needed to change a password -->
+				<ul class="login-register-alert" style="border-top-right-radius: 0px; border-top-left-radius: 0px">	
+					<li>Add or change an email at any time.</li>
+					<li>Permanently delete email account from our database.</li>
+					<li>Email registration is recommended but not required.</li>
+				</ul>
+
+
+
+
+				<!-- Adding our password input field -->
+				<section class="settings-email-form">
+
+
+					<form method="POST" action="">
+						<!-- SECRET KEY to protect from foreign attacks -->
+						{{ add_email_form.hidden_tag() }}
+					
+						<legend>Add email:</legend>
+						{% if add_email_form.errors %}
+
+							{{ add_email_form.email(placeholder="Add email..", class="settings-email-field invalid-field-border") }}
+
+							<!--
+							<div class="display-invalid-field">
+								{% for error in add_email_form.email.errors %}
+									<span> {{ error }} </span>
+
+								{% endfor %}
+							</div>
+							-->
+
+						{% else %}
+							{{ add_email_form.email(placeholder="Add email..", class="settings-email-field") }}
+
+						{% endif %}
+
+
+
+						<!-- Button -->
+						{{ add_email_form.submit_add_email(class="search_button yellow-button settings-email-button")}}
+
+					</form>
+
+
+
+
+
+
+
+					<form method="POST" action="">
+						<!-- SECRET KEY to protect from foreign attacks -->
+						{{ update_email_form.hidden_tag() }}
+					
+						<legend>Update email:</legend>
+						{% if update_email_form.errors %}
+
+							{{ update_email_form.email(placeholder="Update email..", class="settings-email-field invalid-field-border") }}
+
+							<!--
+							<div class="display-invalid-field">
+								{% for error in update_email_form.email.errors %}
+									<span> {{ error }} </span>
+
+								{% endfor %}
+							</div>
+							-->
+
+
+						{% else %}
+							{{ update_email_form.email(placeholder="Update email..", class="settings-email-field") }}
+
+						{% endif %}
+
+
+
+						<!-- Button -->
+						{{ update_email_form.submit_update_email(class="search_button blue-button settings-email-button")}}
+					</form>
+
+
+
+
+
+					<form method="POST" action="">
+						<!-- SECRET KEY to protect from foreign attacks -->
+						{{ delete_email_form.hidden_tag() }}
+					
+						<legend>Delete email:</legend>
+						{% if delete_email_form.errors %}
+
+							{{ delete_email_form.password(placeholder="Enter password..", class="settings-email-field invalid-field-border") }}
+
+							<div class="display-invalid-field">
+								{% for error in delete_email_form.password.errors %}
+									<span> {{ error }} </span>
+
+								{% endfor %}
+							</div>
+
+
+						{% else %}
+							{{ delete_email_form.password(placeholder="Enter password..", class="settings-email-field") }}
+
+						{% endif %}
+
+
+
+						<!-- Button -->
+						{{ delete_email_form.submit_delete_email(class="search_button red-button settings-email-button")}}
+					</form>
+
+
+
+
+					<p class="paragraph-white-filler">helloworldhelloworldhello</p>
+
+					{% if current_user.email != "" %}
+						<p style="color: grey">Current email: <span>{{ current_user.email }}</span></p>
+					{% else %}
+						<p style="color: red">NO EMAIL REGISTERED</p>
+					{% endif %}
+
+				</section>
+
+				
+
+
+			</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<section class="settings-delete-account">
+				<h1>Delete Account</h1>
+
+				<!-- Banner to appear above the register form describing the requirments needed to change a password -->
+				<ul class="login-register-alert" style="border-top-right-radius: 0px; border-top-left-radius: 0px">	
+					<li>Permanently delete your account from our database.</li>
+					<li>NO QUESTIONS ASKED.</li>
+					<li>Delete only if there are no ongoing disputes or transactions.</li>
+				</ul>
+
+				<!-- Adding our password input field -->
+				<form method="POST" action="">
+
+					<!-- SECRET KEY to protect from foreign attacks -->
+					{{ delete_account_form.hidden_tag() }}
+
+					<legend>Enter password:</legend>
+					
+					<!-- Check for errors -->
+					{% if delete_account_form.password.errors %}
+
+						<!-- Change password field to red border -->
+						{{ delete_account_form.password(placeholder="Enter password..", class="settings-password-field invalid-field-border") }}
+
+
+						<!-- Loop and print the errors -->
+						<div class="display-invalid-field">
+							{% for error in delete_account_form.password.errors %}
+								<span> {{ error }} </span>
+
+							{% endfor %}
+						</div>
+
+
+					<!-- If input is either correct or empty -->
+					{% else %}
+						<!-- Display like normal -->
+						{{ delete_account_form.password(placeholder="Enter password..", class="settings-password-field") }}
+
+					{% endif %}
+
+
+
+
+
+
+
+					<!-- Button -->
+					{{ delete_account_form.submit_delete_account(class="search_button settings-password-button") }}
+				</form>
+
+			</section>
+
+
+
+
+
+
+		</section>
+
+	</section>
+
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

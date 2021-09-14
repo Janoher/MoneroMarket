@@ -1,0 +1,104 @@
+{% extends "abstracts/layout.html" %}
+
+{% block content %}
+	<section class="login-register-view">	
+		<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+		<h1 style="border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; padding-top: 5px;">Frequently Asked Questions</h1>
+
+
+
+
+		<h2 id="what-is-monero" style="margin-top: 16px ">What is Monero?</h2>
+		<p>Monero is a cryptocurrency that obstructs information on the blockchain about the sender, receiver, and amount. Monero was developed in 2014 to combat the issues around Bitcoin, which is the first successful cryptocurrency. The issues Monero solves are privacy,  decentralization, and network transaction fees. It solves this by making it impossible to use ASIC machines, and also having the supply cap be infinite but with a tail emission of 0.6 XMR per 10 minutes.</p>
+		<br>
+
+		<h2 id="why-use-monero">Why we use Monero?</h2>
+		<p>If we used a public ledger cryptocurrency such as Bitcoin or Ethereum, then whenever someone buys or sells anything on the site, the other party would then know how much money the other party holds in their wallet. Monero combats this issue, making the information private. Also, Monero is one of the few cryptocurrencies that are actually fungible, unlike Bitcoin that has a transaction history.</p>
+		<br>
+
+		<h2 id="how-do-i-get-monero">How do I get Monero?</h2>
+		<p>There are a few ways to get Monero, such as buying from an exchange, mining it, or selling items on this website. Buying from an exchange will require a bank account, and automatically excludes those that are unbanked. We made this website to make it possible for individuals to acquire cryptocurrencies without the need for a bank, and to be able to use the cryptocurrency like an actual currency.</p>
+		<br>
+
+		<h2 id="send-receive-monero">How do I send and/or receive Monero?</h2>
+		<p>Monero can be received through public Monero addresses, which comprise of 95 characters that start with either a '4' or an '8'. When sending Monero, you will have to send Monero to a public Monero address. Please make sure that the address is correct, as sending to incorrect addresses will make the Monero unrecoverable.</p>
+		<br>
+
+		<h2 id="i-have-bitcoin">I have Bitcoin, how do I buy things?</h2>
+		<p>In version 2.0 of MoneroMarket we will add a feature to allow for payments with Bitcoin using the payment-processor "Crypto-Pay" to convert cryptocurrencies automatically. However, for now in version 1.0 we only accept Monero. If you have Bitcoin or any other cryptocurrency, you will have to convert Bitcoin to Monero manually and then send the required amount of Monero to the address generated when you checkout to purchase your item(s). You can convert Bitcoin or Ethereum to Monero using <a class="blue-link" target="_blank" href="https://changenow.io/?from=xmr&to=btc&amount=1">ChangeNOW.io</a> or <a class="blue-link" target="_blank" href="https://sideshift.ai/btc/xmr">SideShift.ai</a> and sent the exchanged Monero into your in-store wallet, or into you own wallet.</p>
+		<br>
+
+		<h2 id="what-is-instore-wallet">What is an in-store wallet?</h2>
+		<p>When you create an account, we will automatically generate a fresh Monero wallet for you. An in-store wallet is entirely optional and you can buy and sell goods without ever interacting with the in-store wallet. We provide an in-store wallet so that people who are new to cryptocurrencies can use Monero easily.</p>
+		<br>
+
+		<h2 id="what-is-total-balance">What is total balance?</h2>
+		<p>Total balance refers to the total amount of Monero that a wallet has, regardless of whether the transactions have been verified, or if the funds are able to be spent.</p>
+		<br>
+
+		<h2 id="what-is-unlocked-balance">What is unlocked balance?</h2>
+		<p>Unlocked balance refers to the total amount of Monero that a wallet has that is spendable, and that the transactions have been verified and the wallet has at least 10 confirmations.</p>
+		<br>
+
+		<h2>How are my funds secured when buying or selling items?</h2>
+		<p>When someone buys an item, they send Monero to a generated address for that order. Once sent, the website will verify that the correct amount came through. Once verified, the Monero will be held in escrow until the order is completed, then we will release to the seller.</p>
+		<br>
+
+		<h2 id="what-is-escrow">What is escrow?</h2>
+		<p>Monero that is held by the website is called "escrow". We do this to ensure that neither the buyer nor the seller can run off with the money without the order being fully completed. Once completed, we will release the funds to the specified address of the seller, or the buyer depending on if a dispute was raised.</p>
+		<br>
+
+		<h2>What is a dispute?</h2>
+		<p>When a buyer receives the item and it isn't what it was on the ad, or if the item never arrived, they can submit a dispute to return the item and get refunded, or to sort things out. It can also be used to change the item for something else, such as a different shoe size, and is also used for reviews if someone said something false about the item in the review. The buyer will proceed to send the item to us and we will determine who is in the right, and distribute funds accordingly.</p>
+		<br>
+
+		<h2 id="what-is-auto-finalization">What is auto-finalization?</h2>
+		<p>After we have shipped the items to the buyer, the buyer will have up to 7 days after the expected arrival date to manually release the funds to the vendor, or to file a dispute. However, if the 7 days are up and the buyer hasn't done anything, then the funds will automatically be released to the vendor.</p>
+		<br>
+
+		<h2>How does shipping work?</h2>
+		<p>When the vendor lists an item, the price that they put will also include shipping costs. The vendor will ship the item(s) to us at our office for us to inspect the item(s) to make sure they are valid, and then we will ship to the buyer. The vendor will be responsible for paying for both the shipping cost from the vendor to our office AND the shipping cost from our office to the buyer.</p>
+		<br>
+
+		<h2>What is the fee for listing an item?</h2>
+		<p>No money is needed upfront to post an item. When an item is sold however, we will take a flat 10% selling fee, and will also take out shipping costs.</p>
+		<br>
+
+		<h2>What items am I allowed to sell?</h2>
+		<p>Any items that are not illegal, fraudulent, weapons, drugs, foods, liquids, or large and/or heavy items such as big tables, big tv's, sofas, heavy dumbells, etc... If you have any questions, please message <span style="color: red">ADMIN</span> to see if you can list your item.</p>
+		<br>
+
+		<h2>I forgot my password, what now?</h2>
+		<p>An email account is not required for registration of an account, however without a verified email address your account will be unrecoverable as we do not know or possess your password. You can send an account recovery form <a class="blue-link" target="_blank" href="#">here.</a></p>
+		<br>
+
+		<h2>How do the currency exchange rates work?</h2>
+		<p>We get our information about the exchange rate from CoinMarketCap, and we update the currencies every 10 minutes. All cryptocurrency prices will change after 10 minutes except for the amount of Tether specified during creating of post, and when an order is placed the amount of Monero will remain constant while everything else including Tether will change.</p>
+		<br>
+
+		<h2>How do I know that the website works as described?</h2>
+		<p>All of our code is open-source, meaning that anybody can view and inspect the code and verify for themselves that the website works as intended. You can view our code on <a class="blue-link" target="_blank" href="{{ url_for('main.home') }}">our website</a> or on <a class="blue-link" target="_blank" href="https://github.com">GitHub.</a></p>
+		<br>
+
+		<h2>What regions of the world does this website work with?</h2>
+		<p>All digital orders can be made through any country, while physical items can be sent from worldwide, however they can only be sold to people in the United States for now. As we grow and build warehouses in different countries, we will expand where people can ship items to.</p>
+		<br>
+
+		<h2>Is there a .onion domain?</h2>
+		<p>We have both a clearnet domain and an .onion domain; <a class="blue-link" target="_blank" href="{{ url_for('main.home') }}">https://www.MoneroMarket.org</a> is our clearnet domain and <a class="blue-link" target="_blank" href="{{ url_for('main.home') }}">https://dsdf982hfalkj31fs.onion</a> is our .onion domain.</p>
+		<br>
+
+		<h2>Is there any JavaScript?</h2>
+		<p>Currently our website does not have or run any JavaScript code, however there might be a later point in time where we add a page to mine Monero directly from the website, and only that page will run JavaScript on the website just to make mining Monero possible for individuals who cannot download mining software on their device or they are using a device that they do not own and cannot download any software.</p>
+		<br>
+
+		<h2 id="how-to-contact-us">How to contact us?</h2>
+		<p>You can contact us by messaging <span style="color: red">ADMIN</span> or by emailing <a class="blue-link" target="_blank" href="#">support@MoneroMarket.org</a>.</p>
+		<br>
+
+
+
+
+
+	</section>
+{% endblock content %}

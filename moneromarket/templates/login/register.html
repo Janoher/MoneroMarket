@@ -1,0 +1,165 @@
+{% extends "abstracts/layout.html" %}
+
+
+{% block content %}
+
+
+	<section class="login-register-view">	
+		<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+		<ul class="login-register-alert">
+			<li>Username must be minimum 4 and maximum 16 characters and can only contain letters, numbers, and underscores('_').</li>
+			<li>Usernames must start with a letter.</li>
+			<li>Email accounts are optional, although recommended for recovering account.</li>
+			<li>Passwords have no requirments, only that the confirmed password matches the previous password.</li>
+		</ul>
+
+
+		<form class="register-form" method="POST" action="">
+			<!-- SECRET KEY to protect from foreign attacks -->
+			{{ form.hidden_tag() }}
+
+			<legend>{{ form.username.label }}:</legend>
+
+
+			{% if form.username.errors %}
+
+				{{ form.username(placeholder="Username", class="login-register-form-input invalid-field-border") }}
+
+				<div class="display-invalid-field">
+					{% for error in form.username.errors %}
+						<span> {{ error }} </span>
+
+					{% endfor %}
+				</div>
+
+			{% else %}
+				<!-- This is processed as an <input> -->
+				{{ form.username(placeholder="Username", class="login-register-form-input") }}
+
+			{% endif %}
+
+
+
+
+			<legend>Email:</legend>
+
+
+			{% if form.email.errors %}
+
+				{{ form.email(placeholder="Email", class="login-register-form-input invalid-field-border") }}
+
+				<div class="display-invalid-field">
+					{% for error in form.email.errors %}
+						<span> {{ error }} </span>
+
+					{% endfor %}
+				</div>
+
+			{% else %}
+				<!-- This is processed as an <input> -->
+				{{ form.email(placeholder="Email", class="login-register-form-input") }}
+
+			{% endif %}
+
+
+
+			<legend>Password:</legend>
+
+
+			{% if form.password.errors %}
+
+				{{ form.password(placeholder="Password", class="login-register-form-input invalid-field-border") }}
+
+				<div class="display-invalid-field">
+					{% for error in form.password.errors %}
+						<span> {{ error }} </span>
+
+					{% endfor %}
+				</div>
+
+			{% else %}
+				<!-- Not proccessed as an <input> -->
+				{{ form.password(placeholder="Password", class="login-register-form-input") }}
+
+			{% endif %}
+
+
+			<legend>Confirm password:</legend>
+
+
+			{% if form.confirm_password.errors %}
+
+				{{ form.confirm_password(placeholder="Confirm password", class="login-register-form-input invalid-field-border") }}
+
+				<div class="display-invalid-field">
+					{% for error in form.confirm_password.errors %}
+						<span> {{ error }} </span>
+
+					{% endfor %}
+				</div>
+
+			{% else %}
+				<!-- Not proccessed as an <input> -->
+				{{ form.confirm_password(placeholder="Confirm password", class="login-register-form-input") }}
+
+			{% endif %}
+
+
+			<!-- Button -->
+			{{ form.submit(class="search_button login-register-view-button") }}
+
+		</form>
+
+		<br>
+		<span style="color: #828282">Already have an account?</span> <a class="blue-link" href="{{ url_for('users.login') }}">Sign in</a>
+
+	</section>
+
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,469 @@
+{% extends "abstracts/layout.html" %}
+
+
+
+{% block content %}
+
+	<section class="login-register-view">
+	<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+		<ul class="login-register-alert">
+			<li>Shipped the item(s) to the address below on <span style="color:blue">{{ order.shipped_from_office.strftime("%b %-d, %H:%M:%S") }} UTC time.</span></li>
+			<li>If any information down below is <span style="color:crimson;text-transform:uppercase">wrong,</span> please message  <a href="{{ url_for('messages.forward', username='ADMIN', previous_page='orders.view_order', previous_page_id=order.id) }}" class="blue-link">MoneroMarket</a> to correct the information.</li>
+		</ul>
+
+		<div class="container" style="border: none ;">
+			<h1 style="border-radius: 6px ; margin-bottom: 7px; margin-top: 4px ;">Order info</h1>
+			<section class="cart-quick-view" style="margin: auto ; border-top: dotted 0.5px grey">
+				<img class="cart-quick-view-img" src="{{ url_for('static', filename='img/posts/' + order.orders_post.gallery_1) }}">
+
+				<div class="cart-quick-view-content">
+					<a class="cart-quick-view-title" href="{{ url_for('listings.item', post_id=order.orders_post.id, previous_page='employees.view_outgoing_shipment', username=order.id) }}">{{ order.orders_post.title }}</a>
+
+					<p style="color: orange"><span class="cart-quick-view-category">{{ SubCategory.query.get(order.orders_post.sub_category).name }}</span> - <a class="cart-quick-view-vendor" href="{{ url_for('users.profile', username=order.orders_post.vendor.username) }}">{{ order.orders_post.vendor.username }}</a></p>
+
+
+					<div class="cart-quick-view-amount">
+						<a style="float: left ; margin-right: 7px ; color: grey ;">Price: </a>
+
+						<div class="monero-hover-reveal" style="display: inline"><img class="tiny-monero-coin" style="height: 18px; width: 18px ; position: absolute ; margin: -1px 0px 0 -2px; cursor: pointer" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+						
+							<div class="monero-dropdown-menu" style="margin-top: 20px; margin-left: 181px">
+								<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+							 	<!-- USDT -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;" >$ {{ "{:.2f}".format(float(fernet.decrypt(order.price_per_item.encode()).decode()) * usdt) }}</a>
+								</a>
+								
+								<!-- BTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;" >₿ {{ "{:.5f}".format(float(fernet.decrypt(order.price_per_item.encode()).decode()) * btc) }}</a>
+								</a>
+
+								<!-- BCH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;" >₿ {{ "{:.5f}".format(float(fernet.decrypt(order.price_per_item.encode()).decode()) * bch) }}</a>
+								</a>
+
+								<!-- LTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;" >Ł {{ "{:.5f}".format(float(fernet.decrypt(order.price_per_item.encode()).decode()) * ltc) }}</a>
+								</a>
+
+								<!-- DOGE -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;" >Ð {{ "{:.2f}".format(float(fernet.decrypt(order.price_per_item.encode()).decode()) * doge) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;" >₮ {{ "{:.5f}".format(float(fernet.decrypt(order.price_per_item.encode()).decode()) * xaut) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;" >♦ {{ "{:.5f}".format(float(fernet.decrypt(order.price_per_item.encode()).decode()) * eth) }}</a>
+								</a>
+							</div>
+
+				 		<a style="margin-left: 20px; color: black">{{ numpy.format_float_positional(float(fernet.decrypt(order.price_per_item.encode()).decode()), trim='-', precision=8) }}</a></div>
+
+						
+					</div>
+
+					<!-- <p class="cart-quick-view-stock" style="color: green ;">In stock</p> -->
+					<div class="cart-quick-view-amount">
+						<p><a href="{{ url_for('employees.original_item', order_id=order.id, previous_page='employees.view_outgoing_shipment') }}" style="float: left ; margin-right: 7px ; color: lime ;">View original</a></p>
+						<br>
+					</div>
+
+
+					<p class="checkout-quick-view-quantity">Quantity: </p>
+						<span class="checkout-quick-view-quantity-input-field"><input placeholder="{{ fernet.decrypt(order.buying_amount.encode()).decode() }}" readonly></span>
+
+					<a href="{{ url_for('messages.forward', username=User.query.filter_by(id=order.user_id).first().username, previous_page='orders.view_order', previous_page_id=order.id) }}"><p class="checkout-quick-view-message" style="margin-top:-70px">Message buyer</p></a>
+
+					<a href="{{ url_for('orders.cart_delete', cart_id=order.orders_post.id) }}"><p class="payment-quick-view-remove" style="margin-top: -45px">Dispute <span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></p></a>
+					<a><p class="checkout-quick-view-status blue-link">{{ order.status }}</p></a>
+				</div>
+			</section>
+
+
+
+				<!--
+				<legend style="margin-top: 10px ;">Ship To:</legend>
+				<textarea class="login-register-form-input invalid-field-border", style="overflow: scroll ; width: 98.2% ; resize: vertical ; min-height: 100px ; padding: 7px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 16px ; color: #333333" readonly>MoneroMarket
+123 Banana St, Apt 256C
+Manhattan, New York 10001
+United States of America</textarea>-->
+
+			<p style="margin-top: 5px ;">Order: <a href="{{ url_for('orders.view_order', order_id=order.id) }}" style="text-decoration: none"><span class="orange-link">#{{ order.id }}</span></a></p>
+				
+			<legend style="margin-top: 10px ;">Shipped To:</legend>
+			<textarea class="login-register-form-input", style="overflow: scroll ; width: 98.2% ; resize: vertical ; min-height: 100px ; padding: 7px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 16px ; color: grey" readonly>{{ fernet.decrypt(order.name_and_address.encode()).decode() }}</textarea>
+
+
+
+			<legend style="margin: 0px 0 2px 0">Tracking Number: <span class="light-blue">#{{ fernet.decrypt(order.tracking_number.encode()).decode() }}</span></legend>
+
+
+			<legend style="margin: 3px 0 2px 0">Shipping Cost: 
+				<div class="monero-hover-reveal" style="display: inline"><img class="tiny-monero-coin" style="height: 18px; width: 18px ; position: absolute ; margin: -1px 2px 0 -2px; cursor: pointer" src="{{ url_for('static', filename='img/icons/monero_coin.png') }}">
+						
+							<div class="monero-dropdown-menu" style="margin-top: -2px; margin-left: 95px">
+								<!--<img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px">-->
+							 	<!-- USDT -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;" >$ {{ "{:.2f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * usdt) }}</a>
+								</a>
+								
+								<!-- BTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;" >₿ {{ "{:.5f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * btc) }}</a>
+								</a>
+
+								<!-- BCH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;" >₿ {{ "{:.5f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * bch) }}</a>
+								</a>
+
+								<!-- LTC -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;" >Ł {{ "{:.5f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * ltc) }}</a>
+								</a>
+
+								<!-- DOGE -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;" >Ð {{ "{:.2f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * doge) }}</a>
+								</a>
+
+								<!-- DOGE -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;" >₮ {{ "{:.5f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * xaut) }}</a>
+								</a>
+
+								<!-- ETH -->
+								<a style="width: 120px"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}" style="height: 20px; width: 20px; display: inline; margin-right: -100px; margin-top: 2px; margin-left: 4px; float: left"><a style="padding-left: 38px;" >♦ {{ "{:.5f}".format(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) * eth) }}</a>
+								</a>
+							</div>
+
+						{% if float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()) == 0.0 %}
+							<a style="margin-left: 20px; color: green">0.00</a></div>
+						{% else %}
+				 			<a style="margin-left: 20px; color: green">{{ numpy.format_float_positional(float(fernet.decrypt(order.cost_for_shipping_to_buyer.encode()).decode()), trim='-', precision=8) }}</a></div>
+				 		{% endif %}
+				
+			</legend>
+
+
+
+			<legend style="margin: 3px 0 2px 0">Expected Arrival Date: <span style="color: orange">{{ order_info.date_arrival.strftime("%b %-d, %H:%M:%S") }} UTC time</span></legend>
+
+			<legend style="margin: 3px 0 2px 0">Auto-Finalization: <span style="color: purple">{{ order.auto_finalization_timer.strftime("%b %-d, %H:%M:%S") }} UTC time</span></legend>
+			
+
+
+
+			<legend style="margin-top: 5px ;">Description:</legend>
+			<textarea class="login-register-form-input", style="overflow: scroll ; width: 98.2% ; resize: vertical ; min-height: 100px ; padding: 7px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 16px ; color: grey" readonly>{{ fernet.decrypt(order_info.notes_about_item.encode()).decode() }}</textarea>
+
+
+			<legend style="margin-top: 5px ;">Vendor Description:</legend>
+			<textarea class="login-register-form-input", style="overflow: scroll ; width: 98.2% ; resize: vertical ; min-height: 100px ; padding: 7px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 16px ; color: grey" readonly>{{ fernet.decrypt(order.description_vendor.encode()).decode() }}</textarea>
+
+
+			{% if order.description_digital %}
+				<legend style="margin-top: 5px ;">Description to Buyer:</legend>
+				<textarea class="login-register-form-input", style="overflow: scroll ; width: 98.2% ; resize: vertical ; min-height: 100px ; padding: 7px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 16px ; color: grey" readonly>{{ fernet.decrypt(order.description_digital.encode()).decode() }}</textarea>
+
+			{% endif %}
+
+			{% if order_info.receipt_picture != "None" %}
+				<legend style="margin-top: 3px ;">Receipt:</legend>
+				<a href="{{ url_for('static', filename='img/employees/receipts/' + order_info.receipt_picture) }}"><img src="{{ url_for('static', filename='img/employees/receipts/' + order_info.receipt_picture) }}" height="300" style="display: block; margin: auto; margin-bottom: 10px"></a>
+			{% endif %}
+
+
+
+			<!-- Make photo gallery -->
+		<!-- Source: https://www.youtube.com/watch?v=9Irz0c-6UGw -->
+		<legend style="margin-top: 3px ;">Pictures:</legend>
+		<div class="slidershow" style="display: block; margin: auto">
+
+			<div class="slides">
+
+				<!-- Invisible radio fields to allow for picure switches -->
+				<input type="radio" name="radio-picture" id="radio-picture-1" checked>
+				<input type="radio" name="radio-picture" id="radio-picture-2">
+				<input type="radio" name="radio-picture" id="radio-picture-3">
+				<input type="radio" name="radio-picture" id="radio-picture-4">
+				<input type="radio" name="radio-picture" id="radio-picture-5">
+				<input type="radio" name="radio-picture" id="radio-picture-6">
+				<input type="radio" name="radio-picture" id="radio-picture-7">
+				<input type="radio" name="radio-picture" id="radio-picture-8">
+				<input type="radio" name="radio-picture" id="radio-picture-9">
+				<input type="radio" name="radio-picture" id="radio-picture-10">
+				<input type="radio" name="radio-picture" id="radio-picture-11">
+				<input type="radio" name="radio-picture" id="radio-picture-12">
+				<input type="radio" name="radio-picture" id="radio-picture-13">
+				<input type="radio" name="radio-picture" id="radio-picture-14">
+				<input type="radio" name="radio-picture" id="radio-picture-15">
+				<input type="radio" name="radio-picture" id="radio-picture-16">
+				<input type="radio" name="radio-picture" id="radio-picture-17">
+				<input type="radio" name="radio-picture" id="radio-picture-18">
+				<input type="radio" name="radio-picture" id="radio-picture-19">
+				<input type="radio" name="radio-picture" id="radio-picture-20">
+				<input type="radio" name="radio-picture" id="radio-picture-21">
+
+
+
+				<!-- 'alt=""' is absolutely required so the images can shift!! -->
+				<div class="slide current-slide">
+					<a href="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_1) }}">
+					<img src="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_1) }}" alt="">
+					</a>
+				</div>
+
+				<div class="slide">
+					<a href="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_2) }}">
+					<img src="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_2) }}">
+					</a>
+				</div>
+
+				<div class="slide">
+					<a href="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_3) }}">
+					<img src="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_3) }}">
+					</a>
+				</div>
+
+
+				{% if order_info.gallery_4 %}
+					<div class="slide">
+						<a href="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_4) }}">
+						<img src="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_4) }}">
+						</a>
+					</div>
+				{% endif %}
+
+				{% if order_info.gallery_5 %}
+					<div class="slide">
+						<a href="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_5) }}">
+						<img src="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_5) }}">
+						</a>
+					</div>
+				{% endif %}
+
+				{% if order_info.gallery_6 %}
+					<div class="slide">
+						<a href="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_6) }}">
+						<img src="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_6) }}">
+						</a>
+					</div>
+				{% endif %}
+
+				{% if order_info.gallery_7 %}
+					<div class="slide">
+						<a href="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_7) }}">
+						<img src="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_7) }}">
+						</a>
+					</div>
+				{% endif %}
+
+				{% if order_info.gallery_8 %}
+					<div class="slide">
+						<a href="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_8) }}">
+						<img src="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_8) }}">
+						</a>
+					</div>
+				{% endif %}
+
+				{% if order_info.gallery_9 %}
+					<div class="slide">
+						<a href="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_9) }}">
+						<img src="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_9) }}">
+						</a>
+					</div>
+				{% endif %}
+
+				{% if order_info.gallery_10 %}
+					<div class="slide">
+						<a href="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_10) }}">
+						<img src="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_10) }}">
+						</a>
+					</div>
+
+				{% endif %}
+
+				{% if order_info.gallery_11 %}
+					<div class="slide">
+						<a href="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_11) }}">
+						<img src="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_11) }}">
+					</a>
+					</div>
+
+				{% endif %}
+
+				{% if order_info.gallery_12 %}
+					<div class="slide">
+						<a href="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_12) }}">
+						<img src="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_12) }}">
+					</div>
+
+				{% endif %}
+
+				{% if order_info.gallery_13 %}
+					<div class="slide">
+						<a href="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_13) }}">
+						<img src="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_13) }}">
+					</a>
+					</div>
+
+				{% endif %}
+
+				{% if order_info.gallery_14 %}
+					<div class="slide">
+						<a href="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_14) }}">
+						<img src="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_14) }}">
+					</a>
+					</div>
+
+				{% endif %}
+
+				{% if order_info.gallery_15 %}
+					<div class="slide">
+						<a href="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_15) }}">
+						<img src="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_15) }}">
+					</a>
+					</div>
+
+				{% endif %}
+
+				{% if order_info.gallery_16 %}
+					<div class="slide">
+						<a href="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_16) }}">
+						<img src="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_16) }}">
+					</a>
+					</div>
+
+				{% endif %}
+
+				{% if order_info.gallery_17 %}
+					<div class="slide">
+						<a href="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_17) }}">
+						<img src="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_17) }}">
+					</a>
+					</div>
+
+				{% endif %}
+
+				{% if order_info.gallery_18 %}
+					<div class="slide">
+						<a href="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_18) }}">
+						<img src="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_18) }}">
+					</a>
+					</div>
+
+				{% endif %}
+
+				{% if order_info.gallery_19 %}
+					<div class="slide">
+						<a href="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_19) }}">
+						<img src="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_19) }}">
+					</a>
+					</div>
+
+				{% endif %}
+
+				{% if order_info.gallery_20 %}
+					<div class="slide">
+						<a href="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_20) }}">
+						<img src="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_20) }}">
+					</a>
+					</div>
+
+				{% endif %}
+
+				{% if order_info.gallery_21 %}
+					<div class="slide">
+						<a href="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_21) }}">
+						<img src="{{ url_for('static', filename='img/employees/shipments/' + order_info.gallery_21) }}">
+					</a>
+					</div>
+				{% endif %}
+
+			</div>
+
+			<!-- The bars at the bottom to change radio buttons which are hidden and are associated with an image -->
+			<div class="navigation">
+				<label for="radio-picture-1" class="bar"></label>
+				<label for="radio-picture-2" class="bar"></label>
+				<label for="radio-picture-3" class="bar"></label>
+
+				{% if order_info.gallery_4 %}
+					<label for="radio-picture-4" class="bar"></label>
+				{% endif %}
+
+				{% if order_info.gallery_5 %}
+					<label for="radio-picture-5" class="bar"></label>
+				{% endif %}
+
+				{% if order_info.gallery_6 %}
+					<label for="radio-picture-6" class="bar"></label>
+				{% endif %}
+
+				{% if order_info.gallery_7 %}
+					<label for="radio-picture-7" class="bar"></label>
+				{% endif %}
+
+				{% if order_info.gallery_8 %}
+					<label for="radio-picture-8" class="bar"></label>
+				{% endif %}
+
+				{% if order_info.gallery_9 %}
+					<label for="radio-picture-9" class="bar"></label>
+				{% endif %}
+
+				{% if order_info.gallery_10 %}
+					<label for="radio-picture-10" class="bar"></label>
+				{% endif %}
+
+				{% if order_info.gallery_11 %}
+					<label for="radio-picture-11" class="bar"></label>
+				{% endif %}
+
+				{% if order_info.gallery_12 %}
+					<label for="radio-picture-12" class="bar"></label>
+				{% endif %}
+
+				{% if order_info.gallery_13 %}
+					<label for="radio-picture-13" class="bar"></label>
+				{% endif %}
+
+				{% if order_info.gallery_14 %}
+					<label for="radio-picture-14" class="bar"></label>
+				{% endif %}
+
+				{% if order_info.gallery_15 %}
+					<label for="radio-picture-15" class="bar"></label>
+				{% endif %}
+
+				{% if order_info.gallery_16 %}
+					<label for="radio-picture-16" class="bar"></label>
+				{% endif %}
+
+				{% if order_info.gallery_17 %}
+					<label for="radio-picture-17" class="bar"></label>
+				{% endif %}
+
+				{% if order_info.gallery_18 %}
+					<label for="radio-picture-18" class="bar"></label>
+				{% endif %}
+
+				{% if order_info.gallery_19 %}
+					<label for="radio-picture-19" class="bar"></label>
+				{% endif %}
+
+				{% if order_info.gallery_20 %}
+					<label for="radio-picture-20" class="bar"></label>
+				{% endif %}
+
+				{% if order_info.gallery_21 %}
+					<label for="radio-picture-21" class="bar"></label>
+				{% endif %}
+			</div>
+
+		</div>
+		</div>
+	</section>
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,179 @@
+{% extends "abstracts/layout.html" %}
+
+
+
+{% block content %}
+	<section class="orders-view">
+		{% if ((current_user.is_employee or current_user.is_admin) and message.message_type == "DISPUTE") and ((message.message_from != current_user.id and message.message_to != current_user.id) and (Order.query.filter_by(id=message.order_id).first().user_id != current_user.id and Order.query.filter_by(id=message.order_id).first().vendor_id != current_user.id)) %}
+			<h1><a style="color: red">ADMIN's</a> Message</h1>
+		{% else %}
+			<h1>{{ current_user.username }}'s Message</h1>
+		{% endif %}
+
+
+		<a href="{{ url_for('messages.list', filter_by=direction, page=page) }}" style="float: right; margin: 6px 12px 0 0"><button class="search_button">Go Back</button></a>
+		<p>Report to <a class="red-link" href="{{ url_for('users.profile', username='ADMIN') }}">ADMIN?</a> <a href="{{ url_for('messages.forward', username='ADMIN', previous_page='messages.view', previous_page_id=message.id) }}" style="text-decoration: none"><span>Click here</span></a>
+
+
+		<table class="orders-table">
+			<thead>
+				<tr>
+					<th style="text-align: center ;" colspan="2"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr style="border-bottom: none ;">
+					<td>
+						<legend>Message to:</legend>
+						{% if message.message_to == 1 %}
+							{% if message.message_type == "DISPUTE" %}
+								<div class="crimson-color-placeholder">
+									<input class="login-register-form-input" placeholder="ADMIN (DISPUTE)" style="color: red" readonly type="text">
+								</div>
+							{% else %}
+								<div class="crimson-color-placeholder">
+									<input class="login-register-form-input" placeholder="ADMIN" style="color: red" readonly type="text">
+								</div>
+							{% endif %}
+						{% else %}
+							<input class="login-register-form-input" placeholder="{{ User.query.get(message.message_to).username }}" readonly>
+						{% endif %}
+					</td>
+
+
+					<td>
+						<legend>Message from:</legend>
+						{% if message.message_from == 1 %}
+							{% if message.message_type == "DISPUTE" %}
+								<div class="crimson-color-placeholder">
+									<input class="login-register-form-input" placeholder="ADMIN (DISPUTE)" style="color: red" readonly type="text">
+								</div>
+							{% else %}
+								<div class="crimson-color-placeholder">
+									<input class="login-register-form-input" placeholder="ADMIN" style="color: red" readonly type="text">
+								</div>
+							{% endif %}
+						{% else %}
+							<input class="login-register-form-input" placeholder="{{ User.query.get(message.message_from).username }}"readonly>
+						{% endif %}
+					</td>
+				</tr>
+				<tr style="border-bottom: none ;">
+					<td colspan="2">
+						<legend>Subject:</legend>
+
+						<input class="login-register-form-input" placeholder="{{ fernet.decrypt(message.title.encode()).decode() }}" readonly>
+
+					</td>
+				</tr>
+				<tr style="border-bottom: none ;">
+					<td colspan="2">
+						<legend>Message body:</legend>
+
+						{% if User.query.get(message.message_from).username == "ADMIN" and fernet.decrypt(message.title.encode()).decode().find("New order request from") != -1 %}
+
+							<div class="textbox">
+								<p>An order has been made for Post ID #{{ fernet.decrypt(message.description.encode()).decode().split(" ")[1] }}.</p>
+								<p>Please fill out the order acceptance form <a href="{{ url_for('orders.accept', order_id=fernet.decrypt(message.description.encode()).decode().split(' ')[0], message_id=message.id) }}" class="blue-link">here.</a></p>
+
+								<br>
+								<p>You have 24 hours to Accept AND Ship order AND provide tracking number/ID without penalty, and if done over 24 hours but under 48 hours it's with a 1% FEE.</p>
+								<p>If accepted over 48 hours but under 72 hours it's with a 2% FEE.</p>
+								<p>If order is not accepted within 72 hours, the order will be cancelled and you will be charged a 3% FEE.</p>
+							</div>
+
+						{% else %}
+
+							<textarea class="login-register-form-input" style="padding: 5px 0 140px 5px ; resize: vertical ; color: grey" readonly>{{ fernet.decrypt(message.description.encode()).decode() }}</textarea>
+						{% endif %}
+					</td>
+				</tr>
+				<tr>
+					<!-- Button -->
+					<td colspan="2">
+
+						{% if ((current_user.is_employee or current_user.is_admin) and message.message_type == "DISPUTE") and (Order.query.filter_by(id=message.order_id).first().user_id != current_user.id and Order.query.filter_by(id=message.order_id).first().vendor_id != current_user.id) %}
+							{% if Order.query.filter_by(id=message.order_id).first() %}
+								{% if direction == "received" %}
+									<a href="{{ url_for('messages.forward', username=User.query.get(message.message_from).username, previous_page='messages.view', previous_page_id=message.id, disputes_id=message.disputes_id, order_id=message.order_id) }}"><button class="search_button">Reply</button></a>
+								{% else %}
+									<a href="{{ url_for('messages.forward', username=User.query.get(message.message_to).username, previous_page='messages.view', previous_page_id=message.id, disputes_id=message.disputes_id, order_id=message.order_id) }}"><button class="search_button">Reply</button></a>
+								{% endif %}
+							{% else %}
+								<a href="{{ url_for('messages.forward', username='ADMIN', previous_page_id=message.id, disputes_id=message.disputes_id, order_id=message.order_id) }}"><button class="search_button">Reply</button></a>
+							{% endif %}
+
+
+
+						{% elif message.message_type == "DISPUTE" %}
+							<a href="{{ url_for('messages.forward', username='ADMIN', previous_page_id=message.id, disputes_id=message.disputes_id, order_id=message.order_id) }}"><button class="search_button">Reply</button></a>
+
+							<a href="{{ url_for('messages.delete_received', message_id=message.id) }}" style="margin-left: 10px ;"><button class="search_button red-button">Delete</button></a>
+
+
+
+
+
+						{% elif direction == "received" %}
+							<a href="{{ url_for('messages.forward', username=User.query.get(message.message_from).username, previous_page='messages.view', previous_page_id=message.id) }}"><button class="search_button">Reply</button></a> 
+
+							<a href="{{ url_for('messages.delete_received', message_id=message.id) }}" style="margin-left: 10px ;"><button class="search_button red-button">Delete</button></a>
+
+						{% elif direction == "sent" %}
+							<a href="{{ url_for('messages.forward', username=User.query.get(message.message_to).username, previous_page='messages.view', previous_page_id=message.id) }}"><button class="search_button">Reply</button></a>
+
+							<a href="{{ url_for('messages.delete_sent', message_id=message.id) }}" style="margin-left: 10px ;"><button class="search_button red-button">Delete</button></a>
+						{% endif %}
+
+					</td>
+				</tr>
+
+
+
+
+
+
+
+
+
+
+
+				{% if message.message_type == "DISPUTE" and Dispute.query.filter_by(id=message.disputes_id).first().dispute_gallery_1 %}
+				<tr>
+					<!-- Button -->
+					<td>
+						<img src="{{ url_for('static', filename='img/disputes/' + Dispute.query.filter_by(id=message.disputes_id).first().dispute_gallery_1) }}" height="128" width="128" class="img-enlarge">
+					</td>
+
+					{% if Dispute.query.filter_by(id=message.disputes_id).first().dispute_gallery_2 %}
+						<td>
+							<img src="{{ url_for('static', filename='img/disputes/' + Dispute.query.filter_by(id=message.disputes_id).first().dispute_gallery_2) }}" height="128" width="128" class="img-enlarge">
+						</td>
+					{% endif %}
+
+
+
+				</tr>
+
+					{% if Dispute.query.filter_by(id=message.disputes_id).first().dispute_gallery_3 %}
+						<tr>
+							<td>
+								<img src="{{ url_for('static', filename='img/disputes/' + Dispute.query.filter_by(id=message.disputes_id).first().dispute_gallery_3) }}" height="128" width="128" class="img-enlarge">
+							</td>
+						</tr>
+					{% endif %}
+				{% endif %}
+
+
+			</tbody>
+
+		
+		</table>
+
+		<p style="color: #828282">Questions? <a class="blue-link" href="#">Click here</a></p>
+
+
+	</section>
+	<p style="margin-left: 5px; margin-top: 10px; color: grey">Official messages from <a class="red-link" href="{{ url_for('users.profile', username='ADMIN') }}">ADMIN</a> will have the username appear in <span style="color: red">RED.</span> Any user that claims to be <a class="red-link" href="{{ url_for('users.profile', username='ADMIN') }}">ADMIN</a> but username doesn't come out red is a fake.</p>
+
+{% endblock content %}

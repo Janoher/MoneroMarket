@@ -1,0 +1,472 @@
+{% extends "abstracts/layout.html" %}
+
+
+
+{% block content %}
+	<section class="orders-view" style="min-height: 450px">
+		<h1>ADMIN's Messages ({{ messages.total }})</h1>
+
+
+		<a href="{{ url_for('messages.create', filter_by=filter_by, page=page) }}" style="float: right; margin: 6px 12px 0 0"><button class="search_button">Write New Message</button></a>
+		<p>Filter: 		
+			{% if filter_by == "received" %}
+				<a style="margin-right: -18px ; text-decoration: none ;" href="{{ url_for('employees.messages', filter_by='received') }}"><strong><span>Received</span></strong></a>
+			{% else %}
+				<a style="margin-right: -18px ; text-decoration: none ;" href="{{ url_for('employees.messages', filter_by='received') }}"><span>Received</span></a>
+			{% endif %}
+			
+
+			{% if filter_by == "sent" %}
+				<a style="margin-right: -18px ; text-decoration: none ;" href="{{ url_for('employees.messages', filter_by='sent') }}"><strong><span>Sent</span></strong></a>
+			{% else %}
+				<a style="margin-right: -18px ; text-decoration: none ;" href="{{ url_for('employees.messages', filter_by='sent') }}"><span>Sent</span></a>
+			{% endif %}
+
+
+			{% if filter_by == "all" %}
+				<a  style="text-decoration: none ;" href="{{ url_for('employees.messages', filter_by='all') }}"><strong><span>All</span></strong></a> 
+			{% else %}
+				<a  style="text-decoration: none ;" href="{{ url_for('employees.messages', filter_by='all') }}"><span>All</span></a> 
+			{% endif %}
+
+
+
+
+
+
+
+		<div style="display: inline-block; margin-left: 10px">
+		<!-- Page numbers -->
+		Page: 
+		<!-- Print page numbers on top based upon the iteration and number of messages in each category -->
+		<span>
+			{% if filter_by == "sent" %}
+
+				{% if messages.total == 0 %}
+					<a class="blue-link">0</a>
+				{% endif %}
+
+				{% for page_num in messages.iter_pages() %}
+					{% if page_num == page %}
+						<strong><a class="blue-link" href="{{ url_for('employees.messages', filter_by='sent', page=page_num) }}">{{ page_num }}</a></strong>
+					{% elif page_num %}
+						<a class="blue-link" href="{{ url_for('employees.messages', filter_by='sent', page=page_num) }}">{{ page_num }}</a>
+
+					{% else %}
+						...
+					{% endif %}
+				{% endfor %}
+
+			{% elif filter_by == "received" %}
+
+				{% if messages.total == 0 %}
+					<a class="blue-link">0</a>
+				{% endif %}
+
+				{% for page_num in messages.iter_pages() %}
+					{% if page_num == page %}
+						<strong><a class="blue-link" href="{{ url_for('employees.messages', filter_by='received', page=page_num) }}">{{ page_num }}</a></strong>
+					{% elif page_num %}
+						<a class="blue-link" href="{{ url_for('employees.messages', filter_by='received', page=page_num) }}">{{ page_num }}</a>
+
+					{% else %}
+						...
+					{% endif %}
+				{% endfor %}
+
+
+
+			{% elif filter_by == "all" %}
+			
+				{% if messages.total == 0 %}
+					<a class="blue-link">0</a>
+				{% endif %}
+
+				{% for page_num in messages.iter_pages() %}
+					{% if page_num == page %}
+						<strong><a class="blue-link" href="{{ url_for('employees.messages', filter_by='all', page=page_num) }}">{{ page_num }}</a></strong>
+					{% elif page_num %}
+						<a class="blue-link" href="{{ url_for('employees.messages', filter_by='all', page=page_num) }}">{{ page_num }}</a>
+
+					{% else %}
+						...
+					{% endif %}
+				{% endfor %}
+			
+			{% endif %}
+			
+		</span>
+		</div>		
+
+
+		{% if current_user.is_admin %}
+			<a href="{{ url_for('employees.total_messages') }}" style="float: right; margin-right: 14px; color: crimson; text-decoration: none">(View ALL Messages)</a>
+		{% endif %}
+ 
+
+
+
+		<table class="orders-table desktop-table">
+			<thead>
+				<tr>
+					<th>Subject</th>
+					<th>User</th>
+					<th>Status</th>
+					<th>Type</th>
+					<th colspan="2">Date & Time</th>
+										
+				</tr>
+			</thead>
+			<tbody>
+				{% if messages.total and filter_by == "received" %}
+					{% for message in messages.items %}
+							<tr>
+								<td><p><a class="blue-link" href="{{ url_for('messages.view', message_id=message.id, page=page, direction='received') }}">{{ fernet.decrypt(message.title.encode()).decode() }}</a></p></td>
+
+								<!-- Finally got query results to work! Source: https://stackoverflow.com/questions/34299704/when-to-use-sqlalchemy-get-vs-filterfoo-id-primary-key-id-first -->
+								<!-- Make text red when officialy it is admin -->
+								{% if message.message_from == 1 %}
+									<td><a class="red-link" href="{{ url_for('users.profile', username='ADMIN') }}">ADMIN</a></td>
+								{% else %}
+									<td><a class="orange-link" href="{{ url_for('users.profile', username=User.query.get(message.message_from).username) }}">{{ User.query.get(message.message_from).username }}</a></td>
+								{% endif %}
+								
+
+								<!-- Add color to status -->
+								{% if message.status == "ACCEPTED" %}
+									<td style="color: lime">{{ message.status }}</td>
+								{% elif message.status == "UNACCEPTED" %}
+									<td style="color: crimson">{{ message.status }}</td>
+								{% else %}
+									<td>{{ message.status }}</td>
+								{% endif %}
+
+
+
+
+
+
+
+								
+								
+											
+									
+									<td>{{ message.message_type }}</td>
+
+
+
+
+
+
+
+								<td>{{ message.date_created.strftime("%b %-d %Y, %H:%M") }}</td>
+
+
+								<td><a href="{{ url_for('messages.delete_received', message_id=message.id, page=page, filter_by=filter_by) }}" class="red-link">Remove<span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></a></td>
+							</tr>
+						{% endfor %}
+
+				{% elif filter_by == "received" %}
+					<tr>
+						<td><p>None</p></td>
+						<td>----------</td>
+						<td>----------</td>
+						<td>----------</td>
+						<td>----------</td>
+					</tr>
+
+				{% elif messages.total and filter_by == "sent" %}
+					{% for message in messages.items %}
+							<tr>
+								<td><p><a class="blue-link" href="{{ url_for('messages.view', message_id=message.id, page=page, direction='sent') }}">{{ fernet.decrypt(message.title.encode()).decode() }}</a></p></td>
+								
+								{% if message.message_to == 1 %}
+									<td><a class="red-link" href="{{ url_for('users.profile', username='ADMIN') }}">ADMIN</a></td>
+								{% else %}
+									<td><a class="orange-link" href="{{ url_for('users.profile', username=User.query.get(message.message_to).username) }}">{{ User.query.get(message.message_to).username }}</a></td>
+								{% endif %}
+								<td><a style="color: orange">SENT</a></td>
+
+
+								<td>{{ message.message_type }}</td>
+
+								<td>{{ message.date_created.strftime("%b %-d %Y, %H:%M") }}</td>
+
+								<td><a href="{{ url_for('messages.delete_sent', message_id=message.id, page=page, filter_by=filter_by) }}" class="red-link">Remove<span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></a></td>
+								
+							</tr>
+						{% endfor %}
+
+				{% elif filter_by == "sent" %}
+				<tr>
+					<td><p>None</p></td>
+					<td>----------</td>
+					<td>----------</td>
+					<td>----------</td>
+					<td>----------</td>
+				</tr>
+
+
+				{% elif messages.total and filter_by == "all" %}
+					{% for message in messages.items %}
+							<tr>
+								<td><p><a class="blue-link" href="{{ url_for('messages.view', message_id=message.id, page=page, direction='all') }}">{{ fernet.decrypt(message.title.encode()).decode() }}</a></p></td>
+								
+
+								{% if message.message_from == 1 %}
+										<td><a class="orange-link" href="{{ url_for('users.profile', username=User.query.get(message.message_to).username) }}">{{ User.query.get(message.message_to).username }}</a></td>
+
+										<td><a style="color: orange">SENT</a></td>
+									{% elif message.message_to == 1 %}
+
+										<td><a class="orange-link" href="{{ url_for('users.profile', username=User.query.get(message.message_from).username) }}">{{ User.query.get(message.message_from).username }}</a></td>
+
+										<td>{{ message.status }}</td>
+									{% else %}
+										<td><a class="orange-link" href="{{ url_for('users.profile', username=User.query.get(message.message_to).username) }}">{{ User.query.get(message.message_to).username }}</a></td>
+										
+										<td>{{ message.status }}</td>
+									{% endif %}
+
+								
+
+
+								<td>{{ message.message_type }}</td>
+
+
+								<td>{{ message.date_created.strftime("%b %-d %Y, %H:%M") }}</td>
+
+								{% if messages.message_from == current_user.id %}
+									<td><a href="{{ url_for('messages.delete_received', message_id=message.id, page=page, filter_by='all') }}" class="red-link">Remove<span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></a></td>
+								{% else %}
+									<td><a href="{{ url_for('messages.delete_sent', message_id=message.id, page=page, filter_by='all') }}" class="red-link">Remove<span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></a></td>
+								{% endif %}
+							</tr>
+						{% endfor %}
+
+				{% elif filter_by == "all" %}
+				<tr>
+					<td><p>None</p></td>
+					<td>----------</td>
+					<td>----------</td>
+					<td>----------</td>
+					<td>----------</td>
+				</tr>
+
+
+				{% endif %}
+			</tbody>
+
+		
+		</table>
+
+
+
+
+
+
+
+
+
+
+
+
+		<table class="orders-table phone-table">
+			{% if (filter_by == "received" and messages.total == 0) or (filter_by == "sent" and messages.total == 0) or (filter_by == "all" and messages.total == 0) %}
+				<thead>
+					<tr>
+						<th>Subject</th>
+						<th>User</th>
+
+						<th>Status</th>
+
+						<th>Type</th>
+						<th colspan="2">Date & Time</th>
+					</tr>
+				</thead>
+
+
+			{% else %}
+				<thead>
+					<tr>
+						<th>Subject /<span style="">Type</span></th>
+						<th>User /<span style="">Time</span></th>
+						<th>Status</th>
+						<!--
+						<th>Type</th>
+						<th colspan="2">Date & Time</th>-->
+											
+					</tr>
+				</thead>
+			{% endif %}
+				<tbody>
+					{% if messages.total and filter_by == "received" %}
+						{% for message in messages.items %}
+								<tr style="border-bottom: none">
+									<td><p><a class="blue-link" href="{{ url_for('messages.view', message_id=message.id, page=page, direction='received') }}">{{ fernet.decrypt(message.title.encode()).decode() }}</a></p></td>
+
+									<!-- Finally got query results to work! Source: https://stackoverflow.com/questions/34299704/when-to-use-sqlalchemy-get-vs-filterfoo-id-primary-key-id-first -->
+									<!-- Make text red when officialy it is admin -->
+									{% if message.message_from == 1 %}
+										<td><a class="red-link" href="{{ url_for('users.profile', username='ADMIN') }}">ADMIN</a></td>
+									{% else %}
+										<td><a class="orange-link" href="{{ url_for('users.profile', username=User.query.get(message.message_from).username) }}">{{ User.query.get(message.message_from).username }}</a></td>
+									{% endif %}
+									
+
+									<!-- Add color to status -->
+									{% if message.status == "ACCEPTED" %}
+										<td style="color: lime">{{ message.status }}</td>
+									{% elif message.status == "UNACCEPTED" %}
+										<td style="color: crimson">{{ message.status }}</td>
+									{% else %}
+										<td>{{ message.status }}</td>
+									{% endif %}
+
+
+
+
+
+
+
+									</tr>
+									<tr style="border-top: none">
+									<td>{{ message.message_type }}</td>
+
+
+
+
+
+
+
+
+									<td>{{ message.date_created.strftime("%b %-d %Y, %H:%M") }}</td>
+
+
+									<td><a href="{{ url_for('messages.delete_received', message_id=message.id, page=page, filter_by=filter_by) }}" class="red-link">Remove<span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></a></td>
+								</tr>
+							</tbody>
+						{% endfor %}
+
+				{% elif filter_by == "received" %}
+					<tr>
+						<td><p>None</p></td>
+						<td>----------</td>
+						<td>----------</td>
+						<td>----------</td>
+						<td>----------</td>
+					</tr>
+
+
+				{% elif messages.total and filter_by == "sent" %}
+					{% for message in messages.items %}
+							<tr style="border-bottom: none">
+								<td><p><a class="blue-link" href="{{ url_for('messages.view', message_id=message.id, page=page, direction='sent') }}">{{ fernet.decrypt(message.title.encode()).decode() }}</a></p></td>
+								
+								{% if message.message_to == 1 %}
+									<td><a class="red-link" href="{{ url_for('users.profile', username='ADMIN') }}">ADMIN</a></td>
+								{% else %}
+									<td><a class="orange-link" href="{{ url_for('users.profile', username=User.query.get(message.message_to).username) }}">{{ User.query.get(message.message_to).username }}</a></td>
+								{% endif %}
+								<td><a style="color: orange">SENT</a></td>
+
+							</tr>
+							<tr style="border-top: none">
+								<td>{{ message.message_type }}</td>
+
+
+								<td>{{ message.date_created.strftime("%b %-d %Y, %H:%M") }}</td>
+
+								<td><a href="{{ url_for('messages.delete_sent', message_id=message.id, page=page, filter_by=filter_by) }}" class="red-link">Remove<span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></a></td>
+								
+							</tr>
+						</tbody>
+						{% endfor %}
+
+				{% elif filter_by == "sent" %}
+				<tr>
+					<td><p>None</p></td>
+					<td>----------</td>
+					<td>----------</td>
+					<td>----------</td>
+					<td>----------</td>
+				</tr>
+
+
+				{% elif messages.total and filter_by == "all" %}
+					{% for message in messages.items %}
+							<tr style="border-bottom: none">
+								<td><p><a class="blue-link" href="{{ url_for('messages.view', message_id=message.id, page=page, direction='all') }}">{{ fernet.decrypt(message.title.encode()).decode() }}</a></p></td>
+								
+
+								
+									{% if message.message_from == 1 %}
+										<td><a class="orange-link" href="{{ url_for('users.profile', username=User.query.get(message.message_to).username) }}">{{ User.query.get(message.message_to).username }}</a></td>
+
+										<td><a style="color: orange">SENT</a></td>
+									{% elif message.message_to == 1 %}
+
+										<td><a class="orange-link" href="{{ url_for('users.profile', username=User.query.get(message.message_from).username) }}">{{ User.query.get(message.message_from).username }}</a></td>
+
+										<td>{{ message.status }}</td>
+									{% else %}
+										<td><a class="orange-link" href="{{ url_for('users.profile', username=User.query.get(message.message_to).username) }}">{{ User.query.get(message.message_to).username }}</a></td>
+										
+										<td>{{ message.status }}</td>
+									{% endif %}
+
+							</tr>
+							<tr style="border-top: none">
+								<td>{{ message.message_type }}</td>
+
+								<td>{{ message.date_created.strftime("%b %-d %Y, %H:%M") }}</td>
+
+								{% if message.message_from == current_user.id %}
+									<td><a href="{{ url_for('messages.delete_received', message_id=message.id, page=page, filter_by='all') }}" class="red-link">Remove<span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></a></td>
+								{% else %}
+									<td><a href="{{ url_for('messages.delete_sent', message_id=message.id, page=page, filter_by='all') }}" class="red-link">Remove<span><img class="red-x" src="{{ url_for('static', filename='img/icons/red_x.png') }}"></span></a></td>
+								{% endif %}
+							</tr>
+						</tbody>
+						{% endfor %}
+
+				{% elif filter_by == "all" %}
+				<tr>
+					<td><p>None</p></td>
+					<td>----------</td>
+					<td>----------</td>
+					<td>----------</td>
+					<td>----------</td>
+				</tr>
+
+
+				{% endif %}
+			</tbody>
+
+		
+		</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</section>
+	<p style="margin-left: 5px; margin-top: 10px; color: grey">Official messages from <a class="red-link" href="{{ url_for('users.profile', username='ADMIN') }}">ADMIN</a> will have the username appear in <span style="color: red">RED.</span> Any user that claims to be <a class="red-link" href="{{ url_for('users.profile', username='ADMIN') }}">ADMIN</a> but username doesn't come out red is a fake.</p>
+
+{% endblock content %}

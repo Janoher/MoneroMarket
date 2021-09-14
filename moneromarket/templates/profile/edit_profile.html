@@ -1,0 +1,113 @@
+{% extends "abstracts/layout.html" %}
+
+
+{% block content %}
+
+	<section class="profile-view">
+		<h1 style="margin-bottom: 5px ;">Edit {{ current_user.username }}'s profile</h1>
+
+		{{ form.description.label(style="color: grey ;") }}
+		{{ form.refund.label(style="float: right ; margin-right: 20px ; color: grey ;") }}
+
+
+		<img class="profile-user-picture-img" src="{{ url_for('static', filename='img/profiles/' + current_user.profile_picture) }}">
+
+
+		<div class="profile-user-info-view">
+
+
+			<!-- Put the enctype for file uploads -->
+			<form method="POST" action="" enctype="multipart/form-data">
+
+				{{ form.hidden_tag() }}
+
+				<div class="edit-profile-text-boxes">
+					<!-- Text description box -->
+
+					<!-- Text box size issue fixed...
+   						 source: https://stackoverflow.com/questions/22166443/how-to-set-cursor-position-to-the-top-left-edge-of-input -->
+					{{ form.description(class="edit-profile-description") }}
+					{{ form.refund(class="edit-profile-refund") }}
+				</div>
+
+
+
+				<!-- Picture upload and submit button -->
+				<div class="user-profile-buttons">
+
+					{{ form.picture.label(class="upload-button-label") }}
+					{{ form.picture(class="upload-file-blue-button", placeholder="Update Picture") }}
+
+					<!-- <button class="blue-button" style="margin-left: -10px ;">Upload File</button> -->
+
+
+					<!-- Button -->
+					{{ form.submit(class="search_button yellow-button") }}
+
+					<a href="{{ url_for('users.profile', username=current_user.username) }}" class="search_button red-button" style="margin-left: 10px ; text-decoration: none ;">Go Back</a>
+				</div>
+			</form>	
+
+		</div>
+	</section>
+
+
+	<section class="profile-user-reviews">
+		<h1>Reviews (0)</h1>
+
+		<div class="profile-user-filter">
+			Filter <span class="right-orange-text">All</span>
+		</div>
+
+		<div class="profile-user-pages">
+			Page <span class="right-orange-text">1</span>
+		</div>
+
+	</section>
+
+
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

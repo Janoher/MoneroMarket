@@ -1,0 +1,31 @@
+{% extends "abstracts/layout.html" %}
+
+{% block content %}
+	<section class="login-register-view">	
+		<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+		<ul class="login-register-alert">
+			<li>Purchase requests from buyers will be in your messages with the type: <span style="color: blue ;">REQUEST</span>.</li>
+			<li>Questions about the product from buyers will be in your messages with the type: <span style="color: orange ;">QUESTION</span>.</li>
+			<li>You will have 48 hours to <span style="color: green ;">ACCEPT</span> or <span style="color: red ;">DECLINE</span> a request, or it will be automatically <span style="color: red ;">DECLINED</span>.</li>
+
+			<li>Disputes from buyers will appear in your messages with the type: <span style="color: red ;">DISPUTE</span>.</li>
+			<li>Listing CANNOT be deleted while a <span style="color: blue ;">TRANSACTION</span> or a <span style="color: red ;">DISPUTE</span> is ongoing.</li>
+		</ul>
+
+
+		<p style="margin-top: 5px ;">Post ID: <a href="{{ url_for('listings.item', post_id=post_id, previous_page='listings.created', username=current_user.username) }}" class="blue-link" style="margin-left: 2px">#{{ post_id }}</a></p>
+
+
+		<!-- Button -->
+		<a href="{{ url_for('listings.view', username=current_user.username, filter_by='newest') }}"><button class="search_button login-register-view-button red-button" style="margin-bottom: 5px ;">Go back</button></a>
+
+
+		<br>
+		<span style="color: #828282 ;">Confused about listings, shipping, escrow, auto-finalization, transactions, or disputes?</span> <a class="blue-link" href="#">More info.</a>
+
+	</section>
+
+
+
+	</section>
+{% endblock content %}

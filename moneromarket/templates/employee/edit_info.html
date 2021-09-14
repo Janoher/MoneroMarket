@@ -1,0 +1,85 @@
+{% extends "abstracts/layout.html" %}
+
+
+{% block content %}
+
+
+	<section class="login-register-view">
+		<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+		<ul class="login-register-alert">
+			<p style="text-align: center ; font-size: 16px">Welcome <span class="orange-link">{{ current_user.username }}</span></p>
+			<li>Employee ID #<span style="color: crimson">{{ current_user.id }}.</span></li>
+			<li>Any questions please send a message to <span style="color: orange">MoneroMarket.</span></li>
+			<li>We work today for a better <span style="color: green">tomorrow</span>, for a better <span style="color: blue">currency</span>, for a better <span style="color: red">world.</span></li>
+		</ul>
+
+
+
+		
+
+		<form class="" method="POST" action="">
+			<!-- SECRET KEY to protect from foreign attacks -->
+			{{ form.hidden_tag() }}
+
+			<legend style="color: grey; margin-top: 4px; margin-bottom: 0px">{{ form.lowest_price.label }}:</legend>
+
+			{% if form.lowest_price.errors %}
+
+				{{ form.lowest_price(placeholder="Enter lowest price in Monero for Transaction Fees..", class="login-register-form-input invalid-field-border") }}
+
+				<div class="display-invalid-field">
+					{% for error in form.lowest_price.errors %}
+						<span> {{ error }} </span>
+
+					{% endfor %}
+				</div>
+
+			{% else %}
+				<!-- This is processed as an <input> -->
+				{{ form.lowest_price(placeholder="Enter lowest price in Monero for Transaction Fees..", class="login-register-form-input") }}
+
+			{% endif %}
+
+
+
+
+
+			<legend style="color: grey; margin-top: 4px; margin-bottom: 0px">{{ form.shipping_address.label }}:</legend>
+
+			{% if form.shipping_address.errors %}
+
+				{{ form.shipping_address(placeholder="Enter shipping address..", class="login-register-form-input invalid-field-border", style="min-height: 90px") }}
+
+				<div class="display-invalid-field">
+					{% for error in form.shipping_address.errors %}
+						<span> {{ error }} </span>
+
+					{% endfor %}
+				</div>
+
+			{% else %}
+				<!-- This is processed as an <input> -->
+				{{ form.shipping_address(placeholder="Enter shipping address..", class="login-register-form-input", style="min-height: 90px") }}
+
+			{% endif %}
+
+
+
+
+			{{ form.submit(class="search_button login-register-view-button", style="width: 70px; margin-top: -2px") }}
+		</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</section>
+{% endblock %}

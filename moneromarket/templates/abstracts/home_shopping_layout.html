@@ -1,0 +1,772 @@
+{% extends "abstracts/layout.html" %}
+
+{% block content %}
+	
+	{% if title == "Home" %}
+		<div class="left-column">
+
+
+			{% if current_user.is_authenticated %}
+				<section class="user-glimpse">
+					<div class="user-glimpse-profile-picture">
+						<img class="user-glimpse-profile-picture-img" src="{{ url_for('static', filename='img/profiles/' + current_user.profile_picture) }}">
+					</div>
+
+
+					<div class="user-glimpse-info-container">
+						<a class="blue-link user-glimpse-info-create-listing" href="{{ url_for('listings.view', username=current_user.username, filter_by='newest') }}" style="float: right ; margin-top: 2px ;">View Listings</a>
+
+						<div class="user-glimpse-info">
+							<a class="user-glimpse-info-left user-glimpse-info-username" href="{{ url_for('users.profile', username=current_user.username) }}">{{ current_user.username }}</a>
+						</div>
+
+
+
+						<div class="user-glimpse-info">
+							<span class="user-glimpse-info-left">Joined:</span> <span class="user-glimpse-info-right"> {{ current_user.date_created.strftime("%b %-d, %Y") }}</span>
+						</div>
+
+						<div class="user-glimpse-info">
+							<span class="user-glimpse-info-left">Last login:</span> <span class="user-glimpse-info-right"> {{ current_user.last_login.strftime("%b %-d, %H:%M") }}</span>
+						</div>
+
+						<div class="user-glimpse-info">
+							<span class="user-glimpse-info-left">Reviews:</span> <span class="user-glimpse-info-right"> {{ Review.query.filter_by(to_buyer=current_user.id).total }}</span>
+						</div>
+
+						
+					</div>
+				</section> <!-- User Glimpse -->
+
+			{% else %}
+				<!-- Borrowing from the categories class -->
+				<section class="action-view">
+
+					<h1>Questions</h1>
+
+
+					<!-- Listing of categories -->
+					<div class="action-list-item action-list-first-item" style="padding-bottom: 3px ; margin-top: 5px ;">
+						<a class="category-name" href="/faq#what-is-monero" target="_blank">What is Monero?</a>
+					</div>
+
+					<div class="action-list-item" style="padding-bottom: 3px ;">
+						<a class="category-name" href="/faq#what-is-escrow">What is Escrow?</a>
+					</div>
+
+					<div class="action-list-item action-list-last-item">
+						<a class="category-name" href="/faq#what-is-auto-finalization">What are Auto-Finalizations?</a>
+					</div>
+
+				</section>
+
+			{% endif %}
+
+
+
+
+
+			<!-- Categories -->
+			<section class="categories-view">
+
+				<h1>Categories</h1>
+
+
+				<!-- Listing of categories -->
+				<div class="category-list-item category-list-first-item dropdown-category">
+					<span class="categories-plus-sign">+</span> <a class="category-name" href="{{ url_for('listings.category_search', category='books') }}">Books</a> <span class="categories-amount">{{ categories["books"] }}</span>
+
+					<div class="dropdown-content-category">
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='e-books') }}">E-Books</a> <span class="categories-amount">{{ categories["e-books"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='hardcopy') }}">Hard Copies</a> <span class="categories-amount">{{ categories["hardcopy"] }}</span>
+					</div>
+				</div>
+
+				<div class="category-list-item dropdown-category">
+					<span class="categories-plus-sign">+</span> <a class="category-name" href="{{ url_for('listings.category_search', category='electronics') }}">Electronics</a> <span class="categories-amount">{{ categories["electronics"] }}</span>
+
+					<div class="dropdown-content-category">
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='cell-phones') }}">Cell Phones</a> <span class="categories-amount">{{ categories["cell-phones"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='computers') }}">Computers</a> <span class="categories-amount">{{ categories["computers"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='mining') }}">Mining</a> <span class="categories-amount">{{ categories["mining"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='stereos') }}">Stereos</a> <span class="categories-amount">{{ categories["stereos"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='video-games') }}">Video Games</a> <span class="categories-amount">{{ categories["video-games"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='electronics-other') }}">Other</a> <span class="categories-amount">{{ categories["electronics-other"] }}</span>
+					</div>
+				</div>
+
+				<div class="category-list-item dropdown-category">
+					<span class="categories-plus-sign">+</span> <a class="category-name" href="{{ url_for('listings.category_search', category='art') }}">Art & Collectables</a> <span class="categories-amount">{{ categories["art"] }}</span>
+
+					<div class="dropdown-content-category">
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='antiques') }}">Antiques</a> <span class="categories-amount">{{ categories["antiques"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='music') }}">Music</a> <span class="categories-amount">{{ categories["music"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='paintings') }}">Paintings</a> <span class="categories-amount">{{ categories["paintings"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='stamps') }}">Stamps</a> <span class="categories-amount">{{ categories["stamps"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='art-other') }}">Other</a> <span class="categories-amount">{{ categories["art-other"] }}</span>
+					</div>
+				</div>
+
+				<div class="category-list-item dropdown-category">
+					<span class="categories-plus-sign">+</span> <a class="category-name" href="{{ url_for('listings.category_search', category='clothes') }}">Clothing & Accessories</a> <span class="categories-amount">{{ categories["clothes"] }}</span>
+
+
+					<div class="dropdown-content-category">
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='men-clothing') }}">Men's Clothing</a> <span class="categories-amount">{{ categories["men-clothing"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='men-shoes') }}">Men's Shoes</a> <span class="categories-amount">{{ categories["men-shoes"] }}</span>
+						<br>
+						
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='men-accessories') }}">Men's Accessories</a> <span class="categories-amount">{{ categories["men-accessories"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='women-clothing') }}">Women's Clothing</a> <span class="categories-amount">{{ categories["women-clothing"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='women-shoes') }}">Women's Shoes</a> <span class="categories-amount">{{ categories["women-shoes"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='women-accessories') }}">Women's Accessories</a> <span class="categories-amount">{{ categories["women-accessories"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='kid-clothing') }}">Kid's Clothing</a> <span class="categories-amount">{{ categories["kid-clothing"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='kid-shoes') }}">Kid's Shoes</a> <span class="categories-amount">{{ categories["kid-shoes"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='kid-accessories') }}">Kid's Accessories</a> <span class="categories-amount">{{ categories["kid-accessories"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='costumes') }}">Costumes</a> <span class="categories-amount">{{ categories["costumes"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='make-up') }}">Make-up</a> <span class="categories-amount">{{ categories["make-up"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='clothes-other') }}">Other</a> <span class="categories-amount">{{ categories["clothes-other"] }}</span>
+
+					</div>
+				</div>
+
+				<div class="category-list-item dropdown-category">
+					<span class="categories-plus-sign">+</span> <a class="category-name" href="{{ url_for('listings.category_search', category='sports') }}">Sports</a> <span class="categories-amount">{{ categories["sports"] }}</span>
+
+					<div class="dropdown-content-category">
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='balls-equipment') }}">Balls & Equipment</a> <span class="categories-amount">{{ categories["balls-equipment"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='camping') }}">Camping</a> <span class="categories-amount">{{ categories["camping"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='padding-gear') }}">Padding & Gear</a> <span class="categories-amount">{{ categories["padding-gear"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='sports-other') }}">Other</a> <span class="categories-amount">{{ categories["sports-other"] }}</span>
+					</div>
+				</div>
+
+				<div class="category-list-item category-list dropdown-category">
+					<span class="categories-plus-sign">+</span> <a class="category-name" href="{{ url_for('listings.category_search', category='toys') }}">Toys</a> <span class="categories-amount">{{ categories["toys"] }}</span>
+
+					<div class="dropdown-content-category">
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='action-figures') }}">Action Figures</a> <span class="categories-amount">{{ categories["action-figures"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='board-games') }}">Board Games</a> <span class="categories-amount">{{ categories["board-games"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='dolls') }}">Dolls</a> <span class="categories-amount">{{ categories["dolls"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='puzzles') }}">Puzzles</a> <span class="categories-amount">{{ categories["puzzles"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='outdoor-toys') }}">Outdoor Toys</a> <span class="categories-amount">{{ categories["outdoor-toys"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='toys-other') }}">Other</a> <span class="categories-amount">{{ categories["toys-other"] }}</span>
+
+					</div>
+				</div>
+
+				<div class="category-list-item category-list-last-item">
+					<span class="categories-plus-sign">+</span> <a class="category-name" href="{{ url_for('listings.category_search', category='other-other') }}">Other</a> <span class="categories-amount">{{ categories["other-other"] }}</span>
+				</div>
+
+			</section>
+
+
+
+
+			<!-- Advanced Search -->
+			<section class="advanced-search-view">
+				<h1>Advanced Search</h1>
+
+
+				<form class="advanced-search-view-form" method="POST" action="">
+					{{ advanced_search_form.hidden_tag() }}
+					
+
+					<legend style="text-align: left;margin-left: 26px">Search for:</legend>
+					<input id="item" type="text" name="item" placeholder="Item.." style="width: 292px; margin-left: 26px">
+
+					<legend style="text-align: left;margin-left: 26px">Vendor:</legend>
+					<input id="vendor" name="vendor" type="text" placeholder="Vendor.." style="width: 292px; margin-left: 26px">
+					<br />
+
+					
+					<div style="float: right; margin-top: 8px; margin-right: 26px">
+						<select name="currency" id="currency" placeholder="Select currency"> 
+							<optgroup label="Currencies">
+
+								<option value="xmr">Monero (XMR)</option>
+								<option value="usdt">Tether (USDT)</option>
+								<option value="btc">Bitcoin (BTC)</option>
+								<option value="bch">Bitcoin Cash (BCH)</option>
+								<option value="ltc">Litecoin (LTC)</option>
+								<option value="doge">Dogecoin (DOGE)</option>
+								<option value="xaut">Tether Gold (XAUT)</option>
+								<option value="eth">Ethereum (ETH)</option>
+
+							</optgroup>
+						</select>
+					</div>
+					<legend style="text-align: left; margin-left: 26px">Price range:</legend>
+
+					<input id="price_from" name="price_from" type="number" placeholder="From" step="0.00001" min="0" style="margin-left: 26px; width: 137px">
+					<input id="price_to" name="price_to" type="number" placeholder="To" step="0.00001" min="0" style="width: 137px; margin-left: 15px">
+
+
+					<div style="clear: both"></div>
+
+
+					<div style="margin-left: 24px; float: right">
+					<legend style="margin-right: 70px">Shipping from:</legend>
+					<select name="shipping_from" id="shipping_from" placeholder="Select category" style="width: 142px; margin-right: 25px"> 
+						<option value="Any">Any</option>
+						<option value="Digital">Digital</option>
+						<option value="Worldwide">Worldwide</option>
+
+						<optgroup label="Countries">
+							<option value="United States of America">United States of America</option>
+							<!--<option value="European Union">European Union</option>-->
+							<!--<option value="Great Britain">Great Britain</option>-->
+							<!--<option value="Hong Kong">Hong Kong</option>-->
+							<!--<option value="Japan">Japan</option>-->
+							<!--<option value="South Korea">South Korea</option>-->
+							<!--<option value="Sweden">Sweden</option>-->
+							<!--<option value="Switzerland">Switzerland</option>-->
+						</optgroup>
+					</select>
+					</div>
+					<div style="margin-left: 24px;">
+					<legend style="text-align: left; margin-left: 0px">Shipping to:</legend>
+					<select name="shipping_to" id="shipping_to" placeholder="Select category" style="width: 142px"> 
+						<option value="Any">Any</option>
+						<option value="Digital">Digital</option>
+						<!--<option value="Worldwide">Worldwide</option>-->
+
+						<optgroup label="Countries">
+							<option value="United States of America">United States of America</option>
+							<!--<option value="European Union">European Union</option>-->
+							<!--<option value="Great Britain">Great Britain</option>-->
+							<!--<option value="Hong Kong">Hong Kong</option>-->
+							<!--<option value="Japan">Japan</option>-->
+							<!--<option value="South Korea">South Korea</option>-->
+							<!--<option value="Sweden">Sweden</option>-->
+							<!--<option value="Switzerland">Switzerland</option>-->
+						</optgroup>
+					</select>
+				</div>
+
+
+
+					
+
+					
+					
+
+				
+					<!--
+					<legend style="text-align: left;margin-left: 30px">Ships from:</legend>
+					<input id="search_rating" name="search_for" type="text" placeholder="Item">
+
+					<legend style="text-align: left;margin-left: 30px">Ships to:</legend>
+					<input id="search_rating" name="search_for" type="text" placeholder="Item">-->
+
+					<legend>Ratings:</legend>
+					<input id="search_rating_1" name="search_rating_1" type="checkbox" value="1" style="display: inline; margin-left: 10px">
+					<label>1 Star</label>
+					<input id="search_rating_2" name="search_rating_2" type="checkbox" value="2" style="display: inline;">
+					<label>2 Stars</label>
+					<input id="search_rating_3" name="search_rating_3" type="checkbox" value="3" style="display: inline">
+					<label>3 Stars</label>
+					<input id="search_rating_4" name="search_rating_4" type="checkbox" value="4" style="display: inline">
+					<label>4 Stars</label>
+					<input id="search_rating_5" name="search_rating_5" type="checkbox" value="5" style="display: inline">
+					<label>5 Stars</label>
+				
+				</br>
+				{{ advanced_search_form.submit_advanced_search(class="search_button", style="margin-left: 136px; margin-bottom: 10px; margin-top: 10px") }}
+				<!--<button class="search_button">Get results</button>-->
+			</form>
+			</section>
+
+
+
+
+
+
+			<!-- Exchange Rates -->
+			<section class="exchange-rates-view">
+				<h1>Exchange Rates</h1>
+
+
+				<!-- Listing of categories -->
+				<div class="exchange-rates-item exchange-rates-first-item">
+					<!-- Source for formatting to 2 decimal places: https://pythonguides.com/python-print-2-decimal-places/ -->
+					<!-- Source for currency symbols: https://www.webnots.com/alt-code-shortcuts-for-currency-symbols/#h-alt-code-shortcuts-for-currency-symbols -->
+					<span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}"></span> <span class="exchange-rates-country-name">XMR  ⇆  USDT</span> <span class="exchange-rates-amount">$ {{ "{:.2f}".format(usdt) }}</span>
+				</div>
+
+
+				<div class="exchange-rates-item">
+					<span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}"></span> <span class="exchange-rates-country-name">XMR  ⇆  BTC</span> <span class="exchange-rates-amount">₿ {{ "{:.5f}".format(btc) }}</span>
+				</div>
+
+				<div class="exchange-rates-item">
+					<span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" height="100"></span> <span class="exchange-rates-country-name">XMR  ⇆  BCH</span> <span class="exchange-rates-amount">₿ {{ "{:.5f}".format(bch) }}</span>
+				</div>
+
+
+				<div class="exchange-rates-item">
+					<span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}"></span> <span class="exchange-rates-country-name">XMR  ⇆  LTC</span> <span class="exchange-rates-amount">Ł {{ "{:.5f}".format(ltc) }}</span>
+				</div>
+
+
+				<div class="exchange-rates-item">
+					<span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}"></span> <span class="exchange-rates-country-name">XMR  ⇆  DOGE</span> <span class="exchange-rates-amount">Ð {{ "{:.2f}".format(doge) }}</span>
+				</div>
+
+
+				<div class="exchange-rates-item ">
+					<span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}"></span> <span class="exchange-rates-country-name">XMR  ⇆  XAUT</span> <span class="exchange-rates-amount">₮ {{ "{:.5f}".format(xaut) }}</span>
+				</div>
+
+				<div class="exchange-rates-item exchange-rates-last-item">
+					<span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}"></span> <span class="exchange-rates-country-name">XMR  ⇆  ETH</span> <span class="exchange-rates-amount">♦ {{ "{:.5f}".format(eth) }}</span>
+				</div>
+
+
+				
+
+			</section>
+
+		</div> <!-- Left-Column -->
+	
+
+
+
+
+	{% else %}
+		<div class="left-column-hidden">
+
+
+			{% if current_user.is_authenticated %}
+				<section class="user-glimpse">
+					<div class="user-glimpse-profile-picture">
+						<img class="user-glimpse-profile-picture-img" src="{{ url_for('static', filename='img/profiles/' + current_user.profile_picture) }}">
+					</div>
+
+
+					<div class="user-glimpse-info-container">
+						<a class="blue-link user-glimpse-info-create-listing" href="{{ url_for('listings.view', username=current_user.username, filter_by='newest') }}" style="float: right ; margin-top: 2px ;">View Listings</a>
+
+						<div class="user-glimpse-info">
+							<a class="user-glimpse-info-left user-glimpse-info-username" href="{{ url_for('users.profile', username=current_user.username) }}">{{ current_user.username }}</a>
+						</div>
+
+
+
+						<div class="user-glimpse-info">
+							<span class="user-glimpse-info-left">Joined:</span> <span class="user-glimpse-info-right"> {{ current_user.date_created.strftime("%b %-d, %Y") }}</span>
+						</div>
+
+						<div class="user-glimpse-info">
+							<span class="user-glimpse-info-left">Last login:</span> <span class="user-glimpse-info-right"> {{ current_user.last_login.strftime("%b %-d, %H:%M") }}</span>
+						</div>
+
+						<div class="user-glimpse-info">
+							<span class="user-glimpse-info-left">Reviews:</span> <span class="user-glimpse-info-right"> 3</span>
+						</div>
+
+						
+					</div>
+				</section> <!-- User Glimpse -->
+
+			{% else %}
+				<!-- Borrowing from the categories class -->
+				<section class="action-view">
+
+					<h1>Questions</h1>
+
+
+					<!-- Listing of categories -->
+					<div class="action-list-item action-list-first-item" style="padding-bottom: 3px ; margin-top: 5px ;">
+						<a class="category-name" href="#">What is Monero?</a>
+					</div>
+
+					<div class="action-list-item" style="padding-bottom: 3px ;">
+						<a class="category-name" href="#">What is Escrow?</a>
+					</div>
+
+					<div class="action-list-item action-list-last-item">
+						<a class="category-name" href="#">What are Auto-Finalizations?</a>
+					</div>
+
+				</section>
+
+			{% endif %}
+
+
+
+
+
+			<!-- Categories -->
+			<section class="categories-view">
+
+				<h1>Categories</h1>
+
+
+				<!-- Listing of categories -->
+				<div class="category-list-item category-list-first-item dropdown-category">
+					<span class="categories-plus-sign">+</span> <a class="category-name" href="{{ url_for('listings.category_search', category='books') }}">Books</a> <span class="categories-amount">{{ categories["books"] }}</span>
+
+					<div class="dropdown-content-category">
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='e-books') }}">E-Books</a> <span class="categories-amount">{{ categories["e-books"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='hardcopy') }}">Hard Copies</a> <span class="categories-amount">{{ categories["hardcopy"] }}</span>
+					</div>
+				</div>
+
+				<div class="category-list-item dropdown-category">
+					<span class="categories-plus-sign">+</span> <a class="category-name" href="{{ url_for('listings.category_search', category='electronics') }}">Electronics</a> <span class="categories-amount">{{ categories["electronics"] }}</span>
+
+					<div class="dropdown-content-category">
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='cell-phones') }}">Cell Phones</a> <span class="categories-amount">{{ categories["cell-phones"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='computers') }}">Computers</a> <span class="categories-amount">{{ categories["computers"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='mining') }}">Mining</a> <span class="categories-amount">{{ categories["mining"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='stereos') }}">Stereos</a> <span class="categories-amount">{{ categories["stereos"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='video-games') }}">Video Games</a> <span class="categories-amount">{{ categories["video-games"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='electronics-other') }}">Other</a> <span class="categories-amount">{{ categories["electronics-other"] }}</span>
+					</div>
+				</div>
+
+				<div class="category-list-item dropdown-category">
+					<span class="categories-plus-sign">+</span> <a class="category-name" href="{{ url_for('listings.category_search', category='art') }}">Art & Collectables</a> <span class="categories-amount">{{ categories["art"] }}</span>
+
+					<div class="dropdown-content-category">
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='antiques') }}">Antiques</a> <span class="categories-amount">{{ categories["antiques"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='music') }}">Music</a> <span class="categories-amount">{{ categories["music"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='paintings') }}">Paintings</a> <span class="categories-amount">{{ categories["paintings"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='stamps') }}">Stamps</a> <span class="categories-amount">{{ categories["stamps"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='art-other') }}">Other</a> <span class="categories-amount">{{ categories["art-other"] }}</span>
+					</div>
+				</div>
+
+				<div class="category-list-item dropdown-category">
+					<span class="categories-plus-sign">+</span> <a class="category-name" href="{{ url_for('listings.category_search', category='clothes') }}">Clothing & Accessories</a> <span class="categories-amount">{{ categories["clothes"] }}</span>
+
+
+					<div class="dropdown-content-category">
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='men-clothing') }}">Men's Clothing</a> <span class="categories-amount">{{ categories["men-clothing"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='men-shoes') }}">Men's Shoes</a> <span class="categories-amount">{{ categories["men-shoes"] }}</span>
+						<br>
+						
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='men-accessories') }}">Men's Accessories</a> <span class="categories-amount">{{ categories["men-accessories"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='women-clothing') }}">Women's Clothing</a> <span class="categories-amount">{{ categories["women-clothing"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='women-shoes') }}">Women's Shoes</a> <span class="categories-amount">{{ categories["women-shoes"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='women-accessories') }}">Women's Accessories</a> <span class="categories-amount">{{ categories["women-accessories"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='kid-clothing') }}">Kid's Clothing</a> <span class="categories-amount">{{ categories["kid-clothing"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='kid-shoes') }}">Kid's Shoes</a> <span class="categories-amount">{{ categories["kid-shoes"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='kid-accessories') }}">Kid's Accessories</a> <span class="categories-amount">{{ categories["kid-accessories"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='costumes') }}">Costumes</a> <span class="categories-amount">{{ categories["costumes"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='make-up') }}">Make-up</a> <span class="categories-amount">{{ categories["make-up"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='clothes-other') }}">Other</a> <span class="categories-amount">{{ categories["clothes-other"] }}</span>
+
+					</div>
+				</div>
+
+				<div class="category-list-item dropdown-category">
+					<span class="categories-plus-sign">+</span> <a class="category-name" href="{{ url_for('listings.category_search', category='sports') }}">Sports</a> <span class="categories-amount">{{ categories["sports"] }}</span>
+
+					<div class="dropdown-content-category">
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='balls-equipment') }}">Balls & Equipment</a> <span class="categories-amount">{{ categories["balls-equipment"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='camping') }}">Camping</a> <span class="categories-amount">{{ categories["camping"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='padding-gear') }}">Padding & Gear</a> <span class="categories-amount">{{ categories["padding-gear"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='sports-other') }}">Other</a> <span class="categories-amount">{{ categories["sports-other"] }}</span>
+					</div>
+				</div>
+
+				<div class="category-list-item category-list dropdown-category">
+					<span class="categories-plus-sign">+</span> <a class="category-name" href="{{ url_for('listings.category_search', category='toys') }}">Toys</a> <span class="categories-amount">{{ categories["toys"] }}</span>
+
+					<div class="dropdown-content-category">
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='action-figures') }}">Action Figures</a> <span class="categories-amount">{{ categories["action-figures"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='board-games') }}">Board Games</a> <span class="categories-amount">{{ categories["board-games"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='dolls') }}">Dolls</a> <span class="categories-amount">{{ categories["dolls"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='puzzles') }}">Puzzles</a> <span class="categories-amount">{{ categories["puzzles"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='outdoor-toys') }}">Outdoor Toys</a> <span class="categories-amount">{{ categories["outdoor-toys"] }}</span>
+						<br>
+						<span class="categories-plus-sign">-</span> <a class="category-name" href="{{ url_for('listings.category_search', category='toys-other') }}">Other</a> <span class="categories-amount">{{ categories["toys-other"] }}</span>
+
+					</div>
+				</div>
+
+				<div class="category-list-item category-list-last-item">
+					<span class="categories-plus-sign">+</span> <a class="category-name" href="{{ url_for('listings.category_search', category='other-other') }}">Other</a> <span class="categories-amount">{{ categories["other-other"] }}</span>
+				</div>
+
+			</section>
+
+
+
+
+			<!-- Advanced Search -->
+			<section class="advanced-search-view">
+				<h1>Advanced Search</h1>
+
+
+				<form class="advanced-search-view-form" method="POST" action="">
+					{{ advanced_search_form.hidden_tag() }}
+					
+
+					<legend style="text-align: left;margin-left: 26px">Search for:</legend>
+					<input id="item" type="text" name="item" placeholder="Item.." style="width: 292px; margin-left: 26px">
+
+					<legend style="text-align: left;margin-left: 26px">Vendor:</legend>
+					<input id="vendor" name="vendor" type="text" placeholder="Vendor.." style="width: 292px; margin-left: 26px">
+					<br />
+
+					
+					<div style="float: right; margin-top: 8px; margin-right: 26px">
+						<select name="currency" id="currency" placeholder="Select currency"> 
+							<optgroup label="Currencies">
+
+								<option value="xmr">Monero (XMR)</option>
+								<option value="usdt">Tether (USDT)</option>
+								<option value="btc">Bitcoin (BTC)</option>
+								<option value="bch">Bitcoin Cash (BCH)</option>
+								<option value="ltc">Litecoin (LTC)</option>
+								<option value="doge">Dogecoin (DOGE)</option>
+								<option value="xaut">Tether Gold (XAUT)</option>
+								<option value="eth">Ethereum (ETH)</option>
+
+							</optgroup>
+						</select>
+					</div>
+					<legend style="text-align: left; margin-left: 26px">Price range:</legend>
+
+					<input id="price_from" name="price_from" type="number" placeholder="From" step="0.00001" min="0" style="margin-left: 26px; width: 137px">
+					<input id="price_to" name="price_to" type="number" placeholder="To" step="0.00001" min="0" style="width: 137px; margin-left: 15px">
+
+
+					<div style="clear: both"></div>
+
+
+					<div style="margin-left: 24px; float: right">
+					<legend style="margin-right: 70px">Shipping from:</legend>
+					<select name="shipping_from" id="shipping_from" placeholder="Select category" style="width: 142px; margin-right: 25px"> 
+						<option value="Any">Any</option>
+						<option value="Digital">Digital</option>
+						<option value="Worldwide">Worldwide</option>
+
+						<optgroup label="Countries">
+							<option value="United States of America">United States of America</option>
+							<!--<option value="European Union">European Union</option>-->
+							<!--<option value="Great Britain">Great Britain</option>-->
+							<!--<option value="Hong Kong">Hong Kong</option>-->
+							<!--<option value="Japan">Japan</option>-->
+							<!--<option value="South Korea">South Korea</option>-->
+							<!--<option value="Sweden">Sweden</option>-->
+							<!--<option value="Switzerland">Switzerland</option>-->
+						</optgroup>
+					</select>
+					</div>
+					<div style="margin-left: 24px;">
+					<legend style="text-align: left; margin-left: 0px">Shipping to:</legend>
+					<select name="shipping_to" id="shipping_to" placeholder="Select category" style="width: 142px"> 
+						<option value="Any">Any</option>
+						<option value="Digital">Digital</option>
+						<!--<option value="Worldwide">Worldwide</option>-->
+
+						<optgroup label="Countries">
+							<option value="United States of America">United States of America</option>
+							<!--<option value="European Union">European Union</option>-->
+							<!--<option value="Great Britain">Great Britain</option>-->
+							<!--<option value="Hong Kong">Hong Kong</option>-->
+							<!--<option value="Japan">Japan</option>-->
+							<!--<option value="South Korea">South Korea</option>-->
+							<!--<option value="Sweden">Sweden</option>-->
+							<!--<option value="Switzerland">Switzerland</option>-->
+						</optgroup>
+					</select>
+				</div>
+
+
+
+					
+
+					
+					
+
+				
+					<!--
+					<legend style="text-align: left;margin-left: 30px">Ships from:</legend>
+					<input id="search_rating" name="search_for" type="text" placeholder="Item">
+
+					<legend style="text-align: left;margin-left: 30px">Ships to:</legend>
+					<input id="search_rating" name="search_for" type="text" placeholder="Item">-->
+
+					<legend>Ratings:</legend>
+					<input id="search_rating_1" name="search_rating_1" type="checkbox" value="1" style="display: inline; margin-left: 10px">
+					<label>1 Star</label>
+					<input id="search_rating_2" name="search_rating_2" type="checkbox" value="2" style="display: inline;">
+					<label>2 Stars</label>
+					<input id="search_rating_3" name="search_rating_3" type="checkbox" value="3" style="display: inline">
+					<label>3 Stars</label>
+					<input id="search_rating_4" name="search_rating_4" type="checkbox" value="4" style="display: inline">
+					<label>4 Stars</label>
+					<input id="search_rating_5" name="search_rating_5" type="checkbox" value="5" style="display: inline">
+					<label>5 Stars</label>
+				
+				</br>
+				{{ advanced_search_form.submit_advanced_search(class="search_button", style="margin-left: 136px; margin-bottom: 10px; margin-top: 10px") }}
+				<!--<button class="search_button">Get results</button>-->
+			</form>
+			</section>
+
+
+
+
+
+
+			<!-- Exchange Rates -->
+			<section class="exchange-rates-view">
+				<h1>Exchange Rates</h1>
+
+
+				<!-- Listing of categories -->
+				<div class="exchange-rates-item exchange-rates-first-item">
+					<!-- Source for formatting to 2 decimal places: https://pythonguides.com/python-print-2-decimal-places/ -->
+					<!-- Source for currency symbols: https://www.webnots.com/alt-code-shortcuts-for-currency-symbols/#h-alt-code-shortcuts-for-currency-symbols -->
+					<span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/usdt.png') }}"></span> <span class="exchange-rates-country-name">XMR  ⇆  USDT</span> <span class="exchange-rates-amount">$ {{ "{:.2f}".format(usdt) }}</span>
+				</div>
+
+
+				<div class="exchange-rates-item">
+					<span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/btc.png') }}"></span> <span class="exchange-rates-country-name">XMR  ⇆  BTC</span> <span class="exchange-rates-amount">₿ {{ "{:.5f}".format(btc) }}</span>
+				</div>
+
+				<div class="exchange-rates-item">
+					<span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/bch.png') }}" height="100"></span> <span class="exchange-rates-country-name">XMR  ⇆  BCH</span> <span class="exchange-rates-amount">₿ {{ "{:.5f}".format(bch) }}</span>
+				</div>
+
+
+				<div class="exchange-rates-item">
+					<span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/ltc.png') }}"></span> <span class="exchange-rates-country-name">XMR  ⇆  LTC</span> <span class="exchange-rates-amount">Ł {{ "{:.5f}".format(ltc) }}</span>
+				</div>
+
+
+				<div class="exchange-rates-item">
+					<span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/doge.png') }}"></span> <span class="exchange-rates-country-name">XMR  ⇆  DOGE</span> <span class="exchange-rates-amount">Ð {{ "{:.2f}".format(doge) }}</span>
+				</div>
+
+
+				<div class="exchange-rates-item ">
+					<span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/xaut.png') }}"></span> <span class="exchange-rates-country-name">XMR  ⇆  XAUT</span> <span class="exchange-rates-amount">₮ {{ "{:.5f}".format(xaut) }}</span>
+				</div>
+
+				<div class="exchange-rates-item exchange-rates-last-item">
+					<span class="exchange-rates-flag"><img src="{{ url_for('static', filename='img/icons/flags/eth.png') }}"></span> <span class="exchange-rates-country-name">XMR  ⇆  ETH</span> <span class="exchange-rates-amount">♦ {{ "{:.5f}".format(eth) }}</span>
+				</div>
+
+
+				
+
+			</section>
+
+		</div> <!-- Left-Column -->
+	{% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- Divider between left and right column -->
+	<div class="middle-white-space-column"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- Right column -->
+	<div class="right-column">
+	{% block right_column %}
+	{% endblock right_column %}
+
+	</div>
+
+{% endblock content %}

@@ -1,0 +1,173 @@
+{% extends "abstracts/layout.html" %}
+
+
+{% block content %}
+
+
+	<section class="login-register-view">
+		<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+		<ul class="login-register-alert">
+			<p style="text-align: center ; font-size: 16px">Welcome <span class="orange-link">{{ current_user.username }}</span></p>
+			<li>Employee ID #<span style="color: crimson">{{ current_user.id }}.</span></li>
+			<li>Any questions please send a message to <span style="color: orange">MoneroMarket.</span></li>
+			<li>We work today for a better <span style="color: green">tomorrow</span>, for a better <span style="color: blue">currency</span>, for a better <span style="color: red">world.</span></li>
+		</ul>
+
+
+
+		<div style="float: left">
+			<a class="blue-link" href="{{ url_for('employees.incoming_shipments', filter_by='all') }}">Shipments</a>
+			<br>
+
+			<a class="blue-link" href="{{ url_for('employees.disputes', filter_by='buyer') }}">Disputes</a>
+			<br>
+
+
+			<!--<a class="blue-link" href="{{ url_for('messages.admin', filter_by='all', message_type='dispute' ) }}">Disputes</a>
+			<br>-->
+			<a class="blue-link" href="{{ url_for('employees.reports') }}">Reports</a>
+			<br>
+			<a class="blue-link" href="{{ url_for('employees.messages') }}">Messages</a>
+		</div>
+
+
+		{% if current_user.is_admin %}
+		<div style="float: right">
+			<p style="text-align: right"><a class="red-link" href="{{ url_for('employees.info_edit') }}" style="text-align: right">Info</a></p>
+			<a class="red-link" href="{{ url_for('employees.info_edit') }}">Edit User</a>
+
+			<p style="text-align: right"><a class="red-link" href="{{ url_for('employees.featured_posts') }}" style="text-align: right">Featured Posts</a></p>
+		</div>
+		{% endif %}
+
+		<div style="clear: both"></div>
+
+
+		<p style="text-align: center">Search Order</p>
+		<form class="" method="POST" action="">
+			<!-- SECRET KEY to protect from foreign attacks -->
+			{{ search_order_form.hidden_tag() }}
+
+			<legend style="color: grey; margin-top: 4px; margin-bottom: 0px">{{ search_order_form.order_number.label }}:</legend>
+
+			{% if search_order_form.order_number.errors %}
+
+				{{ search_order_form.order_number(placeholder="Enter order number..", class="login-register-form-input invalid-field-border") }}
+
+				<div class="display-invalid-field">
+					{% for error in search_order_form.order_number.errors %}
+						<span> {{ error }} </span>
+
+					{% endfor %}
+				</div>
+
+			{% else %}
+				<!-- This is processed as an <input> -->
+				{{ search_order_form.order_number(placeholder="Enter order number..", class="login-register-form-input") }}
+
+			{% endif %}
+
+			{{ search_order_form.submit(class="search_button login-register-view-button", style="width: 70px; margin-top: -2px") }}
+		</form>
+
+
+
+
+		<p style="text-align: center">Search Payment ID</p>
+		<form class="" method="POST" action="">
+			<!-- SECRET KEY to protect from foreign attacks -->
+			{{ search_payment_form.hidden_tag() }}
+
+			<legend style="color: grey; margin-top: 4px; margin-bottom: 0px">Payment ID:</legend>
+
+			{% if search_payment_form.payment_id.errors %}
+
+				{{ search_payment_form.payment_id(placeholder="Enter Payment ID..", class="login-register-form-input invalid-field-border") }}
+
+				<div class="display-invalid-field">
+					{% for error in search_payment_form.payment_id.errors %}
+						<span> {{ error }} </span>
+
+					{% endfor %}
+				</div>
+
+			{% else %}
+				<!-- This is processed as an <input> -->
+				{{ search_payment_form.payment_id(placeholder="Enter Payment ID..", class="login-register-form-input") }}
+
+			{% endif %}
+
+			{{ search_payment_form.submit_payment_id(class="search_button login-register-view-button", style="width: 70px; margin-top: -2px") }}
+		</form>
+
+
+
+
+		<p style="text-align: center">Search Transaction ID</p>
+		<form class="" method="POST" action="">
+			<!-- SECRET KEY to protect from foreign attacks -->
+			{{ transaction_id_form.hidden_tag() }}
+
+			<legend style="color: grey; margin-top: 4px; margin-bottom: 0px">{{ transaction_id_form.transaction_id.label }}:</legend>
+
+			{% if transaction_id_form.transaction_id.errors %}
+
+				{{ transaction_id_form.transaction_id(placeholder="Enter transaction id..", class="login-register-form-input invalid-field-border") }}
+
+				<div class="display-invalid-field">
+					{% for error in transaction_id_form.transaction_id.errors %}
+						<span> {{ error }} </span>
+
+					{% endfor %}
+				</div>
+
+			{% else %}
+				<!-- This is processed as an <input> -->
+				{{ transaction_id_form.transaction_id(placeholder="Enter transaction id..", class="login-register-form-input") }}
+
+			{% endif %}
+
+			{{ transaction_id_form.submit_transaction_id(class="search_button login-register-view-button", style="width: 70px; margin-top: -2px") }}
+		</form>
+
+
+
+
+
+
+
+		<p style="text-align: center">Search Public Address</p>
+		<form class="" method="POST" action="">
+			<!-- SECRET KEY to protect from foreign attacks -->
+			{{ search_order_form.hidden_tag() }}
+
+			<legend style="color: grey; margin-top: 4px; margin-bottom: 0px">Public address:</legend>
+
+			{% if search_order_form.order_number.errors %}
+
+				{{ search_order_form.order_number(placeholder="Enter public address..", class="login-register-form-input invalid-field-border") }}
+
+				<div class="display-invalid-field">
+					{% for error in search_order_form.order_number.errors %}
+						<span> {{ error }} </span>
+
+					{% endfor %}
+				</div>
+
+			{% else %}
+				<!-- This is processed as an <input> -->
+				{{ search_order_form.order_number(placeholder="Enter public address..", class="login-register-form-input") }}
+
+			{% endif %}
+
+			{{ search_order_form.submit(class="search_button login-register-view-button", style="width: 70px; margin-top: -2px") }}
+		</form>
+
+
+
+
+
+
+
+	</section>
+{% endblock %}

@@ -1,0 +1,231 @@
+{% extends "abstracts/layout.html" %}
+
+
+
+{% block content %}
+
+		<section class="login-register-view">
+		<!-- Banner to appear above the register form describing the requirments needed to register an account -->
+			<ul class="login-register-alert">
+				<li>Today's date is <span style="color: magenta">{{ datetime.strftime('%b %-d, %H:%M:%S') }} UTC time.</span></li>
+				<li>Review was disputed on <span style="color: blue">{{ review.dispute_date.strftime('%b %-d, %H:%M:%S') }} UTC time.</span></li>
+				<li>Check review title, description, reasoning, rating, and pictures and decide if review was fair and/or <span style="color: green; text-transform: uppercase;">valid</span> or <span style="color: crimson; text-transform: uppercase;">false.</span></li>
+				<li><span style="color: orange; text-transform: uppercase;">Edit,</span> <span style="color: limegreen; text-transform: uppercase;">No Change,</span> or <span style="color: red; text-transform: uppercase;">Delete</span> review dispute.</li>
+				<li>False or innapropriate photo(s) will result in <span style="color: grey; text-transform: uppercase;">ALL</span> photos being deleted.</li>
+				<li>If you have any questions, please message <a href="{{ url_for('messages.forward', username='MoneroMarket', previous_page='employees.view_review', review_id=review.id) }}" class="blue-link">MoneroMarket</a> for help.</li>
+			</ul>
+
+			<div class="container" style="border: none ;">
+				<p style="margin-top: 5px ;">Order: <a href="{{ url_for('employees.view_order', order_id=review.order_id) }}" style="text-decoration: none"><span class="orange-link">#{{ review.order_id }}</span></a></p>
+				<p><a href="{{ url_for('employees.original_item', order_id=review.order_id, previous_page='orders.view_order') }}" style="float: left ; margin-right: 7px ; color: lime ; text-decoration: none">View original</a></p>
+
+
+
+				<form class="" method="POST" action="">
+					<!-- SECRET KEY to protect from foreign attacks -->
+					{{ form.hidden_tag() }}
+
+					<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+					<div style="margin-top: 35px; color: white">H</div>
+					<!-- source: https://www.youtube.com/watch?v=Ep78KjstQuw -->
+					<div class="rating" style="margin-bottom: -35px">
+						{% if review.rating == 5 %}
+						<input type="radio" name="star" id="star1" value="star1" checked><label for="star1"></label>
+						{% else %}
+							<input type="radio" name="star" id="star1" value="star1"><label for="star1"></label>
+						{% endif %}
+
+						{% if review.rating == 4 %}
+						<input type="radio" name="star" id="star2" value="star2" checked><label for="star2"></label>
+						{% else %}
+							<input type="radio" name="star" id="star2" value="star2"><label for="star2"></label>
+						{% endif %}
+
+						{% if review.rating == 3 %}
+						<input type="radio" name="star" id="star3" value="star3" checked><label for="star3"></label>
+						{% else %}
+							<input type="radio" name="star" id="star3" value="star3"><label for="star3"></label>
+						{% endif %}
+						{% if review.rating == 2 %}
+						<input type="radio" name="star" id="star4" value="star4" checked><label for="star4"></label>
+						{% else %}
+							<input type="radio" name="star" id="star4" value="star4"><label for="star4"></label>
+						{% endif %}
+						{% if review.rating == 1 %}
+						<input type="radio" name="star" id="star5" value="star5" checked><label for="star5"></label>
+						{% else %}
+							<input type="radio" name="star" id="star5" value="star5"><label for="star5"></label>
+						{% endif %}
+					</div>
+
+
+
+					<legend style="margin: 7px 0 2px 0; float: left">Title:</legend>
+					<div style="float: right; margin-top: 7px">
+						{% if review.rating == 1 %}
+							<p>Rating: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/one_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;">(1)</a></p>
+						{% elif review.rating == 2 %}
+							<p>Rating: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/two_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;">(2)</a></p>
+						{% elif review.rating == 3 %}
+							<p>Rating: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/three_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;">(3)</a></p>
+						{% elif review.rating == 4 %}
+							<p>Rating: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/four_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;">(4)</a></p>
+						{% elif review.rating == 5 %}
+							<p>Rating: <img style="height: 18px; width: 80px ; position: absolute ; margin: 3px 0 0 -3px;" src="{{ url_for('static', filename='img/icons/ratings/five_stars.png') }}"> <a class="blue-link" style="margin-left: 76px ;">(5)</a></p>
+						{% endif %}
+					</div>
+					<div style="clear: both"></div>
+
+					{% if form.title.errors %}
+
+						{{ form.title(placeholder="Edit title..", class="login-register-form-input invalid-field-border", style="width: 100") }}
+
+						<div class="display-invalid-field">
+							{% for error in form.title.errors %}
+								<span> {{ error }} </span>
+
+							{% endfor %}
+						</div>
+
+					{% else %}
+						<!-- This is processed as an <input> -->
+						{{ form.title(placeholder="Enter title..", class="login-register-form-input", style="width: 100") }}
+
+					{% endif %}
+
+					<legend style="margin: 7px 0 2px 0">Description:</legend>
+					{% if form.description.errors %}
+
+						{{ form.description(placeholder="Edit description..", class="login-register-form-input invalid-field-border", style="overflow: scroll ; width: 98.2% ; resize: vertical ; min-height: 100px ; padding: 7px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 16px ; color: #333333") }}
+
+						<div class="display-invalid-field">
+							{% for error in form.description.errors %}
+								<span> {{ error }} </span>
+
+							{% endfor %}
+						</div>
+
+					{% else %}
+						<!-- This is processed as an <input> -->
+						{{ form.description(placeholder="Edit description..", class="login-register-form-input", style="overflow: scroll ; width: 98.2% ; resize: vertical ; min-height: 100px ; padding: 7px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 16px ; color: #333333") }}
+
+					{% endif %}
+
+
+
+					<legend style="margin-top: 10px ;">Reasoning:</legend>
+					<textarea class="login-register-form-input invalid-field-border", style="overflow: scroll ; width: 98.2% ; resize: vertical ; min-height: 100px ; padding: 7px ; border: 1px solid #E1D8D9 ; border-radius: 6px ; font-size: 16px ; color: #333333" readonly>{{ fernet.decrypt(review.dispute_text.encode()).decode() }}</textarea>
+
+
+
+
+
+					<!-- Make photo gallery -->
+					<!-- Source: https://www.youtube.com/watch?v=9Irz0c-6UGw -->
+					{% if review.gallery_2 %}
+						<legend style="margin-top: 3px ; text-align: center">Pictures:</legend>
+					{% else %}
+						<legend style="margin-top: 3px ; text-align: center">Picture:</legend>
+					{% endif %}
+
+
+
+					<div class="slidershow-review" style="display: block; margin: auto">
+
+						<div class="slides-review">
+
+							{% if review.gallery_1 %}
+								<!-- Invisible radio fields to allow for picure switches -->
+								<input type="radio" name="radio-picture" id="radio-picture-review-1" checked>
+								<input type="radio" name="radio-picture" id="radio-picture-review-2">
+								<input type="radio" name="radio-picture" id="radio-picture-review-3">
+							{% endif %}
+
+
+							<!-- 'alt=""' is absolutely required so the images can shift!! -->
+							{% if not review.gallery_1 %}
+								{% if review.rating < 3.6 and review.rating > 2.4 %}
+									<div class="slide-review current-slide">
+										<a href="{{ url_for('static', filename='img/icons/ratings/' + 'neutral_face.png') }}"><img src="{{ url_for('static', filename='img/icons/ratings/' + 'neutral_face.png') }}" alt=""></a>
+									</div>
+
+								{% elif review.rating < 2.5 %}
+									<div class="slide-review current-slide">
+										<a href="{{ url_for('static', filename='img/icons/ratings/' + 'sad_face.png') }}"><img src="{{ url_for('static', filename='img/icons/ratings/' + 'sad_face.png') }}" alt=""></a>
+									</div>
+
+								{% elif review.rating > 3.5 %}
+									<div class="slide-review current-slide">
+										<a href="{{ url_for('static', filename='img/icons/ratings/' + 'happy_face.png') }}"><img src="{{ url_for('static', filename='img/icons/ratings/' + 'happy_face.png') }}" alt=""></a>
+									</div>
+								{% endif %}
+
+
+							{% else %}
+								<div class="slide-review current-slide">
+									<a href="{{ url_for('static', filename='img/reviews/' + review.gallery_1) }}"><img src="{{ url_for('static', filename='img/reviews/' + review.gallery_1) }}" alt=""></a>
+								</div>
+
+								{% if review.gallery_2 %}
+									<div class="slide-review">
+										<a href="{{ url_for('static', filename='img/reviews/' + review.gallery_2) }}"><img src="{{ url_for('static', filename='img/reviews/' + review.gallery_2) }}"></a>
+									</div>
+								{% endif %}
+
+								{% if review.gallery_3 %}
+									<div class="slide-review">
+										<a href="{{ url_for('static', filename='img/reviews/' + review.gallery_3) }}"><img src="{{ url_for('static', filename='img/reviews/' + review.gallery_3) }}"></a>
+									</div>
+								{% endif %}
+							{% endif %}
+
+
+						</div>
+
+						<!-- The bars at the bottom to change radio buttons which are hidden and are associated with an image -->
+						<div class="navigation-review">
+							{% if review.gallery_1 %}
+								<label for="radio-picture-review-1" class="bar-review"></label>
+							{% endif %}
+
+							{% if review.gallery_2 %}
+								<label for="radio-picture-review-2" class="bar-review"></label>
+							{% endif %}
+
+							{% if review.gallery_3 %}
+								<label for="radio-picture-review-3" class="bar-review"></label>
+							{% endif %}
+
+						</div>
+
+					</div>
+
+					{% if review.gallery_1 %}
+						<span style="font-size: 13px">Delete Pictures:</span>
+						<!-- Disabled for now, but will add static prices in the future.... -->
+						<input type="checkbox" id="fiat" name="fiat" value="Fiat">
+					{% endif %}
+
+
+
+
+
+					
+					<span style="font-size: 13px">Delete photos:</span>
+					<!-- Disabled for now, but will add static prices in the future.... -->
+					<input type="checkbox" id="review_photos" name="review_photos" value="Review_Photos">
+
+
+					<p style="margin-top: 8px; margin-bottom: -10px"><a class="blue-link" href="">RESET</a></p>
+
+					<!-- Button -->
+					{{ form.submit(class="search_button", style="padding: 8px ; padding-left: 10px; padding-right: 10px; margin: 15px 0 10px 0px ;") }}	
+				</form>
+				<a href="{{ url_for('employees.no_change_review', review_id=review_id, filter_by=filter_by, page=page) }}"><button class="search_button green-button" style="padding: 8px ; position: relative; top: -43px; left: 53px">No Change</button></a>
+				<a href="{{ url_for('employees.delete_change_review', review_id=review_id, filter_by=filter_by, page=page) }}"><button class="search_button red-button" style="padding: 8px ; position: relative; top: -43px; left: 57px">Delete</button></a>
+			</div>
+		</section>
+
+{% endblock %}
