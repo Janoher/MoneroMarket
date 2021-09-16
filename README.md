@@ -21,8 +21,10 @@ if you are a fellow developer, or by donating to the Monero address down below.
 <strong>Donation</strong>: 466eP39DT6ua2ER2Xm6Mm73HyDph4UKzS6A8s2HVZEipZtYjZwoFfV9eKzAtZu49EaDSsucMJ1RNodFUW5QuEetJCN4cjmq <br />
 <strong>View Key</strong>: b9001ba2430a88947adefcc29f61d6b3732e14d29d4e2b0bce6c92e88a91210e
 
-
--- OpenPGP
+<br />
+<br />
+-- <em>OpenPGP</em>
+<br />
 <strong>Fingerprint</strong>: <em>E15E 2131 9242 FFB1 76CB  D193 AD0F 42A5 7E92 CFB1</em>
 <br />
 -----BEGIN PGP PUBLIC KEY BLOCK-----
@@ -78,6 +80,7 @@ TDOgBFgcj/PNzOTkMk5hGAXROyOlkrzwqd5Rus85gEH6VRXowzqJyM234DNE/bg6
 SOYiNTAEFu7pycIS2O9GtZptjaCa//4rP0acKLBOyoO9bOSNaKORoVfNNust3nBr
 QyCUrqw=
 =dqWE
+<br/>
 -----END PGP PUBLIC KEY BLOCK-----
 
 
