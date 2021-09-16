@@ -27,7 +27,7 @@ if you are a fellow developer, or by donating to the Monero address down below.
 <br />
 <strong>Fingerprint</strong>: <em>E15E 2131 9242 FFB1 76CB  D193 AD0F 42A5 7E92 CFB1</em>
 <br />
------BEGIN PGP PUBLIC KEY BLOCK-----<br /><br />
+-----BEGIN PGP PUBLIC KEY BLOCK-----
 
 mQINBGFAPNwBEAC3ri5OM9aJ0n2/lHCHqCVz7dBbd47Ab7D5fypQER3Dgpn+HUCB
 x+2ofA0PhnO9CItuUue/0uF3zaZF/FtURBWy93DrB5IfufB7BQ//5DRaeokFm4Fu
