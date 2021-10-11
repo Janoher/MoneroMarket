@@ -4,13 +4,13 @@ import json ;
 
 # With open("") will change to where file is located at on testing server, else it is <insert here>.
 config = None ;
-with open("/etc/config.json") as config_file:
-	config = json.load(config_file) ;
+# with open("/etc/config.json") as config_file:
+# 	config = json.load(config_file) ;
 
 
 class Config:
-	SECRET_KEY = config.get("SECRET_KEY") ;
-	SQLALCHEMY_DATABASE_URI = config.get("SQLALCHEMY_DATABASE_URI") ;
+	SECRET_KEY = "123"# config.get("SECRET_KEY") ;
+	SQLALCHEMY_DATABASE_URI = "123"#config.get("SQLALCHEMY_DATABASE_URI") ;
 
 
 
